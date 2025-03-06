@@ -1,0 +1,10 @@
+#kalkulatorLayout{
+    display:grid;
+    grid-template-columns:repeat(4,4vw);
+}
+button{
+    font-size:1.25vw;
+}
+button img{
+    width:1.5vw;
+}

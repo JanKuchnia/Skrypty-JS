@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Skrypty-JS Kalkulator 2</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        input{
+            width:15.55vw;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -13,6 +18,17 @@
         <a href="kalkulator2.html">Kalkulator 2</a>
     </nav>
 </header>
+<main>
+    <input type="number" readonly id="wynik">
+    <div id="kalkulatorLayout">
+        <button onclick="kalkulator('%')">%</button> <button onclick="kalkulator('CE')">CE</button> <button onclick="kalkulator('C')">C</button> <button onclick="kalkulator('back')"><img src="back.png"></button>
+        <button onclick="kalkulator('1/x')">1/x</button> <button onclick="kalkulator('^')">x^2</button> <button onclick="kalkulator('<')">&radic;x</button> <button onclick="kalkulator('/')">/</button>
+        <button onclick="kalkulator('7')">7</button> <button onclick="kalkulator('78')">8</button> <button onclick="kalkulator('9')">9</button> <button onclick="kalkulator('*')">*</button>
+        <button onclick="kalkulator('4')">4</button> <button onclick="kalkulator('5')">5</button> <button onclick="kalkulator('6')">6</button> <button onclick="kalkulator('-')">-</button>
+        <button onclick="kalkulator('1')">1</button> <button onclick="kalkulator('2')">2</button> <button onclick="kalkulator('3')">3</button> <button onclick="kalkulator('+')">+</button>
+        <button onclick="kalkulator('+/-')">+/-</button> <button onclick="kalkulator('0')">0</button> <button onclick="kalkulator(',')">,</button> <button onclick="kalkulator('=')">=</button>
+    </div>
+</main>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
 </footer>
