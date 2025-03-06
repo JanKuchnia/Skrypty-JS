@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <title>Skrypty-JS Kalkulator 1</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function kalkulator(znak){
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            let wynik;
+
+            switch (znak){
+                case '+': wynik=num1+num2;
+                    break;
+                case '-': wynik=num1-num2;
+                    break;
+                case '*': wynik=num1*num2;
+                    break;
+                case '/': wynik=num1/num2;
+                    break;
+                case '^': wynik=Math.pow(num1,num2);
+                    break;
+                case '<':
+                    wynik = Math.pow(num1, 1 / num2);
+                    break;
+                    break;
+            }
+            document.getElementById("wynik").innerText=wynik;
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -16,12 +41,13 @@
 <main>
     <input type="number" id="num1"><br>
     <input type="number" id="num2"><br>
-    <button id="plus">+</button>
-    <button id="minus">-</button>
-    <button id="mno">*</button>
-    <button id="dziel">/</button>
-    <button id="potega">^</button>
-    <button id="pierwiastek">&radic;</button>
+    <button onclick="kalkulator('+')">+</button>
+    <button onclick="kalkulator('-')">-</button>
+    <button onclick="kalkulator('*')">*</button>
+    <button onclick="kalkulator('/')">/</button>
+    <button onclick="kalkulator('^')">^</button>
+    <button onclick="kalkulator('<')">&radic;</button>
+    <p id="wynik"></p>
 </main>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
