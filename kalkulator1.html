@@ -26,7 +26,7 @@
                     break;
                     break;
             }
-            document.getElementById("wynik").innerText=wynik;
+            document.getElementById("wynik").innerText="Wynik to "+wynik;
         }
     </script>
 </head>
@@ -35,19 +35,21 @@
     <h1>Skrypty-JS</h1>
     <nav>
         <a href="kalkulator1.html">Kalkulator 1</a>
+        <a href="index.html">Strona Główna</a>
         <a href="kalkulator2.html">Kalkulator 2</a>
     </nav>
 </header>
 <main>
+    <label for="num1">Kalkulator</label>
     <input type="number" id="num1"><br>
     <input type="number" id="num2"><br>
+    <p id="wynik">Wynik to </p>
     <button onclick="kalkulator('+')">+</button>
     <button onclick="kalkulator('-')">-</button>
     <button onclick="kalkulator('*')">*</button>
     <button onclick="kalkulator('/')">/</button>
     <button onclick="kalkulator('^')">^</button>
     <button onclick="kalkulator('<')">&radic;</button>
-    <p id="wynik"></p>
 </main>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
