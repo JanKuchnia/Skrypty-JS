@@ -18,17 +18,17 @@
         function kalkulator(znak) {
             const poleInput = document.getElementById("okienko");
 
-            if (znak === 'CE' || znak === 'C') {
+            if (znak == 'CE' || znak == 'C') {
                 okienko = '0';
             }
-            else if (znak === '=') {
+            else if (znak == '=') {
                 try {
                     okienko = eval(okienko.replace(',', '.')).toString();
                 } catch (error) {
                     okienko = 'Błąd';
                 }
             }
-            else if (znak === 'back') {
+            else if (znak == 'back') {
                 if (okienko.length > 1) {
                     okienko = okienko.slice(0, -1);
                 }
@@ -36,20 +36,34 @@
                     okienko = '0';
                 }
             }
-            else if (znak === '1/x') {
+            else if (znak == '1/x') {
                 okienko = (1 / parseFloat(okienko)).toString();
             }
-            else if (znak === '^') {
+            else if (znak == '^') {
                 okienko = (Math.pow(parseFloat(okienko), 2)).toString();
             }
-            else if (znak === '<') {
+            else if (znak == '<') {
                 okienko = (Math.sqrt(parseFloat(okienko))).toString();
             }
-            else if (znak === '+/-') {
+            else if (znak == '+/-') {
                 okienko = (parseFloat(okienko) * -1).toString();
             }
+            else if (znak == '%') {
+                const wyrazenie = okienko.split(/([\+\-\*\/])/);
+                if (wyrazenie.length == 3) {
+                    const [liczba1, operator, liczba2] = wyrazenie;
+                    const wynik = parseFloat(liczba1) * (parseFloat(liczba2) / 100);
+                    if (operator == '+' || operator == '-') {
+                        okienko = (parseFloat(liczba1) + (operator == '+' ? wynik : -wynik)).toString();
+                    } else if (operator == '*' || operator == '/') {
+                        okienko = wynik.toString();
+                    }
+                } else {
+                    okienko = (parseFloat(okienko) / 100).toString();
+                }
+            }
             else {
-                if (okienko === '0' || okienko === 'Error') {
+                if (okienko == '0' || okienko == 'Error') {
                     okienko = znak;
                 }
                 else {
