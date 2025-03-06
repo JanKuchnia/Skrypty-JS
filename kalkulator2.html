@@ -7,8 +7,59 @@
     <style>
         input{
             width:15.55vw;
+            height:2vw;
+            font-size:2vw;
+            text-align:right;
         }
     </style>
+    <script>
+        let okienko = '0';
+
+        function kalkulator(znak) {
+            const poleInput = document.getElementById("okienko");
+
+            if (znak === 'CE' || znak === 'C') {
+                okienko = '0';
+            }
+            else if (znak === '=') {
+                try {
+                    okienko = eval(okienko.replace(',', '.')).toString();
+                } catch (error) {
+                    okienko = 'Błąd';
+                }
+            }
+            else if (znak === 'back') {
+                if (okienko.length > 1) {
+                    okienko = okienko.slice(0, -1);
+                }
+                else {
+                    okienko = '0';
+                }
+            }
+            else if (znak === '1/x') {
+                okienko = (1 / parseFloat(okienko)).toString();
+            }
+            else if (znak === '^') {
+                okienko = (Math.pow(parseFloat(okienko), 2)).toString();
+            }
+            else if (znak === '<') {
+                okienko = (Math.sqrt(parseFloat(okienko))).toString();
+            }
+            else if (znak === '+/-') {
+                okienko = (parseFloat(okienko) * -1).toString();
+            }
+            else {
+                if (okienko === '0' || okienko === 'Error') {
+                    okienko = znak;
+                }
+                else {
+                    okienko += znak;
+                }
+            }
+
+            poleInput.value = okienko;
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -19,14 +70,32 @@
     </nav>
 </header>
 <main>
-    <input type="number" readonly id="wynik">
+    <input type="text" readonly id="okienko" value="0">
     <div id="kalkulatorLayout">
-        <button onclick="kalkulator('%')">%</button> <button onclick="kalkulator('CE')">CE</button> <button onclick="kalkulator('C')">C</button> <button onclick="kalkulator('back')"><img src="back.png"></button>
-        <button onclick="kalkulator('1/x')">1/x</button> <button onclick="kalkulator('^')">x^2</button> <button onclick="kalkulator('<')">&radic;x</button> <button onclick="kalkulator('/')">/</button>
-        <button onclick="kalkulator('7')">7</button> <button onclick="kalkulator('78')">8</button> <button onclick="kalkulator('9')">9</button> <button onclick="kalkulator('*')">*</button>
-        <button onclick="kalkulator('4')">4</button> <button onclick="kalkulator('5')">5</button> <button onclick="kalkulator('6')">6</button> <button onclick="kalkulator('-')">-</button>
-        <button onclick="kalkulator('1')">1</button> <button onclick="kalkulator('2')">2</button> <button onclick="kalkulator('3')">3</button> <button onclick="kalkulator('+')">+</button>
-        <button onclick="kalkulator('+/-')">+/-</button> <button onclick="kalkulator('0')">0</button> <button onclick="kalkulator(',')">,</button> <button onclick="kalkulator('=')">=</button>
+        <button onclick="kalkulator('%')">%</button>
+        <button onclick="kalkulator('CE')">CE</button>
+        <button onclick="kalkulator('C')">C</button>
+        <button onclick="kalkulator('back')">⌫</button>
+        <button onclick="kalkulator('1/x')">1/x</button>
+        <button onclick="kalkulator('^')">x²</button>
+        <button onclick="kalkulator('<')">√x</button>
+        <button onclick="kalkulator('/')">/</button>
+        <button onclick="kalkulator('7')">7</button>
+        <button onclick="kalkulator('8')">8</button>
+        <button onclick="kalkulator('9')">9</button>
+        <button onclick="kalkulator('*')">*</button>
+        <button onclick="kalkulator('4')">4</button>
+        <button onclick="kalkulator('5')">5</button>
+        <button onclick="kalkulator('6')">6</button>
+        <button onclick="kalkulator('-')">-</button>
+        <button onclick="kalkulator('1')">1</button>
+        <button onclick="kalkulator('2')">2</button>
+        <button onclick="kalkulator('3')">3</button>
+        <button onclick="kalkulator('+')">+</button>
+        <button onclick="kalkulator('+/-')">+/-</button>
+        <button onclick="kalkulator('0')">0</button>
+        <button onclick="kalkulator('.')">.</button>
+        <button onclick="kalkulator('=')">=</button>
     </div>
 </main>
 <footer>
