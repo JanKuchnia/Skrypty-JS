@@ -5,15 +5,34 @@
     <title>Skrypty-JS Kalkulator 2</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        input{
-            width:15.55vw;
-            height:2vw;
-            font-size:2vw;
-            text-align:right;
+        input {
+            width: 15.55vw;
+            height: 2vw;
+            font-size: 2vw;
+            text-align: right;
         }
     </style>
     <script>
         let okienko = '0';
+
+        function adjustFontSize() {
+            const poleInput = document.getElementById("okienko");
+            const maxWidth = poleInput.offsetWidth;
+            const textLength = poleInput.value.length;
+            const baseFontSize = 2;
+
+            let newFontSize = baseFontSize;
+            if (textLength > 10) {
+                newFontSize = baseFontSize * (10 / textLength);
+            }
+
+            if (newFontSize < 1) {
+                newFontSize = 1;
+            }
+
+            poleInput.style.fontSize = `${newFontSize}vw`;
+        }
+
         function kalkulator(znak) {
             const poleInput = document.getElementById("okienko");
 
@@ -22,7 +41,12 @@
             }
             else if (znak == '=') {
                 try {
-                    okienko = eval(okienko.replace(',', '.')).toString();
+                    // Check if the expression contains division by zero
+                    if (okienko.includes('/0')) {
+                        okienko = 'Nie można dzielić przez 0';
+                    } else {
+                        okienko = eval(okienko.replace(',', '.')).toString();
+                    }
                 } catch (error) {
                     okienko = 'Błąd';
                 }
@@ -36,7 +60,11 @@
                 }
             }
             else if (znak == '1/x') {
-                okienko = (1 / parseFloat(okienko)).toString();
+                if (parseFloat(okienko) === 0) {
+                    okienko = 'Nie można dzielić przez 0';
+                } else {
+                    okienko = (1 / parseFloat(okienko)).toString();
+                }
             }
             else if (znak == '^') {
                 okienko = (Math.pow(parseFloat(okienko), 2)).toString();
@@ -62,7 +90,7 @@
                 }
             }
             else {
-                if (okienko == '0' || okienko == 'Error') {
+                if (okienko == '0' || okienko == 'Error' || okienko == 'Nie można dzielić przez 0') {
                     okienko = znak;
                 }
                 else {
@@ -71,7 +99,11 @@
             }
 
             poleInput.value = okienko;
+            adjustFontSize();
         }
+
+        // Initial adjustment
+        window.onload = adjustFontSize;
     </script>
 </head>
 <body>
