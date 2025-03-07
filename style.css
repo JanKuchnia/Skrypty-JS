@@ -46,13 +46,17 @@ nav a:hover {
     border: none;
     border-radius: 5px;
     background-color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease-out;
     display:flex;
     align-items:center;
     justify-content:center;
     margin-bottom:10px;
     color:black;
+}
+
+.linki:hover{
+    transform:scale(1.02);
+    background-color: #e6e6e6;
 }
 
 main {
