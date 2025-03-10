@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>Skrypty-JS Kalkulator 1</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        input{
+            width:50%;
+        }
+    </style>
     <script>
         function kalkulator(znak){
             const num1 = parseFloat(document.getElementById("num1").value);
@@ -73,7 +78,20 @@
         <option>mila morska</option>
     </select>
     <br>
-    <input type="number" id="num2"><br>
+    <input type="number" id="num2">
+    <select name="opcje2">
+        <option>mm</option>
+        <option>cm</option>
+        <option>dm</option>
+        <option>m</option>
+        <option>km</option>
+        <option>in</option>
+        <option>ft</option>
+        <option>yd</option>
+        <option>mi</option>
+        <option>mila morska</option>
+    </select>
+    <br>
     <p id="wynik"></p>
     <button onclick="kalkulator('+')">+</button>
     <button onclick="kalkulator('-')">-</button>
