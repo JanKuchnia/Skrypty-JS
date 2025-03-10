@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 3</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:23%;
+        }
+        input{
+            width:49%;
+        }
+        #wynik{
+            width:100%;
+        }
+        #opcje2select {
+            width:100%;
+        }
+    </style>
+    <script>
+        const wartosci = {
+            mm: 0.001,
+            cm: 0.01,
+            dm: 0.1,
+            m: 1,
+            km: 1000,
+            in: 0.0254,
+            ft: 0.3048,
+            yd: 0.9144,
+            mi: 1609.34,
+            "mila morska": 1852
+        };
+
+        function kalkulator() {
+            const num1 = parseFloat(document.getElementById("num1").value);
+
+            const opcja1 = document.querySelector("select[name='opcje1']").value;
+            const opcja2 = document.querySelector("select[name='opcje2']").value;
+
+            const wprowadzone = num1 * wartosci[opcja1];
+            const wynik = wprowadzone / wartosci[opcja2];
+
+            document.getElementById("wynik").value = wynik.toFixed(4);
+        }
+    </script>
+</head>
+<body>
+<header>
+    <h1>Skrypty-JS</h1>
+    <nav>
+        <a href="kalkulator1.html">Kalkulator 1</a>
+        <a href="kalkulator3.html">Kalkulator 3</a>
+        <a href="index.html">Strona Główna</a>
+        <a href="kalkulator2.html">Kalkulator 2</a>
+    </nav>
+</header>
+<main>
+    <label for="num1">Kalkulator długości</label>
+    <label for="opcje1select">Wprowadź początkową wartość</label>
+    <input type="number" id="num1">
+    <select name="opcje1" id="opcje1select">
+        <option>mg</option>
+        <option>g</option>
+        <option>kg</option>
+        <option>t</option>
+        <option>ld</option>
+        <option>stone</option>
+        <option>oz</option>
+        <option>karat</option>
+    </select>
+    <br>
+    <label for="opcje2select">Wybierz na co przekalkulować</label>
+    <select name="opcje2" id="opcje2select">
+        <option>mg</option>
+        <option>g</option>
+        <option>kg</option>
+        <option>t</option>
+        <option>ld</option>
+        <option>stone</option>
+        <option>oz</option>
+        <option>karat</option>
+    </select>
+    <label for="wynik">Wynik</label>
+    <input type="number" id="wynik" readonly placeholder="0">
+    <br>
+    <button onclick="kalkulator()">=</button>
+</main>
+<footer>
+    <h3>Jan.K-2TP Gr.1</h3>
+</footer>
+</body>
+</html>
