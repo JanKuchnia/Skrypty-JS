@@ -39,19 +39,20 @@ nav a:hover {
     color: #000;
 }
 
-.linki{
+.linki {
     width: 100%;
-    height: 10vw;
+    height: 5vw;
+    min-height: 50px;
     font-size: 1.2rem;
     border: none;
     border-radius: 5px;
     background-color: #f0f0f0;
     transition: all 0.3s ease-out;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    margin-bottom:10px;
-    color:black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: black;
 }
 
 .linki:hover{
@@ -74,8 +75,9 @@ main a{
 }
 .linkiKontener {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 50px);
+    gap: 50px;
 }
 label {
     font-size: 1.2rem;
