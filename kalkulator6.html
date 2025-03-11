@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Skrypty-JS Kalkulator 3</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main{
+      width:23%;
+    }
+    input{
+      width:49%;
+    }
+    #wynik{
+      width:100%;
+    }
+    #opcje2select {
+      width:100%;
+    }
+  </style>
+  <script>
+    const wartosci = {
+        "cm²": 1e-10,
+        "m²": 1e-6,
+        "km²": 1,
+        ar: 0.0001,
+        ha: 0.01,
+        akr: 0.00404686,
+        "mi²": 2.58999,
+        "in²": 6.4516e-10,
+        "yd²": 8.36127e-7,
+        "ft²": 9.2903e-8
+    };
+
+    function kalkulator() {
+      const num1 = parseFloat(document.getElementById("num1").value);
+
+      const opcja1 = document.querySelector("select[name='opcje1']").value;
+      const opcja2 = document.querySelector("select[name='opcje2']").value;
+
+      const wprowadzoneWM = num1 * wartosci[opcja1];
+      const wynik = wprowadzoneWM / wartosci[opcja2];
+
+      document.getElementById("wynik").value = wynik.toFixed(4);
+    }
+  </script>
+</head>
+<body>
+<header>
+  <h1>Skrypty-JS</h1>
+  <nav>
+    <a href="kalkulator1.html">Kalkulator 1</a>
+    <a href="kalkulator3.html">Kalkulator 3</a>
+    <a href="kalkulator5.html">Kalkulator 5</a>
+    <a href="index.html">Strona Główna</a>
+    <a href="kalkulator2.html">Kalkulator 2</a>
+    <a href="kalkulator4.html">Kalkulator 4</a>
+  </nav>
+</header>
+<main>
+    <label for="num1">Kalkulator Powierzchni</label>
+    <label for="opcje1select">Wprowadź początkową wartość</label>
+    <input type="number" id="num1">
+    <select name="opcje1" id="opcje1select">
+      <option>cm²</option>
+      <option>m²</option>
+      <option>km²</option>
+      <option>ar</option>
+      <option>ha</option>
+      <option>akr</option>
+      <option>mi²</option>
+      <option>in²</option>
+      <option>yd²</option>
+      <option>ft²</option>
+    </select>
+    <br>
+    <label for="opcje2select">Wybierz na co przekalkulować</label>
+    <select name="opcje2" id="opcje2select">
+      <option>cm²</option>
+      <option>m²</option>
+      <option>km²</option>
+      <option>ar</option>
+      <option>ha</option>
+      <option>akr</option>
+      <option>mi²</option>
+      <option>in²</option>
+      <option>yd²</option>
+      <option>ft²</option>
+    </select>
+    <label for="wynik">Wynik</label>
+    <input type="number" id="wynik" readonly placeholder="0">
+    <br>
+    <button onclick="kalkulator()">=</button>
+</main>
+<footer>
+    <h3>Jan.K-2TP Gr.1</h3>
+</footer>
+</body>
+</html>
