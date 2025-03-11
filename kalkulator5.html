@@ -20,15 +20,16 @@
     </style>
     <script>
         const wartosci = {
-            mg: 0.000001,
-            g: 0.001,
-            dag: 0.01,
-            kg: 1,
-            t: 1000,
-            ld: 0.453592,
-            stone: 6.35029,
-            oz: 0.0283495,
-            karat: 0.0002
+            ml: 0.001,
+            l: 1,
+            hl: 100,
+            "cm^3": 0.001,
+            "m^3": 1000,
+            baryłka: 158.987,
+            "galon US": 3.78541,
+            "galon UK": 4.54609,
+            "pinta US": 0.473176,
+            "pinta UK": 0.568261
         };
 
         function kalkulator() {
@@ -56,30 +57,34 @@
     </nav>
 </header>
 <main>
-    <label for="num1">Kalkulator długości</label>
+    <label for="num1">Kalkulator objętości</label>
     <label for="opcje1select">Wprowadź początkową wartość</label>
     <input type="number" id="num1">
     <select name="opcje1" id="opcje1select">
-        <option>mg</option>
-        <option>g</option>
-        <option>kg</option>
-        <option>t</option>
-        <option>ld</option>
-        <option>stone</option>
-        <option>oz</option>
-        <option>karat</option>
+        <option>ml</option>
+        <option>l</option>
+        <option>hl</option>
+        <option>cm^3</option>
+        <option>m^3</option>
+        <option>baryłka</option>
+        <option>galon US</option>
+        <option>galon UK</option>
+        <option>pinta US</option>
+        <option>pinta UK</option>
     </select>
     <br>
     <label for="opcje2select">Wybierz na co przekalkulować</label>
     <select name="opcje2" id="opcje2select">
-        <option>mg</option>
-        <option>g</option>
-        <option>kg</option>
-        <option>t</option>
-        <option>ld</option>
-        <option>stone</option>
-        <option>oz</option>
-        <option>karat</option>
+        <option>ml</option>
+        <option>l</option>
+        <option>hl</option>
+        <option>cm^3</option>
+        <option>m^3</option>
+        <option>baryłka</option>
+        <option>galon US</option>
+        <option>galon UK</option>
+        <option>pinta US</option>
+        <option>pinta UK</option>
     </select>
     <label for="wynik">Wynik</label>
     <input type="number" id="wynik" readonly placeholder="0">
