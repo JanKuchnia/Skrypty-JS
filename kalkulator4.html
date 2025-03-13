@@ -37,8 +37,8 @@
             const opcja1 = document.querySelector("select[name='opcje1']").value;
             const opcja2 = document.querySelector("select[name='opcje2']").value;
 
-            const wprowadzoneWKg = num1 * wartosci[opcja1];
-            const wynik = wprowadzoneWKg / wartosci[opcja2];
+            const wprowadzone = num1 * wartosci[opcja1];
+            const wynik = wprowadzone / wartosci[opcja2];
 
             document.getElementById("wynik").value = wynik.toFixed(4);
         }
