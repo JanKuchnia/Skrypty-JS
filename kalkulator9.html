@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Skrypty-JS Kalkulator 4</title>
+    <title>Skrypty-JS Kalkulator 9</title>
     <link rel="stylesheet" href="style.css">
     <style>
         main{
@@ -20,15 +20,15 @@
     </style>
     <script>
         const wartosci = {
-            mg: 0.000001,
-            g: 0.001,
-            dag: 0.01,
-            kg: 1,
-            t: 1000,
-            ld: 0.453592,
-            stone: 6.35029,
-            oz: 0.0283495,
-            karat: 0.0002
+            Pa: 1,
+            hPa: 100,
+            bar: 100000,
+            psi: 6894.76,
+            "newton/milimetr²": 1000000,
+            "kilogram/metr²": 9.80665,
+            at: 98066.5,
+            atm: 101325,
+            Tr: 133.322
         };
 
         function kalkulator() {
@@ -54,8 +54,8 @@
           <a href="kalkulator5.html">Kalkulator 5</a>
           <a href="kalkulator7.html">Kalkulator 7</a>
       </span>
-    <a href="index.html">Strona Główna</a>
-    <span>
+        <a href="index.html">Strona Główna</a>
+        <span>
         <a href="kalkulator2.html">Kalkulator 2</a>
         <a href="kalkulator4.html">Kalkulator 4</a>
         <a href="kalkulator6.html">Kalkulator 6</a>
@@ -64,30 +64,32 @@
     </nav>
 </header>
 <main>
-    <label for="num1">Kalkulator Wagi</label>
+    <label for="num1">Kalkulator Ćiśnienia</label>
     <label for="opcje1select">Wprowadź początkową wartość</label>
     <input type="number" id="num1">
     <select name="opcje1" id="opcje1select">
-        <option>mg</option>
-        <option>g</option>
-        <option>kg</option>
-        <option>t</option>
-        <option>ld</option>
-        <option>stone</option>
-        <option>oz</option>
-        <option>karat</option>
+        <option>Pa</option>
+        <option>hPa</option>
+        <option>bar</option>
+        <option>psi</option>
+        <option>newton/milimetr²</option>
+        <option>kilogram/metr²</option>
+        <option>at</option>
+        <option>atm</option>
+        <option>Tr</option>
     </select>
     <br>
     <label for="opcje2select">Wybierz na co przekalkulować</label>
     <select name="opcje2" id="opcje2select">
-        <option>mg</option>
-        <option>g</option>
-        <option>kg</option>
-        <option>t</option>
-        <option>ld</option>
-        <option>stone</option>
-        <option>oz</option>
-        <option>karat</option>
+        <option>Pa</option>
+        <option>hPa</option>
+        <option>bar</option>
+        <option>psi</option>
+        <option>newton/milimetr²</option>
+        <option>kilogram/metr²</option>
+        <option>at</option>
+        <option>atm</option>
+        <option>Tr</option>
     </select>
     <label for="wynik">Wynik</label>
     <input type="number" id="wynik" readonly placeholder="0">
