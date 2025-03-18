@@ -20,15 +20,16 @@
   </style>
   <script>
     const wartosci = {
-      Pa: 1,
-      hPa: 100,
-      bar: 100000,
-      psi: 6894.76,
-      "newton/milimetr²": 1000000,
-      "kilogram/metr²": 9.80665,
-      at: 98066.5,
-      atm: 101325,
-      Tr: 133.322
+      ns: 1e-9,
+      mikrosekunda: 1e-6,
+      ms: 1e-3,
+      s: 1,
+      min: 60,
+      h: 3600,
+      d: 86400,
+      tydzień: 604800,
+      miesiąc: 2629800,
+      rok: 31557600
     };
 
     function kalkulator() {
@@ -56,9 +57,9 @@
         <a href="kalkulator3.html">Kalkulator 3</a>
         <a href="kalkulator1.html">Kalkulator 1</a>
     </span>
-        <div class="linia"></div>
-        <a href="index.html">Strona Główna</a>
-        <div class="linia"></div>
+    <div class="linia"></div>
+    <a href="index.html">Strona Główna</a>
+    <div class="linia"></div>
     <span>
       <a href="kalkulator2.html">Kalkulator 2</a>
       <a href="kalkulator4.html">Kalkulator 4</a>
@@ -70,32 +71,34 @@
   </nav>
 </header>
 <main>
-  <label for="num1">Kalkulator Ciśnienia</label>
+  <label for="num1">Kalkulator Czasu</label>
   <label for="opcje1select">Wprowadź początkową wartość</label>
   <input type="number" id="num1">
   <select name="opcje1" id="opcje1select">
-    <option>Pa</option>
-    <option>hPa</option>
-    <option>bar</option>
-    <option>psi</option>
-    <option>newton/milimetr²</option>
-    <option>kilogram/metr²</option>
-    <option>at</option>
-    <option>atm</option>
-    <option>Tr</option>
+    <option>ns</option>
+    <option>mikrosekunda</option>
+    <option>ms</option>
+    <option>s</option>
+    <option>min</option>
+    <option>h</option>
+    <option>d</option>
+    <option>tydzień</option>
+    <option>miesiąc</option>
+    <option>rok</option>
   </select>
   <br>
   <label for="opcje2select">Wybierz na co przekalkulować</label>
   <select name="opcje2" id="opcje2select">
-    <option>Pa</option>
-    <option>hPa</option>
-    <option>bar</option>
-    <option>psi</option>
-    <option>newton/milimetr²</option>
-    <option>kilogram/metr²</option>
-    <option>at</option>
-    <option>atm</option>
-    <option>Tr</option>
+    <option>ns</option>
+    <option>mikrosekunda</option>
+    <option>ms</option>
+    <option>s</option>
+    <option>min</option>
+    <option>h</option>
+    <option>d</option>
+    <option>tydzień</option>
+    <option>miesiąc</option>
+    <option>rok</option>
   </select>
   <label for="wynik">Wynik</label>
   <input type="number" id="wynik" readonly placeholder="0">
