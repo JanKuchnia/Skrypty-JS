@@ -146,3 +146,7 @@ select{
     border-radius: 5px;
     margin-bottom: 10px;
 }
+.linia{
+    height:1vw;
+    border:1px solid black;
+}
