@@ -29,10 +29,10 @@
             const opcja1 = document.getElementById("opcje1").value;
             const opcja2 = document.getElementById("opcje2").value;
 
-            if (opcja1 === "kW" && opcja2 === "KM") {
+            if (opcja1 == "kW" && opcja2 == "KM") {
                 wynik = wartosc * kW_na_KM;
             }
-            else if (opcja1 === "KM" && opcja2 === "kW") {
+            else if (opcja1 == "KM" && opcja2 == "kW") {
                 wynik = wartosc * KM_na_kW;
             }
             else {
