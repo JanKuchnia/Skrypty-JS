@@ -1,112 +1,72 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Skrypty-JS Kalkulator 8</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    main{
-      width:23%;
-    }
-    input{
-      width:49%;
-    }
-    #wynik{
-      width:100%;
-    }
-    #opcje2select {
-      width:100%;
-    }
-  </style>
-  <script>
-    const wartosci = {
-      ns: 1e-9,
-      mikrosekunda: 1e-6,
-      ms: 1e-3,
-      s: 1,
-      min: 60,
-      h: 3600,
-      d: 86400,
-      tydzień: 604800,
-      miesiąc: 2629800,
-      rok: 31557600
-    };
+    <meta charset="UTF-8">
+    <title>Przelicznik mocy - kW na KM i na odwrót</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #wynik {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+    </style>
+    <script>
+        // Przeliczniki
+        const kW_na_KM = 1.35962; // 1 kW = 1.35962 KM
+        const KM_na_kW = 0.735499; // 1 KM = 0.735499 kW
 
-    function kalkulator() {
-      const num1 = parseFloat(document.getElementById("num1").value);
+        function przeliczMoc() {
+            const wartosc = parseFloat(document.getElementById("wartosc").value);
+            const jednostkaWejsciowa = document.getElementById("jednostkaWejsciowa").value;
+            const jednostkaWyjsciowa = document.getElementById("jednostkaWyjsciowa").value;
 
-      const opcja1 = document.querySelector("select[name='opcje1']").value;
-      const opcja2 = document.querySelector("select[name='opcje2']").value;
+            let wynik;
 
-      const wprowadzone = num1 * wartosci[opcja1];
-      const wynik = wprowadzone / wartosci[opcja2];
+            if (jednostkaWejsciowa === "kW" && jednostkaWyjsciowa === "KM") {
+                wynik = wartosc * kW_na_KM; // kW na KM
+            } else if (jednostkaWejsciowa === "KM" && jednostkaWyjsciowa === "kW") {
+                wynik = wartosc * KM_na_kW; // KM na kW
+            } else {
+                wynik = wartosc; // Jeśli jednostki są takie same
+            }
 
-      document.getElementById("wynik").value = wynik.toFixed(4);
-    }
-  </script>
+            document.getElementById("wynik").value = wynik.toFixed(4);
+        }
+    </script>
 </head>
 <body>
-<header>
-  <h1>Skrypty-JS</h1>
-  <nav>
-<span>
-        <a href="kalkulator11.html">Kalkulator 11</a>
-        <a href="kalkulator9.html">Kalkulator 9</a>
-        <a href="kalkulator7.html">Kalkulator 7</a>
-        <a href="kalkulator5.html">Kalkulator 5</a>
-        <a href="kalkulator3.html">Kalkulator 3</a>
-        <a href="kalkulator1.html">Kalkulator 1</a>
-    </span>
-    <div class="linia"></div>
-    <a href="index.html">Strona Główna</a>
-    <div class="linia"></div>
-    <span>
-          <a href="kalkulator2.html">Kalkulator 2</a>
-          <a href="kalkulator4.html">Kalkulator 4</a>
-          <a href="kalkulator6.html">Kalkulator 6</a>
-          <a href="kalkulator8.html">Kalkulator 8</a>
-          <a href="kalkulator10.html">Kalkulator 10</a>
-          <a href="kalkulator12.html">Kalkulator 12</a>
-        </span>
-  </nav>
-</header>
 <main>
-  <label for="num1">Kalkulator Czasu</label>
-  <label for="opcje1select">Wprowadź początkową wartość</label>
-  <input type="number" id="num1">
-  <select name="opcje1" id="opcje1select">
-    <option>ns</option>
-    <option>mikrosekunda</option>
-    <option>ms</option>
-    <option>s</option>
-    <option>min</option>
-    <option>h</option>
-    <option>d</option>
-    <option>tydzień</option>
-    <option>miesiąc</option>
-    <option>rok</option>
-  </select>
-  <br>
-  <label for="opcje2select">Wybierz na co przekalkulować</label>
-  <select name="opcje2" id="opcje2select">
-    <option>ns</option>
-    <option>mikrosekunda</option>
-    <option>ms</option>
-    <option>s</option>
-    <option>min</option>
-    <option>h</option>
-    <option>d</option>
-    <option>tydzień</option>
-    <option>miesiąc</option>
-    <option>rok</option>
-  </select>
-  <label for="wynik">Wynik</label>
-  <input type="number" id="wynik" readonly placeholder="0">
-  <br>
-  <button onclick="kalkulator()">=</button>
+    <h1>Przelicznik mocy</h1>
+    <label for="wartosc">Wprowadź wartość:</label>
+    <input type="number" id="wartosc" placeholder="Wprowadź wartość">
+
+    <label for="jednostkaWejsciowa">Jednostka wejściowa:</label>
+    <select id="jednostkaWejsciowa">
+        <option value="kW">kW</option>
+        <option value="KM">KM</option>
+    </select>
+
+    <label for="jednostkaWyjsciowa">Jednostka wyjściowa:</label>
+    <select id="jednostkaWyjsciowa">
+        <option value="kW">kW</option>
+        <option value="KM">KM</option>
+    </select>
+
+    <label for="wynik">Wynik:</label>
+    <input type="text" id="wynik" readonly placeholder="Wynik">
+
+    <button onclick="przeliczMoc()">Przelicz</button>
 </main>
-<footer>
-  <h3>Jan.K-2TP Gr.1</h3>
-</footer>
 </body>
 </html>
