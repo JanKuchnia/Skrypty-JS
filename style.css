@@ -13,7 +13,7 @@ body {
 header {
     text-align: center;
     margin-bottom: 9vh;
-    background-image: linear-gradient(to right, #000328 , #00458E);
+    background-image: linear-gradient(to top, #4dc9e6 , #210cae);
     width: 100%;
     padding-bottom: 20px;
     box-shadow: 0 7px 20px rgba(0, 0, 0, 0.35);
@@ -55,6 +55,7 @@ nav a:hover {
     justify-content: center;
     margin-bottom: 10px;
     color: black;
+    opacity:85%;
 }
 
 .linki:hover{
@@ -63,13 +64,16 @@ nav a:hover {
 }
 
 main {
-    background-color: #fff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 17vw;
     text-align: center;
     margin-bottom: 20px;
+    background: hsla(191, 75%, 60%, 1);
+    background: radial-gradient(circle, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
+    background: -moz-radial-gradient(circle, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
+    background: -webkit-radial-gradient(circle, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
 }
 
 main a{
@@ -77,12 +81,12 @@ main a{
 }
 .linkiKontener {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 columns */
-    gap: 20px;                             /* Smaller gap for better spacing */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 label {
     font-size: 1.2rem;
-    color: #333;
+    color: black;
     margin-bottom: 10px;
     display: block;
 }
@@ -97,6 +101,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-bottom: 10px;
+    opacity:85%;
 }
 
 #kalkulatorLayout {
@@ -114,6 +119,8 @@ button {
     background-color: #f0f0f0;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    opacity:85%;
+    margin-bottom:5px;
 }
 
 button:hover {
@@ -126,9 +133,9 @@ button:active {
 
 footer {
     text-align: center;
-    color: #555;
+    color: black;
     padding: 10px;
-    background-color: #fff;
+    background-image: linear-gradient(to bottom, #4dc9e6 , #210cae);
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
     width: 98%;
     border-radius:10px;
