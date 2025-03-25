@@ -49,24 +49,28 @@ nav a:hover {
 
 .linki {
     width: 100%;
-    height: 5vw;
+    aspect-ratio: 3 / 1; /* Maintain a consistent aspect ratio */
     min-height: 50px;
-    font-size: 1.2rem;
+    max-height: 100px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem); /* Responsive font size */
     border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
+    border-radius: 10px;
+    background-color: rgba(240, 240, 240, 0.9);
     transition: all 0.3s ease-out;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 10px;
     color: black;
-    opacity:85%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
-.linki:hover{
-    transform:scale(1.02);
+.linki:hover {
+    transform: scale(1.05);
     background-color: #e6e6e6;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 main {
@@ -87,9 +91,14 @@ main a{
 }
 .linkiKontener {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
-    margin-bottom:1vh;
+    margin-bottom: 1vh;
+    padding: 20px;
+    max-width: 1400px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 label {
     font-size: 1.2rem;
@@ -147,7 +156,6 @@ footer {
     width: 98%;
     border-radius:10px;
     margin-top: auto;
-    margin-bottom:1vh;
 }
 select{
     width:49%;
