@@ -161,3 +161,7 @@ select{
     border-radius: 5px;
     margin-bottom: 10px;
 }
+.linia{
+    height:1.25vw;
+    border:1px solid black;
+}
