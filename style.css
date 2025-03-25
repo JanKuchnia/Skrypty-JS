@@ -8,23 +8,23 @@ body {
     justify-content: flex-start;
     height:96vh;
     min-height: 100vh;
-    background-color: #f0f0f0;
-    background-image: radial-gradient(circle at 10% 20%, rgba(0,0,0,0.05) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(0,0,0,0.05) 0%, transparent 20%);
+    background-color: #d0d0d0;
+    background-image: radial-gradient(circle at 10% 20%, rgba(0,0,0,0.1) 0%, transparent 20%), radial-gradient(circle at 90% 80%, rgba(0,0,0,0.1) 0%, transparent 20%);
 }
 
 header {
     text-align: center;
     margin-bottom: 5vh;
-    background-image: linear-gradient(to top, #4dc9e6 , #210cae);
+    background-image: linear-gradient(to top, #3a9ab9, #180a7a);
     width: 100%;
     padding-bottom: 20px;
-    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.45);
 }
 
 header h1 {
     font-size: 2.5rem;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 nav {
@@ -45,8 +45,8 @@ nav a {
 }
 
 nav a:hover {
-    color:black;
-    background-color: rgba(111, 111, 111, 0.4);
+    color:#c5c5c5;
+    background-color: rgba(91, 91, 91, 0.5);
     transform: scale(1.05);
 }
 
@@ -58,10 +58,10 @@ nav a:hover {
     aspect-ratio: 3 / 1;
     min-height: 50px;
     max-height: 100px;
-    background-color: rgba(240, 240, 240, 0.9);
+    background-color: rgba(220, 220, 220, 0.9);
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: black;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     border: none;
     border-radius: 10px;
     transition: all 0.3s ease-out;
@@ -73,8 +73,8 @@ nav a:hover {
 
 .linki:hover {
     transform: scale(1.05);
-    background-color: #e6e6e6;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    background-color: #d6d6d6;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
 }
 
 main {
@@ -84,10 +84,10 @@ main {
     width: 19vw;
     text-align: center;
     margin-bottom: 20px;
-    background: hsla(191, 75%, 60%, 1);
-    background: radial-gradient(circle, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
-    background: -moz-radial-gradient(circle, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
-    background: -webkit-radial-gradient(circle, hsla(191, 75%, 60%, 1) 0%, hsla(248, 87%, 36%, 1) 100%);
+    background: hsla(191, 65%, 50%, 1);
+    background: radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
+    background: -moz-radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
+    background: -webkit-radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
 }
 
 main a{
@@ -103,7 +103,7 @@ main a{
 label {
     font-size: 1.2rem;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
     margin-bottom: 10px;
     display: block;
 }
@@ -115,10 +115,11 @@ input {
     text-align: right;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 5px;
     margin-bottom: 10px;
     opacity:85%;
+    background-color: #e6e6e6;
 }
 
 #kalkulatorLayout {
@@ -133,7 +134,7 @@ button {
     font-size: 1.2rem;
     border: none;
     border-radius: 5px;
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
     cursor: pointer;
     transition: background-color 0.3s ease;
     opacity:85%;
@@ -141,11 +142,11 @@ button {
 }
 
 button:hover {
-    background-color: #ddd;
+    background-color: #d0d0d0;
 }
 
 button:active {
-    background-color: #ccc;
+    background-color: #c0c0c0;
 }
 
 footer {
@@ -153,9 +154,9 @@ footer {
     padding: 10px;
     text-align: center;
     color: white;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-    background-image: linear-gradient(to bottom, #4dc9e6 , #210cae);
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.4);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    background-image: linear-gradient(to bottom, #3a9ab9, #180a7a);
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
     border-radius:10px;
     margin-top: auto;
     margin-bottom:1vh;
@@ -168,9 +169,10 @@ select{
     text-align: right;
     padding: 10px;
     box-sizing: border-box;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 5px;
     margin-bottom: 10px;
+    background-color: #e6e6e6;
 }
 .linia{
     height:1.25vw;
