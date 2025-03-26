@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <style>
         main{
-            width:23%;
+            width:25%;
         }
         input{
             width:40%;
@@ -36,6 +36,30 @@
         #opcje2select {
             width:100%;
         }
+		.walutyKontener {
+			display: grid;
+			grid-template-columns: repeat(2, 2fr);
+			grid-template-rows: auto;
+			align-items: center;
+			gap: 5px;
+		}
+		.walutyKontener > span {
+			display: contents;
+		}
+		.walutyKontener > span:nth-child(-n+10) {
+			grid-column: span 2;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			padding: 5px 0;
+			border-bottom: 1px solid #ccc;
+		}
+		.walutyKontener input {
+			width: 95%;
+		}
+		.walutyKontener label {
+			width: 95%;
+		}
     </style>
     <script>
         const wartosci = {
@@ -80,30 +104,51 @@
         <input type="number" id="num1" min="0.00" value="0.00" oninput="waluty()">
         <span class="waluta">PLN</span>
     </div>
-    <span>
-        <label for="waluta1"></label>
-        <input type="number" id="waluta1">
-        <label for="waluta2"></label>
-        <input type="number" id="waluta2">
-        <label for="waluta3"></label>
-        <input type="number" id="waluta3">
-        <label for="waluta4"></label>
-        <input type="number" id="waluta4">
-        <label for="waluta5"></label>
-        <input type="number" id="waluta5">
-        <label for="waluta6"></label>
-        <input type="number" id="waluta6">
-        <label for="waluta7"></label>
-        <input type="number" id="waluta7">
-        <label for="waluta8"></label>
-        <input type="number" id="waluta8">
-        <label for="waluta9"></label>
-        <input type="number" id="waluta9">
-        <label for="waluta10"></label>
-        <input type="number" id="waluta10">
+     <span class="walutyKontener">
+        <span class="walutyKontener">
+            <label for="waluta1">Euro (EUR)</label>
+            <input type="number" readonly id="waluta1">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta2">Funt szterling (GBP)</label>
+            <input type="number" readonly id="waluta2">
+        </span>
+		 <span class="walutyKontener">
+            <label for="waluta3">Frank szwajcarski (CHF)</label>
+            <input type="number" readonly id="waluta3">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta4">Korona szwedzka (SEK)</label>
+            <input type="number" readonly id="waluta4">
+        </span>
+		 <span class="walutyKontener">
+            <label for="waluta5">Korona norweska (NOK)</label>
+            <input type="number" readonly id="waluta5">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta6">Korona duńska (DKK)</label>
+			<input type="number" readonly id="waluta6">
+        </span>
+		 <span class="walutyKontener">
+            <label for="waluta7">Forint węgierski (HUF)</label>
+			<input type="number" readonly id="waluta7">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta8">Korona czeska (CZK)</label>
+			<input type="number" readonly id="waluta8">
+        </span>
+		 <span class="walutyKontener">
+            <label for="waluta9">Lej rumuński (RON)</label>
+			<input type="number" readonly id="waluta9">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta10">Lew bułgarski (BGN)</label>
+			<input type="number" readonly id="waluta10">
+        </span>
     </span>
     <br>
 </main>
+<aside> s</aside>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
 </footer>
