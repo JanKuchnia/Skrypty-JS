@@ -81,7 +81,14 @@ nav a:hover {
     background-color: #d6d6d6;
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
 }
-
+.content-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
 main {
     padding: 20px;
     border-radius: 10px;
@@ -99,8 +106,16 @@ main a{
     text-decoration:none;
 }
 aside{
-    float:right;
-    width:19vw;
+    width: 25%;
+    min-height: 45vw;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 25px rgba(0, 1, 1, 1);
+    background: hsla(191, 65%, 50%, 1);
+    background: radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
+    background: -moz-radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
+    background: -webkit-radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
+    margin-bottom: 20px;
 }
 label {
     font-size: 1.2rem;
