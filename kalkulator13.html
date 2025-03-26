@@ -1,104 +1,104 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Skrypty-JS Kalkulator 13</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    main{
-      width:23%;
-    }
-    input{
-      width:49%;
-    }
-    #wynik{
-      width:100%;
-    }
-    #opcje2select {
-      width:100%;
-    }
-  </style>
-  <script>
-    const wartosci = {
-      "km/h": 1,
-      "mp/h": 1.60934,
-      "m/s": 3.6,
-      "ft/s": 1.09728,
-      "kn": 1.852,
-      "km/s": 3600,
-      "prędkość światła": 1079252848.8,
-      "mp/s": 5793.64
-    };
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 13</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:23%;
+        }
+        input{
+            width:49%;
+        }
+        #wynik{
+            width:100%;
+        }
+        #opcje2select {
+            width:100%;
+        }
+    </style>
+    <script>
+        const wartosci = {
+            "km/h": 1,
+            "mp/h": 1.60934,
+            "m/s": 3.6,
+            "ft/s": 1.09728,
+            "kn": 1.852,
+            "km/s": 3600,
+            "prędkość światła": 1079252848.8,
+            "mp/s": 5793.64
+        };
 
-    function kalkulator() {
-      const num1 = parseFloat(document.getElementById("num1").value);
+        function kalkulator() {
+            const num1 = parseFloat(document.getElementById("num1").value);
 
-      const opcja1 = document.querySelector("select[name='opcje1']").value;
-      const opcja2 = document.querySelector("select[name='opcje2']").value;
+            const opcja1 = document.querySelector("select[name='opcje1']").value;
+            const opcja2 = document.querySelector("select[name='opcje2']").value;
 
-      const wprowadzone = num1 * wartosci[opcja1];
-      const wynik = wprowadzone / wartosci[opcja2];
+            const wprowadzone = num1 * wartosci[opcja1];
+            const wynik = wprowadzone / wartosci[opcja2];
 
-      document.getElementById("wynik").value = wynik.toFixed(4);
-    }
-  </script>
+            document.getElementById("wynik").value = wynik.toFixed(4);
+        }
+    </script>
 </head>
 <body>
 <header>
-  <h1>Skrypty-JS</h1>
-  <nav>
-    <a href="kalkulator13.html">Kalkulator 13</a>
-    <a href="kalkulator11.html">Kalkulator 11</a>
-    <a href="kalkulator9.html">Kalkulator 9</a>
-    <a href="kalkulator7.html">Kalkulator 7</a>
-    <a href="kalkulator5.html">Kalkulator 5</a>
-    <a href="kalkulator3.html">Kalkulator 3</a>
-    <a href="kalkulator1.html">Kalkulator 1</a>
-    <div class="linia"></div>
-    <a href="index.html">Strona Główna</a>
-    <div class="linia"></div>
-    <a href="kalkulator2.html">Kalkulator 2</a>
-    <a href="kalkulator4.html">Kalkulator 4</a>
-    <a href="kalkulator6.html">Kalkulator 6</a>
-    <a href="kalkulator8.html">Kalkulator 8</a>
-    <a href="kalkulator10.html">Kalkulator 10</a>
-    <a href="kalkulator12.html">Kalkulator 12</a>
-    <a href="kalkulator14.html">Kalkulator 14</a>
-  </nav>
+    <h1>Skrypty-JS</h1>
+    <nav>
+        <a href="kalkulator13.html">Kalkulator 13</a>
+        <a href="kalkulator11.html">Kalkulator 11</a>
+        <a href="kalkulator9.html">Kalkulator 9</a>
+        <a href="kalkulator7.html">Kalkulator 7</a>
+        <a href="kalkulator5.html">Kalkulator 5</a>
+        <a href="kalkulator3.html">Kalkulator 3</a>
+        <a href="kalkulator1.html">Kalkulator 1</a>
+        <div class="linia"></div>
+        <a href="index.html">Strona Główna</a>
+        <div class="linia"></div>
+        <a href="kalkulator2.html">Kalkulator 2</a>
+        <a href="kalkulator4.html">Kalkulator 4</a>
+        <a href="kalkulator6.html">Kalkulator 6</a>
+        <a href="kalkulator8.html">Kalkulator 8</a>
+        <a href="kalkulator10.html">Kalkulator 10</a>
+        <a href="kalkulator12.html">Kalkulator 12</a>
+        <a href="kalkulator14.html">Kalkulator 14</a>
+    </nav>
 </header>
 <main>
-  <label for="num1">Kalkulator Prędkości</label>
-  <label for="opcje1select">Wprowadź początkową wartość</label>
-  <input type="number" id="num1">
-  <select name="opcje1" id="opcje1select">
-    <option>m/s</option>
-    <option>km/s</option>
-    <option>km/h</option>
-    <option>ft/s</option>
-    <option>mp/s</option>
-    <option>mp/h</option>
-    <option>kn</option>
-    <option>prędkość światła</option>
-  </select>
-  <br>
-  <label for="opcje2select">Wybierz na co przekalkulować</label>
-  <select name="opcje2" id="opcje2select">
-    <option>m/s</option>
-    <option>km/s</option>
-    <option>km/h</option>
-    <option>ft/s</option>
-    <option>mp/s</option>
-    <option>mp/h</option>
-    <option>kn</option>
-    <option>prędkość światła</option>
-  </select>
-  <label for="wynik">Wynik</label>
-  <input type="number" id="wynik" readonly placeholder="0">
-  <br>
-  <button onclick="kalkulator()">=</button>
+    <label for="num1">Kalkulator Prędkości</label>
+    <label for="opcje1select">Wprowadź początkową wartość</label>
+    <input type="number" id="num1">
+    <select name="opcje1" id="opcje1select">
+        <option>m/s</option>
+        <option>km/s</option>
+        <option>km/h</option>
+        <option>ft/s</option>
+        <option>mp/s</option>
+        <option>mp/h</option>
+        <option>kn</option>
+        <option>prędkość światła</option>
+    </select>
+    <br>
+    <label for="opcje2select">Wybierz na co przekalkulować</label>
+    <select name="opcje2" id="opcje2select">
+        <option>m/s</option>
+        <option>km/s</option>
+        <option>km/h</option>
+        <option>ft/s</option>
+        <option>mp/s</option>
+        <option>mp/h</option>
+        <option>kn</option>
+        <option>prędkość światła</option>
+    </select>
+    <label for="wynik">Wynik</label>
+    <input type="number" id="wynik" readonly placeholder="0">
+    <br>
+    <button onclick="kalkulator()">=</button>
 </main>
 <footer>
-  <h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>

@@ -1,53 +1,53 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Skrypty-JS Kalkulator 8</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    main{
-      width:23%;
-    }
-    input{
-      width:49%;
-    }
-    #wynik{
-      width:100%;
-    }
-    #opcje2select {
-      width:100%;
-    }
-  </style>
-  <script>
-    const wartosci = {
-      Pa: 1,
-      hPa: 100,
-      bar: 100000,
-      psi: 6894.76,
-      "newton/milimetr²": 1000000,
-      "kilogram/metr²": 9.80665,
-      at: 98066.5,
-      atm: 101325,
-      Tr: 133.322
-    };
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 8</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:23%;
+        }
+        input{
+            width:49%;
+        }
+        #wynik{
+            width:100%;
+        }
+        #opcje2select {
+            width:100%;
+        }
+    </style>
+    <script>
+        const wartosci = {
+            Pa: 1,
+            hPa: 100,
+            bar: 100000,
+            psi: 6894.76,
+            "newton/milimetr²": 1000000,
+            "kilogram/metr²": 9.80665,
+            at: 98066.5,
+            atm: 101325,
+            Tr: 133.322
+        };
 
-    function kalkulator() {
-      const num1 = parseFloat(document.getElementById("num1").value);
+        function kalkulator() {
+            const num1 = parseFloat(document.getElementById("num1").value);
 
-      const opcja1 = document.querySelector("select[name='opcje1']").value;
-      const opcja2 = document.querySelector("select[name='opcje2']").value;
+            const opcja1 = document.querySelector("select[name='opcje1']").value;
+            const opcja2 = document.querySelector("select[name='opcje2']").value;
 
-      const wprowadzone = num1 * wartosci[opcja1];
-      const wynik = wprowadzone / wartosci[opcja2];
+            const wprowadzone = num1 * wartosci[opcja1];
+            const wynik = wprowadzone / wartosci[opcja2];
 
-      document.getElementById("wynik").value = wynik.toFixed(4);
-    }
-  </script>
+            document.getElementById("wynik").value = wynik.toFixed(4);
+        }
+    </script>
 </head>
 <body>
 <header>
-  <h1>Skrypty-JS</h1>
-      <nav>
+    <h1>Skrypty-JS</h1>
+    <nav>
         <a href="kalkulator11.html">Kalkulator 11</a>
         <a href="kalkulator9.html">Kalkulator 9</a>
         <a href="kalkulator7.html">Kalkulator 7</a>
@@ -57,49 +57,49 @@
         <div class="linia"></div>
         <a href="index.html">Strona Główna</a>
         <div class="linia"></div>
-          <a href="kalkulator2.html">Kalkulator 2</a>
-          <a href="kalkulator4.html">Kalkulator 4</a>
-          <a href="kalkulator6.html">Kalkulator 6</a>
-          <a href="kalkulator8.html">Kalkulator 8</a>
-          <a href="kalkulator10.html">Kalkulator 10</a>
-          <a href="kalkulator12.html">Kalkulator 12</a>
+        <a href="kalkulator2.html">Kalkulator 2</a>
+        <a href="kalkulator4.html">Kalkulator 4</a>
+        <a href="kalkulator6.html">Kalkulator 6</a>
+        <a href="kalkulator8.html">Kalkulator 8</a>
+        <a href="kalkulator10.html">Kalkulator 10</a>
+        <a href="kalkulator12.html">Kalkulator 12</a>
     </nav>
 </header>
 <main>
-  <label for="num1">Kalkulator Ciśnienia</label>
-  <label for="opcje1select">Wprowadź początkową wartość</label>
-  <input type="number" id="num1">
-  <select name="opcje1" id="opcje1select">
-    <option>Pa</option>
-    <option>hPa</option>
-    <option>bar</option>
-    <option>psi</option>
-    <option>newton/milimetr²</option>
-    <option>kilogram/metr²</option>
-    <option>at</option>
-    <option>atm</option>
-    <option>Tr</option>
-  </select>
-  <br>
-  <label for="opcje2select">Wybierz na co przekalkulować</label>
-  <select name="opcje2" id="opcje2select">
-    <option>Pa</option>
-    <option>hPa</option>
-    <option>bar</option>
-    <option>psi</option>
-    <option>newton/milimetr²</option>
-    <option>kilogram/metr²</option>
-    <option>at</option>
-    <option>atm</option>
-    <option>Tr</option>
-  </select>
-  <label for="wynik">Wynik</label>
-  <input type="number" id="wynik" readonly placeholder="0">
-  <br>
-  <button onclick="kalkulator()">=</button>
+    <label for="num1">Kalkulator Ciśnienia</label>
+    <label for="opcje1select">Wprowadź początkową wartość</label>
+    <input type="number" id="num1">
+    <select name="opcje1" id="opcje1select">
+        <option>Pa</option>
+        <option>hPa</option>
+        <option>bar</option>
+        <option>psi</option>
+        <option>newton/milimetr²</option>
+        <option>kilogram/metr²</option>
+        <option>at</option>
+        <option>atm</option>
+        <option>Tr</option>
+    </select>
+    <br>
+    <label for="opcje2select">Wybierz na co przekalkulować</label>
+    <select name="opcje2" id="opcje2select">
+        <option>Pa</option>
+        <option>hPa</option>
+        <option>bar</option>
+        <option>psi</option>
+        <option>newton/milimetr²</option>
+        <option>kilogram/metr²</option>
+        <option>at</option>
+        <option>atm</option>
+        <option>Tr</option>
+    </select>
+    <label for="wynik">Wynik</label>
+    <input type="number" id="wynik" readonly placeholder="0">
+    <br>
+    <button onclick="kalkulator()">=</button>
 </main>
 <footer>
-  <h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>
