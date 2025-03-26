@@ -9,7 +9,26 @@
             width:23%;
         }
         input{
+            width:40%;
+            position: relative;
+        }
+        #num1{
             width:100%;
+        }
+        .inputKontener {
+            position: relative;
+        }
+        .inputKontener input {
+            width: 100%;
+            padding-right: 50px;
+        }
+        .inputKontener .waluta {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000000;
+            pointer-events: none;
         }
         #wynik{
             width:100%;
@@ -30,17 +49,6 @@
             "mp/s": 5793.64
         };
 
-        function kalkulator() {
-            const num1 = parseFloat(document.getElementById("num1").value);
-
-            const opcja1 = document.querySelector("select[name='opcje1']").value;
-            const opcja2 = document.querySelector("select[name='opcje2']").value;
-
-            const wprowadzone = num1 * wartosci[opcja1];
-            const wynik = wprowadzone / wartosci[opcja2];
-
-            document.getElementById("wynik").value = wynik.toFixed(4);
-        }
     </script>
 </head>
 <body>
@@ -68,7 +76,32 @@
 </header>
 <main>
     <label for="num1">Waluty ze złotego</label>
-    <input type="number" id="num1" oninput="kalkulator()">
+    <div class="inputKontener">
+        <input type="number" id="num1" min="0.00" value="0.00" oninput="waluty()">
+        <span class="waluta">PLN</span>
+    </div>
+    <span>
+        <label for="waluta1"></label>
+        <input type="number" id="waluta1">
+        <label for="waluta2"></label>
+        <input type="number" id="waluta2">
+        <label for="waluta3"></label>
+        <input type="number" id="waluta3">
+        <label for="waluta4"></label>
+        <input type="number" id="waluta4">
+        <label for="waluta5"></label>
+        <input type="number" id="waluta5">
+        <label for="waluta6"></label>
+        <input type="number" id="waluta6">
+        <label for="waluta7"></label>
+        <input type="number" id="waluta7">
+        <label for="waluta8"></label>
+        <input type="number" id="waluta8">
+        <label for="waluta9"></label>
+        <input type="number" id="waluta9">
+        <label for="waluta10"></label>
+        <input type="number" id="waluta10">
+    </span>
     <br>
 </main>
 <footer>
