@@ -48,7 +48,13 @@ nav a:hover {
     background-color: rgba(91, 91, 91, 0.5);
     transform: scale(1.05);
 }
-
+.linkiKontener {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 1vh;
+    padding: 0 10px;
+}
 .linki {
     display: flex;
     align-items: center;
@@ -92,12 +98,9 @@ main {
 main a{
     text-decoration:none;
 }
-.linkiKontener {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    margin-bottom: 1vh;
-    padding: 0 10px;
+aside{
+    float:right;
+    width:19vw;
 }
 label {
     font-size: 1.2rem;
