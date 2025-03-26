@@ -70,10 +70,9 @@
 		}
 	</style>
 	<script>
-		// Currency exchange rates (using PLN as base)
 		const exchangeRates = {
-			"PLN": 1, // Base currency
-			"EUR": 0.22, // Example rate, will be updated dynamically
+			"PLN": 1,
+			"EUR": 0.22,
 			"GBP": 0.19,
 			"CHF": 0.20,
 			"SEK": 2.50,
@@ -85,14 +84,11 @@
 			"BGN": 0.44
 		};
 
-		// Function to fetch real-time exchange rates
 		async function fetchExchangeRates() {
 			try {
-				// Using a free exchange rate API
 				const response = await fetch('https://api.exchangerate-api.com/v4/latest/PLN');
 				const data = await response.json();
 
-				// Update exchange rates
 				exchangeRates["EUR"] = data.rates["EUR"];
 				exchangeRates["GBP"] = data.rates["GBP"];
 				exchangeRates["CHF"] = data.rates["CHF"];
@@ -104,16 +100,12 @@
 				exchangeRates["RON"] = data.rates["RON"];
 				exchangeRates["BGN"] = data.rates["BGN"];
 
-				// Update displayed rates
 				updateExchangeRateDisplay();
 			} catch (error) {
 				console.error("Could not fetch exchange rates:", error);
-				// Use default rates if fetch fails
 				updateExchangeRateDisplay();
 			}
 		}
-
-		// Function to update exchange rate display
 		function updateExchangeRateDisplay() {
 			const currencyIds = [
 				"waluta0kursy", "waluta1kursy", "waluta2kursy",
@@ -135,7 +127,6 @@
 			});
 		}
 
-		// Function to convert currencies
 		function waluty() {
 			const plnInput = document.getElementById('num1');
 			const plnAmount = parseFloat(plnInput.value) || 0;
@@ -158,11 +149,8 @@
 				}
 			});
 		}
-
-		// Fetch rates when page loads and set up periodic updates
 		document.addEventListener('DOMContentLoaded', () => {
 			fetchExchangeRates();
-			// Refresh rates every 1 hour
 			setInterval(fetchExchangeRates, 3600000);
 		});
 	</script>
