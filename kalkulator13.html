@@ -106,6 +106,7 @@
 				updateExchangeRateDisplay();
 			}
 		}
+
 		function updateExchangeRateDisplay() {
 			const currencyIds = [
 				"waluta0kursy", "waluta1kursy", "waluta2kursy",
@@ -122,33 +123,11 @@
 			currencies.forEach((currency, index) => {
 				const rateElement = document.getElementById(currencyIds[index]);
 				if (rateElement) {
-					rateElement.value = exchangeRates[currency].toFixed(4);
+					rateElement.value = exchangeRates[currency].toFixed(2);
 				}
 			});
 		}
 
-		function waluty() {
-			const plnInput = document.getElementById('num1');
-			const plnAmount = parseFloat(plnInput.value) || 0;
-
-			const currencyIds = [
-				"waluta1", "waluta2", "waluta3", "waluta4", "waluta5",
-				"waluta6", "waluta7", "waluta8", "waluta9", "waluta10"
-			];
-
-			const currencies = [
-				"EUR", "GBP", "CHF", "SEK", "NOK",
-				"DKK", "HUF", "CZK", "RON", "BGN"
-			];
-
-			currencies.forEach((currency, index) => {
-				const outputElement = document.getElementById(currencyIds[index]);
-				if (outputElement) {
-					const convertedAmount = plnAmount * exchangeRates[currency];
-					outputElement.value = convertedAmount.toFixed(2);
-				}
-			});
-		}
 		document.addEventListener('DOMContentLoaded', () => {
 			fetchExchangeRates();
 			setInterval(fetchExchangeRates, 3600000);
