@@ -255,35 +255,6 @@
 
 		document.getElementById("wygladKanoniczna").value = equation;
 	}
-	function iloczynowa() {
-		const a = parseFloat(document.getElementById("kwadratowaA").value);
-		const b = parseFloat(document.getElementById("kwadratowaB").value);
-		const c = parseFloat(document.getElementById("kwadratowaC").value);
-
-		if (a === 0) {
-			document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
-			return;
-		}
-
-		const delta = (b * b) - 4 * a * c;
-		let wynik;
-
-		if (delta > 0) {
-			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-			const x2 = (-b - Math.sqrt(delta)) / (2 * a);
-			wynik = a + "(x - " + x1 + ")(x - " + x2 + ")";
-		}
-		else if (delta === 0) {
-			const x1 = -b / (2 * a);
-			wynik = a + "(x - " + x1 + ")²";
-		}
-		else {
-			wynik = "Nie można utworzyć funkcji postaci iloczynowej, ponieważ Δ < 0";
-		}
-
-		document.getElementById("wygladIloczynowa").value = wynik;
-	}
-
 	window.onload = function() {
 		ogolna();
 		kanoniczna();
