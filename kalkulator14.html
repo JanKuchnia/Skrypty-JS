@@ -9,26 +9,22 @@
 			width:25%;
 		}
 		input{
-			width:40%;
 			position: relative;
 		}
 		#num1{
 			width:100%;
 		}
 		.inputKontener {
-			position: relative;
+			display:flex;
+			align-items:center;
+			flex-wrap:wrap;
 		}
 		.inputKontener input {
-			width: 100%;
-			padding-right: 50px;
+			text-align:center;
+			width:80%;
 		}
-		.inputKontener .waluta {
-			position: absolute;
-			right: 10px;
-			top: 50%;
-			transform: translateY(-50%);
-			color: #000000;
-			pointer-events: none;
+		.inputKontener label{
+			width:20%;
 		}
 		#wynik{
 			width:100%;
@@ -36,15 +32,14 @@
 		#opcje2select {
 			width:100%;
 		}
-		.walutyKontener, .walutyKontener1 {
+		.walutyKontener{
+		}
+		.walutyKontener1 {
 			display: grid;
 			grid-template-columns: repeat(2, 2fr);
 			grid-template-rows: auto;
 			align-items: center;
 			gap: 5px;
-		}
-		.walutyKontener > span, .walutyKontener1 > span {
-			display: contents;
 		}
 		.walutyKontener input, .walutyKontener1 input {
 			width: 95%;
@@ -52,14 +47,14 @@
 		.walutyKontener label, .walutyKontener1 label {
 			width: 95%;
 		}
-		.walutyKontener > span:nth-child(-n+10) {
-			grid-column: span 2;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			padding: 5px 0;
-			border-bottom: 1px solid #ccc;
-		}
+/*		.walutyKontener > span:nth-child(-n+10) {*/
+/*			grid-column: span 2;*/
+/*			display: grid;*/
+/*			grid-template-columns: 1fr 1fr;*/
+/*			align-items: center;*/
+/*			padding: 5px 0;*/
+/*			border-bottom: 1px solid #ccc;*/
+/*		}*/
 		.walutyKontener1 > span:nth-child(-n+11) {
 			grid-column: span 2;
 			display: grid;
@@ -69,71 +64,6 @@
 			border-bottom: 1px solid #ccc;
 		}
 	</style>
-	<script>
-		const exchangeRates = {
-			"PLN": 1,
-			"EUR": 0.22,
-			"GBP": 0.19,
-			"CHF": 0.20,
-			"SEK": 2.50,
-			"NOK": 2.30,
-			"DKK": 1.65,
-			"HUF": 85,
-			"CZK": 5.30,
-			"RON": 1.10,
-			"BGN": 0.44
-		};
-
-		async function fetchExchangeRates() {
-			try {
-				const response = await fetch('https://api.exchangerate-api.com/v4/latest/PLN');
-				const data = await response.json();
-
-				exchangeRates["EUR"] = data.rates["EUR"];
-				exchangeRates["GBP"] = data.rates["GBP"];
-				exchangeRates["CHF"] = data.rates["CHF"];
-				exchangeRates["SEK"] = data.rates["SEK"];
-				exchangeRates["NOK"] = data.rates["NOK"];
-				exchangeRates["DKK"] = data.rates["DKK"];
-				exchangeRates["HUF"] = data.rates["HUF"];
-				exchangeRates["CZK"] = data.rates["CZK"];
-				exchangeRates["RON"] = data.rates["RON"];
-				exchangeRates["BGN"] = data.rates["BGN"];
-
-				updateExchangeRateDisplay();
-			} catch (error) {
-				console.error("Could not fetch exchange rates:", error);
-				updateExchangeRateDisplay();
-			}
-		}
-
-		function updateExchangeRateDisplay() {
-			const currencyIds = [
-				"waluta0kursy", "waluta1kursy", "waluta2kursy",
-				"waluta3kursy", "waluta4kursy", "waluta5kursy",
-				"waluta6kursy", "waluta7kursy", "waluta8kursy",
-				"waluta9kursy", "waluta10kursy"
-			];
-
-			const currencies = [
-				"PLN", "EUR", "GBP", "CHF", "SEK", "NOK",
-				"DKK", "HUF", "CZK", "RON", "BGN"
-			];
-
-			currencies.forEach((currency, index) => {
-				const rateElement = document.getElementById(currencyIds[index]);
-				if (rateElement) {
-					rateElement.value = exchangeRates[currency].toFixed(2);
-				}
-			});
-		}
-
-		document.addEventListener('DOMContentLoaded', () => {
-			fetchExchangeRates();
-			setInterval(fetchExchangeRates, 3600000);
-		});
-
-	</script>
 </head>
 <body>
 <header>
@@ -160,19 +90,23 @@
 </header>
 <div class="asideMainKontener">
 	<main>
-		<label for="num1">Waluty ze złotego</label>
+		<label>Funkcja Kwadratowa</label>
 		<div class="inputKontener">
-			<input type="number" id="num1" min="0.00" value="0.00" oninput="waluty()">
-			<span class="waluta">PLN</span>
+			<label>A</label>
+			<input type="number" id="kwadratowaA" value="1" oninput="kwadratowa(); ogolna(); kanoniczna()">
+			<label>B</label>
+			<input type="number" id="kwadratowaB" value="0" oninput="kwadratowa(); ogolna(); kanoniczna()">
+			<label>C</label>
+			<input type="number" id="kwadratowaC" value="0" oninput="kwadratowa(); ogolna(); kanoniczna()">
 		</div>
 		<span class="walutyKontener">
         <span class="walutyKontener">
-            <label for="waluta1">Euro (EUR)</label>
-            <input type="number" readonly id="waluta1">
+            <label for="wygladOgolna">Funkcja Kwadratowa Ogólna</label>
+            <input type="text" readonly id="wygladOgolna">
         </span>
 		 <span class="walutyKontener">
-			 <label for="waluta2">Funt szterling (GBP)</label>
-            <input type="number" readonly id="waluta2">
+			 <label for="wygladKanoniczna">Funkcja Kwadratowa Kanoniczna</label>
+            <input type="text" readonly id="wygladKanoniczna">
         </span>
 		 <span class="walutyKontener">
             <label for="waluta3">Frank szwajcarski (CHF)</label>
@@ -212,8 +146,8 @@
 		<label>Kursy</label>
 		<span class="walutyKontener1">
         <span class="walutyKontener1">
-			<input type="number" readonly id="waluta0kursy">
-            <label for="waluta1kursy">Złoty (PLN)</label>
+			<input type="text" value="ax²+bx+c" readonly id="waluta0kursy">
+            <label for="waluta1kursy">Wzór na funkcje kwadratową ogólną</label>
         </span><span class="walutyKontener1">
 			<input type="number" readonly id="waluta1kursy">
             <label for="waluta1kursy">Euro (EUR)</label>
@@ -260,5 +194,108 @@
 <footer>
 	<h3>Jan.K-2TP Gr.1</h3>
 </footer>
+<script>
+	function kwadratowa(){
+
+	}
+	function ogolna() {
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
+
+		if (isNaN(a) || isNaN(b) || isNaN(c)) {
+			document.getElementById("wygladKanoniczna").value = "Invalid input";
+			return;
+		}
+		let equation = "";
+		if (a == 0) {
+			document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		if (a == "1") {
+			equation += "x²";
+		} else if (a == "-1") {
+			equation += "-x²";
+		} else if (a != "0") {
+			equation += a + "x²";
+		}
+
+		if (b != "0") {
+			let operator = " + ";
+			let bValue = b;
+
+			if (b.startsWith("-")) {
+				operator = " - ";
+				bValue = b.substring(1);
+			}
+
+			if (equation != "") equation += operator;
+
+			if (bValue == "1") {
+				equation += "x";
+			} else {
+				equation += bValue + "x";
+			}
+		}
+
+		if (c != "0") {
+			let operator = " + ";
+			let cValue = c;
+
+			if (c.startsWith("-")) {
+				operator = " - ";
+				cValue = c.substring(1);
+			}
+
+			if (equation != "") equation += operator;
+			equation += cValue;
+		}
+
+		if (equation == "") {
+			equation = "0";
+		}
+
+		document.getElementById("wygladOgolna").value = equation;
+	}
+
+	function kanoniczna() {
+		const a = parseFloat(document.getElementById("kwadratowaA").value);
+		const b = parseFloat(document.getElementById("kwadratowaB").value);
+		const c = parseFloat(document.getElementById("kwadratowaC").value);
+
+
+		if (a === 0) {
+			document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		let equation = "";
+
+		const delta = (b * b) - 4 * a * c;
+		const p = -b / (2 * a);
+		const q = -delta / (4 * a);
+
+		equation += a + "(x";
+
+		if (p >= 0) {
+			equation += " - " + p.toFixed(3) + ")²";
+		} else {
+			equation += " + " + Math.abs(p).toFixed(3) + ")²";
+		}
+
+		if (q >= 0) {
+			equation += " + " + q.toFixed(3);
+		} else {
+			equation += " - " + Math.abs(q).toFixed(3);
+		}
+
+		document.getElementById("wygladKanoniczna").value = equation;
+	}
+	window.onload = function() {
+		ogolna();
+		kanoniczna();
+	};
+</script>
 </body>
 </html>
