@@ -215,10 +215,10 @@
 			let sign = isFirst ? '' : (term > 0 ? ' + ' : ' - ');
 			let absTerm = Math.abs(term);
 
-			if (variable === '') return sign + absTerm;
+			if (variable == '') return sign + absTerm;
 
-			if (absTerm === 1) {
-				return sign + (variable === 'x²' ? variable : variable);
+			if (absTerm == 1) {
+				return sign + (variable == 'x²' ? variable : variable);
 			}
 
 			return sign + absTerm + variable;
@@ -255,59 +255,39 @@
 
 		document.getElementById("wygladKanoniczna").value = equation;
 	}
-
-	function iloczynowa(){
+	function iloczynowa() {
 		const a = parseFloat(document.getElementById("kwadratowaA").value);
 		const b = parseFloat(document.getElementById("kwadratowaB").value);
 		const c = parseFloat(document.getElementById("kwadratowaC").value);
-
-		let equation="";
 
 		if (a === 0) {
 			document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
 			return;
 		}
+
 		const delta = (b * b) - 4 * a * c;
-		const x1;
-		const x2;
-		if (delta>0){
-			x1 =(-b + Math.sqrt(delta)) /2*a;
-			x2 =(-b - Math.sqrt(delta)) /2*a;
-			let aStr = addTerm(a, '(x-',x1,')','(x-)',x2, true);
+		let wynik;
+
+		if (delta > 0) {
+			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+			const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+			wynik = a + "(x - " + x1 + ")(x - " + x2 + ")";
 		}
-		else if(delta=0){
-			x1 =-b /2*a;
-			let bStr = addTerm(a,'x-',x1,')²');
+		else if (delta === 0) {
+			const x1 = -b / (2 * a);
+			wynik = a + "(x - " + x1 + ")²";
 		}
-		else if (delta<0){
-			x1 ="Nie można utworzyć funkcji postaci iloczynowej ponieważ Δ<0"
+		else {
+			wynik = "Nie można utworzyć funkcji postaci iloczynowej, ponieważ Δ < 0";
 		}
 
-		const addTerm = (term, variable = '', isFirst = false) => {
-			if (term == 0) return '';
-
-			let sign = isFirst ? '' : (term > 0 ? ' + ' : ' - ');
-			let absTerm = Math.abs(term);
-
-			if (variable === '') return sign + absTerm;
-
-			if (absTerm === 1) {
-				return sign + (variable === 'x²' ? variable : variable);
-			}
-
-			return sign + absTerm + variable;
-		};
-
-		equation = aStr + bStr;
-
-		document.getElementById("wygladIloczynowa").value = equation || '0';
+		document.getElementById("wygladIloczynowa").value = wynik;
 	}
 
 	window.onload = function() {
 		ogolna();
 		kanoniczna();
 		iloczynowa();
-	};
-</script>
+	};</script>
 </body>
 </html>
