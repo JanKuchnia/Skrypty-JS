@@ -132,6 +132,20 @@
 			fetchExchangeRates();
 			setInterval(fetchExchangeRates, 3600000);
 		});
+		function waluty(){
+			const pln = parseFloat(document.getElementById("num1").value);
+
+			document.getElementById("waluta1").value=num1*EUR;
+			document.getElementById("waluta2").value=num1*GPD;
+			document.getElementById("waluta3").value=num1*CHF;
+			document.getElementById("waluta4").value=num1*SEK;
+			document.getElementById("waluta5").value=num1*NOK;
+			document.getElementById("waluta6").value=num1*DKK;
+			document.getElementById("waluta7").value=num1*HUF;
+			document.getElementById("waluta8").value=num1*CZK;
+			document.getElementById("waluta9").value=num1*RON;
+			document.getElementById("waluta10").value=num1*BGN;
+		}
 	</script>
 </head>
 <body>
