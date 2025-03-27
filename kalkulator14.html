@@ -255,6 +255,35 @@
 
 		document.getElementById("wygladKanoniczna").value = equation;
 	}
+	function iloczynowa() {
+		const a = parseFloat(document.getElementById("kwadratowaA").value);
+		const b = parseFloat(document.getElementById("kwadratowaB").value);
+		const c = parseFloat(document.getElementById("kwadratowaC").value);
+
+		if (a === 0) {
+			document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		const delta = (b * b) - 4 * a * c;
+
+		if (delta < 0) {
+			document.getElementById("wygladIloczynowa").value = "Brak miejsc zerowych";
+			return;
+		}
+
+		if (delta === 0) {
+			const x0 = -b / (2 * a);
+			document.getElementById("wygladIloczynowa").value = `${a}(x - ${x0.toFixed(3)})²`;
+			return;
+		}
+
+		const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+		const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+		let equation = `${a}(x - ${x1.toFixed(3)})(x - ${x2.toFixed(3)})`;
+		document.getElementById("wygladIloczynowa").value = equation;
+	}
 	window.onload = function() {
 		ogolna();
 		kanoniczna();
