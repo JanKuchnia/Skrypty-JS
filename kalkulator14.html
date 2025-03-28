@@ -1,325 +1,333 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Kalkulator 13</title>
-	<link rel="stylesheet" href="style.css">
-	<style>
-		main{
-			width:25%;
-		}
-		input{
-			position: relative;
-		}
-		#num1{
-			width:100%;
-		}
-		.inputKontener {
-			display:flex;
-			align-items:center;
-			flex-wrap:wrap;
-		}
-		.inputKontener input {
-			text-align:center;
-			width:80%;
-		}
-		.inputKontener label{
-			width:20%;
-		}
-		#wynik{
-			width:100%;
-		}
-		#opcje2select {
-			width:100%;
-		}
-		.walutyKontener{
-		}
-		.walutyKontener1 {
-			display: grid;
-			grid-template-columns: repeat(2, 2fr);
-			grid-template-rows: auto;
-			align-items: center;
-			gap: 5px;
-		}
-		.walutyKontener input, .walutyKontener1 input {
-			width: 95%;
-		}
-		.walutyKontener label, .walutyKontener1 label {
-			width: 95%;
-		}
-/*		.walutyKontener > span:nth-child(-n+10) {*/
-/*			grid-column: span 2;*/
-/*			display: grid;*/
-/*			grid-template-columns: 1fr 1fr;*/
-/*			align-items: center;*/
-/*			padding: 5px 0;*/
-/*			border-bottom: 1px solid #ccc;*/
-/*		}*/
-		.walutyKontener1 > span:nth-child(-n+11) {
-			grid-column: span 2;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			padding: 5px 0;
-			border-bottom: 1px solid #ccc;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 14</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:25%;
+        }
+        input{
+            position: relative;
+        }
+        #num1{
+            width:100%;
+        }
+        .inputKontener {
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+        .inputKontener input {
+            text-align:center;
+            width:80%;
+        }
+        .inputKontener label{
+            width:20%;
+        }
+        #wynik{
+            width:100%;
+        }
+        #opcje2select {
+            width:100%;
+        }
+        .funkcjaKontener{
+        }
+        .funkcjaKontener1 {
+            display: grid;
+            grid-template-columns: repeat(2, 2fr);
+            grid-template-rows: auto;
+            align-items: center;
+            gap: 5px;
+        }
+        .funkcjaKontener input, .funkcjaKontener1 input {
+            width: 95%;
+        }
+        .funkcjaKontener label, .funkcjaKontener1 label {
+            width: 95%;
+        }
+        /*		.funkcjaKontener > span:nth-child(-n+10) {*/
+        /*			grid-column: span 2;*/
+        /*			display: grid;*/
+        /*			grid-template-columns: 1fr 1fr;*/
+        /*			align-items: center;*/
+        /*			padding: 5px 0;*/
+        /*			border-bottom: 1px solid #ccc;*/
+        /*		}*/
+        .funkcjaKontener1 > span:nth-child(-n+11) {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<nav>
-		<a href="kalkulator13.html">Kalkulator 13</a>
-		<a href="kalkulator11.html">Kalkulator 11</a>
-		<a href="kalkulator9.html">Kalkulator 9</a>
-		<a href="kalkulator7.html">Kalkulator 7</a>
-		<a href="kalkulator5.html">Kalkulator 5</a>
-		<a href="kalkulator3.html">Kalkulator 3</a>
-		<a href="kalkulator1.html">Kalkulator 1</a>
-		<div class="linia"></div>
-		<a href="index.html">Strona Główna</a>
-		<div class="linia"></div>
-		<a href="kalkulator2.html">Kalkulator 2</a>
-		<a href="kalkulator4.html">Kalkulator 4</a>
-		<a href="kalkulator6.html">Kalkulator 6</a>
-		<a href="kalkulator8.html">Kalkulator 8</a>
-		<a href="kalkulator10.html">Kalkulator 10</a>
-		<a href="kalkulator12.html">Kalkulator 12</a>
-		<a href="kalkulator14.html">Kalkulator 14</a>
-	</nav>
+    <h1>Skrypty-JS</h1>
+    <nav>
+        <a href="kalkulator13.html">Kalkulator 13</a>
+        <a href="kalkulator11.html">Kalkulator 11</a>
+        <a href="kalkulator9.html">Kalkulator 9</a>
+        <a href="kalkulator7.html">Kalkulator 7</a>
+        <a href="kalkulator5.html">Kalkulator 5</a>
+        <a href="kalkulator3.html">Kalkulator 3</a>
+        <a href="kalkulator1.html">Kalkulator 1</a>
+        <div class="linia"></div>
+        <a href="index.html">Strona Główna</a>
+        <div class="linia"></div>
+        <a href="kalkulator2.html">Kalkulator 2</a>
+        <a href="kalkulator4.html">Kalkulator 4</a>
+        <a href="kalkulator6.html">Kalkulator 6</a>
+        <a href="kalkulator8.html">Kalkulator 8</a>
+        <a href="kalkulator10.html">Kalkulator 10</a>
+        <a href="kalkulator12.html">Kalkulator 12</a>
+        <a href="kalkulator14.html">Kalkulator 14</a>
+    </nav>
 </header>
 <div class="asideMainKontener">
-	<main>
-		<label>Funkcja Kwadratowa</label>
-		<div class="inputKontener">
-			<label>A</label>
-			<input type="number" id="kwadratowaA" value="1" oninput="kwadratowa(); ogolna(); kanoniczna(); iloczynowa();">
-			<label>B</label>
-			<input type="number" id="kwadratowaB" value="0" oninput="kwadratowa(); ogolna(); kanoniczna(); iloczynowa();">
-			<label>C</label>
-			<input type="number" id="kwadratowaC" value="0" oninput="kwadratowa(); ogolna(); kanoniczna(); iloczynowa();">
-		</div>
-		<span class="walutyKontener">
-        <span class="walutyKontener">
+    <main>
+        <label>Funkcja Kwadratowa</label>
+        <div class="inputKontener">
+            <label>A</label>
+            <input type="number" id="kwadratowaA" value="1"
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa();">
+            <label>B</label>
+            <input type="number" id="kwadratowaB" value="0"
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa();">
+            <label>C</label>
+            <input type="number" id="kwadratowaC" value="0"
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa();">
+        </div>
+        <span class="funkcjaKontener">
+        <span class="funkcjaKontener">
             <label for="wygladOgolna">Funkcja Kwadratowa Ogólna</label>
             <input type="text" readonly id="wygladOgolna">
         </span>
-		 <span class="walutyKontener">
+		 <span class="funkcjaKontener">
 			 <label for="wygladKanoniczna">Funkcja Kwadratowa Kanoniczna</label>
             <input type="text" readonly id="wygladKanoniczna">
         </span>
-		 <span class="walutyKontener">
+		 <span class="funkcjaKontener">
             <label for="wygladIloczynowa">Funkcja Kwadratowa Iloczynowa</label>
             <input type="text" readonly id="wygladIloczynowa">
         </span>
-		 <span class="walutyKontener">
+		 <span class="funkcjaKontener">
+            <label for="funkcje5">Delta Δ</label>
+            <input type="number" readonly id="funkcje5">
+        </span>
+			<span class="funkcjaKontener">
 			 <label for="x1" style="width:50%; float:left;">X1</label>
 			 <label for="x2" style="width:50%; float:right">X2</label>
             <input type="number" readonly id="x1" style="width:46.7%;">
             <input type="number" readonly id="x2" style="width:46.7%;">
         </span>
-		 <span class="walutyKontener">
-            <label for="waluta5">Korona norweska (NOK)</label>
-            <input type="number" readonly id="waluta5">
+		 <span class="funkcjaKontener">
+			 <label for="funkcje6">Korona duńska (DKK)</label>
+			<input type="number" readonly id="funkcje6">
         </span>
-		 <span class="walutyKontener">
-			 <label for="waluta6">Korona duńska (DKK)</label>
-			<input type="number" readonly id="waluta6">
+		 <span class="funkcjaKontener">
+            <label for="funkcje7">Forint węgierski (HUF)</label>
+			<input type="number" readonly id="funkcje7">
         </span>
-		 <span class="walutyKontener">
-            <label for="waluta7">Forint węgierski (HUF)</label>
-			<input type="number" readonly id="waluta7">
+		 <span class="funkcjaKontener">
+			 <label for="funkcje8">Korona czeska (CZK)</label>
+			<input type="number" readonly id="funkcje8">
         </span>
-		 <span class="walutyKontener">
-			 <label for="waluta8">Korona czeska (CZK)</label>
-			<input type="number" readonly id="waluta8">
+		 <span class="funkcjaKontener">
+            <label for="funkcje9">Lej rumuński (RON)</label>
+			<input type="number" readonly id="funkcje9">
         </span>
-		 <span class="walutyKontener">
-            <label for="waluta9">Lej rumuński (RON)</label>
-			<input type="number" readonly id="waluta9">
-        </span>
-		 <span class="walutyKontener">
-			 <label for="waluta10">Lew bułgarski (BGN)</label>
-			<input type="number" readonly id="waluta10">
+		 <span class="funkcjaKontener">
+			 <label for="funkcje10">Lew bułgarski (BGN)</label>
+			<input type="number" readonly id="funkcje10">
         </span>
     </span>
-	</main>
-	<aside>
-		<label>Kursy</label>
-		<span class="walutyKontener1">
-        <span class="walutyKontener1">
-			<input type="text" value="ax²+bx+c" readonly id="waluta0kursy">
-            <label for="waluta1kursy">Wzór na funkcje kwadratową ogólną</label>
-        </span><span class="walutyKontener1">
-			<input type="number" readonly id="waluta1kursy">
-            <label for="waluta1kursy">Euro (EUR)</label>
+    </main>
+    <aside>
+        <label>wzory</label>
+        <span class="funkcjaKontener1">
+        <span class="funkcjaKontener1">
+			<input type="text" value="ax²+bx+c" readonly id="funkcje0wzory">
+            <label for="funkcje0wzory">Wzór na funkcje kwadratową ogólną</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta2kursy">
-			 <label for="waluta2kursy">Funt szterling (GBP)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="text" readonly id="funkcje2wzory" value="a(x-p)²+q">
+			 <label for="funkcje1wzory">Wzór na funkcje kwadratową kanoniczną</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta3kursy">
-            <label for="waluta3kursy">Frank szwajcarski (CHF)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje3wzory">
+            <label for="funkcje2wzory">Wzór na funkcje kwadratową</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta4kursy">
-			 <label for="waluta4kursy">Korona szwedzka (SEK)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje5wzory">
+            <label for="funkcje3wzory">Delta Δ</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta5kursy">
-            <label for="waluta5kursy">Korona norweska (NOK)</label>
+        <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje4wzory">
+			 <label for="funkcje4wzory">Wzór na miejsca zerowe</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta6kursy">
-			 <label for="waluta6kursy">Korona duńska (DKK)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje6wzory">
+			 <label for="funkcje5wzory">Korona duńska (DKK)</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta7kursy">
-            <label for="waluta7kursy">Forint węgierski (HUF)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje7wzory">
+            <label for="funkcje6wzory">Forint węgierski (HUF)</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta8kursy">
-			 <label for="waluta8kursy">Korona czeska (CZK)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje8wzory">
+			 <label for="funkcje7wzory">Korona czeska (CZK)</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta9kursy">
-            <label for="waluta9kursy">Lej rumuński (RON)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje9wzory">
+            <label for="funkcje8wzory">Lej rumuński (RON)</label>
         </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta10kursy">
-			 <label for="waluta10kursy">Lew bułgarski (BGN)</label>
+		 <span class="funkcjaKontener1">
+			 <input type="number" readonly id="funkcje10wzory">
+			 <label for="funkcje9wzory">Lew bułgarski (BGN)</label>
+        </span>
+         <span class="funkcjaKontener1">
+			<input type="number" readonly id="funkcje1wzory">
+            <label for="funkcje10wzory">Euro (EUR)</label>
         </span>
     </span>
-	</aside>
+    </aside>
 </div>
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 <script>
-	function kwadratowa(){
-		const a = parseFloat(document.getElementById("kwadratowaA").value);
-		const b = parseFloat(document.getElementById("kwadratowaB").value);
-		const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-		let x1 = "";
-		let x2 = "";
+    function ogolna() {
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-		if (a == 0) {
-			x1 = "Błąd: a nie może równać się 0";
-			x2 = "Błąd: a nie może równać się 0";
-		} else {
-			const delta = (b * b) - 4 * a * c;
+        let equation = "";
+        if (a == 0) {
+            document.getElementById("wygladOgolna").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-			if (delta > 0) {
-				x1 = (-b + Math.sqrt(delta)) / (2 * a);
-				x2 = (-b - Math.sqrt(delta)) / (2 * a);
-			}
-			else if (delta == 0) {
-				x1 = -b / (2 * a);
-				x2 = x1;
-			}
-			else {
-				x1 = "Brak miejsc zerowych (pierwiastki zespolone)";
-				x2 = "Brak miejsc zerowych (pierwiastki zespolone)";
-			}
-		}
+        const addTerm = (term, variable = '', isFirst = false) => {
+            if (term == 0) return '';
 
-		document.getElementById("x1").value = x1 != "" ? x1.toFixed(3) : x1;
-		document.getElementById("x2").value = x2 != "" ? x2.toFixed(3) : x2;
-	}
-	function ogolna() {
-		const a = document.getElementById("kwadratowaA").value;
-		const b = document.getElementById("kwadratowaB").value;
-		const c = document.getElementById("kwadratowaC").value;
+            let sign = isFirst ? '' : (term > 0 ? ' + ' : ' - ');
+            let absTerm = Math.abs(term);
 
-		let equation = "";
-		if (a == 0) {
-			document.getElementById("wygladOgolna").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+            if (variable == '') return sign + absTerm;
 
-		const addTerm = (term, variable = '', isFirst = false) => {
-			if (term == 0) return '';
+            if (absTerm == 1) {
+                return sign + (variable == 'x²' ? variable : variable);
+            }
 
-			let sign = isFirst ? '' : (term > 0 ? ' + ' : ' - ');
-			let absTerm = Math.abs(term);
+            return sign + absTerm + variable;
+        };
 
-			if (variable == '') return sign + absTerm;
+        let aStr = addTerm(a, 'x²', true);
+        let bStr = addTerm(b, 'x');
+        let cStr = addTerm(c);
 
-			if (absTerm == 1) {
-				return sign + (variable == 'x²' ? variable : variable);
-			}
+        equation = aStr + bStr + cStr;
 
-			return sign + absTerm + variable;
-		};
+        document.getElementById("wygladOgolna").value = equation || '0';
+    }
 
-		let aStr = addTerm(a, 'x²', true);
-		let bStr = addTerm(b, 'x');
-		let cStr = addTerm(c);
+    function kanoniczna() {
+        const a = parseFloat(document.getElementById("kwadratowaA").value);
+        const b = parseFloat(document.getElementById("kwadratowaB").value);
+        const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-		equation = aStr + bStr + cStr;
+        if (a == 0) {
+            document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		document.getElementById("wygladOgolna").value = equation || '0';
-	}
+        const delta = (b * b) - 4 * a * c;
+        const p = -b / (2 * a);
+        const q = -delta / (4 * a);
 
-	function kanoniczna() {
-		const a = parseFloat(document.getElementById("kwadratowaA").value);
-		const b = parseFloat(document.getElementById("kwadratowaB").value);
-		const c = parseFloat(document.getElementById("kwadratowaC").value);
+        let equation = `${a}(x`;
 
-		if (a == 0) {
-			document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        equation += p >= 0 ? ` - ${Math.abs(p).toFixed(3)})²` : ` + ${Math.abs(p).toFixed(3)})²`;
 
-		const delta = (b * b) - 4 * a * c;
-		const p = -b / (2 * a);
-		const q = -delta / (4 * a);
+        equation += q >= 0 ? ` + ${q.toFixed(3)}` : ` - ${Math.abs(q).toFixed(3)}`;
 
-		let equation = `${a}(x`;
+        document.getElementById("wygladKanoniczna").value = equation;
+    }
+    function iloczynowa() {
+        const a = parseFloat(document.getElementById("kwadratowaA").value);
+        const b = parseFloat(document.getElementById("kwadratowaB").value);
+        const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-		equation += p >= 0 ? ` - ${Math.abs(p).toFixed(3)})²` : ` + ${Math.abs(p).toFixed(3)})²`;
+        let equation = "";
+        const delta = (b * b) - 4 * a * c;
 
-		equation += q >= 0 ? ` + ${q.toFixed(3)}` : ` - ${Math.abs(q).toFixed(3)}`;
+        if (a == 0) {
+            equation = "Błąd: a nie może równać się 0";
+        } else if (delta > 0) {
+            const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            const x2 = (-b - Math.sqrt(delta)) / (2 * a);
 
-		document.getElementById("wygladKanoniczna").value = equation;
-	}
-	function iloczynowa() {
-		const a = parseFloat(document.getElementById("kwadratowaA").value);
-		const b = parseFloat(document.getElementById("kwadratowaB").value);
-		const c = parseFloat(document.getElementById("kwadratowaC").value);
+            const x1Sign = x1 >= 0 ? '- ' : '+ ';
+            const x2Sign = x2 >= 0 ? '- ' : '+ ';
 
-		let equation = "";
-		const delta = (b * b) - 4 * a * c;
+            equation = `${a}(x ${x1Sign}${Math.abs(x1).toFixed(3)})(x ${x2Sign}${Math.abs(x2).toFixed(3)})`;
+        } else if (delta == 0) {
+            const x1 = -b / (2 * a);
+            const x1Sign = x1 >= 0 ? '- ' : '+ ';
 
-		if (a == 0) {
-			equation = "Błąd: a nie może równać się 0";
-		} else if (delta > 0) {
-			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-			const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            equation = `${a}(x ${x1Sign}${Math.abs(x1).toFixed(3)})²`;
+        } else {
+            equation = "Nie można stworzyć, brak miejsc zerowych";
+        }
 
-			const x1Sign = x1 >= 0 ? '- ' : '+ ';
-			const x2Sign = x2 >= 0 ? '- ' : '+ ';
+        document.getElementById("wygladIloczynowa").value = equation;
+    }
+    function delta(){
 
-			equation = `${a}(x ${x1Sign}${Math.abs(x1).toFixed(3)})(x ${x2Sign}${Math.abs(x2).toFixed(3)})`;
-		} else if (delta == 0) {
-			const x1 = -b / (2 * a);
-			const x1Sign = x1 >= 0 ? '- ' : '+ ';
+    }
+    function miejscaZ(){
+        const a = parseFloat(document.getElementById("kwadratowaA").value);
+        const b = parseFloat(document.getElementById("kwadratowaB").value);
+        const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-			equation = `${a}(x ${x1Sign}${Math.abs(x1).toFixed(3)})²`;
-		} else {
-			equation = "Nie można stworzyć, brak miejsc zerowych";
-		}
+        let x1 = "";
+        let x2 = "";
 
-		document.getElementById("wygladIloczynowa").value = equation;
-	}
+        if (a == 0) {
+            x1 = "Błąd: a nie może równać się 0";
+            x2 = "Błąd: a nie może równać się 0";
+        } else {
+            const delta = (b * b) - 4 * a * c;
 
-	window.onload = function() {
-		kwadratowa();
-		ogolna();
-		kanoniczna();
-		iloczynowa();
-	};</script>
+            if (delta > 0) {
+                x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            }
+            else if (delta == 0) {
+                x1 = -b / (2 * a);
+                x2 = x1;
+            }
+            else {
+                x1 = "Brak miejsc zerowych (pierwiastki zespolone)";
+                x2 = "Brak miejsc zerowych (pierwiastki zespolone)";
+            }
+        }
+
+        document.getElementById("x1").value = x1 != "" ? x1.toFixed(3) : x1;
+        document.getElementById("x2").value = x2 != "" ? x2.toFixed(3) : x2;
+    }
+    window.onload = function() {
+        delta();
+        miejscaZ();
+        ogolna();
+        kanoniczna();
+        iloczynowa();
+    };</script>
 </body>
 </html>

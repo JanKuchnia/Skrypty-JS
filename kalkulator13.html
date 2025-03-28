@@ -5,68 +5,31 @@
 	<title>Skrypty-JS Kalkulator 13</title>
 	<link rel="stylesheet" href="style.css">
 	<style>
-		main{
-			width:25%;
-		}
-		input{
-			width:40%;
-			position: relative;
-		}
-		#num1{
-			width:100%;
-		}
-		.inputKontener {
-			position: relative;
-		}
-		.inputKontener input {
-			width: 100%;
-			padding-right: 50px;
-		}
-		.inputKontener .waluta {
-			position: absolute;
-			right: 10px;
-			top: 50%;
-			transform: translateY(-50%);
-			color: #000000;
-			pointer-events: none;
-		}
-		#wynik{
-			width:100%;
-		}
-		#opcje2select {
-			width:100%;
-		}
-		.walutyKontener, .walutyKontener1 {
+		.radioContainer {
 			display: grid;
-			grid-template-columns: repeat(2, 2fr);
-			grid-template-rows: auto;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 10px;
+			margin-bottom: 15px;
+		}
+		.radioContainer label {
+			display: flex;
 			align-items: center;
-			gap: 5px;
+			background-color: rgba(255,255,255,0.2);
+			padding: 10px;
+			border-radius: 5px;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
 		}
-		.walutyKontener > span, .walutyKontener1 > span {
-			display: contents;
+		.radioContainer input[type="radio"] {
+			margin-right: 10px;
+			width: auto;
+			height: auto;
 		}
-		.walutyKontener input, .walutyKontener1 input {
-			width: 95%;
+		.radioContainer label:hover {
+			background-color: rgba(255,255,255,0.3);
 		}
-		.walutyKontener label, .walutyKontener1 label {
-			width: 95%;
-		}
-		.walutyKontener > span:nth-child(-n+10) {
-			grid-column: span 2;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			padding: 5px 0;
-			border-bottom: 1px solid #ccc;
-		}
-		.walutyKontener1 > span:nth-child(-n+11) {
-			grid-column: span 2;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			padding: 5px 0;
-			border-bottom: 1px solid #ccc;
+		.radioContainer input[type="radio"]:checked + span {
+			font-weight: bold;
 		}
 	</style>
 	<script>
@@ -131,22 +94,33 @@
 		document.addEventListener('DOMContentLoaded', () => {
 			fetchkursy();
 			setInterval(fetchkursy, 3600000);
-		});
-		function waluty(){
-			const num1 = document.getElementById("num1").value;
-			const pln = parseFloat(num1).toFixed(2);
 
-			document.getElementById("waluta1").value = (pln * kursy["EUR"]).toFixed(2);
-			document.getElementById("waluta2").value = (pln * kursy["GBP"]).toFixed(2);
-			document.getElementById("waluta3").value = (pln * kursy["CHF"]).toFixed(2);
-			document.getElementById("waluta4").value = (pln * kursy["SEK"]).toFixed(2);
-			document.getElementById("waluta5").value = (pln * kursy["NOK"]).toFixed(2);
-			document.getElementById("waluta6").value = (pln * kursy["DKK"]).toFixed(2);
-			document.getElementById("waluta7").value = (pln * kursy["HUF"]).toFixed(2);
-			document.getElementById("waluta8").value = (pln * kursy["CZK"]).toFixed(2);
-			document.getElementById("waluta9").value = (pln * kursy["RON"]).toFixed(2);
-			document.getElementById("waluta10").value = (pln * kursy["BGN"]).toFixed(2);
-		}
+			const input1 = document.getElementById("num1");
+			const input2 = document.getElementById("num2");
+			const radioButtons = document.querySelectorAll('input[name="currency"]');
+			const otherCurrencyRadios = document.querySelectorAll('input[name="other-currency"]');
+			const currency1Span = document.getElementById("currency1");
+			const currency2Span = document.getElementById("currency2");
+
+			function convertCurrency() {
+				const selectedCurrency = document.querySelector('input[name="other-currency"]:checked')?.value || 'EUR';
+				const inputValue = parseFloat(input1.value) || 0;
+
+				if (document.getElementById("radio1").checked) {
+					input2.value = (inputValue * kursy[selectedCurrency]).toFixed(2);
+					currency1Span.textContent = 'PLN';
+					currency2Span.textContent = selectedCurrency;
+				} else {
+					input2.value = (inputValue / kursy[selectedCurrency]).toFixed(2);
+					currency1Span.textContent = selectedCurrency;
+					currency2Span.textContent = 'PLN';
+				}
+			}
+
+			input1.addEventListener('input', convertCurrency);
+			radioButtons.forEach(radio => radio.addEventListener('change', convertCurrency));
+			otherCurrencyRadios.forEach(radio => radio.addEventListener('change', convertCurrency));
+		});
 	</script>
 </head>
 <body>
@@ -174,101 +148,98 @@
 </header>
 <div class="asideMainKontener">
 	<main>
-		<label for="num1">Waluty ze złotego</label>
+		<label for="num1">Kwota</label>
 		<div class="inputKontener">
-			<input type="number" id="num1" min="0.00" value="0.00" oninput="waluty()">
-			<span class="waluta">PLN</span>
+			<input type="number" id="num1" min="0.00" value="0.00" step="0.01">
+			<span class="waluta" id="currency1">PLN</span>
 		</div>
-		<span class="walutyKontener">
-        <span class="walutyKontener">
-            <label for="waluta1">Euro (EUR)</label>
-            <input type="number" readonly id="waluta1" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-			 <label for="waluta2">Funt szterling (GBP)</label>
-            <input type="number" readonly id="waluta2" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-            <label for="waluta3">Frank szwajcarski (CHF)</label>
-            <input type="number" readonly id="waluta3" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-			 <label for="waluta4">Korona szwedzka (SEK)</label>
-            <input type="number" readonly id="waluta4" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-            <label for="waluta5">Korona norweska (NOK)</label>
-            <input type="number" readonly id="waluta5" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-			 <label for="waluta6">Korona duńska (DKK)</label>
-			<input type="number" readonly id="waluta6" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-            <label for="waluta7">Forint węgierski (HUF)</label>
-			<input type="number" readonly id="waluta7" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-			 <label for="waluta8">Korona czeska (CZK)</label>
-			<input type="number" readonly id="waluta8" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-            <label for="waluta9">Lej rumuński (RON)</label>
-			<input type="number" readonly id="waluta9" value="0.00">
-        </span>
-		 <span class="walutyKontener">
-			 <label for="waluta10">Lew bułgarski (BGN)</label>
-			<input type="number" readonly id="waluta10" value="0.00">
-        </span>
-    </span>
+
+		<label for="num2">Przeliczona kwota</label>
+		<div class="inputKontener">
+			<input type="number" id="num2" readonly value="0.00">
+			<span class="waluta" id="currency2">-</span>
+		</div>
+
+		<div class="radioContainer">
+			<label>
+				<input type="radio" name="currency" id="radio1" value="PLN" checked>
+				<span>PLN → Inna</span>
+			</label>
+			<label>
+				<input type="radio" name="currency" id="radio2" value="PLN">
+				<span>Inna → PLN</span>
+			</label>
+		</div>
+
+		<div class="radioContainer">
+			<label>
+				<input type="radio" name="other-currency" value="EUR">
+				<span>Euro (EUR)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="GBP">
+				<span>Funt szterling (GBP)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="CHF">
+				<span>Frank szwajcarski (CHF)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="SEK">
+				<span>Korona szwedzka (SEK)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="NOK">
+				<span>Korona norweska (NOK)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="DKK">
+				<span>Korona duńska (DKK)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="HUF">
+				<span>Forint węgierski (HUF)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="CZK">
+				<span>Korona czeska (CZK)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="RON">
+				<span>Lej rumuński (RON)</span>
+			</label>
+			<label>
+				<input type="radio" name="other-currency" value="BGN">
+				<span>Lew bułgarski (BGN)</span>
+			</label>
+		</div>
 	</main>
 	<aside>
 		<label>Kursy</label>
 		<span class="walutyKontener1">
-        <span class="walutyKontener1">
 			<input type="number" readonly id="waluta0kursy">
-            <label for="waluta1kursy">Złoty (PLN)</label>
-        </span><span class="walutyKontener1">
+			<label for="waluta1kursy">Złoty (PLN)</label>
 			<input type="number" readonly id="waluta1kursy">
-            <label for="waluta1kursy">Euro (EUR)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta2kursy">
-			 <label for="waluta2kursy">Funt szterling (GBP)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta3kursy">
-            <label for="waluta3kursy">Frank szwajcarski (CHF)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta4kursy">
-			 <label for="waluta4kursy">Korona szwedzka (SEK)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta5kursy">
-            <label for="waluta5kursy">Korona norweska (NOK)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta6kursy">
-			 <label for="waluta6kursy">Korona duńska (DKK)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta7kursy">
-            <label for="waluta7kursy">Forint węgierski (HUF)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta8kursy">
-			 <label for="waluta8kursy">Korona czeska (CZK)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta9kursy">
-            <label for="waluta9kursy">Lej rumuński (RON)</label>
-        </span>
-		 <span class="walutyKontener1">
-			 <input type="number" readonly id="waluta10kursy">
-			 <label for="waluta10kursy">Lew bułgarski (BGN)</label>
-        </span>
-    </span>
+			<label for="waluta1kursy">Euro (EUR)</label>
+			<input type="number" readonly id="waluta2kursy">
+			<label for="waluta2kursy">Funt szterling (GBP)</label>
+			<input type="number" readonly id="waluta3kursy">
+			<label for="waluta3kursy">Frank szwajcarski (CHF)</label>
+			<input type="number" readonly id="waluta4kursy">
+			<label for="waluta4kursy">Korona szwedzka (SEK)</label>
+			<input type="number" readonly id="waluta5kursy">
+			<label for="waluta5kursy">Korona norweska (NOK)</label>
+			<input type="number" readonly id="waluta6kursy">
+			<label for="waluta6kursy">Korona duńska (DKK)</label>
+			<input type="number" readonly id="waluta7kursy">
+			<label for="waluta7kursy">Forint węgierski (HUF)</label>
+			<input type="number" readonly id="waluta8kursy">
+			<label for="waluta8kursy">Korona czeska (CZK)</label>
+			<input type="number" readonly id="waluta9kursy">
+			<label for="waluta9kursy">Lej rumuński (RON)</label>
+			<input type="number" readonly id="waluta10kursy">
+			<label for="waluta10kursy">Lew bułgarski (BGN)</label>
+		</span>
 	</aside>
 </div>
 <footer>
