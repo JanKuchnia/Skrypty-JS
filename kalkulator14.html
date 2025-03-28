@@ -74,23 +74,39 @@
 <header>
 	<h1>Skrypty-JS</h1>
 	<nav>
-		<a href="kalkulator13.html">Kalkulator 13</a>
-		<a href="kalkulator11.html">Kalkulator 11</a>
-		<a href="kalkulator9.html">Kalkulator 9</a>
-		<a href="kalkulator7.html">Kalkulator 7</a>
-		<a href="kalkulator5.html">Kalkulator 5</a>
-		<a href="kalkulator3.html">Kalkulator 3</a>
-		<a href="kalkulator1.html">Kalkulator 1</a>
-		<div class="linia"></div>
-		<a href="index.html">Strona Główna</a>
-		<div class="linia"></div>
-		<a href="kalkulator2.html">Kalkulator 2</a>
-		<a href="kalkulator4.html">Kalkulator 4</a>
-		<a href="kalkulator6.html">Kalkulator 6</a>
-		<a href="kalkulator8.html">Kalkulator 8</a>
-		<a href="kalkulator10.html">Kalkulator 10</a>
-		<a href="kalkulator12.html">Kalkulator 12</a>
-		<a href="kalkulator14.html">Kalkulator 14</a>
+		<div class="hamburger-menu" onclick="przelaczMenu()">
+			<div class="pasek"></div>
+			<div class="pasek"></div>
+			<div class="pasek"></div>
+		</div>
+
+		<div class="menu-kontener">
+			<div class="rozwijane-menu" onclick="przelaczPodmenu(this)">
+				Kalkulatory
+				<div class="rozwijane-podmenu">
+					<a href="kalkulator1.html">Kalkulator 1</a>
+					<a href="kalkulator3.html">Kalkulator 3</a>
+					<a href="kalkulator5.html">Kalkulator 5</a>
+					<a href="kalkulator7.html">Kalkulator 7</a>
+					<a href="kalkulator9.html">Kalkulator 9</a>
+					<a href="kalkulator11.html">Kalkulator 11</a>
+				</div>
+			</div>
+
+			<div class="rozwijane-menu" onclick="przelaczPodmenu(this)">
+				Pozostałe Kalkulatory
+				<div class="rozwijane-podmenu">
+					<a href="kalkulator2.html">Kalkulator 2</a>
+					<a href="kalkulator4.html">Kalkulator 4</a>
+					<a href="kalkulator6.html">Kalkulator 6</a>
+					<a href="kalkulator8.html">Kalkulator 8</a>
+					<a href="kalkulator10.html">Kalkulator 10</a>
+					<a href="kalkulator12.html">Kalkulator 12</a>
+				</div>
+			</div>
+
+			<a href="index.html">Strona Główna</a>
+		</div>
 	</nav>
 </header>
 <div class="asideMainKontener">

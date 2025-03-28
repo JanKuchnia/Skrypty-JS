@@ -196,3 +196,55 @@ select{
     height:1.25vw;
     border:1px solid black;
 }
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 20px;
+    justify-content: space-between;
+}
+
+.pasek {
+    width: 100%;
+    height: 3px;
+    background-color: black;
+    transition: 0.3s;
+}
+
+.menu-kontener {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(220, 220, 220, 0.9);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.menu-kontener.aktywny {
+    display: flex;
+}
+
+.menu-kontener a, .menu-kontener .rozwijane-menu {
+    padding: 15px;
+    text-decoration: none;
+    color: black;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s;
+}
+
+.menu-kontener a:hover, .menu-kontener .rozwijane-menu:hover {
+    background-color: #d6d6d6;
+}
+
+.rozwijane-podmenu {
+    display: none;
+    background-color: rgba(200, 200, 200, 0.9);
+}
+
+.rozwijane-menu.aktywny + .rozwijane-podmenu {
+    display: block;
+}
