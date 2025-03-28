@@ -1,112 +1,105 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Skrypty-JS Kalkulator 11</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    main{
-      width:23%;
-    }
-    input{
-      width:49%;
-    }
-    #wynik{
-      width:100%;
-    }
-    #opcje2select {
-      width:100%;
-    }
-  </style>
-  <script>
-    const wartosci = {
-      ns: 1e-9,
-      mikrosekunda: 1e-6,
-      ms: 1e-3,
-      s: 1,
-      min: 60,
-      h: 3600,
-      d: 86400,
-      tydzień: 604800,
-      miesiąc: 2629800,
-      rok: 31557600
-    };
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 11</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:23%;
+        }
+        input{
+            width:49%;
+        }
+        #wynik{
+            width:100%;
+        }
+        #opcje2select {
+            width:100%;
+        }
+    </style>
+    <script>
+        const wartosci = {
+            ns: 1e-9,
+            mikrosekunda: 1e-6,
+            ms: 1e-3,
+            s: 1,
+            min: 60,
+            h: 3600,
+            d: 86400,
+            tydzień: 604800,
+            miesiąc: 2629800,
+            rok: 31557600
+        };
 
-    function kalkulator() {
-      const num1 = parseFloat(document.getElementById("num1").value);
-
-      const opcja1 = document.querySelector("select[name='opcje1']").value;
-      const opcja2 = document.querySelector("select[name='opcje2']").value;
-
-      const wprowadzone = num1 * wartosci[opcja1];
-      const wynik = wprowadzone / wartosci[opcja2];
-
-      document.getElementById("wynik").value = wynik.toFixed(4);
-    }
-  </script>
+        function kalkulator() {
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const opcja1 = document.querySelector("select[name='opcje1']").value;
+            const opcja2 = document.querySelector("select[name='opcje2']").value;
+            const wprowadzone = num1 * wartosci[opcja1];
+            const wynik = wprowadzone / wartosci[opcja2];
+            document.getElementById("wynik").value = wynik.toFixed(4);
+        }
+    </script>
 </head>
 <body>
 <header>
-  <h1>Skrypty-JS</h1>
-  <nav>
-<span>
+    <h1>Skrypty-JS</h1>
+    <nav>
         <a href="kalkulator11.html">Kalkulator 11</a>
         <a href="kalkulator9.html">Kalkulator 9</a>
         <a href="kalkulator7.html">Kalkulator 7</a>
         <a href="kalkulator5.html">Kalkulator 5</a>
         <a href="kalkulator3.html">Kalkulator 3</a>
         <a href="kalkulator1.html">Kalkulator 1</a>
-    </span>
-    <div class="linia"></div>
-    <a href="index.html">Strona Główna</a>
-    <div class="linia"></div>
-    <span>
-          <a href="kalkulator2.html">Kalkulator 2</a>
-          <a href="kalkulator4.html">Kalkulator 4</a>
-          <a href="kalkulator6.html">Kalkulator 6</a>
-          <a href="kalkulator8.html">Kalkulator 8</a>
-          <a href="kalkulator10.html">Kalkulator 10</a>
-          <a href="kalkulator12.html">Kalkulator 12</a>
-        </span>
-  </nav>
+        <div class="linia"></div>
+        <a href="index.html">Strona Główna</a>
+        <div class="linia"></div>
+        <a href="kalkulator2.html">Kalkulator 2</a>
+        <a href="kalkulator4.html">Kalkulator 4</a>
+        <a href="kalkulator6.html">Kalkulator 6</a>
+        <a href="kalkulator8.html">Kalkulator 8</a>
+        <a href="kalkulator10.html">Kalkulator 10</a>
+        <a href="kalkulator12.html">Kalkulator 12</a>
+    </nav>
 </header>
 <main>
-  <label for="num1">Kalkulator Czasu</label>
-  <label for="opcje1select">Wprowadź początkową wartość</label>
-  <input type="number" id="num1">
-  <select name="opcje1" id="opcje1select">
-    <option>ns</option>
-    <option>mikrosekunda</option>
-    <option>ms</option>
-    <option>s</option>
-    <option>min</option>
-    <option>h</option>
-    <option>d</option>
-    <option>tydzień</option>
-    <option>miesiąc</option>
-    <option>rok</option>
-  </select>
-  <br>
-  <label for="opcje2select">Wybierz na co przekalkulować</label>
-  <select name="opcje2" id="opcje2select">
-    <option>ns</option>
-    <option>mikrosekunda</option>
-    <option>ms</option>
-    <option>s</option>
-    <option>min</option>
-    <option>h</option>
-    <option>d</option>
-    <option>tydzień</option>
-    <option>miesiąc</option>
-    <option>rok</option>
-  </select>
-  <label for="wynik">Wynik</label>
-  <input type="number" id="wynik" readonly placeholder="0">
-  <br>
-  <button onclick="kalkulator()">=</button>
+    <label for="num1">Kalkulator Czasu</label>
+    <label for="opcje1select">Wprowadź początkową wartość</label>
+    <input type="number" id="num1">
+    <select name="opcje1" id="opcje1select">
+        <option>ns</option>
+        <option>mikrosekunda</option>
+        <option>ms</option>
+        <option>s</option>
+        <option>min</option>
+        <option>h</option>
+        <option>d</option>
+        <option>tydzień</option>
+        <option>miesiąc</option>
+        <option>rok</option>
+    </select>
+    <br>
+    <label for="opcje2select">Wybierz na co przekalkulować</label>
+    <select name="opcje2" id="opcje2select">
+        <option>ns</option>
+        <option>mikrosekunda</option>
+        <option>ms</option>
+        <option>s</option>
+        <option>min</option>
+        <option>h</option>
+        <option>d</option>
+        <option>tydzień</option>
+        <option>miesiąc</option>
+        <option>rok</option>
+    </select>
+    <label for="wynik">Wynik</label>
+    <input type="number" id="wynik" readonly placeholder="0">
+    <br>
+    <button onclick="kalkulator()">=</button>
 </main>
 <footer>
-  <h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>

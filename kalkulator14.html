@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<title>Skrypty-JS Kalkulator 13</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		main{
+			width:25%;
+		}
+		input{
+			position: relative;
+		}
+		#num1{
+			width:100%;
+		}
+		.inputKontener {
+			display:flex;
+			align-items:center;
+			flex-wrap:wrap;
+		}
+		.inputKontener input {
+			text-align:center;
+			width:80%;
+		}
+		.inputKontener label{
+			width:20%;
+		}
+		#wynik{
+			width:100%;
+		}
+		#opcje2select {
+			width:100%;
+		}
+		.walutyKontener{
+		}
+		.walutyKontener1 {
+			display: grid;
+			grid-template-columns: repeat(2, 2fr);
+			grid-template-rows: auto;
+			align-items: center;
+			gap: 5px;
+		}
+		.walutyKontener input, .walutyKontener1 input {
+			width: 95%;
+		}
+		.walutyKontener label, .walutyKontener1 label {
+			width: 95%;
+		}
+/*		.walutyKontener > span:nth-child(-n+10) {*/
+/*			grid-column: span 2;*/
+/*			display: grid;*/
+/*			grid-template-columns: 1fr 1fr;*/
+/*			align-items: center;*/
+/*			padding: 5px 0;*/
+/*			border-bottom: 1px solid #ccc;*/
+/*		}*/
+		.walutyKontener1 > span:nth-child(-n+11) {
+			grid-column: span 2;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			align-items: center;
+			padding: 5px 0;
+			border-bottom: 1px solid #ccc;
+		}
+	</style>
+</head>
+<body>
+<header>
+	<h1>Skrypty-JS</h1>
+	<nav>
+		<a href="kalkulator13.html">Kalkulator 13</a>
+		<a href="kalkulator11.html">Kalkulator 11</a>
+		<a href="kalkulator9.html">Kalkulator 9</a>
+		<a href="kalkulator7.html">Kalkulator 7</a>
+		<a href="kalkulator5.html">Kalkulator 5</a>
+		<a href="kalkulator3.html">Kalkulator 3</a>
+		<a href="kalkulator1.html">Kalkulator 1</a>
+		<div class="linia"></div>
+		<a href="index.html">Strona Główna</a>
+		<div class="linia"></div>
+		<a href="kalkulator2.html">Kalkulator 2</a>
+		<a href="kalkulator4.html">Kalkulator 4</a>
+		<a href="kalkulator6.html">Kalkulator 6</a>
+		<a href="kalkulator8.html">Kalkulator 8</a>
+		<a href="kalkulator10.html">Kalkulator 10</a>
+		<a href="kalkulator12.html">Kalkulator 12</a>
+		<a href="kalkulator14.html">Kalkulator 14</a>
+	</nav>
+</header>
+<div class="asideMainKontener">
+	<main>
+		<label>Funkcja Kwadratowa</label>
+		<div class="inputKontener">
+			<label>A</label>
+			<input type="number" id="kwadratowaA" value="1" oninput="kwadratowa(); ogolna(); kanoniczna()">
+			<label>B</label>
+			<input type="number" id="kwadratowaB" value="0" oninput="kwadratowa(); ogolna(); kanoniczna()">
+			<label>C</label>
+			<input type="number" id="kwadratowaC" value="0" oninput="kwadratowa(); ogolna(); kanoniczna(); iloczynowa();">
+		</div>
+		<span class="walutyKontener">
+        <span class="walutyKontener">
+            <label for="wygladOgolna">Funkcja Kwadratowa Ogólna</label>
+            <input type="text" readonly id="wygladOgolna">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="wygladKanoniczna">Funkcja Kwadratowa Kanoniczna</label>
+            <input type="text" readonly id="wygladKanoniczna">
+        </span>
+		 <span class="walutyKontener">
+            <label for="wygladIloczynowa">Funkcja Kwadratowa Iloczynowa</label>
+            <input type="text" readonly id="wygladIloczynowa">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta4">Korona szwedzka (SEK)</label>
+            <input type="number" readonly id="waluta4">
+        </span>
+		 <span class="walutyKontener">
+            <label for="waluta5">Korona norweska (NOK)</label>
+            <input type="number" readonly id="waluta5">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta6">Korona duńska (DKK)</label>
+			<input type="number" readonly id="waluta6">
+        </span>
+		 <span class="walutyKontener">
+            <label for="waluta7">Forint węgierski (HUF)</label>
+			<input type="number" readonly id="waluta7">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta8">Korona czeska (CZK)</label>
+			<input type="number" readonly id="waluta8">
+        </span>
+		 <span class="walutyKontener">
+            <label for="waluta9">Lej rumuński (RON)</label>
+			<input type="number" readonly id="waluta9">
+        </span>
+		 <span class="walutyKontener">
+			 <label for="waluta10">Lew bułgarski (BGN)</label>
+			<input type="number" readonly id="waluta10">
+        </span>
+    </span>
+	</main>
+	<aside>
+		<label>Kursy</label>
+		<span class="walutyKontener1">
+        <span class="walutyKontener1">
+			<input type="text" value="ax²+bx+c" readonly id="waluta0kursy">
+            <label for="waluta1kursy">Wzór na funkcje kwadratową ogólną</label>
+        </span><span class="walutyKontener1">
+			<input type="number" readonly id="waluta1kursy">
+            <label for="waluta1kursy">Euro (EUR)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta2kursy">
+			 <label for="waluta2kursy">Funt szterling (GBP)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta3kursy">
+            <label for="waluta3kursy">Frank szwajcarski (CHF)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta4kursy">
+			 <label for="waluta4kursy">Korona szwedzka (SEK)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta5kursy">
+            <label for="waluta5kursy">Korona norweska (NOK)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta6kursy">
+			 <label for="waluta6kursy">Korona duńska (DKK)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta7kursy">
+            <label for="waluta7kursy">Forint węgierski (HUF)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta8kursy">
+			 <label for="waluta8kursy">Korona czeska (CZK)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta9kursy">
+            <label for="waluta9kursy">Lej rumuński (RON)</label>
+        </span>
+		 <span class="walutyKontener1">
+			 <input type="number" readonly id="waluta10kursy">
+			 <label for="waluta10kursy">Lew bułgarski (BGN)</label>
+        </span>
+    </span>
+	</aside>
+</div>
+<footer>
+	<h3>Jan.K-2TP Gr.1</h3>
+</footer>
+<script>
+	function kwadratowa(){
+
+	}
+	function ogolna() {
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
+
+		let equation = "";
+		if (a == 0) {
+			document.getElementById("wygladOgolna").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		const addTerm = (term, variable = '', isFirst = false) => {
+			if (term == 0) return '';
+
+			let sign = isFirst ? '' : (term > 0 ? ' + ' : ' - ');
+			let absTerm = Math.abs(term);
+
+			if (variable == '') return sign + absTerm;
+
+			if (absTerm == 1) {
+				return sign + (variable == 'x²' ? variable : variable);
+			}
+
+			return sign + absTerm + variable;
+		};
+
+		let aStr = addTerm(a, 'x²', true);
+		let bStr = addTerm(b, 'x');
+		let cStr = addTerm(c);
+
+		equation = aStr + bStr + cStr;
+
+		document.getElementById("wygladOgolna").value = equation || '0';
+	}
+
+	function kanoniczna() {
+		const a = parseFloat(document.getElementById("kwadratowaA").value);
+		const b = parseFloat(document.getElementById("kwadratowaB").value);
+		const c = parseFloat(document.getElementById("kwadratowaC").value);
+
+		if (a === 0) {
+			document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		const delta = (b * b) - 4 * a * c;
+		const p = -b / (2 * a);
+		const q = -delta / (4 * a);
+
+		let equation = `${a}(x`;
+
+		equation += p >= 0 ? ` - ${Math.abs(p).toFixed(3)})²` : ` + ${Math.abs(p).toFixed(3)})²`;
+
+		equation += q >= 0 ? ` + ${q.toFixed(3)}` : ` - ${Math.abs(q).toFixed(3)}`;
+
+		document.getElementById("wygladKanoniczna").value = equation;
+	}
+	function iloczynowa() {
+		const a = parseFloat(document.getElementById("kwadratowaA").value);
+		const b = parseFloat(document.getElementById("kwadratowaB").value);
+		const c = parseFloat(document.getElementById("kwadratowaC").value);
+
+		if (a === 0) {
+			document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		const delta = (b * b) - 4 * a * c;
+
+		if (delta < 0) {
+			document.getElementById("wygladIloczynowa").value = "Brak miejsc zerowych";
+			return;
+		}
+
+		if (delta === 0) {
+			const x0 = -b / (2 * a);
+			document.getElementById("wygladIloczynowa").value = `${a}(x - ${x0.toFixed(3)})²`;
+			return;
+		}
+
+		const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+		const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+		let equation = `${a}(x - ${x1.toFixed(3)})(x - ${x2.toFixed(3)})`;
+		document.getElementById("wygladIloczynowa").value = equation;
+	}
+	window.onload = function() {
+		ogolna();
+		kanoniczna();
+		iloczynowa();
+	};</script>
+</body>
+</html>
