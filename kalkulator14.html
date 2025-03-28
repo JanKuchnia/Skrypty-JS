@@ -94,13 +94,13 @@
         <div class="inputKontener">
             <label>A</label>
             <input type="number" id="kwadratowaA" value="1"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta();">
             <label>B</label>
             <input type="number" id="kwadratowaB" value="0"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta();">
             <label>C</label>
             <input type="number" id="kwadratowaC" value="0"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta();">
         </div>
         <span class="funkcjaKontener">
         <span class="funkcjaKontener">
@@ -116,14 +116,14 @@
             <input type="text" readonly id="wygladIloczynowa">
         </span>
 		 <span class="funkcjaKontener">
-            <label for="funkcje5">Delta Δ</label>
-            <input type="number" readonly id="funkcje5">
+            <label for="wygladDelta">Delta Δ</label>
+            <input type="text" readonly id="wygladDelta">
         </span>
 			<span class="funkcjaKontener">
 			 <label for="x1" style="width:50%; float:left;">X1</label>
 			 <label for="x2" style="width:50%; float:right">X2</label>
-            <input type="number" readonly id="x1" style="width:46.7%;">
-            <input type="number" readonly id="x2" style="width:46.7%;">
+            <input type="text" readonly id="x1" style="width:46.7%;">
+            <input type="text" readonly id="x2" style="width:46.7%;">
         </span>
 		 <span class="funkcjaKontener">
 			 <label for="funkcje6">Korona duńska (DKK)</label>
@@ -289,7 +289,21 @@
         document.getElementById("wygladIloczynowa").value = equation;
     }
     function delta(){
+		const a = parseFloat(document.getElementById("kwadratowaA").value);
+		const b = parseFloat(document.getElementById("kwadratowaB").value);
+		const c = parseFloat(document.getElementById("kwadratowaC").value);
 
+		const delta = (b * b) - 4 * a * c;
+		let equation=""
+		if (a == 0) {
+			equation = "Błąd: a nie może równać się 0";
+			return;
+		}
+		else{
+			equation= delta;
+		}
+
+		document.getElementById("wygladDelta").value = equation;
     }
     function miejscaZ(){
         const a = parseFloat(document.getElementById("kwadratowaA").value);
