@@ -205,7 +205,7 @@
 		let x1 = "";
 		let x2 = "";
 
-		if (a === 0) {
+		if (a == 0) {
 			x1 = "Błąd: a nie może równać się 0";
 			x2 = "Błąd: a nie może równać się 0";
 		} else {
@@ -225,8 +225,8 @@
 			}
 		}
 
-		document.getElementById("x1").value = x1 !== "" ? x1.toFixed(3) : x1;
-		document.getElementById("x2").value = x2 !== "" ? x2.toFixed(3) : x2;
+		document.getElementById("x1").value = x1 != "" ? x1.toFixed(3) : x1;
+		document.getElementById("x2").value = x2 != "" ? x2.toFixed(3) : x2;
 	}
 	function ogolna() {
 		const a = document.getElementById("kwadratowaA").value;
