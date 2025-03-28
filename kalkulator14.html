@@ -94,13 +94,13 @@
         <div class="inputKontener">
             <label>A</label>
             <input type="number" id="kwadratowaA" value="1"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona();">
             <label>B</label>
             <input type="number" id="kwadratowaB" value="0"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona();">
             <label>C</label>
             <input type="number" id="kwadratowaC" value="0"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona();">
         </div>
         <span class="funkcjaKontener">
         <span class="funkcjaKontener">
@@ -126,24 +126,22 @@
             <input type="text" readonly id="x2" style="width:46.7%;">
         </span>
 		 <span class="funkcjaKontener">
-			 <label for="funkcje6">Korona duńska (DKK)</label>
-			<input type="number" readonly id="funkcje6">
+			 <label for="wygladZbiorWartosci">Zbiór Wartości</label>
+			<input type="text" readonly id="wygladZbiorWartosci">
         </span>
 		 <span class="funkcjaKontener">
-            <label for="funkcje7">Forint węgierski (HUF)</label>
-			<input type="number" readonly id="funkcje7">
+			 <label for="vietPlus" style="width:50%; float:left;">X1+X2</label>
+			 <label for="vietRazy" style="width:50%; float:right">X1*X2</label>
+            <input type="text" readonly id="vietPlus" style="width:46.7%;">
+            <input type="text" readonly id="vietRazy" style="width:46.7%;">
         </span>
 		 <span class="funkcjaKontener">
-			 <label for="funkcje8">Korona czeska (CZK)</label>
-			<input type="number" readonly id="funkcje8">
+			 <label for="wygladRamiona">Ramiona</label>
+			<input type="text" readonly id="wygladRamiona">
         </span>
 		 <span class="funkcjaKontener">
             <label for="funkcje9">Lej rumuński (RON)</label>
 			<input type="number" readonly id="funkcje9">
-        </span>
-		 <span class="funkcjaKontener">
-			 <label for="funkcje10">Lew bułgarski (BGN)</label>
-			<input type="number" readonly id="funkcje10">
         </span>
     </span>
     </main>
@@ -201,147 +199,232 @@
     <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 <script>
+	function ogolna() {
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
 
-    function ogolna() {
-        const a = document.getElementById("kwadratowaA").value;
-        const b = document.getElementById("kwadratowaB").value;
-        const c = document.getElementById("kwadratowaC").value;
+		if (a == 0) {
+			document.getElementById("wygladOgolna").value = "Błąd: a nie może równać się 0";
+			return;
+		}
 
-        let equation = "";
-        if (a == 0) {
-            document.getElementById("wygladOgolna").value = "Błąd: a nie może równać się 0";
-            return;
-        }
+		var equation = "";
 
-        const addTerm = (term, variable = '', isFirst = false) => {
-            if (term == 0) return '';
+		if (a != 0) {
+			equation += a == 1 ? "x²" : (a == -1 ? "-x²" : a + "x²");
+		}
 
-            let sign = isFirst ? '' : (term > 0 ? ' + ' : ' - ');
-            let absTerm = Math.abs(term);
+		if (b != 0) {
+			if (b > 0) {
+				equation += b == 1 ? " + x" : " + " + b + "x";
+			} else {
+				equation += b == -1 ? " - x" : " - " + Math.abs(b) + "x";
+			}
+		}
 
-            if (variable == '') return sign + absTerm;
+		if (c != 0) {
+			if (c > 0) {
+				equation += " + " + c;
+			} else {
+				equation += " - " + Math.abs(c);
+			}
+		}
 
-            if (absTerm == 1) {
-                return sign + (variable == 'x²' ? variable : variable);
-            }
+		document.getElementById("wygladOgolna").value = equation;
+	}
 
-            return sign + absTerm + variable;
-        };
+	function kanoniczna() {
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
 
-        let aStr = addTerm(a, 'x²', true);
-        let bStr = addTerm(b, 'x');
-        let cStr = addTerm(c);
+		if (a == 0) {
+			document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
+			return;
+		}
 
-        equation = aStr + bStr + cStr;
+		const delta = (b * b) - 4 * a * c;
+		const p = -b / (2 * a);
+		const q = -delta / (4 * a);
 
-        document.getElementById("wygladOgolna").value = equation || '0';
-    }
+		let equation = a + "(x ";
 
-    function kanoniczna() {
-        const a = parseFloat(document.getElementById("kwadratowaA").value);
-        const b = parseFloat(document.getElementById("kwadratowaB").value);
-        const c = parseFloat(document.getElementById("kwadratowaC").value);
+		if (p >= 0) {
+			equation += "- " + p.toFixed(3) + ")²";
+		} else {
+			equation += "+ " + Math.abs(p).toFixed(3) + ")²";
+		}
 
-        if (a == 0) {
-            document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
-            return;
-        }
+		if (q >= 0) {
+			equation += " + " + q.toFixed(3);
+		} else {
+			equation += " - " + Math.abs(q).toFixed(3);
+		}
 
-        const delta = (b * b) - 4 * a * c;
-        const p = -b / (2 * a);
-        const q = -delta / (4 * a);
+		document.getElementById("wygladKanoniczna").value = equation;
+	}
 
-        let equation = `${a}(x`;
+	function iloczynowa() {
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
 
-        equation += p >= 0 ? ` - ${Math.abs(p).toFixed(3)})²` : ` + ${Math.abs(p).toFixed(3)})²`;
+		if (a == 0) {
+			document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
+			return;
+		}
 
-        equation += q >= 0 ? ` + ${q.toFixed(3)}` : ` - ${Math.abs(q).toFixed(3)}`;
+		const delta = (b * b) - 4 * a * c;
+		let equation = "";
 
-        document.getElementById("wygladKanoniczna").value = equation;
-    }
-    function iloczynowa() {
-        const a = parseFloat(document.getElementById("kwadratowaA").value);
-        const b = parseFloat(document.getElementById("kwadratowaB").value);
-        const c = parseFloat(document.getElementById("kwadratowaC").value);
+		if (delta > 0) {
+			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+			const x2 = (-b - Math.sqrt(delta)) / (2 * a);
 
-        let equation = "";
-        const delta = (b * b) - 4 * a * c;
+			equation = a + "(x ";
 
-        if (a == 0) {
-            equation = "Błąd: a nie może równać się 0";
-        } else if (delta > 0) {
-            const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-            const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+			if (x1 >= 0) {
+				equation += "- " + x1.toFixed(3) + ")(x ";
+			} else {
+				equation += "+ " + Math.abs(x1).toFixed(3) + ")(x ";
+			}
 
-            const x1Sign = x1 >= 0 ? '- ' : '+ ';
-            const x2Sign = x2 >= 0 ? '- ' : '+ ';
+			if (x2 >= 0) {
+				equation += "- " + x2.toFixed(3) + ")";
+			} else {
+				equation += "+ " + Math.abs(x2).toFixed(3) + ")";
+			}
+		} else if (delta == 0) {
+			var x1 = -b / (2 * a);
 
-            equation = `${a}(x ${x1Sign}${Math.abs(x1).toFixed(3)})(x ${x2Sign}${Math.abs(x2).toFixed(3)})`;
-        } else if (delta == 0) {
-            const x1 = -b / (2 * a);
-            const x1Sign = x1 >= 0 ? '- ' : '+ ';
+			equation = a + "(x ";
 
-            equation = `${a}(x ${x1Sign}${Math.abs(x1).toFixed(3)})²`;
-        } else {
-            equation = "Nie można stworzyć, brak miejsc zerowych";
-        }
+			if (x1 >= 0) {
+				equation += "- " + x1.toFixed(3) + ")²";
+			} else {
+				equation += "+ " + Math.abs(x1).toFixed(3) + ")²";
+			}
+		} else {
+			equation = "Nie można stworzyć, brak miejsc zerowych";
+		}
 
-        document.getElementById("wygladIloczynowa").value = equation;
-    }
-    function delta(){
+		document.getElementById("wygladIloczynowa").value = equation;
+	}
+
+	function delta() {
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
+
+		if (a == 0) {
+			document.getElementById("wygladDelta").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		const delta = (b * b) - 4 * a * c;
+		document.getElementById("wygladDelta").value = delta;
+	}
+
+	function miejscaZ() {
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
+
+		if (a == 0) {
+			document.getElementById("x1").value = "Błąd: a nie może równać się 0";
+			document.getElementById("x2").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+
+		const delta = (b * b) - 4 * a * c;
+		let x1 = "";
+		let x2 = "";
+
+		if (delta > 0) {
+			x1 = (-b + Math.sqrt(delta)) / (2 * a);
+			x2 = (-b - Math.sqrt(delta)) / (2 * a);
+		} else if (delta == 0) {
+			x1 = -b / (2 * a);
+			x2 = x1;
+		} else {
+			x1 = "Brak miejsc zerowych (pierwiastki zespolone)";
+			x2 = "Brak miejsc zerowych (pierwiastki zespolone)";
+		}
+
+		document.getElementById("x1").value = x1 != "" ? x1.toFixed(3) : x1;
+		document.getElementById("x2").value = x2 != "" ? x2.toFixed(3) : x2;
+	}
+	function zbiorWartosci(){
+		const a = document.getElementById("kwadratowaA").value;
+		const b = document.getElementById("kwadratowaB").value;
+		const c = document.getElementById("kwadratowaC").value;
+
+		if (a == 0) {
+			document.getElementById("wygladZbiorWartosci").value = "Błąd: a nie może równać się 0";
+			return;
+		}
+		const delta = (b * b) - 4 * a * c;
+		const q = -delta / (4 * a);
+
+		if (a > 0) {
+			document.getElementById("wygladZbiorWartosci").value = "⟨" + q.toFixed(3) + "; ∞)";
+		}
+		else {
+			document.getElementById("wygladZbiorWartosci").value = "(-∞; " + q.toFixed(3) + "⟩";
+		}
+	}
+	function viete(){
 		const a = parseFloat(document.getElementById("kwadratowaA").value);
 		const b = parseFloat(document.getElementById("kwadratowaB").value);
 		const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-		const delta = (b * b) - 4 * a * c;
-		let equation=""
 		if (a == 0) {
-			equation = "Błąd: a nie może równać się 0";
+			document.getElementById("vietPlus").value = "Błąd: a nie może równać się 0";
+			document.getElementById("vietRazy").value = "Błąd: a nie może równać się 0";
 			return;
 		}
+
+		const delta = (b * b) - 4 * a * c;
+
+		if (delta>=0){
+			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+			const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+			const vietePlus = x1+x2;
+			const vieteRazy = x1*x2;
+			document.getElementById("vietPlus").value = vietePlus.toFixed(3);
+			document.getElementById("vietRazy").value = vieteRazy.toFixed(3);
+		}
 		else{
-			equation= delta;
+			document.getElementById("vietPlus").value = "Błąd: Δ mniejsza od 0";
+			document.getElementById("vietRazy").value = "Błąd: Δ mniejsza od 0";
+		}
+	}
+	function ramiona(){
+		const a = parseFloat(document.getElementById("kwadratowaA").value);
+
+		if (a == 0) {
+			document.getElementById("wygladRamiona").value = "Błąd: a nie może równać się 0";
+			return;
 		}
 
-		document.getElementById("wygladDelta").value = equation;
-    }
-    function miejscaZ(){
-        const a = parseFloat(document.getElementById("kwadratowaA").value);
-        const b = parseFloat(document.getElementById("kwadratowaB").value);
-        const c = parseFloat(document.getElementById("kwadratowaC").value);
-
-        let x1 = "";
-        let x2 = "";
-
-        if (a == 0) {
-            x1 = "Błąd: a nie może równać się 0";
-            x2 = "Błąd: a nie może równać się 0";
-        } else {
-            const delta = (b * b) - 4 * a * c;
-
-            if (delta > 0) {
-                x1 = (-b + Math.sqrt(delta)) / (2 * a);
-                x2 = (-b - Math.sqrt(delta)) / (2 * a);
-            }
-            else if (delta == 0) {
-                x1 = -b / (2 * a);
-                x2 = x1;
-            }
-            else {
-                x1 = "Brak miejsc zerowych (pierwiastki zespolone)";
-                x2 = "Brak miejsc zerowych (pierwiastki zespolone)";
-            }
-        }
-
-        document.getElementById("x1").value = x1 != "" ? x1.toFixed(3) : x1;
-        document.getElementById("x2").value = x2 != "" ? x2.toFixed(3) : x2;
-    }
-    window.onload = function() {
-        delta();
-        miejscaZ();
-        ogolna();
-        kanoniczna();
-        iloczynowa();
-    };</script>
+		if(a>0){
+			document.getElementById("wygladRamiona").value = "Ramiona są skierowane do góry";
+		}
+		else if(a<0){
+			document.getElementById("wygladRamiona").value = "Ramiona są skierowane do dołu";
+		}
+	}
+	window.onload = function() {
+		delta();
+		miejscaZ();
+		ogolna();
+		kanoniczna();
+		iloczynowa();
+		zbiorWartosci();
+		viete();
+		ramiona();
+	};
+</script>
 </body>
 </html>
