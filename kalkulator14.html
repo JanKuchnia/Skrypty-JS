@@ -94,13 +94,13 @@
         <div class="inputKontener">
             <label>A</label>
             <input type="number" id="kwadratowaA" value="1"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
             <label>B</label>
             <input type="number" id="kwadratowaB" value="0"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
             <label>C</label>
             <input type="number" id="kwadratowaC" value="0"
-                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona();">
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
         </div>
         <span class="funkcjaKontener">
         <span class="funkcjaKontener">
@@ -140,8 +140,8 @@
 			<input type="text" readonly id="wygladRamiona">
         </span>
 		 <span class="funkcjaKontener">
-            <label for="funkcje9">Lej rumuński (RON)</label>
-			<input type="number" readonly id="funkcje9">
+            <label for="wygladMonotonicznosc">Monotoniczość</label>
+			<input type="number" readonly id="wygladMonotonicznosc">
         </span>
     </span>
     </main>
@@ -415,6 +415,15 @@
 			document.getElementById("wygladRamiona").value = "Ramiona są skierowane do dołu";
 		}
 	}
+	function monotonicznosc(){
+		const a = parseFloat(document.getElementById("kwadratowaA").value);
+		const b = parseFloat(document.getElementById("kwadratowaB").value);
+		const c = parseFloat(document.getElementById("kwadratowaC").value);
+
+		const delta = (b * b) - 4 * a * c;
+		const p = -b / (2 * a);
+		const q = -delta / (4 * a);
+	}
 	window.onload = function() {
 		delta();
 		miejscaZ();
@@ -424,6 +433,7 @@
 		zbiorWartosci();
 		viete();
 		ramiona();
+		monotonicznosc();
 	};
 </script>
 </body>
