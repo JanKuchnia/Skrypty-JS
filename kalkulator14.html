@@ -238,7 +238,7 @@
 		const b = parseFloat(document.getElementById("kwadratowaB").value);
 		const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-		if (a === 0) {
+		if (a == 0) {
 			document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
 			return;
 		}
@@ -260,30 +260,26 @@
 		const b = parseFloat(document.getElementById("kwadratowaB").value);
 		const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-		if (a === 0) {
-			document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
-			return;
-		}
-
+		let equation="";
 		const delta = (b * b) - 4 * a * c;
+		const x1;
+		const x2;
 
-		if (delta < 0) {
-			document.getElementById("wygladIloczynowa").value = "Brak miejsc zerowych";
-			return;
+		if (delta>0){
+			x1=(-b+Math.sqrt(delta))/(2*a);
+			x2=(-b-Math.sqrt(delta))/(2*a);
+			equation += a +"(x" + x1 +")" +"(x" + x2 +")";
 		}
-
-		if (delta === 0) {
-			const x0 = -b / (2 * a);
-			document.getElementById("wygladIloczynowa").value = `${a}(x - ${x0.toFixed(3)})²`;
-			return;
+		else if (delta==0){
+			x1=-b/(2*a)
+			equation += a + "(x" +x1 +")²";
 		}
-
-		const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-		const x2 = (-b - Math.sqrt(delta)) / (2 * a);
-
-		let equation = `${a}(x - ${x1.toFixed(3)})(x - ${x2.toFixed(3)})`;
+		else if (delta<0){
+			equation +="Nie można stworzyć, brak miejsc zerowych";
+		}
 		document.getElementById("wygladIloczynowa").value = equation;
 	}
+
 	window.onload = function() {
 		ogolna();
 		kanoniczna();
