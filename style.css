@@ -196,55 +196,97 @@ select{
     height:1.25vw;
     border:1px solid black;
 }
-.hamburger-menu {
+header {
+    position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.hamburger-menu {
+    display: block;
     cursor: pointer;
-    width: 30px;
-    height: 20px;
-    justify-content: space-between;
+    z-index: 0;
+    width: 60px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
 }
 
 .pasek {
-    width: 100%;
-    height: 3px;
-    background-color: black;
-    transition: 0.3s;
+    width: 45px;
+    height: 5px;
+    background-color: white;
+    margin: 6px 0;
+    transition: 0.4s;
 }
 
 .menu-kontener {
     display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(220, 220, 220, 0.9);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-    z-index: 1000;
+    height: 100%;
+    background-color: rgba(0,0,0,0.95);
+    z-index: 900;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .menu-kontener.aktywny {
     display: flex;
+    opacity: 1;
 }
 
-.menu-kontener a, .menu-kontener .rozwijane-menu {
-    padding: 15px;
-    text-decoration: none;
+.linki-kontener {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 90%;
+    max-width: 800px;
+}
+
+.linki {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    min-height: 50px;
+    max-height: 100px;
+    background-color: rgba(220, 220, 220, 0.9);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
     color: black;
-    border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 10px;
+    transition: all 0.3s ease-out;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 90%;
+    text-decoration: none;
 }
 
-.menu-kontener a:hover, .menu-kontener .rozwijane-menu:hover {
+.linki:hover {
+    transform: scale(1.05);
     background-color: #d6d6d6;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
 }
 
-.rozwijane-podmenu {
-    display: none;
-    background-color: rgba(200, 200, 200, 0.9);
-}
-
-.rozwijane-menu.aktywny + .rozwijane-podmenu {
-    display: block;
+/* Zamykanie */
+.zamknij {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
 }

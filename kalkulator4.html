@@ -46,24 +46,40 @@
 </head>
 <body>
 <header>
-    <h1>Skrypty-JS</h1>
-    <nav>
-        <a href="kalkulator11.html">Kalkulator 11</a>
-        <a href="kalkulator9.html">Kalkulator 9</a>
-        <a href="kalkulator7.html">Kalkulator 7</a>
-        <a href="kalkulator5.html">Kalkulator 5</a>
-        <a href="kalkulator3.html">Kalkulator 3</a>
-        <a href="kalkulator1.html">Kalkulator 1</a>
-        <div class="linia"></div>
-        <a href="index.html">Strona Główna</a>
-        <div class="linia"></div>
-        <a href="kalkulator2.html">Kalkulator 2</a>
-        <a href="kalkulator4.html">Kalkulator 4</a>
-        <a href="kalkulator6.html">Kalkulator 6</a>
-        <a href="kalkulator8.html">Kalkulator 8</a>
-        <a href="kalkulator10.html">Kalkulator 10</a>
-        <a href="kalkulator12.html">Kalkulator 12</a>
-    </nav>
+	<h1>Skrypty-JS</h1>
+	<div class="hamburger-menu" onclick="przelaczMenu()">
+		<div class="pasek"></div>
+		<div class="pasek"></div>
+		<div class="pasek"></div>
+	</div>
+
+	<div class="menu-kontener">
+		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+
+		<div class="linki-kontener">
+			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+			<a href="kalkulator3.html" class="linki">Kalkulator 3</a>
+			<a href="kalkulator4.html" class="linki">Kalkulator 4</a>
+			<a href="kalkulator5.html" class="linki">Kalkulator 5</a>
+			<a href="kalkulator6.html" class="linki">Kalkulator 6</a>
+			<a href="kalkulator7.html" class="linki">Kalkulator 7</a>
+			<a href="kalkulator8.html" class="linki">Kalkulator 8</a>
+			<a href="kalkulator9.html" class="linki">Kalkulator 9</a>
+			<a href="kalkulator10.html" class="linki">Kalkulator 10</a>
+			<a href="kalkulator11.html" class="linki">Kalkulator 11</a>
+			<a href="kalkulator12.html" class="linki">Kalkulator 12</a>
+			<a href="kalkulator13.html" class="linki">Kalkulator 13</a>
+			<a href="kalkulator14.html" class="linki">Kalkulator 14</a>
+		</div>
+	</div>
+
+	<script>
+		function przelaczMenu() {
+			const menuKontener = document.querySelector('.menu-kontener');
+			menuKontener.classList.toggle('aktywny');
+		}
+	</script>
 </header>
 <main>
     <label for="num1">Kalkulator Wagi</label>
@@ -99,5 +115,6 @@
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
 </footer>
+<script src="menu.js"></script>
 </body>
 </html>

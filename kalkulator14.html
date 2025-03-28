@@ -73,41 +73,39 @@
 <body>
 <header>
 	<h1>Skrypty-JS</h1>
-	<nav>
-		<div class="hamburger-menu" onclick="przelaczMenu()">
-			<div class="pasek"></div>
-			<div class="pasek"></div>
-			<div class="pasek"></div>
+	<div class="hamburger-menu" onclick="przelaczMenu()">
+		<div class="pasek"></div>
+		<div class="pasek"></div>
+		<div class="pasek"></div>
+	</div>
+
+	<div class="menu-kontener">
+		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+
+		<div class="linki-kontener">
+			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+			<a href="kalkulator3.html" class="linki">Kalkulator 3</a>
+			<a href="kalkulator4.html" class="linki">Kalkulator 4</a>
+			<a href="kalkulator5.html" class="linki">Kalkulator 5</a>
+			<a href="kalkulator6.html" class="linki">Kalkulator 6</a>
+			<a href="kalkulator7.html" class="linki">Kalkulator 7</a>
+			<a href="kalkulator8.html" class="linki">Kalkulator 8</a>
+			<a href="kalkulator9.html" class="linki">Kalkulator 9</a>
+			<a href="kalkulator10.html" class="linki">Kalkulator 10</a>
+			<a href="kalkulator11.html" class="linki">Kalkulator 11</a>
+			<a href="kalkulator12.html" class="linki">Kalkulator 12</a>
+			<a href="kalkulator13.html" class="linki">Kalkulator 13</a>
+			<a href="kalkulator14.html" class="linki">Kalkulator 14</a>
 		</div>
+	</div>
 
-		<div class="menu-kontener">
-			<div class="rozwijane-menu" onclick="przelaczPodmenu(this)">
-				Kalkulatory
-				<div class="rozwijane-podmenu">
-					<a href="kalkulator1.html">Kalkulator 1</a>
-					<a href="kalkulator3.html">Kalkulator 3</a>
-					<a href="kalkulator5.html">Kalkulator 5</a>
-					<a href="kalkulator7.html">Kalkulator 7</a>
-					<a href="kalkulator9.html">Kalkulator 9</a>
-					<a href="kalkulator11.html">Kalkulator 11</a>
-				</div>
-			</div>
-
-			<div class="rozwijane-menu" onclick="przelaczPodmenu(this)">
-				Pozostałe Kalkulatory
-				<div class="rozwijane-podmenu">
-					<a href="kalkulator2.html">Kalkulator 2</a>
-					<a href="kalkulator4.html">Kalkulator 4</a>
-					<a href="kalkulator6.html">Kalkulator 6</a>
-					<a href="kalkulator8.html">Kalkulator 8</a>
-					<a href="kalkulator10.html">Kalkulator 10</a>
-					<a href="kalkulator12.html">Kalkulator 12</a>
-				</div>
-			</div>
-
-			<a href="index.html">Strona Główna</a>
-		</div>
-	</nav>
+	<script>
+		function przelaczMenu() {
+			const menuKontener = document.querySelector('.menu-kontener');
+			menuKontener.classList.toggle('aktywny');
+		}
+	</script>
 </header>
 <div class="asideMainKontener">
 	<main>
