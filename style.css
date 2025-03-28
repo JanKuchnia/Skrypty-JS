@@ -12,6 +12,10 @@ body {
 }
 
 header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
     margin-bottom: 5vh;
     background-image: linear-gradient(to top, #3a9ab9, #180a7a);
@@ -196,48 +200,43 @@ select{
     height:1.25vw;
     border:1px solid black;
 }
-header {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+.menu-kontener {
+    font-size: 0.8rem;
 }
 
 .hamburger-menu {
-    display: block;
+    width: clamp(36px, 4vw, 48px);
+    height: clamp(24px, 3.2vh, 32px);
+    margin: 0.5rem 0;
     cursor: pointer;
-    z-index: 0;
-    width: 60px;
-    height: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
 }
 
 .pasek {
-    width: 45px;
-    height: 5px;
-    background-color: white;
-    margin: 6px 0;
-    transition: 0.4s;
+    width: clamp(28px, 3.6vw, 36px);
+    height: clamp(2px, 0.4vh, 4px);
+    margin: 0.3rem 0;
+    background: white;
+    transition: all 0.3s ease;
 }
 
 .menu-kontener {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.95);
-    z-index: 900;
-    flex-direction: column;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    display: none;
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease;
 }
 
 .menu-kontener.aktywny {
@@ -247,46 +246,44 @@ header {
 
 .linki-kontener {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.8rem;
     width: 90%;
     max-width: 800px;
+    padding: 1rem;
 }
 
 .linki {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    aspect-ratio: 3 / 1;
-    min-height: 50px;
-    max-height: 100px;
-    background-color: rgba(220, 220, 220, 0.9);
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    min-height: 3rem;
+    padding: 0.5rem;
+    background: rgba(220, 220, 220, 0.9);
+    border-radius: 0.5rem;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
     color: black;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    border: none;
-    border-radius: 10px;
-    transition: all 0.3s ease-out;
-    text-align: center;
-    padding: 10px;
-    box-sizing: border-box;
-    opacity: 90%;
     text-decoration: none;
+    transition: transform 0.2s ease;
 }
 
 .linki:hover {
     transform: scale(1.05);
-    background-color: #d6d6d6;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.25);
+    background: #d6d6d6;
 }
 
-/* Zamykanie */
+.home-link {
+    grid-column: 1 / -1;
+    font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
+    min-height: 4rem !important;
+    font-weight: bold;
+}
+
 .zamknij {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: clamp(10px, 2vh, 16px);
+    right: clamp(10px, 2vw, 16px);
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
     color: white;
-    font-size: 2rem;
     cursor: pointer;
 }
