@@ -113,8 +113,10 @@
             <input type="text" readonly id="wygladIloczynowa">
         </span>
 		 <span class="walutyKontener">
-			 <label for="waluta4">Korona szwedzka (SEK)</label>
-            <input type="number" readonly id="waluta4">
+			 <label for="x1" style="width:50%; float:left;">X1</label>
+			 <label for="x2" style="width:50%; float:right">X2</label>
+            <input type="number" readonly id="x1" style="width:46.7%;">
+            <input type="number" readonly id="x2" style="width:46.7%;">
         </span>
 		 <span class="walutyKontener">
             <label for="waluta5">Korona norweska (NOK)</label>
@@ -196,8 +198,43 @@
 </footer>
 <script>
 	function kwadratowa(){
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-	}
+        let equationX1 = "";
+        let equationX2 = "";
+        const delta = (b * b) - 4 * a * c;
+
+        if (delta > 0) {
+            const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+
+            const x1Sign = x1 >= 0 ? '- ' : '+ ';
+            const x2Sign = x2 >= 0 ? '- ' : '+ ';
+
+            equationX1 = `${x1Sign}${Math.abs(x1).toFixed(3)}`;
+            equationX2 = `${x2Sign}${Math.abs(x2).toFixed(3)})`;
+        }
+        else if (delta == 0) {
+            const x1 = -b / (2 * a);
+			const x2 = -b / (2 * a);
+
+            const x1Sign = x1 >= 0 ? '- ' : '+ ';
+			const x2Sign = x2 >= 0 ? '- ' : '+ ';
+
+            equationX1 = `${x1Sign}${Math.abs(x1).toFixed(3)}`;
+            equationX2 = `${x2Sign}${Math.abs(x2).toFixed(3)}`;
+
+        }
+		else{
+			equationX1 = "Nie można stworzyć, brak miejsc zerowych";
+			equationX2 = "Nie można stworzyć, brak miejsc zerowych";
+		}
+		document.getElementById("x1").value = equationX1;
+		document.getElementById("x2").value = equationX2;
+
+    }
 	function ogolna() {
 		const a = document.getElementById("kwadratowaA").value;
 		const b = document.getElementById("kwadratowaB").value;
@@ -263,7 +300,7 @@
 		let equation = "";
 		const delta = (b * b) - 4 * a * c;
 
-		if (a === 0) {
+		if (a == 0) {
 			equation = "Błąd: a nie może równać się 0";
 		} else if (delta > 0) {
 			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
@@ -273,7 +310,7 @@
 			const x2Sign = x2 >= 0 ? '- ' : '+ ';
 
 			equation = `${a}(x ${x1Sign}${Math.abs(x1).toFixed(3)})(x ${x2Sign}${Math.abs(x2).toFixed(3)})`;
-		} else if (delta === 0) {
+		} else if (delta == 0) {
 			const x1 = -b / (2 * a);
 			const x1Sign = x1 >= 0 ? '- ' : '+ ';
 
@@ -286,6 +323,7 @@
 	}
 
 	window.onload = function() {
+		kwadratowa();
 		ogolna();
 		kanoniczna();
 		iloczynowa();
