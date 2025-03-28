@@ -5,32 +5,139 @@
 	<title>Skrypty-JS Kalkulator 13</title>
 	<link rel="stylesheet" href="style.css">
 	<style>
+		.asideMainKontener {
+			display: flex;
+			justify-content: center;
+			gap: 2rem;
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+			padding: 2rem;
+		}
+
+		main, aside {
+			background: radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
+			border-radius: 15px;
+			box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+			padding: 2rem;
+			width: 45%;
+			transition: all 0.3s ease;
+			color: white;
+		}
+
+		main:hover, aside:hover {
+			box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+			transform: translateY(-5px);
+		}
+
+		.inputKontener {
+			position: relative;
+			margin-bottom: 1.5rem;
+		}
+
+		.inputKontener input {
+			width: 100%;
+			padding: 1rem 3rem 1rem 1rem;
+			border: 1px solid #aaa;
+			border-radius: 5px;
+			font-size: 1.5rem;
+			text-align: right;
+			background-color: #e6e6e6;
+			opacity: 85%;
+			transition: all 0.3s ease;
+		}
+
+		.inputKontener input:focus {
+			outline: none;
+			border-color: hsla(248, 77%, 26%, 1);
+			box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+		}
+
+		.inputKontener .waluta {
+			position: absolute;
+			right: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+			color: rgba(0, 0, 0, 0.6);
+			font-weight: bold;
+		}
+
 		.radioContainer {
 			display: grid;
-			grid-template-columns: repeat(2, 1fr);
+			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 			gap: 10px;
-			margin-bottom: 15px;
+			margin-bottom: 1.5rem;
 		}
+
 		.radioContainer label {
 			display: flex;
 			align-items: center;
-			background-color: rgba(255,255,255,0.2);
 			padding: 10px;
+			background-color: rgba(255,255,255,0.45);
 			border-radius: 5px;
 			cursor: pointer;
-			transition: background-color 0.3s ease;
+			transition: all 0.3s ease;
 		}
+
 		.radioContainer input[type="radio"] {
 			margin-right: 10px;
 			width: auto;
 			height: auto;
+			appearance: none;
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			border: 2px solid rgba(255,255,255,0.7);
+			outline: none;
+			transition: all 0.3s ease;
 		}
+
+		.radioContainer input[type="radio"]:checked {
+			background: linear-gradient(to bottom right,
+			hsla(191, 65%, 40%, 1) 0%,
+			hsla(248, 77%, 16%, 1) 100%
+			);
+			border-color: rgba(255,255,255,0.9);
+		}
+
 		.radioContainer label:hover {
 			background-color: rgba(255,255,255,0.3);
 		}
+
 		.radioContainer input[type="radio"]:checked + span {
 			font-weight: bold;
+			color: #fff;
+			text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 		}
+
+		.radioContainer label span {
+			color: black;
+			opacity:90%;
+		}
+
+		aside .walutyKontener1 {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1rem;
+			align-items: center;
+		}
+
+		aside .walutyKontener1 input {
+			background-color: #e6e6e6;
+			border: 1px solid #aaa;
+			border-radius: 5px;
+			padding: 0.75rem;
+			text-align: right;
+			opacity: 85%;
+		}
+
+		aside .walutyKontener1 label {
+			text-align: left;
+			color: white;
+			font-size: 1.2rem;
+			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+		}
+
 	</style>
 	<script>
 		const kursy = {
