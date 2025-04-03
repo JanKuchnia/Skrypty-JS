@@ -156,19 +156,26 @@ button {
     font-size: 1.2rem;
     border: none;
     border-radius: 5px;
-    background-color: #e0e0e0;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    opacity:85%;
-    margin-bottom:5px;
+    transition: all 0.3s ease;
+    opacity: 1;
+    margin-bottom: 15px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
     background-color: #d0d0d0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
 }
 
 button:active {
     background-color: #c0c0c0;
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 footer {
