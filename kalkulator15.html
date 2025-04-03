@@ -11,8 +11,12 @@
         input{
             width:49%;
         }
+        #num1{
+
+        }
         #wynik{
             width:100%;
+            font-size:1.3rem;
         }
         #opcje2select {
             width:100%;
@@ -35,7 +39,7 @@
                 wynik="inny";
             }
 
-            document.getElementById("wynik").value ="Twoje zamówienie to cukierek" wynik;
+            document.getElementById("wynik").value ="Twoje zamówienie to cukierek " + wynik;
         }
     </script>
 </head>
@@ -80,38 +84,12 @@
 </header>
 <main>
     <label for="num1">Kalkulator długości</label>
-    <label for="opcje1select">Wprowadź początkową wartość</label>
-    <input type="number" id="num1">
-    <select name="opcje1" id="opcje1select">
-        <option>mm</option>
-        <option>cm</option>
-        <option>dm</option>
-        <option>m</option>
-        <option>km</option>
-        <option>in</option>
-        <option>ft</option>
-        <option>yd</option>
-        <option>mi</option>
-        <option>mila morska</option>
-    </select>
+    <input type="number" id="num1" placeholder="0">
+    <button onclick="kalkulator()">Zamówienie</button>
     <br>
-    <label for="opcje2select">Wybierz na co przekalkulować</label>
-    <select name="opcje2" id="opcje2select">
-        <option>mm</option>
-        <option>cm</option>
-        <option>dm</option>
-        <option>m</option>
-        <option>km</option>
-        <option>in</option>
-        <option>ft</option>
-        <option>yd</option>
-        <option>mi</option>
-        <option>mila morska</option>
-    </select>
     <label for="wynik">Wynik</label>
-    <input type="number" id="wynik" readonly placeholder="0">
-    <br>
-    <button onclick="kalkulator()">=</button>
+    <input type="text" id="wynik" readonly>
+    <input type="text" id="wynik" readonly>
 </main>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
