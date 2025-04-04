@@ -1,184 +1,184 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Skrypty-JS Kalkulator 2</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        input {
-            width: 100%;
-            height: 2vw;
-            font-size: 2vw;
-            text-align: right;
-        }
-    </style>
-    <script>
-        let okienko = '0';
+	<meta charset="UTF-8">
+	<title>Skrypty-JS Kalkulator 2</title>
+	<link rel="stylesheet" href="style.css">
+	<style>
+		input {
+			width: 100%;
+			height: 2vw;
+			font-size: 2vw;
+			text-align: right;
+		}
+	</style>
+	<script>
+		let okienko = '0';
 
-        function adjustFontSize() {
-            const poleInput = document.getElementById("okienko");
-            const maxWidth = poleInput.offsetWidth;
-            const textLength = poleInput.value.length;
-            const baseFontSize = 2;
+		function adjustFontSize() {
+			const poleInput = document.getElementById("okienko");
+			const maxWidth = poleInput.offsetWidth;
+			const textLength = poleInput.value.length;
+			const baseFontSize = 2;
 
-            let newFontSize = baseFontSize;
-            if (textLength > 10) {
-                newFontSize = baseFontSize * (10 / textLength);
-            }
+			let newFontSize = baseFontSize;
+			if (textLength > 10) {
+				newFontSize = baseFontSize * (10 / textLength);
+			}
 
-            if (newFontSize < 1) {
-                newFontSize = 1;
-            }
+			if (newFontSize < 1) {
+				newFontSize = 1;
+			}
 
-            poleInput.style.fontSize = `${newFontSize}vw`;
-        }
+			poleInput.style.fontSize = `${newFontSize}vw`;
+		}
 
-        function kalkulator(znak) {
-            const poleInput = document.getElementById("okienko");
+		function kalkulator(znak) {
+			const poleInput = document.getElementById("okienko");
 
-            if (znak == 'CE' || znak == 'C') {
-                okienko = '0';
-            }
-            else if (znak == '=') {
-                try {
-                    if (okienko.includes('/0')) {
-                        okienko = 'Nie można dzielić przez 0';
-                    } else {
-                        okienko = eval(okienko.replace(',', '.')).toString();
-                    }
-                } catch (error) {
-                    okienko = 'Błąd';
-                }
-            }
-            else if (znak == 'back') {
-                if (okienko.length > 1) {
-                    okienko = okienko.slice(0, -1);
-                }
-                else {
-                    okienko = '0';
-                }
-            }
-            else if (znak == '1/x') {
-                if (parseFloat(okienko) === 0) {
-                    okienko = 'Nie można dzielić przez 0';
-                } else {
-                    okienko = (1 / parseFloat(okienko)).toString();
-                }
-            }
-            else if (znak == '^') {
-                okienko = (Math.pow(parseFloat(okienko), 2)).toString();
-            }
-            else if (znak == '<') {
-                okienko = (Math.sqrt(parseFloat(okienko))).toString();
-            }
-            else if (znak == '+/-') {
-                okienko = (parseFloat(okienko) * -1).toString();
-            }
-            else if (znak == '%') {
-                const wyrazenie = okienko.split(/([\+\-\*\/])/);
-                if (wyrazenie.length == 3) {
-                    const [liczba1, operator, liczba2] = wyrazenie;
-                    const wynik = parseFloat(liczba1) * (parseFloat(liczba2) / 100);
-                    if (operator == '+' || operator == '-') {
-                        okienko = (parseFloat(liczba1) + (operator == '+' ? wynik : -wynik)).toString();
-                    } else if (operator == '*' || operator == '/') {
-                        okienko = wynik.toString();
-                    }
-                } else {
-                    okienko = (parseFloat(okienko) / 100).toString();
-                }
-            }
-            else {
-                if (okienko == '0' || okienko == 'Error' || okienko == 'Nie można dzielić przez 0') {
-                    okienko = znak;
-                }
-                else {
-                    okienko += znak;
-                }
-            }
+			if (znak == 'CE' || znak == 'C') {
+				okienko = '0';
+			}
+			else if (znak == '=') {
+				try {
+					if (okienko.includes('/0')) {
+						okienko = 'Nie można dzielić przez 0';
+					} else {
+						okienko = eval(okienko.replace(',', '.')).toString();
+					}
+				} catch (error) {
+					okienko = 'Błąd';
+				}
+			}
+			else if (znak == 'back') {
+				if (okienko.length > 1) {
+					okienko = okienko.slice(0, -1);
+				}
+				else {
+					okienko = '0';
+				}
+			}
+			else if (znak == '1/x') {
+				if (parseFloat(okienko) === 0) {
+					okienko = 'Nie można dzielić przez 0';
+				} else {
+					okienko = (1 / parseFloat(okienko)).toString();
+				}
+			}
+			else if (znak == '^') {
+				okienko = (Math.pow(parseFloat(okienko), 2)).toString();
+			}
+			else if (znak == '<') {
+				okienko = (Math.sqrt(parseFloat(okienko))).toString();
+			}
+			else if (znak == '+/-') {
+				okienko = (parseFloat(okienko) * -1).toString();
+			}
+			else if (znak == '%') {
+				const wyrazenie = okienko.split(/([\+\-\*\/])/);
+				if (wyrazenie.length == 3) {
+					const [liczba1, operator, liczba2] = wyrazenie;
+					const wynik = parseFloat(liczba1) * (parseFloat(liczba2) / 100);
+					if (operator == '+' || operator == '-') {
+						okienko = (parseFloat(liczba1) + (operator == '+' ? wynik : -wynik)).toString();
+					} else if (operator == '*' || operator == '/') {
+						okienko = wynik.toString();
+					}
+				} else {
+					okienko = (parseFloat(okienko) / 100).toString();
+				}
+			}
+			else {
+				if (okienko == '0' || okienko == 'Error' || okienko == 'Nie można dzielić przez 0') {
+					okienko = znak;
+				}
+				else {
+					okienko += znak;
+				}
+			}
 
-            poleInput.value = okienko;
-            adjustFontSize();
-        }
+			poleInput.value = okienko;
+			adjustFontSize();
+		}
 
-        window.onload = adjustFontSize;
-    </script>
+		window.onload = adjustFontSize;
+	</script>
 </head>
 <body>
 <header>
-    <h1>Skrypty-JS</h1>
-    <div class="hamburger-menu" onclick="przelaczMenu()">
-        <div class="pasek"></div>
-        <div class="pasek"></div>
-        <div class="pasek"></div>
-    </div>
+	<h1>Skrypty-JS</h1>
+	<div class="hamburger-menu" onclick="przelaczMenu()">
+		<div class="pasek"></div>
+		<div class="pasek"></div>
+		<div class="pasek"></div>
+	</div>
 
-    <div class="menu-kontener">
-        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
+	<div class="menu-kontener">
+		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-        <div class="linki-kontener">
-            <a href="index.html" class="linki home-link">Strona Główna</a>
-            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
-            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-            <a href="kalkulator15.html" class="linki">Cukierki</a>
-            <a href="kalkulator16.html" class="linki">Komputery</a>
-            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-        </div>
-    </div>
+		<div class="linki-kontener">
+			<a href="index.html" class="linki home-link">Strona Główna</a>
+			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
+			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+			<a href="kalkulator15.html" class="linki">Cukierki</a>
+			<a href="kalkulator16.html" class="linki">Komputery</a>
+			<a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+		</div>
+	</div>
 
-    <script>
-        function przelaczMenu() {
-            const menuKontener = document.querySelector('.menu-kontener');
-            menuKontener.classList.toggle('aktywny');
-        }
-    </script>
+	<script>
+		function przelaczMenu() {
+			const menuKontener = document.querySelector('.menu-kontener');
+			menuKontener.classList.toggle('aktywny');
+		}
+	</script>
 </header>
 <main>
-    <div>
-        <label for="okienko">Kalkulator</label><br>
-        <input type="text" readonly id="okienko" value="0">
-        <div id="kalkulatorLayout">
-            <button onclick="kalkulator('%')">%</button>
-            <button onclick="kalkulator('CE')">CE</button>
-            <button onclick="kalkulator('C')">C</button>
-            <button onclick="kalkulator('back')">⌫</button>
-            <button onclick="kalkulator('1/x')">1/x</button>
-            <button onclick="kalkulator('^')">x²</button>
-            <button onclick="kalkulator('<')">√x</button>
-            <button onclick="kalkulator('/')">/</button>
-            <button onclick="kalkulator('7')">7</button>
-            <button onclick="kalkulator('8')">8</button>
-            <button onclick="kalkulator('9')">9</button>
-            <button onclick="kalkulator('*')">*</button>
-            <button onclick="kalkulator('4')">4</button>
-            <button onclick="kalkulator('5')">5</button>
-            <button onclick="kalkulator('6')">6</button>
-            <button onclick="kalkulator('-')">-</button>
-            <button onclick="kalkulator('1')">1</button>
-            <button onclick="kalkulator('2')">2</button>
-            <button onclick="kalkulator('3')">3</button>
-            <button onclick="kalkulator('+')">+</button>
-            <button onclick="kalkulator('+/-')">+/-</button>
-            <button onclick="kalkulator('0')">0</button>
-            <button onclick="kalkulator('.')">.</button>
-            <button onclick="kalkulator('=')">=</button>
-        </div>
-    </div>
+	<div>
+		<label for="okienko">Kalkulator</label><br>
+		<input type="text" readonly id="okienko" value="0">
+		<div id="kalkulatorLayout">
+			<button onclick="kalkulator('%')">%</button>
+			<button onclick="kalkulator('CE')">CE</button>
+			<button onclick="kalkulator('C')">C</button>
+			<button onclick="kalkulator('back')">⌫</button>
+			<button onclick="kalkulator('1/x')">1/x</button>
+			<button onclick="kalkulator('^')">x²</button>
+			<button onclick="kalkulator('<')">√x</button>
+			<button onclick="kalkulator('/')">/</button>
+			<button onclick="kalkulator('7')">7</button>
+			<button onclick="kalkulator('8')">8</button>
+			<button onclick="kalkulator('9')">9</button>
+			<button onclick="kalkulator('*')">*</button>
+			<button onclick="kalkulator('4')">4</button>
+			<button onclick="kalkulator('5')">5</button>
+			<button onclick="kalkulator('6')">6</button>
+			<button onclick="kalkulator('-')">-</button>
+			<button onclick="kalkulator('1')">1</button>
+			<button onclick="kalkulator('2')">2</button>
+			<button onclick="kalkulator('3')">3</button>
+			<button onclick="kalkulator('+')">+</button>
+			<button onclick="kalkulator('+/-')">+/-</button>
+			<button onclick="kalkulator('0')">0</button>
+			<button onclick="kalkulator('.')">.</button>
+			<button onclick="kalkulator('=')">=</button>
+		</div>
+	</div>
 </main>
 <footer>
-    <h3>Jan.K-2TP Gr.1</h3>
+	<h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html> 
