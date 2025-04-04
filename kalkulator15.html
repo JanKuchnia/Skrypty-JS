@@ -24,10 +24,6 @@
         function kalkulator() {
             const num1 = parseInt(document.getElementById("num1").value);
             let wynik;
-            const R = parseInt(document.getElementById("R").value);
-            const G = parseInt(document.getElementById("G").value);
-            const B = parseInt(document.getElementById("B").value);
-
             if (num1==1){
                 wynik = "cytryna";
             }
@@ -42,6 +38,14 @@
             }
 
             document.getElementById("wynik").value ="Twoje zamówienie to cukierek " + wynik;
+        }
+        function kolor (){
+            const R = parseInt(document.getElementById("R").value);
+            const G = parseInt(document.getElementById("G").value);
+            const B = parseInt(document.getElementById("B").value);
+            const kolor = `rgb(${R}, ${G}, ${B})`;
+
+            document.getElementById('kolor').style.backgroundColor = kolor;
         }
     </script>
 </head>
@@ -73,7 +77,9 @@
             <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
             <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
             <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-            <a href="kalkulator15.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
         </div>
     </div>
 
@@ -85,21 +91,21 @@
     </script>
 </header>
 <main>
-    <label for="num1">Kalkulator długości</label>
+    <label for="num1">Cukierki</label>
     <input type="number" id="num1" placeholder="0">
     <button onclick="kalkulator()">Zamówienie</button>
     <br>
     <label for="wynik">Wynik</label>
     <input type="text" id="wynik" readonly>
-    <input type="button" id="kolor" readonly>
     <span>
         <label for="R">R</label>
-        <input type="number" id="R" min="0" max="255">
+        <input type="number" id="R" min="0" max="255" value="0" oninput="kolor()">
         <label for="G">G</label>
-        <input type="number" id="G" min="0" max="255">
+        <input type="number" id="G" min="0" max="255" value="0" oninput="kolor()">
         <label for="B">B</label>
-        <input type="number" id="B" min="0" max="255">
+        <input type="number" id="B" min="0" max="255" value="0" oninput="kolor()">
     </span>
+    <input type="button" id="kolor" value="Kolor" style="text-align:center;">
 </main>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>

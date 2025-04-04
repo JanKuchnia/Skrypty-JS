@@ -1,344 +1,344 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Kalkulator 13</title>
-	<link rel="stylesheet" href="style.css">
-	<style>
-		.asideMainKontener {
-			display: flex;
-			justify-content: center;
-			gap: 2rem;
-			width: 100%;
-			max-width: 1200px;
-			margin: 0 auto;
-			padding: 2rem;
-		}
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 13</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .asideMainKontener {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
 
-		main, aside {
-			background: radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
-			border-radius: 15px;
-			box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-			padding: 2rem;
-			width: 45%;
-			transition: all 0.3s ease;
-			color: white;
-		}
+        main, aside {
+            background: radial-gradient(circle, hsla(191, 65%, 50%, 1) 0%, hsla(248, 77%, 26%, 1) 100%);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            padding: 2rem;
+            width: 45%;
+            transition: all 0.3s ease;
+            color: white;
+        }
 
-		main:hover, aside:hover {
-			box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-			transform: translateY(-5px);
-		}
+        main:hover, aside:hover {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            transform: translateY(-5px);
+        }
 
-		.inputKontener {
-			position: relative;
-			margin-bottom: 1.5rem;
-		}
+        .inputKontener {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
 
-		.inputKontener input {
-			width: 100%;
-			padding: 1rem 3rem 1rem 1rem;
-			border: 1px solid #aaa;
-			border-radius: 5px;
-			font-size: 1.5rem;
-			text-align: right;
-			background-color: #e6e6e6;
-			opacity: 85%;
-			transition: all 0.3s ease;
-		}
+        .inputKontener input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            text-align: right;
+            background-color: #e6e6e6;
+            opacity: 85%;
+            transition: all 0.3s ease;
+        }
 
-		.inputKontener input:focus {
-			outline: none;
-			border-color: hsla(248, 77%, 26%, 1);
-			box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-		}
+        .inputKontener input:focus {
+            outline: none;
+            border-color: hsla(248, 77%, 26%, 1);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+        }
 
-		.inputKontener .waluta {
-			position: absolute;
-			right: 15px;
-			top: 50%;
-			transform: translateY(-50%);
-			color: rgba(0, 0, 0, 0.6);
-			font-weight: bold;
-		}
+        .inputKontener .waluta {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(0, 0, 0, 0.6);
+            font-weight: bold;
+        }
 
-		.radioContainer {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-			gap: 10px;
-			margin-bottom: 1.5rem;
-		}
+        .radioContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-bottom: 1.5rem;
+        }
 
-		.radioContainer label {
-			display: flex;
-			align-items: center;
-			padding: 10px;
-			background-color: rgba(255,255,255,0.45);
-			border-radius: 5px;
-			cursor: pointer;
-			transition: all 0.3s ease;
-		}
+        .radioContainer label {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: rgba(255,255,255,0.45);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-		.radioContainer input[type="radio"] {
-			margin-right: 10px;
-			width: auto;
-			height: auto;
-			appearance: none;
-			width: 20px;
-			height: 20px;
-			border-radius: 50%;
-			border: 2px solid rgba(255,255,255,0.7);
-			outline: none;
-			transition: all 0.3s ease;
-		}
+        .radioContainer input[type="radio"] {
+            margin-right: 10px;
+            width: auto;
+            height: auto;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.7);
+            outline: none;
+            transition: all 0.3s ease;
+        }
 
-		.radioContainer input[type="radio"]:checked {
-			background: linear-gradient(to bottom right,
-			hsla(191, 65%, 40%, 1) 0%,
-			hsla(248, 77%, 16%, 1) 100%
-			);
-			border-color: rgba(255,255,255,0.9);
-		}
+        .radioContainer input[type="radio"]:checked {
+            background: linear-gradient(to bottom right,
+            hsla(191, 65%, 40%, 1) 0%,
+            hsla(248, 77%, 16%, 1) 100%
+            );
+            border-color: rgba(255,255,255,0.9);
+        }
 
-		.radioContainer label:hover {
-			background-color: rgba(255,255,255,0.3);
-		}
+        .radioContainer label:hover {
+            background-color: rgba(255,255,255,0.3);
+        }
 
-		.radioContainer input[type="radio"]:checked + span {
-			font-weight: bold;
-			color: #fff;
-			text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-		}
+        .radioContainer input[type="radio"]:checked + span {
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
 
-		.radioContainer label span {
-			color: black;
-			opacity:90%;
-		}
+        .radioContainer label span {
+            color: black;
+            opacity:90%;
+        }
 
-		aside .walutyKontener1 {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 1rem;
-			align-items: center;
-		}
+        aside .walutyKontener1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            align-items: center;
+        }
 
-		aside .walutyKontener1 input {
-			background-color: #e6e6e6;
-			border: 1px solid #aaa;
-			border-radius: 5px;
-			padding: 0.75rem;
-			text-align: right;
-			opacity: 85%;
-		}
+        aside .walutyKontener1 input {
+            background-color: #e6e6e6;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            padding: 0.75rem;
+            text-align: right;
+            opacity: 85%;
+        }
 
-		aside .walutyKontener1 label {
-			text-align: left;
-			color: white;
-			font-size: 1.2rem;
-			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-		}
+        aside .walutyKontener1 label {
+            text-align: left;
+            color: white;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
 
-	</style>
-	<script>
-		const kursy = {
-			"PLN": 1,
-			"EUR": 0.22,
-			"GBP": 0.19,
-			"CHF": 0.20,
-			"SEK": 2.50,
-			"NOK": 2.30,
-			"DKK": 1.65,
-			"HUF": 85,
-			"CZK": 5.30,
-			"RON": 1.10,
-			"BGN": 0.44
-		};
+    </style>
+    <script>
+        const kursy = {
+            "PLN": 1,
+            "EUR": 0.22,
+            "GBP": 0.19,
+            "CHF": 0.20,
+            "SEK": 2.50,
+            "NOK": 2.30,
+            "DKK": 1.65,
+            "HUF": 85,
+            "CZK": 5.30,
+            "RON": 1.10,
+            "BGN": 0.44
+        };
 
-		async function fetchkursy() {
-			try {
-				const response = await fetch('https://api.exchangerate-api.com/v4/latest/PLN');
-				const data = await response.json();
+        async function fetchkursy() {
+            try {
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/PLN');
+                const data = await response.json();
 
-				kursy["EUR"] = data.rates["EUR"];
-				kursy["GBP"] = data.rates["GBP"];
-				kursy["CHF"] = data.rates["CHF"];
-				kursy["SEK"] = data.rates["SEK"];
-				kursy["NOK"] = data.rates["NOK"];
-				kursy["DKK"] = data.rates["DKK"];
-				kursy["HUF"] = data.rates["HUF"];
-				kursy["CZK"] = data.rates["CZK"];
-				kursy["RON"] = data.rates["RON"];
-				kursy["BGN"] = data.rates["BGN"];
+                kursy["EUR"] = data.rates["EUR"];
+                kursy["GBP"] = data.rates["GBP"];
+                kursy["CHF"] = data.rates["CHF"];
+                kursy["SEK"] = data.rates["SEK"];
+                kursy["NOK"] = data.rates["NOK"];
+                kursy["DKK"] = data.rates["DKK"];
+                kursy["HUF"] = data.rates["HUF"];
+                kursy["CZK"] = data.rates["CZK"];
+                kursy["RON"] = data.rates["RON"];
+                kursy["BGN"] = data.rates["BGN"];
 
-				aktualizacja();
-			} catch (error) {
-				console.error("Could not fetch exchange rates:", error);
-				aktualizacja();
-			}
-		}
+                aktualizacja();
+            } catch (error) {
+                console.error("Could not fetch exchange rates:", error);
+                aktualizacja();
+            }
+        }
 
-		function aktualizacja() {
-			const currencyIds = [
-				"waluta0kursy", "waluta1kursy", "waluta2kursy",
-				"waluta3kursy", "waluta4kursy", "waluta5kursy",
-				"waluta6kursy", "waluta7kursy", "waluta8kursy",
-				"waluta9kursy", "waluta10kursy"
-			];
+        function aktualizacja() {
+            const currencyIds = [
+                "waluta0kursy", "waluta1kursy", "waluta2kursy",
+                "waluta3kursy", "waluta4kursy", "waluta5kursy",
+                "waluta6kursy", "waluta7kursy", "waluta8kursy",
+                "waluta9kursy", "waluta10kursy"
+            ];
 
-			const currencies = [
-				"PLN", "EUR", "GBP", "CHF", "SEK", "NOK",
-				"DKK", "HUF", "CZK", "RON", "BGN"
-			];
+            const currencies = [
+                "PLN", "EUR", "GBP", "CHF", "SEK", "NOK",
+                "DKK", "HUF", "CZK", "RON", "BGN"
+            ];
 
-			currencies.forEach((currency, index) => {
-				const rateElement = document.getElementById(currencyIds[index]);
-				if (rateElement) {
-					rateElement.value = kursy[currency].toFixed(2);
-				}
-			});
-		}
+            currencies.forEach((currency, index) => {
+                const rateElement = document.getElementById(currencyIds[index]);
+                if (rateElement) {
+                    rateElement.value = kursy[currency].toFixed(2);
+                }
+            });
+        }
 
-		document.addEventListener('DOMContentLoaded', () => {
-			fetchkursy();
-			setInterval(fetchkursy, 3600000);
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchkursy();
+            setInterval(fetchkursy, 3600000);
 
-			const input1 = document.getElementById("num1");
-			const input2 = document.getElementById("num2");
-			const radioButtons = document.querySelectorAll('input[name="currency"]');
-			const otherCurrencyRadios = document.querySelectorAll('input[name="other-currency"]');
-			const currency1Span = document.getElementById("currency1");
-			const currency2Span = document.getElementById("currency2");
+            const input1 = document.getElementById("num1");
+            const input2 = document.getElementById("num2");
+            const radioButtons = document.querySelectorAll('input[name="currency"]');
+            const otherCurrencyRadios = document.querySelectorAll('input[name="other-currency"]');
+            const currency1Span = document.getElementById("currency1");
+            const currency2Span = document.getElementById("currency2");
 
-			function convertCurrency() {
-				const selectedCurrency = document.querySelector('input[name="other-currency"]:checked')?.value || 'EUR';
-				const inputValue = parseFloat(input1.value) || 0;
+            function convertCurrency() {
+                const selectedCurrency = document.querySelector('input[name="other-currency"]:checked')?.value || 'EUR';
+                const inputValue = parseFloat(input1.value) || 0;
 
-				if (document.getElementById("radio1").checked) {
-					input2.value = (inputValue * kursy[selectedCurrency]).toFixed(2);
-					currency1Span.textContent = 'PLN';
-					currency2Span.textContent = selectedCurrency;
-				} else {
-					input2.value = (inputValue / kursy[selectedCurrency]).toFixed(2);
-					currency1Span.textContent = selectedCurrency;
-					currency2Span.textContent = 'PLN';
-				}
-			}
+                if (document.getElementById("radio1").checked) {
+                    input2.value = (inputValue * kursy[selectedCurrency]).toFixed(2);
+                    currency1Span.textContent = 'PLN';
+                    currency2Span.textContent = selectedCurrency;
+                } else {
+                    input2.value = (inputValue / kursy[selectedCurrency]).toFixed(2);
+                    currency1Span.textContent = selectedCurrency;
+                    currency2Span.textContent = 'PLN';
+                }
+            }
 
-			input1.addEventListener('input', convertCurrency);
-			radioButtons.forEach(radio => radio.addEventListener('change', convertCurrency));
-			otherCurrencyRadios.forEach(radio => radio.addEventListener('change', convertCurrency));
-		});
-	</script>
+            input1.addEventListener('input', convertCurrency);
+            radioButtons.forEach(radio => radio.addEventListener('change', convertCurrency));
+            otherCurrencyRadios.forEach(radio => radio.addEventListener('change', convertCurrency));
+        });
+    </script>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<div class="hamburger-menu" onclick="przelaczMenu()">
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-	</div>
+    <h1>Skrypty-JS</h1>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+    </div>
 
-	<div class="menu-kontener">
-		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-		<div class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
-			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
-			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-		</div>
-	</div>
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+        </div>
+    </div>
 
-	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
-	</script>
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
 </header>
 <div class="asideMainKontener">
-	<main>
-		<label for="num1">Kwota</label>
-		<div class="inputKontener">
-			<input type="number" id="num1" min="0.00" value="0.00" step="0.01">
-			<span class="waluta" id="currency1">PLN</span>
-		</div>
+    <main>
+        <label for="num1">Kwota</label>
+        <div class="inputKontener">
+            <input type="number" id="num1" min="0.00" value="0.00" step="0.01">
+            <span class="waluta" id="currency1">PLN</span>
+        </div>
 
-		<label for="num2">Przeliczona kwota</label>
-		<div class="inputKontener">
-			<input type="number" id="num2" readonly value="0.00">
-			<span class="waluta" id="currency2">-</span>
-		</div>
+        <label for="num2">Przeliczona kwota</label>
+        <div class="inputKontener">
+            <input type="number" id="num2" readonly value="0.00">
+            <span class="waluta" id="currency2">-</span>
+        </div>
 
-		<div class="radioContainer">
-			<label>
-				<input type="radio" name="currency" id="radio1" value="PLN" checked>
-				<span>PLN → Inna</span>
-			</label>
-			<label>
-				<input type="radio" name="currency" id="radio2" value="PLN">
-				<span>Inna → PLN</span>
-			</label>
-		</div>
+        <div class="radioContainer">
+            <label>
+                <input type="radio" name="currency" id="radio1" value="PLN" checked>
+                <span>PLN → Inna</span>
+            </label>
+            <label>
+                <input type="radio" name="currency" id="radio2" value="PLN">
+                <span>Inna → PLN</span>
+            </label>
+        </div>
 
-		<div class="radioContainer">
-			<label>
-				<input type="radio" name="other-currency" value="EUR">
-				<span>Euro (EUR)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="GBP">
-				<span>Funt szterling (GBP)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="CHF">
-				<span>Frank szwajcarski (CHF)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="SEK">
-				<span>Korona szwedzka (SEK)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="NOK">
-				<span>Korona norweska (NOK)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="DKK">
-				<span>Korona duńska (DKK)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="HUF">
-				<span>Forint węgierski (HUF)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="CZK">
-				<span>Korona czeska (CZK)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="RON">
-				<span>Lej rumuński (RON)</span>
-			</label>
-			<label>
-				<input type="radio" name="other-currency" value="BGN">
-				<span>Lew bułgarski (BGN)</span>
-			</label>
-		</div>
-	</main>
-	<aside>
-		<label>Kursy</label>
-		<span class="walutyKontener1">
+        <div class="radioContainer">
+            <label>
+                <input type="radio" name="other-currency" value="EUR">
+                <span>Euro (EUR)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="GBP">
+                <span>Funt szterling (GBP)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="CHF">
+                <span>Frank szwajcarski (CHF)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="SEK">
+                <span>Korona szwedzka (SEK)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="NOK">
+                <span>Korona norweska (NOK)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="DKK">
+                <span>Korona duńska (DKK)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="HUF">
+                <span>Forint węgierski (HUF)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="CZK">
+                <span>Korona czeska (CZK)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="RON">
+                <span>Lej rumuński (RON)</span>
+            </label>
+            <label>
+                <input type="radio" name="other-currency" value="BGN">
+                <span>Lew bułgarski (BGN)</span>
+            </label>
+        </div>
+    </main>
+    <aside>
+        <label>Kursy</label>
+        <span class="walutyKontener1">
 			<input type="number" readonly id="waluta0kursy">
 			<label for="waluta1kursy">Złoty (PLN)</label>
 			<input type="number" readonly id="waluta1kursy">
@@ -362,10 +362,10 @@
 			<input type="number" readonly id="waluta10kursy">
 			<label for="waluta10kursy">Lew bułgarski (BGN)</label>
 		</span>
-	</aside>
+    </aside>
 </div>
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html> 
