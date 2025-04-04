@@ -19,34 +19,35 @@
 		#wynik,#kolor, #num1{
 			width:100%;
 		}
+		td{
+			padding-right:10px;
+		}
+		input[type="checkbox"]{
+			width:102%;
+		}
 	</style>
 	<script>
-		function kalkulator() {
-			const num1 = parseInt(document.getElementById("num1").value);
-			let wynik;
-			if (num1==1){
-				wynik = "cytryna";
-			}
-			else if (num1==2){
-				wynik="liść";
-			}
-			else if (num1==3){
-				wynik="banan";
-			}
-			else{
-				wynik="inny";
-			}
+		function cena(){
+            const opcja1 = document.getElementById("opcja1").checked;
+            const opcja2 = document.getElementById("opcja2").checked;
+            const opcja3 = document.getElementById("opcja3").checked;
+            const opcja4 = document.getElementById("opcja4").checked;
+            let cena = 0;
 
-			document.getElementById("wynik").value ="Twoje zamówienie to cukierek " + wynik;
-		}
-		function kolor (){
-			const R = parseInt(document.getElementById("R").value);
-			const G = parseInt(document.getElementById("G").value);
-			const B = parseInt(document.getElementById("B").value);
-			const kolor = `rgb(${R}, ${G}, ${B})`;
-
-			document.getElementById('kolor').style.backgroundColor = kolor;
-		}
+            if (opcja1){
+                cena += 45;
+            }
+            if (opcja2){
+                cena += 30;
+            }
+            if (opcja3){
+                cena += 20;
+            }
+            if (opcja4){
+                cena += 50;
+            }
+            document.getElementById("wynik").value ="Cena zabiegów: "+ cena + " zł";
+        }
 	</script>
 </head>
 <body>
@@ -91,21 +92,29 @@
 	</script>
 </header>
 <main>
-	<label for="num1">Cukierki</label>
-	<input type="number" id="num1" placeholder="0">
-	<button onclick="kalkulator()">Zamówienie</button>
+	<label>Usługi Kosmetyczne</label>
+	<table style="margin:auto;">
+		<tr>
+			<td><input type="checkbox" name="wybor" value="" id="opcja1"></td>
+			<td><label>Peeling - 45zł</label></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="wybor" value="" id="opcja2"></td>
+			<td><label>Maska - 30zł</label></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="wybor" value="" id="opcja3"></td>
+			<td><label>Masaż - 20zł</label></td>
+		</tr>
+		<tr>
+			<td><input type="checkbox" name="wybor" value="" id="opcja4"></td>
+			<td><label>Makijaż - 50zł</label></td>
+		</tr>
+	</table>
+	<button onclick="cena()">Oblicz cenę</button>
 	<br>
-	<label for="wynik">Wynik</label>
+	<label for="wynik">Cena zabiegów</label>
 	<input type="text" id="wynik" readonly>
-	<span>
-        <label for="R">R</label>
-        <input type="number" id="R" min="0" max="255" value="0" oninput="kolor()">
-        <label for="G">G</label>
-        <input type="number" id="G" min="0" max="255" value="0" oninput="kolor()">
-        <label for="B">B</label>
-        <input type="number" id="B" min="0" max="255" value="0" oninput="kolor()">
-    </span>
-	<input type="button" id="kolor" value="Kolor" style="text-align:center;">
 </main>
 <footer>
 	<h3>Jan.K-2TP Gr.1</h3>
