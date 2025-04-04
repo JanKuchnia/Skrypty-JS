@@ -1,114 +1,124 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Skrypty-JS Kalkulator 16</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    main{
-      width:23%;
-    }
-    input{
-      width:25%;
-      font-size:1.3rem;
-    }
-    span label{
-      width:20%;
-      display:contents;
-    }
-    #wynik,#kolor, #num1{
-      width:100%;
-    }
-  </style>
-  <script>
-    function kalkulator() {
-      const num1 = parseInt(document.getElementById("num1").value);
-      let wynik;
-      if (num1==1){
-        wynik = "cytryna";
-      }
-      else if (num1==2){
-        wynik="liść";
-      }
-      else if (num1==3){
-        wynik="banan";
-      }
-      else{
-        wynik="inny";
-      }
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 17</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:23%;
+        }
+        input{
+            width:25%;
+            font-size:1.3rem;
+        }
+        #imie, #nazwisko,#email{
+            width:80%;
+            float:right;
+        }
+        {
+            float:left;
+        }
+        table{
+            width:60%;
+        }
+    </style>
+    <script>
+        function usluga() {
+            const imie = document.getElementById('imie').value;
+            const nazwisko = document.getElementById('nazwisko').value;
+            const email = document.getElementById('email').value;
+            const usluga = document.getElementById('usluga').value;
+            const checkbox = document.getElementById('kopia').checked;
 
-      document.getElementById("wynik").value ="Twoje zamówienie to cukierek " + wynik;
-    }
-    function kolor (){
-      const R = parseInt(document.getElementById("R").value);
-      const G = parseInt(document.getElementById("G").value);
-      const B = parseInt(document.getElementById("B").value);
-      const kolor = `rgb(${R}, ${G}, ${B})`;
+            let imieNazwisko = imie + " " + nazwisko;
+            document.getElementById('imieNazwisko').innerText = imieNazwisko;
+            document.getElementById('pEmail').innerText = email.toLowerCase();
+            document.getElementById('trescZad').innerText = "Usługa: "+usluga;
 
-      document.getElementById('kolor').style.backgroundColor = kolor;
-    }
-  </script>
+        }
+        function resetuj() {
+            const button = document.getElementById('resetuj');
+
+
+
+            document.getElementById('imie').value = "";
+            document.getElementById('nazwisko').value = "";
+            document.getElementById('email').value = "";
+            document.getElementById('usluga').selectedIndex = 0;
+
+            document.getElementById('imieNazwisko').innerText = "";
+            document.getElementById('trescZad').innerText = "";
+            document.getElementById('pEmail').innerText = "";
+        }
+        document.addEventListener('reset', function() {
+            document.getElementById('resetujButton').addEventListener('click', resetuj);
+        });
+
+    </script>
 </head>
 <body>
 <header>
-  <h1>Skrypty-JS</h1>
-  <div class="hamburger-menu" onclick="przelaczMenu()">
-    <div class="pasek"></div>
-    <div class="pasek"></div>
-    <div class="pasek"></div>
-  </div>
-
-  <div class="menu-kontener">
-    <span class="zamknij" onclick="przelaczMenu()">&times;</span>
-
-    <div class="linki-kontener">
-      <a href="index.html" class="linki home-link">Strona Główna</a>
-      <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-      <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-      <a href="kalkulator3.html" class="linki">Wagi Długości</a>
-      <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-      <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-      <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-      <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-      <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-      <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-      <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-      <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-      <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-      <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-      <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-      <a href="kalkulator15.html" class="linki">Cukierki</a>
-      <a href="kalkulator16.html" class="linki">Komputery</a>
-      <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+    <h1>Skrypty-JS</h1>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
     </div>
-  </div>
 
-  <script>
-    function przelaczMenu() {
-      const menuKontener = document.querySelector('.menu-kontener');
-      menuKontener.classList.toggle('aktywny');
-    }
-  </script>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
+
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+        </div>
+    </div>
+
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
 </header>
 <main>
-  <label for="num1">Cukierki</label>
-  <input type="number" id="num1" placeholder="0">
-  <button onclick="kalkulator()">Zamówienie</button>
-  <br>
-  <label for="wynik">Wynik</label>
-  <input type="text" id="wynik" readonly>
-  <span>
-        <label for="R">R</label>
-        <input type="number" id="R" min="0" max="255" value="0" oninput="kolor()">
-        <label for="G">G</label>
-        <input type="number" id="G" min="0" max="255" value="0" oninput="kolor()">
-        <label for="B">B</label>
-        <input type="number" id="B" min="0" max="255" value="0" oninput="kolor()">
-    </span>
-  <input type="button" id="kolor" value="Kolor" style="text-align:center;">
+    <label>Komputery</label><br>
+    <input type="text" id="imie"><br><label for="imie">Imie</label>
+    <input type="text" id="nazwisko"><br><label for="nazwisko">Nazwisko</label>
+    <input type="text" id="email"><br><label for="email">E-mail</label>
+    <table style="margin:auto;">
+        <tr>
+            <td><input type="checkbox" checked style="width:102%"></td>
+            <td><label>Wyślij kopie wiadomości</label></td>
+        </tr>
+    </table>
+    <button onclick="">Prześlij</button>
+    <button onclick="kalkulator()">Resetuj</button>
+    <br>
+    <label>Wynik</label>
+    <input type="text" id="imieNazwisko">
+    <input type="text" id="emailWyświetl">
+    <input type="text" id="usluga">
 </main>
 <footer>
-  <h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>
