@@ -1,100 +1,125 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>Skrypty-JS Fryzury i Makijaż</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    main{
-      width:23%;
-    }
-    input{
-      width:25%;
-      font-size:1.3rem;
-    }
-    span label{
-      width:20%;
-      display:contents;
-    }
-    #wynik,#kolor, #num1{
-      width:100%;
-    }
-    td{
-      padding-right:10px;
-    }
-    input[type="checkbox"], input[type="radio"]{
-      width:102%;
-    }
-  </style>
-  <script>
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Fryzury i Makijaż</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:23%;
+        }
+        input{
+            width:25%;
+            font-size:1.3rem;
+        }
+        span label{
+            width:20%;
+            display:contents;
+        }
+        #wynik,#kolor, #num1{
+            width:100%;
+        }
+        td{
+            padding-right:10px;
+        }
+        input[type="checkbox"], input[type="radio"]{
+            width:102%;
+        }
+        #tabele{
+            display:grid;
+            grid-template-rows:auto auto ;
+        }
+    </style>
+    <script>
 
-  </script>
+    </script>
 </head>
 <body>
 <header>
-  <h1>Skrypty-JS</h1>
-  <div class="hamburger-menu" onclick="przelaczMenu()">
-    <div class="pasek"></div>
-    <div class="pasek"></div>
-    <div class="pasek"></div>
-  </div>
-
-  <div class="menu-kontener">
-    <span class="zamknij" onclick="przelaczMenu()">&times;</span>
-
-    <div class="linki-kontener">
-      <a href="index.html" class="linki home-link">Strona Główna</a>
-      <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-      <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-      <a href="kalkulator3.html" class="linki">Wagi Długości</a>
-      <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-      <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-      <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-      <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-      <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-      <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-      <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-      <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-      <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-      <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-      <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-      <a href="kalkulator15.html" class="linki">Cukierki</a>
-      <a href="kalkulator16.html" class="linki">Komputery</a>
-      <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-      <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+    <h1>Skrypty-JS</h1>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
     </div>
-  </div>
 
-  <script>
-    function przelaczMenu() {
-      const menuKontener = document.querySelector('.menu-kontener');
-      menuKontener.classList.toggle('aktywny');
-    }
-  </script>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
+
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+            <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+        </div>
+    </div>
+
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
 </header>
 <main>
-  <label>Zamów fryzure i makijaż</label>
-  <input type="text" id="imie" >
-  <input type="text" id="nazwisko">
-  <input type="number" min="18" max="120" id="wiek">
-  <label>Fryzury</label>
-  <table>
-    <tr>
-      <td><input type="radio" name="fryzury"></td>
-      <td>Krótkie</td>
-    </tr>
-    <tr>
-      <td><input type="radio" name="fryzury"></td>
-      <td>Półdługie</td>
-    </tr>
-    <tr>
-      <td><input type="radio" name="fryzury"></td>
-      <td>Długie</td>
-    </tr>
-  </table>
+    <label>Zamów fryzure i makijaż</label>
+    <input type="text" id="imie">
+    <input type="text" id="nazwisko">
+    <input type="number" min="18" max="120" id="wiek">
+    <section id="tabele">
+        <section>
+            <label>Fryzury</label>
+            <table>
+                <tr>
+                    <td><input type="radio" name="fryzury"></td>
+                    <td>Krótkie</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="fryzury"></td>
+                    <td>Półdługie</td>
+                </tr>
+                <tr>
+                    <td><input type="radio" name="fryzury"></td>
+                    <td>Długie</td>
+                </tr>
+            </table>
+        </section>
+        <section>
+        <label>Makijaż</label>
+            <table>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Cień</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Szminka</td>
+                </tr>
+                <tr>
+                    <td><input type="checkbox"></td>
+                    <td>Lakier</td>
+                </tr>
+            </table>
+        </section>
+    </section>
 </main>
 <footer>
-  <h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>
