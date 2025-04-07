@@ -27,27 +27,7 @@
     }
   </style>
   <script>
-    function cena(){
-      const opcja1 = document.getElementById("opcja1").checked;
-      const opcja2 = document.getElementById("opcja2").checked;
-      const opcja3 = document.getElementById("opcja3").checked;
-      const opcja4 = document.getElementById("opcja4").checked;
-      let cena = 0;
 
-      if (opcja1){
-        cena += 45;
-      }
-      if (opcja2){
-        cena += 30;
-      }
-      if (opcja3){
-        cena += 20;
-      }
-      if (opcja4){
-        cena += 50;
-      }
-      document.getElementById("wynik").value ="Cena zabiegów: "+ cena + " zł";
-    }
   </script>
 </head>
 <body>
@@ -93,29 +73,25 @@
   </script>
 </header>
 <main>
-  <label>Usługi Kosmetyczne</label>
-  <table style="margin:auto;">
+  <label>Zamów fryzure i makijaż</label>
+  <input type="text" id="imie" >
+  <input type="text" id="nazwisko">
+  <input type="number" min="18" max="120" id="wiek">
+  <label>Fryzury</label>
+  <table>
     <tr>
-      <td><input type="checkbox" name="wybor" value="" id="opcja1"></td>
-      <td><label>Peeling - 45zł</label></td>
+      <td><input type="radio" name="fryzury"></td>
+      <td>Krótkie</td>
     </tr>
     <tr>
-      <td><input type="checkbox" name="wybor" value="" id="opcja2"></td>
-      <td><label>Maska - 30zł</label></td>
+      <td><input type="radio" name="fryzury"></td>
+      <td>Półdługie</td>
     </tr>
     <tr>
-      <td><input type="checkbox" name="wybor" value="" id="opcja3"></td>
-      <td><label>Masaż - 20zł</label></td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" name="wybor" value="" id="opcja4"></td>
-      <td><label>Makijaż - 50zł</label></td>
+      <td><input type="radio" name="fryzury"></td>
+      <td>Długie</td>
     </tr>
   </table>
-  <button onclick="cena()">Oblicz cenę</button>
-  <br>
-  <label for="wynik">Cena zabiegów</label>
-  <input type="text" id="wynik" readonly>
 </main>
 <footer>
   <h3>Jan.K-2TP Gr.1</h3>
