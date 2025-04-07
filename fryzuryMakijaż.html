@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Skrypty-JS Fryzury i Makijaż</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main{
+      width:23%;
+    }
+    input{
+      width:25%;
+      font-size:1.3rem;
+    }
+    span label{
+      width:20%;
+      display:contents;
+    }
+    #wynik,#kolor, #num1{
+      width:100%;
+    }
+    td{
+      padding-right:10px;
+    }
+    input[type="checkbox"]{
+      width:102%;
+    }
+  </style>
+  <script>
+    function cena(){
+      const opcja1 = document.getElementById("opcja1").checked;
+      const opcja2 = document.getElementById("opcja2").checked;
+      const opcja3 = document.getElementById("opcja3").checked;
+      const opcja4 = document.getElementById("opcja4").checked;
+      let cena = 0;
+
+      if (opcja1){
+        cena += 45;
+      }
+      if (opcja2){
+        cena += 30;
+      }
+      if (opcja3){
+        cena += 20;
+      }
+      if (opcja4){
+        cena += 50;
+      }
+      document.getElementById("wynik").value ="Cena zabiegów: "+ cena + " zł";
+    }
+  </script>
+</head>
+<body>
+<header>
+  <h1>Skrypty-JS</h1>
+  <div class="hamburger-menu" onclick="przelaczMenu()">
+    <div class="pasek"></div>
+    <div class="pasek"></div>
+    <div class="pasek"></div>
+  </div>
+
+  <div class="menu-kontener">
+    <span class="zamknij" onclick="przelaczMenu()">&times;</span>
+
+    <div class="linki-kontener">
+      <a href="index.html" class="linki home-link">Strona Główna</a>
+      <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+      <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+      <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+      <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+      <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+      <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+      <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+      <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+      <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+      <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+      <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+      <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+      <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+      <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+      <a href="kalkulator15.html" class="linki">Cukierki</a>
+      <a href="kalkulator16.html" class="linki">Komputery</a>
+      <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+      <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+    </div>
+  </div>
+
+  <script>
+    function przelaczMenu() {
+      const menuKontener = document.querySelector('.menu-kontener');
+      menuKontener.classList.toggle('aktywny');
+    }
+  </script>
+</header>
+<main>
+  <label>Usługi Kosmetyczne</label>
+  <table style="margin:auto;">
+    <tr>
+      <td><input type="checkbox" name="wybor" value="" id="opcja1"></td>
+      <td><label>Peeling - 45zł</label></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="wybor" value="" id="opcja2"></td>
+      <td><label>Maska - 30zł</label></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="wybor" value="" id="opcja3"></td>
+      <td><label>Masaż - 20zł</label></td>
+    </tr>
+    <tr>
+      <td><input type="checkbox" name="wybor" value="" id="opcja4"></td>
+      <td><label>Makijaż - 50zł</label></td>
+    </tr>
+  </table>
+  <button onclick="cena()">Oblicz cenę</button>
+  <br>
+  <label for="wynik">Cena zabiegów</label>
+  <input type="text" id="wynik" readonly>
+</main>
+<footer>
+  <h3>Jan.K-2TP Gr.1</h3>
+</footer>
+</body>
+</html>
