@@ -25,6 +25,17 @@
         input[type="checkbox"], input[type="radio"]{
             width:102%;
         }
+        input[type="color"]{
+            width:500%;
+            height:7dvh;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 0px solid #aaa;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            opacity:85%;
+            background-color:rgba(230, 230, 230, 0) ;
+        }
         #tabele{
             display:grid;
             grid-template-rows:auto auto ;
@@ -105,14 +116,17 @@
                 <tr>
                     <td><input type="checkbox"></td>
                     <td>Cień</td>
+                    <td><input type="color" id="kolor1"></td>
                 </tr>
                 <tr>
                     <td><input type="checkbox"></td>
                     <td>Szminka</td>
+                    <td><input type="color" id="kolor2"></td>
                 </tr>
                 <tr>
                     <td><input type="checkbox"></td>
                     <td>Lakier</td>
+                    <td><input type="color" id="kolor3"></td>
                 </tr>
             </table>
         </section>
