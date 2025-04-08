@@ -5,44 +5,114 @@
     <title>Skrypty-JS Fryzury i Makijaż</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        main{
-            width:23%;
+        main {
+            width: 80%;
+            max-width: 600px;
+            padding: 25px;
         }
-        input{
-            width:25%;
-            font-size:1.3rem;
+
+        .formularz-kontener {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        span label{
-            width:20%;
-            display:contents;
+
+        .dane-osobowe {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
         }
-        #wynik,#kolor, #num1{
-            width:100%;
+
+        .pole-grupa {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
-        td{
-            padding-right:10px;
+
+        .pole-grupa label {
+            text-align: left;
+            margin-bottom: 5px;
+            margin-left: 15px;
+            font-size: 1rem;
+            transform: translateY(4.2vh);
+            transition: transform 0.3s ease; /* Add smooth transition */
         }
-        input[type="checkbox"], input[type="radio"]{
-            width:102%;
+
+        .pole-grupa input:focus + label {
+            transform: translateY(0);
         }
-        input[type="color"]{
-            width:500%;
-            height:7dvh;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 0px solid #aaa;
+
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            height: 40px;
+            font-size: 1rem;
+            text-align: left;
+            opacity: 0.9;
+        }
+
+        .uslugi-kontener {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .usluga-sekcja {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .usluga-sekcja h3 {
+            color: white;
+            text-align: center;
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+
+        .opcja-wiersz {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
             border-radius: 5px;
-            margin-bottom: 10px;
-            opacity:85%;
-            background-color:rgba(230, 230, 230, 0) ;
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: background-color 0.2s, filter 0.3s;
         }
-        #tabele{
-            display:grid;
-            grid-template-rows:auto auto ;
+
+        .opcja-wiersz:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .opcja-wiersz input[type="radio"],
+        .opcja-wiersz input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
+
+        .opcja-etykieta {
+            color: white;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
+
+        .wybor-koloru {
+            width: 40px;
+            height: 40px;
+            padding: 2px;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
         }
     </style>
     <script>
-
     </script>
 </head>
 <body>
@@ -88,49 +158,63 @@
     </script>
 </header>
 <main>
-    <label>Zamów fryzure i makijaż</label>
-    <input type="text" id="imie">
-    <input type="text" id="nazwisko">
-    <input type="number" min="18" max="120" id="wiek">
-    <section id="tabele">
-        <section>
-            <label>Fryzury</label>
-            <table>
-                <tr>
-                    <td><input type="radio" name="fryzury"></td>
-                    <td>Krótkie</td>
-                </tr>
-                <tr>
-                    <td><input type="radio" name="fryzury"></td>
-                    <td>Półdługie</td>
-                </tr>
-                <tr>
-                    <td><input type="radio" name="fryzury"></td>
-                    <td>Długie</td>
-                </tr>
-            </table>
-        </section>
-        <section>
-        <label>Makijaż</label>
-            <table>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>Cień</td>
-                    <td><input type="color" id="kolor1"></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>Szminka</td>
-                    <td><input type="color" id="kolor2"></td>
-                </tr>
-                <tr>
-                    <td><input type="checkbox"></td>
-                    <td>Lakier</td>
-                    <td><input type="color" id="kolor3"></td>
-                </tr>
-            </table>
-        </section>
-    </section>
+    <h2 style="color: white; text-align: center; margin-bottom: 20px;">Zamów fryzurę i makijaż</h2>
+
+    <form class="formularz-kontener" onsubmit="return sprawdzFormularz()">
+        <div class="dane-osobowe">
+            <div class="pole-grupa">
+                <label for="imie">Imię</label>
+                <input type="text" id="imie" >
+            </div>
+            <div class="pole-grupa">
+                <label for="nazwisko">Nazwisko</label>
+                <input type="text" id="nazwisko" >
+            </div>
+            <div class="pole-grupa">
+                <label for="wiek">Wiek</label>
+                <input type="number" min="18" max="120" id="wiek" >
+            </div>
+        </div>
+
+        <div class="uslugi-kontener">
+            <div class="usluga-sekcja">
+                <h3>Fryzury</h3>
+                <div class="opcja-wiersz">
+                    <input type="radio" id="fryzura1" name="fryzury" value="krotkie">
+                    <label class="opcja-etykieta" for="fryzura1">Krótkie</label>
+                </div>
+                <div class="opcja-wiersz">
+                    <input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
+                    <label class="opcja-etykieta" for="fryzura2">Półdługie</label>
+                </div>
+                <div class="opcja-wiersz">
+                    <input type="radio" id="fryzura3" name="fryzury" value="dlugie">
+                    <label class="opcja-etykieta" for="fryzura3">Długie</label>
+                </div>
+            </div>
+
+            <div class="usluga-sekcja">
+                <h3>Makijaż</h3>
+                <div id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
+                    <input type="checkbox" id="makijaz1" name="makijaz[]" value="cien">
+                    <label class="opcja-etykieta" for="makijaz1">Cień</label>
+                    <input type="color" id="kolor1" class="wybor-koloru">
+                </div>
+                <div id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
+                    <input type="checkbox" id="makijaz2" name="makijaz[]" value="szminka">
+                    <label class="opcja-etykieta" for="makijaz2">Szminka</label>
+                    <input type="color" id="kolor2" class="wybor-koloru">
+                </div>
+                <div id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
+                    <input type="checkbox" id="makijaz3" name="makijaz[]" value="lakier">
+                    <label class="opcja-etykieta" for="makijaz3">Lakier</label>
+                    <input type="color" id="kolor3" class="wybor-koloru">
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="przycisk-wyslij">Zamów</button>
+    </form>
 </main>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
