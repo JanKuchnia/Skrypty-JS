@@ -258,6 +258,7 @@ select{
     width: 90%;
     max-width: 800px;
     padding: 1rem;
+    transition: all 0.3s ease;
 }
 
 .linki {
@@ -271,12 +272,18 @@ select{
     font-size: clamp(0.75rem, 2vw, 0.9rem);
     color: black;
     text-decoration: none;
-    transition: transform 0.2s ease;
+    transition: 0.3s ease;
 }
 
 .linki:hover {
     transform: scale(1.05);
     background: #d6d6d6;
+}
+
+.linki-kontener:hover > :not(:hover){
+    filter:blur(1px);
+    opacity:0.9;
+    transition: 0.3s ease;
 }
 
 .home-link {
