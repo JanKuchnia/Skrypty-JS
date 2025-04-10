@@ -5,8 +5,9 @@
 	<title>Skrypty-JS Fryzury i Makijaż</title>
 	<link rel="stylesheet" href="style.css">
 	<style>
-		main {
+		main, #zamowienie-podsumowanie {
 			width: 80%;
+			height:80dvh;
 			max-width: 600px;
 			padding: 25px;
 		}
@@ -122,6 +123,38 @@
 			border-radius: 5px;
 			background-color: transparent;
 		}
+		h2{
+			color: white;
+			text-align: center;
+			margin-bottom: 3dvh;
+		}
+
+		#zamowienie-podsumowanie .pole-grupa label {
+			position: absolute;
+			left: 15px;
+			top: 12px;
+			font-size: 1rem;
+			color: black;
+			opacity: 0.7;
+			transition: all 0.3s ease;
+			pointer-events: none;
+		}
+
+		#zamowienie-podsumowanie .pole-grupa input[type="text"] {
+			width: 100%;
+			height: 40px;
+			font-size: 1rem;
+			text-align: left;
+			opacity: 0.9;
+			padding-left: 15px;
+		}
+
+		#zamowienie-podsumowanie .pole-grupa input:not(:placeholder-shown) + label {
+			top: -21px;
+			font-size: 1rem;
+			opacity: 1;
+			color: white;
+		}
 	</style>
 </head>
 <body>
@@ -164,76 +197,133 @@
 			const menuKontener = document.querySelector('.menu-kontener');
 			menuKontener.classList.toggle('aktywny');
 		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+			const asideInputs = document.querySelectorAll('#zamowienie-podsumowanie .pole-grupa input[type="text"]');
+
+			asideInputs.forEach(input => {
+				const label = input.nextElementSibling;
+
+				input.addEventListener('input', function() {
+					if (this.value) {
+						label.style.top = '-21px';
+						label.style.fontSize = '1rem';
+						label.style.opacity = '1';
+					} else {
+						label.style.top = '12px';
+						label.style.fontSize = '1rem';
+						label.style.opacity = '0.7';
+					}
+				});
+
+				if (input.value) {
+					label.style.top = '-21px';
+					label.style.fontSize = '1rem';
+					label.style.opacity = '1';
+				}
+			});
+		});
+
+		function formularz(event) {
+			event.preventDefault();
+
+			const imie = document.getElementById("imie").value;
+			const nazwisko = document.getElementById("nazwisko").value;
+			const wiek = document.getElementById("wiek").value;
+
+			if (!imie.trim() || !nazwisko.trim() || !wiek.trim()) {
+				window.alert("Uzupełnij dane osobowe!");
+				return;
+			}
+
+			if (isNaN(wiek) || wiek < 18 || wiek > 120) {
+				window.alert("Wiek musi być liczbą między 18 a 120!");
+				return;
+			}
+
+			let imieNazwiskoWiek = imie + " " + nazwisko + " - " + wiek + " lat";
+			document.getElementById('imieNazwiskoWiek').value = imieNazwiskoWiek;
+
+		}
 	</script>
 </header>
-<main>
-	<h2 style="color: white; text-align: center; margin-bottom: 20px;">Zamów fryzurę i makijaż</h2>
+<div class="asideMainKontener">
+	<main>
+		<h2>Zamów fryzurę i makijaż</h2>
 
-	<form class="formularz-kontener" onsubmit="return sprawdzFormularz()">
-		<div class="dane-osobowe">
-			<div class="pole-grupa">
-				<input type="text" id="imie" placeholder="">
-				<label for="imie">Imię</label>
+		<form class="formularz-kontener" onsubmit="formularz(event)">
+			<div class="dane-osobowe">
+				<div class="pole-grupa">
+					<input type="text" id="imie" placeholder="">
+					<label for="imie">Imię*</label>
+				</div>
+				<div class="pole-grupa">
+					<input type="text" id="nazwisko" placeholder="">
+					<label for="nazwisko">Nazwisko*</label>
+				</div>
+				<div class="pole-grupa">
+					<input type="number" min="18" max="120" id="wiek" placeholder="">
+					<label for="wiek">Wiek*</label>
+				</div>
 			</div>
-			<div class="pole-grupa">
-				<input type="text" id="nazwisko" placeholder="">
-				<label for="nazwisko">Nazwisko</label>
+
+			<div class="uslugi-kontener">
+				<div class="usluga-sekcja">
+					<h3>Fryzury</h3>
+					<div class="opcja-wiersz">
+						<input type="radio" id="fryzura1" name="fryzury" value="krotkie">
+						<label class="opcja-etykieta" for="fryzura1">Krótkie</label>
+					</div>
+					<div class="opcja-wiersz">
+						<input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
+						<label class="opcja-etykieta" for="fryzura2">Półdługie</label>
+					</div>
+					<div class="opcja-wiersz">
+						<input type="radio" id="fryzura3" name="fryzury" value="dlugie">
+						<label class="opcja-etykieta" for="fryzura3">Długie</label>
+					</div>
+				</div>
+
+				<div class="usluga-sekcja">
+					<h3>Makijaż</h3>
+					<div id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
+						<input type="checkbox" id="makijaz1" name="makijaz[]" value="cien">
+						<label class="opcja-etykieta" for="makijaz1">Cień</label>
+						<input type="color" id="kolor1" class="wybor-koloru">
+					</div>
+					<div id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
+						<input type="checkbox" id="makijaz2" name="makijaz[]" value="szminka">
+						<label class="opcja-etykieta" for="makijaz2">Szminka</label>
+						<input type="color" id="kolor2" class="wybor-koloru">
+					</div>
+					<div id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
+						<input type="checkbox" id="makijaz3" name="makijaz[]" value="lakier">
+						<label class="opcja-etykieta" for="makijaz3">Lakier</label>
+						<input type="color" id="kolor3" class="wybor-koloru">
+					</div>
+				</div>
+				<div class="usluga-sekcja">
+					<label>Komentarz</label>
+					<input type="text" id="komentarz" placeholder="">
+				</div>
+				<div class="usluga-sekcja">
+					<label>Termin*</label>
+					<input type="date" id="termin" placeholder="">
+				</div>
 			</div>
-			<div class="pole-grupa">
-				<input type="number" min="18" max="120" id="wiek" placeholder="">
-				<label for="wiek">Wiek</label>
-			</div>
+
+			<input type="submit" class="przycisk-wyslij" value="Zamów" style="text-align:center;">
+			<input type="reset" class="przycisk-wyczysc" value="Wyczyść" style="text-align:center;">
+		</form>
+	</main>
+	<aside id="zamowienie-podsumowanie">
+		<h2>Twoje Zamówienie</h2>
+		<div class="pole-grupa">
+			<input type="text" id="imieNazwiskoWiek" readonly placeholder="">
+			<label>Imię i Nazwisko - Wiek</label>
 		</div>
-
-		<div class="uslugi-kontener">
-			<div class="usluga-sekcja">
-				<h3>Fryzury</h3>
-				<div class="opcja-wiersz">
-					<input type="radio" id="fryzura1" name="fryzury" value="krotkie">
-					<label class="opcja-etykieta" for="fryzura1">Krótkie</label>
-				</div>
-				<div class="opcja-wiersz">
-					<input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
-					<label class="opcja-etykieta" for="fryzura2">Półdługie</label>
-				</div>
-				<div class="opcja-wiersz">
-					<input type="radio" id="fryzura3" name="fryzury" value="dlugie">
-					<label class="opcja-etykieta" for="fryzura3">Długie</label>
-				</div>
-			</div>
-
-			<div class="usluga-sekcja">
-				<h3>Makijaż</h3>
-				<div id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
-					<input type="checkbox" id="makijaz1" name="makijaz[]" value="cien">
-					<label class="opcja-etykieta" for="makijaz1">Cień</label>
-					<input type="color" id="kolor1" class="wybor-koloru">
-				</div>
-				<div id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
-					<input type="checkbox" id="makijaz2" name="makijaz[]" value="szminka">
-					<label class="opcja-etykieta" for="makijaz2">Szminka</label>
-					<input type="color" id="kolor2" class="wybor-koloru">
-				</div>
-				<div id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
-					<input type="checkbox" id="makijaz3" name="makijaz[]" value="lakier">
-					<label class="opcja-etykieta" for="makijaz3">Lakier</label>
-					<input type="color" id="kolor3" class="wybor-koloru">
-				</div>
-			</div>
-			<div class="usluga-sekcja">
-				<label>Komentarz</label>
-				<input type="text" id="komentarz" placeholder="">
-			</div>
-			<div class="usluga-sekcja">
-				<label>Termin</label>
-				<input type="date" id="termin" placeholder="">
-			</div>
-		</div>
-
-		<input type="submit" class="przycisk-wyslij" value="Zamów" style="text-align:center;">
-		<input type="reset" class="przycisk-wyczysc" value="Wyczyść" style="text-align:center;">
-	</form>
-</main>
+	</aside>
+</div>
 <footer>
 	<h3>Jan.K-2TP Gr.1</h3>
 </footer>

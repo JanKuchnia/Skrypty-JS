@@ -112,7 +112,6 @@ main a{
 aside{
     text-align:center;
     width: 25%;
-    min-height: 45vw;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 5px 5px 25px rgba(0, 1, 1, 1);
