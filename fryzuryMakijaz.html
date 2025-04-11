@@ -222,224 +222,220 @@
 	</section>
 
 	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
-
-		document.addEventListener('DOMContentLoaded', function() {
-			const asideInputs = document.querySelectorAll('#zamowienie-podsumowanie .pole-grupa input[type="text"]');
-
-			asideInputs.forEach(input => {
-				const label = input.nextElementSibling;
-
-				input.addEventListener('input', function() {
-					if (this.value) {
-						label.style.top = '-21px';
-						label.style.fontSize = '1rem';
-						label.style.opacity = '1';
-					} else {
-						label.style.top = '12px';
-						label.style.fontSize = '1rem';
-						label.style.opacity = '0.7';
-					}
-				});
-
-				if (input.value) {
-					label.style.top = '-21px';
-					label.style.fontSize = '1rem';
-					label.style.opacity = '1';
-				}
-			});
-		});
-
 		function formularz(event) {
 			event.preventDefault();
 
-			// Reset color displays
-			document.getElementById('kolorWlosow').style.backgroundColor = '';
-			document.getElementById('kolorWlosow').textContent = 'Wybierz kolor';
-			document.getElementById('kolorManicure').style.backgroundColor = '';
-			document.getElementById('kolorManicure').textContent = 'Wybierz kolor';
-			document.getElementById('kolorMakeup').style.backgroundColor = '';
-			document.getElementById('kolorMakeup').textContent = 'Wybierz kolor';
-			document.getElementById('kolorModa').style.backgroundColor = '';
-			document.getElementById('kolorModa').textContent = 'Wybierz kolor';
+			function hexToRgb(hex) {
+				hex = hex.replace('#', '');
+				const r = parseInt(hex.substring(0, 2), 16);
+				const g = parseInt(hex.substring(2, 4), 16);
+				const b = parseInt(hex.substring(4, 6), 16);
+				return `rgb(${r}, ${g}, ${b})`;
+			}
 
+			function resetKolor() {
+				document.getElementById("kolorWlosow").style.backgroundColor = '';
+				document.getElementById("kolorWlosow").textContent = 'Wybierz kolor';
+				document.getElementById("kolorManicure").style.backgroundColor = '';
+				document.getElementById("kolorManicure").textContent = 'Wybierz kolor';
+				document.getElementById("kolorMakeup1").style.backgroundColor = '';
+				document.getElementById("kolorMakeup1").textContent = 'Cień: brak';
+				document.getElementById("kolorMakeup2").style.backgroundColor = '';
+				document.getElementById("kolorMakeup2").textContent = 'Szminka: brak';
+				document.getElementById("kolorMakeup3").style.backgroundColor = '';
+				document.getElementById("kolorMakeup3").textContent = 'Lakier: brak';
+				document.getElementById("kolorModa1").style.backgroundColor = '';
+				document.getElementById("kolorModa1").textContent = 'Sukienki: brak';
+				document.getElementById("kolorModa2").style.backgroundColor = '';
+				document.getElementById("kolorModa2").textContent = 'Buty: brak';
+				document.getElementById("kolorModa3").style.backgroundColor = '';
+				document.getElementById("kolorModa3").textContent = 'Biżuteria: brak';
+			}
+
+			resetKolor();
+			//dane osobowe
 			const imie = document.getElementById("imie").value;
 			const nazwisko = document.getElementById("nazwisko").value;
 			const wiek = document.getElementById("wiek").value;
 			const termin = document.getElementById("termin").value;
 
-			if (!imie.trim() || !nazwisko.trim() || !wiek.trim() || !termin) {
-				window.alert("Uzupełnij dane osobowe i termin!");
+			if (imie == "" || nazwisko == "" || wiek == "" || termin == "") {
+				alert("Proszę wypełnić wszystkie wymagane pola!");
 				return;
 			}
 
-			if (isNaN(wiek) || wiek < 18 || wiek > 120) {
-				window.alert("Wiek musi być liczbą między 18 a 120!");
+			if (wiek < 18 || wiek > 120) {
+				alert("Wiek musi być między 18 a 120 lat!");
 				return;
 			}
 
-			let imieNazwiskoWiek = imie + " " + nazwisko + " - " + wiek + " lat";
-			document.getElementById('imieNazwiskoWiek').value = imieNazwiskoWiek;
-			document.getElementById('terminWyswietl').value = termin;
+			const dzisiaj = new Date();
+			dzisiaj.setHours(0, 0, 0, 0);
+			const selectedDate = new Date(termin);
 
-			// Process selected options
-			updateField('fryzury', 'typWlosow', 'kolorWlosow');
-			updateField('brwi', 'brwiWyswietl');
-			updateField('manicure', 'typManicure', 'kolorManicure');
-			updateField('perfumy', 'perfumyWyswietl');
-			updateCheckboxGroup('akcesoria', 'akcesoriaWyswietl');
-			updateMakeupFields();
-			updateModeFields();
-			updateCheckboxGroup('skora', 'skoraWyswietl');
-			updateCheckboxGroup('zabiegi', 'zabiegiWyswietl');
-
-			// Handle comment
-			const komentarz = document.getElementById('komentarz').value;
-			if (komentarz.trim()) {
-				document.getElementById('komentarzWyswietl').value = komentarz;
+			if (selectedDate < dzisiaj) {
+				alert("Wybrana data nie może być wcześniejsza niż dzisiejsza data!");
+				return;
 			}
 
-			window.alert("Złożono zamówienie!");
-		}
+			document.getElementById("imieNazwiskoWiek").value = `${imie} ${nazwisko} - ${wiek} lat`;
+			document.getElementById("terminWyswietl").value = termin;
 
-		function updateField(fieldName, displayId, colorId) {
-			const selected = document.querySelector(`input[name="${fieldName}"]:checked`);
-			if (!selected) return;
+			//fryzura
+			const fryzura = document.querySelector('input[name="fryzury"]:checked');
+			if (fryzura) {
+				let fryzuraText = "";
+				if (fryzura.value == "krotkie") fryzuraText = "Krótkie";
+				if (fryzura.value == "poldlugie") fryzuraText = "Półdługie";
+				if (fryzura.value == "dlugie") fryzuraText = "Długie";
 
-			let text = '';
-			switch(fieldName) {
-				case 'fryzury':
-					text = selected.value === 'krotkie' ? 'Krótkie' :
-					selected.value === 'poldlugie' ? 'Półdługie' : 'Długie';
+				const farba = document.querySelector('input[name="farba"]:checked');
+				if (farba) {
+					if (farba.id == "farba1") fryzuraText += " - Ombre";
+					if (farba.id == "farba2") fryzuraText += " - Balayage";
+					if (farba.id == "farba3") fryzuraText += " - Jednolite";
 
-					const farba = document.querySelector('input[name="farba"]:checked');
-					if (farba) {
-						const farbaType = farba.id === 'farba1' ? ' - Ombre' :
-						farba.id === 'farba2' ? ' - Balayage' : ' - Jednolite';
-						text += farbaType;
-
-						if (colorId) {
-							const kolorId = farba.id.replace('farba', 'kolor');
-							const kolor = document.getElementById(kolorId).value;
-							document.getElementById(colorId).style.backgroundColor = kolor;
-							document.getElementById(colorId).textContent = kolor;
-						}
-					}
-					break;
-				case 'brwi':
-					text = selected.id === 'brwi1' ? 'Henna' :
-					selected.id === 'brwi2' ? 'Regulacja' : 'Laminacja';
-					break;
-				case 'manicure':
-					text = selected.id === 'manicure1' ? 'Hybrydowy' :
-					selected.id === 'manicure2' ? 'Francuski' : 'Zdobiony';
-
-					if (colorId) {
-						const kolorId = selected.id === 'manicure1' ? 'kolor7' :
-						selected.id === 'manicure2' ? 'kolor8' : 'kolor9';
-						const kolor = document.getElementById(kolorId).value;
-						document.getElementById(colorId).style.backgroundColor = kolor;
-						document.getElementById(colorId).textContent = kolor;
-					}
-					break;
-				case 'perfumy':
-					text = selected.id === 'perfumy1' ? 'Kwiatowe' :
-					selected.id === 'perfumy2' ? 'Owocowe' : 'Drzewne';
-					break;
+					const kolorId = farba.id.replace("farba", "kolor");
+					const kolorWlosow = document.getElementById(kolorId).value;
+					const rgbWlosow = hexToRgb(kolorWlosow);
+					document.getElementById("kolorWlosow").style.backgroundColor = kolorWlosow;
+					document.getElementById("kolorWlosow").textContent = rgbWlosow;
+				}
+				document.getElementById("typWlosow").value = fryzuraText;
 			}
 
-			document.getElementById(displayId).value = text;
-		}
-
-		function updateCheckboxGroup(groupName, displayId) {
-			const checked = document.querySelectorAll(`input[name="${groupName}"]:checked`);
-			if (checked.length === 0) return;
-
-			const texts = [];
-			checked.forEach(item => {
-				switch(groupName) {
-					case 'akcesoria':
-						if (item.id === 'akcesoria1') texts.push('Spinki do Włosów');
-						if (item.id === 'akcesoria2') texts.push('Obrączki');
-						if (item.id === 'akcesoria3') texts.push('Szale');
-						break;
-					case 'skora':
-						if (item.id === 'skora1') texts.push('Maseczki');
-						if (item.id === 'skora2') texts.push('Peeling');
-						if (item.id === 'skora3') texts.push('Serum');
-						break;
-					case 'zabiegi':
-						if (item.id === 'zabiegi1') texts.push('Masaż Twarzy');
-						if (item.id === 'zabiegi2') texts.push('Botoks');
-						if (item.id === 'zabiegi3') texts.push('Depilacja');
-						break;
-				}
-			});
-
-			document.getElementById(displayId).value = texts.join(', ');
-		}
-
-		function updateMakeupFields() {
-			const makijaz = document.querySelectorAll('input[name="makijaz"]:checked');
-			if (makijaz.length === 0) return;
-
-			const texts = [];
-			const colors = [];
-
-			makijaz.forEach(item => {
-				if (item.id === 'makijaz1') {
-					texts.push('Cień');
-					colors.push(document.getElementById('kolor4').value);
-				}
-				if (item.id === 'makijaz2') {
-					texts.push('Szminka');
-					colors.push(document.getElementById('kolor5').value);
-				}
-				if (item.id === 'makijaz3') {
-					texts.push('Lakier');
-					colors.push(document.getElementById('kolor6').value);
-				}
-			});
-
-			document.getElementById('makijazWyswietl').value = texts.join(', ');
-
-			if (colors.length > 0) {
-				document.getElementById('kolorMakeup').style.backgroundColor = colors[0];
-				document.getElementById('kolorMakeup').textContent = colors[0];
+			//brwi
+			const brwi = document.querySelector('input[name="brwi"]:checked');
+			if (brwi) {
+				let brwiText = "";
+				if (brwi.id == "brwi1") brwiText = "Henna";
+				if (brwi.id == "brwi2") brwiText = "Regulacja";
+				if (brwi.id == "brwi3") brwiText = "Laminacja";
+				document.getElementById("brwiWyswietl").value = brwiText;
 			}
-		}
 
-		function updateModeFields() {
-			const moda = document.querySelectorAll('input[name="moda"]:checked');
-			if (moda.length === 0) return;
-
-			const texts = [];
-			const colors = [];
-
-			moda.forEach(item => {
-				if (item.id === 'moda1') {
-					texts.push('Sukienki');
-					colors.push(document.getElementById('kolor10').value);
+			//manicure
+			const manicure = document.querySelector('input[name="manicure"]:checked');
+			if (manicure) {
+				let manicureText = "";
+				let kolorId = "";
+				if (manicure.id == "manicure1") {
+					manicureText = "Hybrydowy";
+					kolorId = "kolor7";
 				}
-				if (item.id === 'moda2') {
-					texts.push('Buty');
-					colors.push(document.getElementById('kolor11').value);
+				if (manicure.id == "manicure2") {
+					manicureText = "Francuski";
+					kolorId = "kolor8";
 				}
-				if (item.id === 'moda3') {
-					texts.push('Biżuteria');
-					colors.push(document.getElementById('kolor12').value);
+				if (manicure.id == "manicure3") {
+					manicureText = "Zdobiony";
+					kolorId = "kolor9";
 				}
-			});
-
-			document.getElementById('modaWyswietl').value = texts.join(', ');
-
-			if (colors.length > 0) {
-				document.getElementById('kolorModa').style.backgroundColor = colors[0];
-				document.getElementById('kolorModa').textContent = colors[0];
+				document.getElementById("typManicure").value = manicureText;
+				const kolorManicure = document.getElementById(kolorId).value;
+				const rgbManicure = hexToRgb(kolorManicure);
+				document.getElementById("kolorManicure").style.backgroundColor = kolorManicure;
+				document.getElementById("kolorManicure").textContent = rgbManicure;
 			}
+
+			//perfumy
+			const perfumy = document.querySelector('input[name="perfumy"]:checked');
+			if (perfumy) {
+				let perfumyText = "";
+				if (perfumy.id == "perfumy1") perfumyText = "Kwiatowe";
+				if (perfumy.id == "perfumy2") perfumyText = "Owocowe";
+				if (perfumy.id == "perfumy3") perfumyText = "Drzewne";
+				document.getElementById("perfumyWyswietl").value = perfumyText;
+			}
+
+			//akcesoria
+			const akcesoria = [];
+			if (document.getElementById("akcesoria1").checked) akcesoria.push("Spinki do włosów");
+			if (document.getElementById("akcesoria2").checked) akcesoria.push("Obrączki");
+			if (document.getElementById("akcesoria3").checked) akcesoria.push("Szale");
+			if (akcesoria.length > 0) {
+				document.getElementById("akcesoriaWyswietl").value = akcesoria.join(", ");
+			}
+
+			//makijaż
+			const makijaz = [];
+			if (document.getElementById("makijaz1").checked) {
+				makijaz.push("Cień");
+				const kolorCien = document.getElementById("kolor4").value;
+				const rgbCien = hexToRgb(kolorCien);
+				document.getElementById("kolorMakeup1").style.backgroundColor = kolorCien;
+				document.getElementById("kolorMakeup1").textContent = `Cień: ${rgbCien}`;
+			}
+			if (document.getElementById("makijaz2").checked) {
+				makijaz.push("Szminka");
+				const kolorSzminka = document.getElementById("kolor5").value;
+				const rgbSzminka = hexToRgb(kolorSzminka);
+				document.getElementById("kolorMakeup2").style.backgroundColor = kolorSzminka;
+				document.getElementById("kolorMakeup2").textContent = `Szminka: ${rgbSzminka}`;
+			}
+			if (document.getElementById("makijaz3").checked) {
+				makijaz.push("Lakier");
+				const kolorLakier = document.getElementById("kolor6").value;
+				const rgbLakier = hexToRgb(kolorLakier);
+				document.getElementById("kolorMakeup3").style.backgroundColor = kolorLakier;
+				document.getElementById("kolorMakeup3").textContent = `Lakier: ${rgbLakier}`;
+			}
+			if (makijaz.length > 0) {
+				document.getElementById("makijazWyswietl").value = makijaz.join(", ");
+			}
+
+			//moda
+			const moda = [];
+			if (document.getElementById("moda1").checked) {
+				moda.push("Sukienki");
+				const kolorSukienki = document.getElementById("kolor10").value;
+				const rgbSukienki = hexToRgb(kolorSukienki);
+				document.getElementById("kolorModa1").style.backgroundColor = kolorSukienki;
+				document.getElementById("kolorModa1").textContent = `Sukienki: ${rgbSukienki}`;
+			}
+			if (document.getElementById("moda2").checked) {
+				moda.push("Buty");
+				const kolorButy = document.getElementById("kolor11").value;
+				const rgbButy = hexToRgb(kolorButy);
+				document.getElementById("kolorModa2").style.backgroundColor = kolorButy;
+				document.getElementById("kolorModa2").textContent = `Buty: ${rgbButy}`;
+			}
+			if (document.getElementById("moda3").checked) {
+				moda.push("Biżuteria");
+				const kolorBizuteria = document.getElementById("kolor12").value;
+				const rgbBizuteria = hexToRgb(kolorBizuteria);
+				document.getElementById("kolorModa3").style.backgroundColor = kolorBizuteria;
+				document.getElementById("kolorModa3").textContent = `Biżuteria: ${rgbBizuteria}`;
+			}
+			if (moda.length > 0) {
+				document.getElementById("modaWyswietl").value = moda.join(", ");
+			}
+
+			//pielęgnacja skory
+			const skora = [];
+			if (document.getElementById("skora1").checked) skora.push("Maseczki");
+			if (document.getElementById("skora2").checked) skora.push("Peeling");
+			if (document.getElementById("skora3").checked) skora.push("Serum");
+			if (skora.length > 0) {
+				document.getElementById("skoraWyswietl").value = skora.join(", ");
+			}
+
+			//zabiegi kosmetyczne
+			const zabiegi = [];
+			if (document.getElementById("zabiegi1").checked) zabiegi.push("Masaż twarzy");
+			if (document.getElementById("zabiegi2").checked) zabiegi.push("Botoks");
+			if (document.getElementById("zabiegi3").checked) zabiegi.push("Depilacja");
+			if (zabiegi.length > 0) {
+				document.getElementById("zabiegiWyswietl").value = zabiegi.join(", ");
+			}
+
+			//komentarz
+			const komentarz = document.getElementById("komentarz").value;
+			if (komentarz.trim() !== "") {
+				document.getElementById("komentarzWyswietl").value = komentarz;
+			}
+
+			alert("Złożono zamówienie!");
 		}
 	</script>
 </header>
