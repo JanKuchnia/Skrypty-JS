@@ -11,7 +11,11 @@
 			max-width: 600px;
 			padding: 25px;
 		}
-
+		#podsumowanie-kontener{
+			background-color: rgba(255, 255, 255, 0.1);
+			border-radius: 10px;
+			padding:15px;
+		}
 		.formularz-kontener {
 			display: flex;
 			flex-direction: column;
@@ -450,24 +454,34 @@
 		</form>
 	</main>
 	<aside id="zamowienie-podsumowanie">
-		<h2>Twoje Zamówienie</h2>
-		<section class="pole-grupa">
-			<input type="text" id="imieNazwiskoWiek" readonly placeholder="">
-			<label>Imię i Nazwisko - Wiek</label>
-		</section>
-		<section>
-			<h3>Fryzury</h3>
+		<section id="podsumowanie-kontener">
+			<h2>Twoje Zamówienie</h2>
 			<section class="pole-grupa">
-				<input type="text" id="typWlosow" readonly placeholder="">
-				<label>Typ Włosów</label>
+				<input type="text" id="imieNazwiskoWiek" readonly placeholder="">
+				<label>Imię i Nazwisko - Wiek</label>
 			</section>
-			<button id="kolor"></button>
-		</section>
-		<section>
-			<h3>Stylizacja Brwi</h3>
-			<section class="pole-grupa">
-				<input type="text" id="brwiWyswietl" readonly placeholder="">
-				<label>Zabiegi</label>
+			<section>
+				<h3>Fryzury</h3>
+				<section class="pole-grupa">
+					<input type="text" id="typWlosow" readonly placeholder="">
+					<label>Typ Włosów</label>
+				</section>
+				<button id="kolorWlosow">Kolor Włosów</button>
+			</section>
+			<section>
+				<h3>Stylizacja Brwi</h3>
+				<section class="pole-grupa">
+					<input type="text" id="brwiWyswietl" readonly placeholder="">
+					<label>Zabiegi</label>
+				</section>
+			</section>
+			<section>
+				<h3>Manicure</h3>
+				<section class="pole-grupa">
+					<input type="text" id="typManicure" readonly placeholder="">
+					<label>Typ Manicure</label>
+				</section>
+				<button id="kolorManicure">Kolor Manicure</button>
 			</section>
 		</section>
 	</aside>
