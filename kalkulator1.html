@@ -1,108 +1,109 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Kalkulator 1</title>
-	<link rel="stylesheet" href="style.css">
-	<script>
-		function kalkulator(znak){
-			const num1 = parseFloat(document.getElementById("num1").value);
-			const num2 = parseFloat(document.getElementById("num2").value);
-			let wynik;
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 1</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function kalkulator(znak){
+            const num1 = parseFloat(document.getElementById("num1").value);
+            const num2 = parseFloat(document.getElementById("num2").value);
+            let wynik;
 
-			if (isNaN(num1) || isNaN(num2)){
-				wynik = "Błąd: wprowadź poprawne dane";
-			} else {
-				switch (znak){
-					case '+':
-						wynik = "Wynik to " + (num1 + num2);
-						break;
-					case '-':
-						wynik = "Wynik to " + (num1 - num2);
-						break;
-					case '*':
-						wynik = "Wynik to " + (num1 * num2);
-						break;
-					case '/':
-						if (num2 === 0){
-							wynik = "Błąd: nie można dzielić przez 0";
-						} else {
-							wynik = "Wynik to " + (num1 / num2);
-						}
-						break;
-					case '^':
-						wynik = "Wynik to " + Math.pow(num1, num2);
-						break;
-					case '<':
-						if (num2 === 0) {
-							wynik = "Błąd: nie można obliczyć pierwiastka z zera";
-						} else {
-							wynik = "Wynik to " + Math.pow(num1, 1 / num2);
-						}
-						break;
-					default:
-						wynik = "Błąd: nieznana operacja";
-				}
-			}
-			document.getElementById("wynik").innerText = wynik;
-		}
-	</script>
+            if (isNaN(num1) || isNaN(num2)){
+                wynik = "Błąd: wprowadź poprawne dane";
+            } else {
+                switch (znak){
+                    case '+':
+                        wynik = "Wynik to " + (num1 + num2);
+                        break;
+                    case '-':
+                        wynik = "Wynik to " + (num1 - num2);
+                        break;
+                    case '*':
+                        wynik = "Wynik to " + (num1 * num2);
+                        break;
+                    case '/':
+                        if (num2 === 0){
+                            wynik = "Błąd: nie można dzielić przez 0";
+                        } else {
+                            wynik = "Wynik to " + (num1 / num2);
+                        }
+                        break;
+                    case '^':
+                        wynik = "Wynik to " + Math.pow(num1, num2);
+                        break;
+                    case '<':
+                        if (num2 === 0) {
+                            wynik = "Błąd: nie można obliczyć pierwiastka z zera";
+                        } else {
+                            wynik = "Wynik to " + Math.pow(num1, 1 / num2);
+                        }
+                        break;
+                    default:
+                        wynik = "Błąd: nieznana operacja";
+                }
+            }
+            document.getElementById("wynik").innerText = wynik;
+        }
+    </script>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<div class="hamburger-menu" onclick="przelaczMenu()">
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-	</div>
+    <h1>Skrypty-JS</h1>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+    </div>
 
-	<div class="menu-kontener">
-		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-		<div class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
-			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
-			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-			<a href="kalkulator15.html" class="linki">Cukierki</a>
-			<a href="kalkulator16.html" class="linki">Komputery</a>
-			<a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-		</div>
-	</div>
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+            <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+        </div>
+    </div>
 
-	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
-	</script>
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
 </header>
 <main>
-	<label for="num1">Kalkulator</label>
-	<input type="number" id="num1"><br>
-	<input type="number" id="num2"><br>
-	<p id="wynik"></p>
-	<button onclick="kalkulator('+')">+</button>
-	<button onclick="kalkulator('-')">-</button>
-	<button onclick="kalkulator('*')">*</button>
-	<button onclick="kalkulator('/')">/</button>
-	<button onclick="kalkulator('^')">^</button>
-	<button onclick="kalkulator('<')">&radic;</button>
+    <label for="num1">Kalkulator</label>
+    <input type="number" id="num1"><br>
+    <input type="number" id="num2"><br>
+    <p id="wynik"></p>
+    <button onclick="kalkulator('+')">+</button>
+    <button onclick="kalkulator('-')">-</button>
+    <button onclick="kalkulator('*')">*</button>
+    <button onclick="kalkulator('/')">/</button>
+    <button onclick="kalkulator('^')">^</button>
+    <button onclick="kalkulator('<')">&radic;</button>
 </main>
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>

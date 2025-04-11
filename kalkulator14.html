@@ -1,131 +1,132 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Kalkulator 14</title>
-	<link rel="stylesheet" href="style.css">
-	<style>
-		main{
-			width:25%;
-		}
-		input{
-			position: relative;
-		}
-		#num1{
-			width:100%;
-		}
-		.inputKontener {
-			display:flex;
-			align-items:center;
-			flex-wrap:wrap;
-		}
-		.inputKontener input {
-			text-align:center;
-			width:80%;
-		}
-		.inputKontener label{
-			width:20%;
-		}
-		#wynik{
-			width:100%;
-		}
-		#opcje2select {
-			width:100%;
-		}
-		.funkcjaKontener{
-		}
-		.funkcjaKontener1 {
-			display: grid;
-			grid-template-columns: repeat(2, 2fr);
-			grid-template-rows: auto;
-			align-items: center;
-			gap: 5px;
-		}
-		.funkcjaKontener input, .funkcjaKontener1 input {
-			width: 95%;
-		}
-		.funkcjaKontener label, .funkcjaKontener1 label {
-			width: 95%;
-		}
-		.funkcjaKontener1 > span:nth-child(-n+11) {
-			grid-column: span 2;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			padding: 5px 0;
-			border-bottom: 1px solid #ccc;
-		}
-		.labelCenter {
-			grid-column: span 2;
-			text-align: center;
-			margin-bottom: 10px;
-		}
-		.dwaInputs {
-			display: flex;
-			justify-content: space-between;
-			grid-column: span 2;
-		}
-		.dwaInputs input {
-			width: 48%;
-		}
-	</style>
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 14</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:25%;
+        }
+        input{
+            position: relative;
+        }
+        #num1{
+            width:100%;
+        }
+        .inputKontener {
+            display:flex;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+        .inputKontener input {
+            text-align:center;
+            width:80%;
+        }
+        .inputKontener label{
+            width:20%;
+        }
+        #wynik{
+            width:100%;
+        }
+        #opcje2select {
+            width:100%;
+        }
+        .funkcjaKontener{
+        }
+        .funkcjaKontener1 {
+            display: grid;
+            grid-template-columns: repeat(2, 2fr);
+            grid-template-rows: auto;
+            align-items: center;
+            gap: 5px;
+        }
+        .funkcjaKontener input, .funkcjaKontener1 input {
+            width: 95%;
+        }
+        .funkcjaKontener label, .funkcjaKontener1 label {
+            width: 95%;
+        }
+        .funkcjaKontener1 > span:nth-child(-n+11) {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 5px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .labelCenter {
+            grid-column: span 2;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .dwaInputs {
+            display: flex;
+            justify-content: space-between;
+            grid-column: span 2;
+        }
+        .dwaInputs input {
+            width: 48%;
+        }
+    </style>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<div class="hamburger-menu" onclick="przelaczMenu()">
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-	</div>
+    <h1>Skrypty-JS</h1>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+    </div>
 
-	<div class="menu-kontener">
-		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-		<div class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
-			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
-			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-			<a href="kalkulator15.html" class="linki">Cukierki</a>
-			<a href="kalkulator16.html" class="linki">Komputery</a>
-			<a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-		</div>
-	</div>
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+            <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+        </div>
+    </div>
 
-	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
-	</script>
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
 </header>
 <div class="asideMainKontener">
-	<main>
-		<label>Funkcja Kwadratowa</label>
-		<div class="inputKontener">
-			<label>A</label>
-			<input type="number" id="kwadratowaA" value="1"
-				   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
-			<label>B</label>
-			<input type="number" id="kwadratowaB" value="0"
-				   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
-			<label>C</label>
-			<input type="number" id="kwadratowaC" value="0"
-				   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
-		</div>
-		<span class="funkcjaKontener">
+    <main>
+        <label>Funkcja Kwadratowa</label>
+        <div class="inputKontener">
+            <label>A</label>
+            <input type="number" id="kwadratowaA" value="1"
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
+            <label>B</label>
+            <input type="number" id="kwadratowaB" value="0"
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
+            <label>C</label>
+            <input type="number" id="kwadratowaC" value="0"
+                   oninput="miejscaZ(); ogolna(); kanoniczna(); iloczynowa(); delta(); zbiorWartosci(); viete(); ramiona(); monotonicznosc();">
+        </div>
+        <span class="funkcjaKontener">
         <span class="funkcjaKontener">
             <label for="wygladOgolna">Funkcja Kwadratowa Ogólna</label>
             <input type="text" readonly id="wygladOgolna">
@@ -168,10 +169,10 @@
 			<input type="text" readonly id="wygladMonotonicznosc2">
         </span>
     </span>
-	</main>
-	<aside>
-		<label>Wzory</label>
-		<span class="funkcjaKontener1">
+    </main>
+    <aside>
+        <label>Wzory</label>
+        <span class="funkcjaKontener1">
             <span class="funkcjaKontener1">
                 <input type="text" value="f(x)=ax²+bx+c" readonly id="funkcje0wzory">
                 <label for="funkcje0wzory">Wzór na funkcję kwadratową ogólną</label>
@@ -226,260 +227,260 @@
                 <label for="funkcje11wzory">Monotoniczność (a<0)</label>
             </span>
         </span>
-	</aside>
+    </aside>
 </div>
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 <script>
-	function ogolna() {
-		const a = document.getElementById("kwadratowaA").value;
-		const b = document.getElementById("kwadratowaB").value;
-		const c = document.getElementById("kwadratowaC").value;
+    function ogolna() {
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-		if (a == 0) {
-			document.getElementById("wygladOgolna").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("wygladOgolna").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		var equation = "";
+        var equation = "";
 
-		if (a != 0) {
-			equation += a == 1 ? "x²" : (a == -1 ? "-x²" : a + "x²");
-		}
+        if (a != 0) {
+            equation += a == 1 ? "x²" : (a == -1 ? "-x²" : a + "x²");
+        }
 
-		if (b != 0) {
-			if (b > 0) {
-				equation += b == 1 ? " + x" : " + " + b + "x";
-			} else {
-				equation += b == -1 ? " - x" : " - " + Math.abs(b) + "x";
-			}
-		}
+        if (b != 0) {
+            if (b > 0) {
+                equation += b == 1 ? " + x" : " + " + b + "x";
+            } else {
+                equation += b == -1 ? " - x" : " - " + Math.abs(b) + "x";
+            }
+        }
 
-		if (c != 0) {
-			if (c > 0) {
-				equation += " + " + c;
-			} else {
-				equation += " - " + Math.abs(c);
-			}
-		}
+        if (c != 0) {
+            if (c > 0) {
+                equation += " + " + c;
+            } else {
+                equation += " - " + Math.abs(c);
+            }
+        }
 
-		document.getElementById("wygladOgolna").value = equation;
-	}
+        document.getElementById("wygladOgolna").value = equation;
+    }
 
-	function kanoniczna() {
-		const a = document.getElementById("kwadratowaA").value;
-		const b = document.getElementById("kwadratowaB").value;
-		const c = document.getElementById("kwadratowaC").value;
+    function kanoniczna() {
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-		if (a == 0) {
-			document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("wygladKanoniczna").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		const delta = (b * b) - 4 * a * c;
-		const p = -b / (2 * a);
-		const q = -delta / (4 * a);
+        const delta = (b * b) - 4 * a * c;
+        const p = -b / (2 * a);
+        const q = -delta / (4 * a);
 
-		let equation = a + "(x ";
+        let equation = a + "(x ";
 
-		if (p >= 0) {
-			equation += "- " + p.toFixed(3) + ")²";
-		} else {
-			equation += "+ " + Math.abs(p).toFixed(3) + ")²";
-		}
+        if (p >= 0) {
+            equation += "- " + p.toFixed(3) + ")²";
+        } else {
+            equation += "+ " + Math.abs(p).toFixed(3) + ")²";
+        }
 
-		if (q >= 0) {
-			equation += " + " + q.toFixed(3);
-		} else {
-			equation += " - " + Math.abs(q).toFixed(3);
-		}
+        if (q >= 0) {
+            equation += " + " + q.toFixed(3);
+        } else {
+            equation += " - " + Math.abs(q).toFixed(3);
+        }
 
-		document.getElementById("wygladKanoniczna").value = equation;
-	}
+        document.getElementById("wygladKanoniczna").value = equation;
+    }
 
-	function iloczynowa() {
-		const a = document.getElementById("kwadratowaA").value;
-		const b = document.getElementById("kwadratowaB").value;
-		const c = document.getElementById("kwadratowaC").value;
+    function iloczynowa() {
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-		if (a == 0) {
-			document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("wygladIloczynowa").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		const delta = (b * b) - 4 * a * c;
-		let equation = "";
+        const delta = (b * b) - 4 * a * c;
+        let equation = "";
 
-		if (delta > 0) {
-			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-			const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        if (delta > 0) {
+            const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            const x2 = (-b - Math.sqrt(delta)) / (2 * a);
 
-			equation = a + "(x ";
+            equation = a + "(x ";
 
-			if (x1 >= 0) {
-				equation += "- " + x1.toFixed(3) + ")(x ";
-			} else {
-				equation += "+ " + Math.abs(x1).toFixed(3) + ")(x ";
-			}
+            if (x1 >= 0) {
+                equation += "- " + x1.toFixed(3) + ")(x ";
+            } else {
+                equation += "+ " + Math.abs(x1).toFixed(3) + ")(x ";
+            }
 
-			if (x2 >= 0) {
-				equation += "- " + x2.toFixed(3) + ")";
-			} else {
-				equation += "+ " + Math.abs(x2).toFixed(3) + ")";
-			}
-		} else if (delta == 0) {
-			var x1 = -b / (2 * a);
+            if (x2 >= 0) {
+                equation += "- " + x2.toFixed(3) + ")";
+            } else {
+                equation += "+ " + Math.abs(x2).toFixed(3) + ")";
+            }
+        } else if (delta == 0) {
+            var x1 = -b / (2 * a);
 
-			equation = a + "(x ";
+            equation = a + "(x ";
 
-			if (x1 >= 0) {
-				equation += "- " + x1.toFixed(3) + ")²";
-			} else {
-				equation += "+ " + Math.abs(x1).toFixed(3) + ")²";
-			}
-		} else {
-			equation = "Nie można stworzyć, brak miejsc zerowych";
-		}
+            if (x1 >= 0) {
+                equation += "- " + x1.toFixed(3) + ")²";
+            } else {
+                equation += "+ " + Math.abs(x1).toFixed(3) + ")²";
+            }
+        } else {
+            equation = "Nie można stworzyć, brak miejsc zerowych";
+        }
 
-		document.getElementById("wygladIloczynowa").value = equation;
-	}
+        document.getElementById("wygladIloczynowa").value = equation;
+    }
 
-	function delta() {
-		const a = document.getElementById("kwadratowaA").value;
-		const b = document.getElementById("kwadratowaB").value;
-		const c = document.getElementById("kwadratowaC").value;
+    function delta() {
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-		if (a == 0) {
-			document.getElementById("wygladDelta").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("wygladDelta").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		const delta = (b * b) - 4 * a * c;
-		document.getElementById("wygladDelta").value = delta;
-	}
+        const delta = (b * b) - 4 * a * c;
+        document.getElementById("wygladDelta").value = delta;
+    }
 
-	function miejscaZ() {
-		const a = document.getElementById("kwadratowaA").value;
-		const b = document.getElementById("kwadratowaB").value;
-		const c = document.getElementById("kwadratowaC").value;
+    function miejscaZ() {
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-		if (a == 0) {
-			document.getElementById("x1").value = "Błąd: a nie może równać się 0";
-			document.getElementById("x2").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("x1").value = "Błąd: a nie może równać się 0";
+            document.getElementById("x2").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		const delta = (b * b) - 4 * a * c;
-		let x1 = "";
-		let x2 = "";
+        const delta = (b * b) - 4 * a * c;
+        let x1 = "";
+        let x2 = "";
 
-		if (delta > 0) {
-			x1 = (-b + Math.sqrt(delta)) / (2 * a);
-			x2 = (-b - Math.sqrt(delta)) / (2 * a);
-		} else if (delta == 0) {
-			x1 = -b / (2 * a);
-			x2 = x1;
-		} else {
-			x1 = "Brak miejsc zerowych (pierwiastki zespolone)";
-			x2 = "Brak miejsc zerowych (pierwiastki zespolone)";
-		}
+        if (delta > 0) {
+            x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            x2 = (-b - Math.sqrt(delta)) / (2 * a);
+        } else if (delta == 0) {
+            x1 = -b / (2 * a);
+            x2 = x1;
+        } else {
+            x1 = "Brak miejsc zerowych (pierwiastki zespolone)";
+            x2 = "Brak miejsc zerowych (pierwiastki zespolone)";
+        }
 
-		document.getElementById("x1").value = x1 != "" ? x1.toFixed(3) : x1;
-		document.getElementById("x2").value = x2 != "" ? x2.toFixed(3) : x2;
-	}
-	function zbiorWartosci(){
-		const a = document.getElementById("kwadratowaA").value;
-		const b = document.getElementById("kwadratowaB").value;
-		const c = document.getElementById("kwadratowaC").value;
+        document.getElementById("x1").value = x1 != "" ? x1.toFixed(3) : x1;
+        document.getElementById("x2").value = x2 != "" ? x2.toFixed(3) : x2;
+    }
+    function zbiorWartosci(){
+        const a = document.getElementById("kwadratowaA").value;
+        const b = document.getElementById("kwadratowaB").value;
+        const c = document.getElementById("kwadratowaC").value;
 
-		if (a == 0) {
-			document.getElementById("wygladZbiorWartosci").value = "Błąd: a nie może równać się 0";
-			return;
-		}
-		const delta = (b * b) - 4 * a * c;
-		const q = -delta / (4 * a);
+        if (a == 0) {
+            document.getElementById("wygladZbiorWartosci").value = "Błąd: a nie może równać się 0";
+            return;
+        }
+        const delta = (b * b) - 4 * a * c;
+        const q = -delta / (4 * a);
 
-		if (a > 0) {
-			document.getElementById("wygladZbiorWartosci").value = "⟨" + q.toFixed(3) + "; ∞)";
-		}
-		else {
-			document.getElementById("wygladZbiorWartosci").value = "(-∞; " + q.toFixed(3) + "⟩";
-		}
-	}
-	function viete(){
-		const a = parseFloat(document.getElementById("kwadratowaA").value);
-		const b = parseFloat(document.getElementById("kwadratowaB").value);
-		const c = parseFloat(document.getElementById("kwadratowaC").value);
+        if (a > 0) {
+            document.getElementById("wygladZbiorWartosci").value = "⟨" + q.toFixed(3) + "; ∞)";
+        }
+        else {
+            document.getElementById("wygladZbiorWartosci").value = "(-∞; " + q.toFixed(3) + "⟩";
+        }
+    }
+    function viete(){
+        const a = parseFloat(document.getElementById("kwadratowaA").value);
+        const b = parseFloat(document.getElementById("kwadratowaB").value);
+        const c = parseFloat(document.getElementById("kwadratowaC").value);
 
-		if (a == 0) {
-			document.getElementById("vietPlus").value = "Błąd: a nie może równać się 0";
-			document.getElementById("vietRazy").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("vietPlus").value = "Błąd: a nie może równać się 0";
+            document.getElementById("vietRazy").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		const delta = (b * b) - 4 * a * c;
+        const delta = (b * b) - 4 * a * c;
 
-		if (delta>=0){
-			const x1 = (-b + Math.sqrt(delta)) / (2 * a);
-			const x2 = (-b - Math.sqrt(delta)) / (2 * a);
-			const vietePlus = x1+x2;
-			const vieteRazy = x1*x2;
-			document.getElementById("vietPlus").value = vietePlus.toFixed(3);
-			document.getElementById("vietRazy").value = vieteRazy.toFixed(3);
-		}
-		else{
-			document.getElementById("vietPlus").value = "Błąd: Δ mniejsza od 0";
-			document.getElementById("vietRazy").value = "Błąd: Δ mniejsza od 0";
-		}
-	}
-	function ramiona(){
-		const a = parseFloat(document.getElementById("kwadratowaA").value);
+        if (delta>=0){
+            const x1 = (-b + Math.sqrt(delta)) / (2 * a);
+            const x2 = (-b - Math.sqrt(delta)) / (2 * a);
+            const vietePlus = x1+x2;
+            const vieteRazy = x1*x2;
+            document.getElementById("vietPlus").value = vietePlus.toFixed(3);
+            document.getElementById("vietRazy").value = vieteRazy.toFixed(3);
+        }
+        else{
+            document.getElementById("vietPlus").value = "Błąd: Δ mniejsza od 0";
+            document.getElementById("vietRazy").value = "Błąd: Δ mniejsza od 0";
+        }
+    }
+    function ramiona(){
+        const a = parseFloat(document.getElementById("kwadratowaA").value);
 
-		if (a == 0) {
-			document.getElementById("wygladRamiona").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("wygladRamiona").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		if(a>0){
-			document.getElementById("wygladRamiona").value = "Ramiona są skierowane do góry";
-		}
-		else if(a<0){
-			document.getElementById("wygladRamiona").value = "Ramiona są skierowane do dołu";
-		}
-	}
-	function monotonicznosc(){
-		const a = parseFloat(document.getElementById("kwadratowaA").value);
-		const b = parseFloat(document.getElementById("kwadratowaB").value);
+        if(a>0){
+            document.getElementById("wygladRamiona").value = "Ramiona są skierowane do góry";
+        }
+        else if(a<0){
+            document.getElementById("wygladRamiona").value = "Ramiona są skierowane do dołu";
+        }
+    }
+    function monotonicznosc(){
+        const a = parseFloat(document.getElementById("kwadratowaA").value);
+        const b = parseFloat(document.getElementById("kwadratowaB").value);
 
-		const p = -b / (2 * a);
+        const p = -b / (2 * a);
 
-		if (a == 0) {
-			document.getElementById("wygladMonotonicznosc1").value = "Błąd: a nie może równać się 0";
-			document.getElementById("wygladMonotonicznosc2").value = "Błąd: a nie może równać się 0";
-			return;
-		}
+        if (a == 0) {
+            document.getElementById("wygladMonotonicznosc1").value = "Błąd: a nie może równać się 0";
+            document.getElementById("wygladMonotonicznosc2").value = "Błąd: a nie może równać się 0";
+            return;
+        }
 
-		if (a > 0) {
-			document.getElementById("wygladMonotonicznosc1").value = "Maleje w przedziale: (-∞; " + p.toFixed(3) + ")";
-			document.getElementById("wygladMonotonicznosc2").value = "Rośnie w przedziale: (" + p.toFixed(3) + "; ∞)";
-		}
-		else if(a<0) {
-			document.getElementById("wygladMonotonicznosc1").value = "Rośnie w przedziale: (-∞; " + p.toFixed(3)+")";
-			document.getElementById("wygladMonotonicznosc2").value = "Maleje w przedziale: (" + p.toFixed(3) + "; ∞)";
-		}
-	}
-	window.onload = function() {
-		delta();
-		miejscaZ();
-		ogolna();
-		kanoniczna();
-		iloczynowa();
-		zbiorWartosci();
-		viete();
-		ramiona();
-		monotonicznosc();
-	};
+        if (a > 0) {
+            document.getElementById("wygladMonotonicznosc1").value = "Maleje w przedziale: (-∞; " + p.toFixed(3) + ")";
+            document.getElementById("wygladMonotonicznosc2").value = "Rośnie w przedziale: (" + p.toFixed(3) + "; ∞)";
+        }
+        else if(a<0) {
+            document.getElementById("wygladMonotonicznosc1").value = "Rośnie w przedziale: (-∞; " + p.toFixed(3)+")";
+            document.getElementById("wygladMonotonicznosc2").value = "Maleje w przedziale: (" + p.toFixed(3) + "; ∞)";
+        }
+    }
+    window.onload = function() {
+        delta();
+        miejscaZ();
+        ogolna();
+        kanoniczna();
+        iloczynowa();
+        zbiorWartosci();
+        viete();
+        ramiona();
+        monotonicznosc();
+    };
 </script>
 </body>
 </html> 

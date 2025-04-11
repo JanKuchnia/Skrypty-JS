@@ -1,125 +1,126 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Kalkulator 8</title>
-	<link rel="stylesheet" href="style.css">
-	<style>
-		main{
-			width:23%;
-		}
-		input{
-			width:49%;
-		}
-		#wynik{
-			width:100%;
-		}
-		#opcje2select {
-			width:100%;
-		}
-	</style>
-	<script>
-		const wartosci = {
-			Pa: 1,
-			hPa: 100,
-			bar: 100000,
-			psi: 6894.76,
-			"newton/milimetr²": 1000000,
-			"kilogram/metr²": 9.80665,
-			at: 98066.5,
-			atm: 101325,
-			Tr: 133.322
-		};
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Kalkulator 8</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main{
+            width:23%;
+        }
+        input{
+            width:49%;
+        }
+        #wynik{
+            width:100%;
+        }
+        #opcje2select {
+            width:100%;
+        }
+    </style>
+    <script>
+        const wartosci = {
+            Pa: 1,
+            hPa: 100,
+            bar: 100000,
+            psi: 6894.76,
+            "newton/milimetr²": 1000000,
+            "kilogram/metr²": 9.80665,
+            at: 98066.5,
+            atm: 101325,
+            Tr: 133.322
+        };
 
-		function kalkulator() {
-			const num1 = parseFloat(document.getElementById("num1").value);
+        function kalkulator() {
+            const num1 = parseFloat(document.getElementById("num1").value);
 
-			const opcja1 = document.querySelector("select[name='opcje1']").value;
-			const opcja2 = document.querySelector("select[name='opcje2']").value;
+            const opcja1 = document.querySelector("select[name='opcje1']").value;
+            const opcja2 = document.querySelector("select[name='opcje2']").value;
 
-			const wprowadzone = num1 * wartosci[opcja1];
-			const wynik = wprowadzone / wartosci[opcja2];
+            const wprowadzone = num1 * wartosci[opcja1];
+            const wynik = wprowadzone / wartosci[opcja2];
 
-			document.getElementById("wynik").value = wynik.toFixed(4);
-		}
-	</script>
+            document.getElementById("wynik").value = wynik.toFixed(4);
+        }
+    </script>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<div class="hamburger-menu" onclick="przelaczMenu()">
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-	</div>
+    <h1>Skrypty-JS</h1>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+    </div>
 
-	<div class="menu-kontener">
-		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-		<div class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
-			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
-			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-			<a href="kalkulator15.html" class="linki">Cukierki</a>
-			<a href="kalkulator16.html" class="linki">Komputery</a>
-			<a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-		</div>
-	</div>
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+            <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+        </div>
+    </div>
 
-	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
-	</script>
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
 </header>
 <main>
-	<label for="num1">Kalkulator Ciśnienia</label>
-	<label for="opcje1select">Wprowadź początkową wartość</label>
-	<input type="number" id="num1">
-	<select name="opcje1" id="opcje1select">
-		<option>Pa</option>
-		<option>hPa</option>
-		<option>bar</option>
-		<option>psi</option>
-		<option>newton/milimetr²</option>
-		<option>kilogram/metr²</option>
-		<option>at</option>
-		<option>atm</option>
-		<option>Tr</option>
-	</select>
-	<br>
-	<label for="opcje2select">Wybierz na co przekalkulować</label>
-	<select name="opcje2" id="opcje2select">
-		<option>Pa</option>
-		<option>hPa</option>
-		<option>bar</option>
-		<option>psi</option>
-		<option>newton/milimetr²</option>
-		<option>kilogram/metr²</option>
-		<option>at</option>
-		<option>atm</option>
-		<option>Tr</option>
-	</select>
-	<label for="wynik">Wynik</label>
-	<input type="number" id="wynik" readonly placeholder="0">
-	<br>
-	<button onclick="kalkulator()">=</button>
+    <label for="num1">Kalkulator Ciśnienia</label>
+    <label for="opcje1select">Wprowadź początkową wartość</label>
+    <input type="number" id="num1">
+    <select name="opcje1" id="opcje1select">
+        <option>Pa</option>
+        <option>hPa</option>
+        <option>bar</option>
+        <option>psi</option>
+        <option>newton/milimetr²</option>
+        <option>kilogram/metr²</option>
+        <option>at</option>
+        <option>atm</option>
+        <option>Tr</option>
+    </select>
+    <br>
+    <label for="opcje2select">Wybierz na co przekalkulować</label>
+    <select name="opcje2" id="opcje2select">
+        <option>Pa</option>
+        <option>hPa</option>
+        <option>bar</option>
+        <option>psi</option>
+        <option>newton/milimetr²</option>
+        <option>kilogram/metr²</option>
+        <option>at</option>
+        <option>atm</option>
+        <option>Tr</option>
+    </select>
+    <label for="wynik">Wynik</label>
+    <input type="number" id="wynik" readonly placeholder="0">
+    <br>
+    <button onclick="kalkulator()">=</button>
 </main>
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>

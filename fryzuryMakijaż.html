@@ -1,331 +1,332 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Fryzury i Makijaż</title>
-	<link rel="stylesheet" href="style.css">
-	<style>
-		main, #zamowienie-podsumowanie {
-			width: 80%;
-			height:80dvh;
-			max-width: 600px;
-			padding: 25px;
-		}
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Fryzury i Makijaż</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main, #zamowienie-podsumowanie {
+            width: 80%;
+            height:80dvh;
+            max-width: 600px;
+            padding: 25px;
+        }
 
-		.formularz-kontener {
-			display: flex;
-			flex-direction: column;
-			gap: 20px;
-		}
+        .formularz-kontener {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-		.dane-osobowe {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 15px;
-			margin-bottom: 20px;
-		}
+        .dane-osobowe {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-		.pole-grupa {
-			position: relative;
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
-		}
+        .pole-grupa {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
 
-		.pole-grupa label {
-			position: absolute;
-			left: 15px;
-			top: 12px;
-			font-size: 1rem;
-			color: white;
-			opacity: 0.7;
-			transition: all 0.3s ease;
-			pointer-events: none;
-			color:black;
-		}
+        .pole-grupa label {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            font-size: 1rem;
+            color: white;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color:black;
+        }
 
-		.pole-grupa input[type="text"],
-		.pole-grupa input[type="number"] {
-			width: 100%;
-			height: 40px;
-			font-size: 1rem;
-			text-align: left;
-			opacity: 0.9;
-			padding-left: 15px;
-		}
+        .pole-grupa input[type="text"],
+        .pole-grupa input[type="number"] {
+            width: 100%;
+            height: 40px;
+            font-size: 1rem;
+            text-align: left;
+            opacity: 0.9;
+            padding-left: 15px;
+        }
 
-		.pole-grupa input:focus + label,
-		.pole-grupa input:not(:placeholder-shown) + label {
-			top: -21px;
-			font-size: 1rem;
-			opacity: 1;
-			color:white;
-		}
+        .pole-grupa input:focus + label,
+        .pole-grupa input:not(:placeholder-shown) + label {
+            top: -21px;
+            font-size: 1rem;
+            opacity: 1;
+            color:white;
+        }
 
-		.uslugi-kontener {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			gap: 25px;
-			padding: 15px;
-			background-color: rgba(255, 255, 255, 0.1);
-			border-radius: 10px;
-		}
+        .uslugi-kontener {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
 
-		.usluga-sekcja {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-		}
+        .usluga-sekcja {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-		.usluga-sekcja h3 {
-			color: white;
-			text-align: center;
-			margin: 0 0 10px 0;
-			font-size: 1.3rem;
-			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-		}
-		.usluga-sekcja input[type="text"]{
-			height:5.406dvh;
-		}
+        .usluga-sekcja h3 {
+            color: white;
+            text-align: center;
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        .usluga-sekcja input[type="text"]{
+            height:5.406dvh;
+        }
 
-		.opcja-wiersz {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			padding: 8px;
-			border-radius: 5px;
-			background-color: rgba(255, 255, 255, 0.08);
-			transition: background-color 0.2s, filter 0.3s;
-		}
+        .opcja-wiersz {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: background-color 0.2s, filter 0.3s;
+        }
 
-		.opcja-wiersz:hover {
-			background-color: rgba(255, 255, 255, 0.15);
-		}
+        .opcja-wiersz:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
 
-		.opcja-wiersz input[type="radio"],
-		.opcja-wiersz input[type="checkbox"] {
-			width: 20px;
-			height: 20px;
-			margin: 0;
-		}
+        .opcja-wiersz input[type="radio"],
+        .opcja-wiersz input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
 
-		.opcja-etykieta {
-			color: white;
-			font-size: 1rem;
-			flex-grow: 1;
-		}
+        .opcja-etykieta {
+            color: white;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
 
-		.wybor-koloru {
-			width: 40px;
-			height: 40px;
-			padding: 2px;
-			border: none;
-			border-radius: 5px;
-			background-color: transparent;
-		}
-		h2{
-			color: white;
-			text-align: center;
-			margin-bottom: 3dvh;
-		}
+        .wybor-koloru {
+            width: 40px;
+            height: 40px;
+            padding: 2px;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+        h2{
+            color: white;
+            text-align: center;
+            margin-bottom: 3dvh;
+        }
 
-		#zamowienie-podsumowanie .pole-grupa label {
-			position: absolute;
-			left: 15px;
-			top: 12px;
-			font-size: 1rem;
-			color: black;
-			opacity: 0.7;
-			transition: all 0.3s ease;
-			pointer-events: none;
-		}
+        #zamowienie-podsumowanie .pole-grupa label {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            font-size: 1rem;
+            color: black;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
 
-		#zamowienie-podsumowanie .pole-grupa input[type="text"] {
-			width: 100%;
-			height: 40px;
-			font-size: 1rem;
-			text-align: left;
-			opacity: 0.9;
-			padding-left: 15px;
-		}
+        #zamowienie-podsumowanie .pole-grupa input[type="text"] {
+            width: 100%;
+            height: 40px;
+            font-size: 1rem;
+            text-align: left;
+            opacity: 0.9;
+            padding-left: 15px;
+        }
 
-		#zamowienie-podsumowanie .pole-grupa input:not(:placeholder-shown) + label {
-			top: -21px;
-			font-size: 1rem;
-			opacity: 1;
-			color: white;
-		}
-	</style>
+        #zamowienie-podsumowanie .pole-grupa input:not(:placeholder-shown) + label {
+            top: -21px;
+            font-size: 1rem;
+            opacity: 1;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<div class="hamburger-menu" onclick="przelaczMenu()">
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-	</div>
+    <h1>Skrypty-JS</h1>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+    </div>
 
-	<div class="menu-kontener">
-		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-		<div class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
-			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
-			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-			<a href="kalkulator15.html" class="linki">Cukierki</a>
-			<a href="kalkulator16.html" class="linki">Komputery</a>
-			<a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-			<a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
-		</div>
-	</div>
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+            <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+            <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
+        </div>
+    </div>
 
-	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
 
-		document.addEventListener('DOMContentLoaded', function() {
-			const asideInputs = document.querySelectorAll('#zamowienie-podsumowanie .pole-grupa input[type="text"]');
+        document.addEventListener('DOMContentLoaded', function() {
+            const asideInputs = document.querySelectorAll('#zamowienie-podsumowanie .pole-grupa input[type="text"]');
 
-			asideInputs.forEach(input => {
-				const label = input.nextElementSibling;
+            asideInputs.forEach(input => {
+                const label = input.nextElementSibling;
 
-				input.addEventListener('input', function() {
-					if (this.value) {
-						label.style.top = '-21px';
-						label.style.fontSize = '1rem';
-						label.style.opacity = '1';
-					} else {
-						label.style.top = '12px';
-						label.style.fontSize = '1rem';
-						label.style.opacity = '0.7';
-					}
-				});
+                input.addEventListener('input', function() {
+                    if (this.value) {
+                        label.style.top = '-21px';
+                        label.style.fontSize = '1rem';
+                        label.style.opacity = '1';
+                    } else {
+                        label.style.top = '12px';
+                        label.style.fontSize = '1rem';
+                        label.style.opacity = '0.7';
+                    }
+                });
 
-				if (input.value) {
-					label.style.top = '-21px';
-					label.style.fontSize = '1rem';
-					label.style.opacity = '1';
-				}
-			});
-		});
+                if (input.value) {
+                    label.style.top = '-21px';
+                    label.style.fontSize = '1rem';
+                    label.style.opacity = '1';
+                }
+            });
+        });
 
-		function formularz(event) {
-			event.preventDefault();
+        function formularz(event) {
+            event.preventDefault();
 
-			const imie = document.getElementById("imie").value;
-			const nazwisko = document.getElementById("nazwisko").value;
-			const wiek = document.getElementById("wiek").value;
+            const imie = document.getElementById("imie").value;
+            const nazwisko = document.getElementById("nazwisko").value;
+            const wiek = document.getElementById("wiek").value;
 
-			if (!imie.trim() || !nazwisko.trim() || !wiek.trim()) {
-				window.alert("Uzupełnij dane osobowe!");
-				return;
-			}
+            if (!imie.trim() || !nazwisko.trim() || !wiek.trim()) {
+                window.alert("Uzupełnij dane osobowe!");
+                return;
+            }
 
-			if (isNaN(wiek) || wiek < 18 || wiek > 120) {
-				window.alert("Wiek musi być liczbą między 18 a 120!");
-				return;
-			}
+            if (isNaN(wiek) || wiek < 18 || wiek > 120) {
+                window.alert("Wiek musi być liczbą między 18 a 120!");
+                return;
+            }
 
-			let imieNazwiskoWiek = imie + " " + nazwisko + " - " + wiek + " lat";
-			document.getElementById('imieNazwiskoWiek').value = imieNazwiskoWiek;
+            let imieNazwiskoWiek = imie + " " + nazwisko + " - " + wiek + " lat";
+            document.getElementById('imieNazwiskoWiek').value = imieNazwiskoWiek;
 
-		}
-	</script>
+        }
+    </script>
 </header>
 <div class="asideMainKontener">
-	<main>
-		<h2>Zamów fryzurę i makijaż</h2>
+    <main>
+        <h2>Zamów fryzurę i makijaż</h2>
 
-		<form class="formularz-kontener" onsubmit="formularz(event)">
-			<div class="dane-osobowe">
-				<div class="pole-grupa">
-					<input type="text" id="imie" placeholder="">
-					<label for="imie">Imię*</label>
-				</div>
-				<div class="pole-grupa">
-					<input type="text" id="nazwisko" placeholder="">
-					<label for="nazwisko">Nazwisko*</label>
-				</div>
-				<div class="pole-grupa">
-					<input type="number" min="18" max="120" id="wiek" placeholder="">
-					<label for="wiek">Wiek*</label>
-				</div>
-			</div>
+        <form class="formularz-kontener" onsubmit="formularz(event)">
+            <div class="dane-osobowe">
+                <div class="pole-grupa">
+                    <input type="text" id="imie" placeholder="">
+                    <label for="imie">Imię*</label>
+                </div>
+                <div class="pole-grupa">
+                    <input type="text" id="nazwisko" placeholder="">
+                    <label for="nazwisko">Nazwisko*</label>
+                </div>
+                <div class="pole-grupa">
+                    <input type="number" min="18" max="120" id="wiek" placeholder="">
+                    <label for="wiek">Wiek*</label>
+                </div>
+            </div>
 
-			<div class="uslugi-kontener">
-				<div class="usluga-sekcja">
-					<h3>Fryzury</h3>
-					<div class="opcja-wiersz">
-						<input type="radio" id="fryzura1" name="fryzury" value="krotkie">
-						<label class="opcja-etykieta" for="fryzura1">Krótkie</label>
-					</div>
-					<div class="opcja-wiersz">
-						<input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
-						<label class="opcja-etykieta" for="fryzura2">Półdługie</label>
-					</div>
-					<div class="opcja-wiersz">
-						<input type="radio" id="fryzura3" name="fryzury" value="dlugie">
-						<label class="opcja-etykieta" for="fryzura3">Długie</label>
-					</div>
-				</div>
+            <div class="uslugi-kontener">
+                <div class="usluga-sekcja">
+                    <h3>Fryzury</h3>
+                    <div class="opcja-wiersz">
+                        <input type="radio" id="fryzura1" name="fryzury" value="krotkie">
+                        <label class="opcja-etykieta" for="fryzura1">Krótkie</label>
+                    </div>
+                    <div class="opcja-wiersz">
+                        <input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
+                        <label class="opcja-etykieta" for="fryzura2">Półdługie</label>
+                    </div>
+                    <div class="opcja-wiersz">
+                        <input type="radio" id="fryzura3" name="fryzury" value="dlugie">
+                        <label class="opcja-etykieta" for="fryzura3">Długie</label>
+                    </div>
+                </div>
 
-				<div class="usluga-sekcja">
-					<h3>Makijaż</h3>
-					<div id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
-						<input type="checkbox" id="makijaz1" name="makijaz[]" value="cien">
-						<label class="opcja-etykieta" for="makijaz1">Cień</label>
-						<input type="color" id="kolor1" class="wybor-koloru">
-					</div>
-					<div id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
-						<input type="checkbox" id="makijaz2" name="makijaz[]" value="szminka">
-						<label class="opcja-etykieta" for="makijaz2">Szminka</label>
-						<input type="color" id="kolor2" class="wybor-koloru">
-					</div>
-					<div id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
-						<input type="checkbox" id="makijaz3" name="makijaz[]" value="lakier">
-						<label class="opcja-etykieta" for="makijaz3">Lakier</label>
-						<input type="color" id="kolor3" class="wybor-koloru">
-					</div>
-				</div>
-				<div class="usluga-sekcja">
-					<label>Komentarz</label>
-					<input type="text" id="komentarz" placeholder="">
-				</div>
-				<div class="usluga-sekcja">
-					<label>Termin*</label>
-					<input type="date" id="termin" placeholder="">
-				</div>
-			</div>
+                <div class="usluga-sekcja">
+                    <h3>Makijaż</h3>
+                    <div id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
+                        <input type="checkbox" id="makijaz1" name="makijaz[]" value="cien">
+                        <label class="opcja-etykieta" for="makijaz1">Cień</label>
+                        <input type="color" id="kolor1" class="wybor-koloru">
+                    </div>
+                    <div id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
+                        <input type="checkbox" id="makijaz2" name="makijaz[]" value="szminka">
+                        <label class="opcja-etykieta" for="makijaz2">Szminka</label>
+                        <input type="color" id="kolor2" class="wybor-koloru">
+                    </div>
+                    <div id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
+                        <input type="checkbox" id="makijaz3" name="makijaz[]" value="lakier">
+                        <label class="opcja-etykieta" for="makijaz3">Lakier</label>
+                        <input type="color" id="kolor3" class="wybor-koloru">
+                    </div>
+                </div>
+                <div class="usluga-sekcja">
+                    <label>Komentarz</label>
+                    <input type="text" id="komentarz" placeholder="">
+                </div>
+                <div class="usluga-sekcja">
+                    <label>Termin*</label>
+                    <input type="date" id="termin" placeholder="">
+                </div>
+            </div>
 
-			<input type="submit" class="przycisk-wyslij" value="Zamów" style="text-align:center;">
-			<input type="reset" class="przycisk-wyczysc" value="Wyczyść" style="text-align:center;">
-		</form>
-	</main>
-	<aside id="zamowienie-podsumowanie">
-		<h2>Twoje Zamówienie</h2>
-		<div class="pole-grupa">
-			<input type="text" id="imieNazwiskoWiek" readonly placeholder="">
-			<label>Imię i Nazwisko - Wiek</label>
-		</div>
-	</aside>
+            <input type="submit" class="przycisk-wyslij" value="Zamów" style="text-align:center;">
+            <input type="reset" class="przycisk-wyczysc" value="Wyczyść" style="text-align:center;">
+        </form>
+    </main>
+    <aside id="zamowienie-podsumowanie">
+        <h2>Twoje Zamówienie</h2>
+        <div class="pole-grupa">
+            <input type="text" id="imieNazwiskoWiek" readonly placeholder="">
+            <label>Imię i Nazwisko - Wiek</label>
+        </div>
+    </aside>
 </div>
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>
