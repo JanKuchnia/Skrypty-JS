@@ -77,7 +77,7 @@
             gap: 10px;
         }
 
-        .usluga-sekcja h3 {
+        h3 {
             color: white;
             text-align: center;
             margin: 0 0 10px 0;
@@ -245,6 +245,7 @@
             let imieNazwiskoWiek = imie + " " + nazwisko + " - " + wiek + " lat";
             document.getElementById('imieNazwiskoWiek').value = imieNazwiskoWiek;
 
+
         }
     </script>
 </header>
@@ -272,36 +273,18 @@
                 <section class="usluga-sekcja">
                     <h3>Farbowanie Włosów</h3>
                     <section class="opcja-wiersz">
-                        <input type="checkbox" id="farba1" name="farba">
-                        <label class="opcja-etykieta" for="farba1">Sukienki</label>
-                        <input type="color" id="kolor10" class="wybor-koloru">
-                    </section>
-                    <section class="opcja-wiersz">
-                        <input type="checkbox" id="farba2" name="farba">
-                        <label class="opcja-etykieta" for="farba2">Buty</label>
-                        <input type="color" id="kolor11" class="wybor-koloru">
-                    </section>
-                    <section class="opcja-wiersz">
-                        <input type="checkbox" id="farba3" name="farba">
-                        <label class="opcja-etykieta" for="farba3">Biżuteria</label>
-                        <input type="color" id="kolor12" class="wybor-koloru">
-                    </section>
-                </section>
-                <section class="usluga-sekcja">
-                    <h3>Makijaż</h3>
-                    <section id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
-                        <input type="checkbox" id="makijaz1" name="makijaz" value="cien">
-                        <label class="opcja-etykieta" for="makijaz1">Cień</label>
+                        <input type="radio" id="farba1" name="farba">
+                        <label class="opcja-etykieta" for="farba1">Ombre</label>
                         <input type="color" id="kolor1" class="wybor-koloru">
                     </section>
-                    <section id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
-                        <input type="checkbox" id="makijaz2" name="makijaz" value="szminka">
-                        <label class="opcja-etykieta" for="makijaz2">Szminka</label>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="farba2" name="farba">
+                        <label class="opcja-etykieta" for="farba2">Balayage</label>
                         <input type="color" id="kolor2" class="wybor-koloru">
                     </section>
-                    <section id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
-                        <input type="checkbox" id="makijaz3" name="makijaz" value="lakier">
-                        <label class="opcja-etykieta" for="makijaz3">Lakier</label>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="farba3" name="farba">
+                        <label class="opcja-etykieta" for="farba3">Jednolite</label>
                         <input type="color" id="kolor3" class="wybor-koloru">
                     </section>
                 </section>
@@ -310,16 +293,34 @@
                     <section class="opcja-wiersz">
                         <input type="radio" id="manicure1" name="manicure">
                         <label class="opcja-etykieta" for="manicure1">Hybrydowy</label>
-                        <input type="color" id="kolor4" class="wybor-koloru">
+                        <input type="color" id="kolor7" class="wybor-koloru">
                     </section>
                     <section class="opcja-wiersz">
                         <input type="radio" id="manicure2" name="manicure">
                         <label class="opcja-etykieta" for="manicure2">Francuski</label>
-                        <input type="color" id="kolor5" class="wybor-koloru">
+                        <input type="color" id="kolor8" class="wybor-koloru">
                     </section>
                     <section class="opcja-wiersz">
                         <input type="radio" id="manicure3" name="manicure">
                         <label class="opcja-etykieta" for="manicure3">Zdobiony</label>
+                        <input type="color" id="kolor9" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Makijaż</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="makijaz1" name="makijaz">
+                        <label class="opcja-etykieta" for="makijaz1">Cień</label>
+                        <input type="color" id="kolor4" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="makijaz2" name="makijaz">
+                        <label class="opcja-etykieta" for="makijaz2">Szminka</label>
+                        <input type="color" id="kolor5" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="makijaz3" name="makijaz">
+                        <label class="opcja-etykieta" for="makijaz3">Lakier</label>
                         <input type="color" id="kolor6" class="wybor-koloru">
                     </section>
                 </section>
@@ -328,17 +329,17 @@
                     <section class="opcja-wiersz">
                         <input type="checkbox" id="moda1" name="moda">
                         <label class="opcja-etykieta" for="moda1">Sukienki</label>
-                        <input type="color" id="kolor7" class="wybor-koloru">
+                        <input type="color" id="kolor10" class="wybor-koloru">
                     </section>
                     <section class="opcja-wiersz">
                         <input type="checkbox" id="moda2" name="moda">
                         <label class="opcja-etykieta" for="moda2">Buty</label>
-                        <input type="color" id="kolor8" class="wybor-koloru">
+                        <input type="color" id="kolor11" class="wybor-koloru">
                     </section>
                     <section class="opcja-wiersz">
                         <input type="checkbox" id="moda3" name="moda">
                         <label class="opcja-etykieta" for="moda3">Biżuteria</label>
-                        <input type="color" id="kolor9" class="wybor-koloru">
+                        <input type="color" id="kolor12" class="wybor-koloru">
                     </section>
                 </section>
                 <section class="usluga-sekcja">
@@ -450,6 +451,9 @@
         <section class="pole-grupa">
             <input type="text" id="imieNazwiskoWiek" readonly placeholder="">
             <label>Imię i Nazwisko - Wiek</label>
+        </section>
+        <section>
+            <h3>Kolor Włosów</h3>
         </section>
     </aside>
 </section>
