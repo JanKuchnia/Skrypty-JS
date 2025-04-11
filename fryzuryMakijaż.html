@@ -7,7 +7,7 @@
     <style>
         main, #zamowienie-podsumowanie {
             width: 80%;
-            height:80dvh;
+            min-height:80dvh;
             max-width: 600px;
             padding: 25px;
         }
@@ -160,16 +160,16 @@
 <body>
 <header>
     <h1>Skrypty-JS</h1>
-    <div class="hamburger-menu" onclick="przelaczMenu()">
-        <div class="pasek"></div>
-        <div class="pasek"></div>
-        <div class="pasek"></div>
-    </div>
+    <section class="hamburger-menu" onclick="przelaczMenu()">
+        <section class="pasek"></section>
+        <section class="pasek"></section>
+        <section class="pasek"></section>
+    </section>
 
-    <div class="menu-kontener">
+    <section class="menu-kontener">
         <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-        <div class="linki-kontener">
+        <section class="linki-kontener">
             <a href="index.html" class="linki home-link">Strona Główna</a>
             <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
             <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
@@ -190,8 +190,8 @@
             <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
             <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
             <a href="fryzuryMakijaż.html" class="linki">Zamówienie fryzury i makijażu</a>
-        </div>
-    </div>
+        </section>
+    </section>
 
     <script>
         function przelaczMenu() {
@@ -248,70 +248,198 @@
         }
     </script>
 </header>
-<div class="asideMainKontener">
+<section class="asideMainKontener">
     <main>
         <h2>Zamów fryzurę i makijaż</h2>
 
         <form class="formularz-kontener" onsubmit="formularz(event)">
-            <div class="dane-osobowe">
-                <div class="pole-grupa">
+            <section class="dane-osobowe">
+                <section class="pole-grupa">
                     <input type="text" id="imie" placeholder="">
                     <label for="imie">Imię*</label>
-                </div>
-                <div class="pole-grupa">
+                </section>
+                <section class="pole-grupa">
                     <input type="text" id="nazwisko" placeholder="">
                     <label for="nazwisko">Nazwisko*</label>
-                </div>
-                <div class="pole-grupa">
+                </section>
+                <section class="pole-grupa">
                     <input type="number" min="18" max="120" id="wiek" placeholder="">
                     <label for="wiek">Wiek*</label>
-                </div>
-            </div>
+                </section>
+            </section>
 
-            <div class="uslugi-kontener">
-                <div class="usluga-sekcja">
-                    <h3>Fryzury</h3>
-                    <div class="opcja-wiersz">
-                        <input type="radio" id="fryzura1" name="fryzury" value="krotkie">
-                        <label class="opcja-etykieta" for="fryzura1">Krótkie</label>
-                    </div>
-                    <div class="opcja-wiersz">
-                        <input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
-                        <label class="opcja-etykieta" for="fryzura2">Półdługie</label>
-                    </div>
-                    <div class="opcja-wiersz">
-                        <input type="radio" id="fryzura3" name="fryzury" value="dlugie">
-                        <label class="opcja-etykieta" for="fryzura3">Długie</label>
-                    </div>
-                </div>
-
-                <div class="usluga-sekcja">
+            <section class="uslugi-kontener">
+                <section class="usluga-sekcja">
+                    <h3>Farbowanie Włosów</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="farba1" name="farba">
+                        <label class="opcja-etykieta" for="farba1">Sukienki</label>
+                        <input type="color" id="kolor10" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="farba2" name="farba">
+                        <label class="opcja-etykieta" for="farba2">Buty</label>
+                        <input type="color" id="kolor11" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="farba3" name="farba">
+                        <label class="opcja-etykieta" for="farba3">Biżuteria</label>
+                        <input type="color" id="kolor12" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
                     <h3>Makijaż</h3>
-                    <div id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
-                        <input type="checkbox" id="makijaz1" name="makijaz[]" value="cien">
+                    <section id="wiersz-cien" class="opcja-wiersz opcja-makijaz rozmyty">
+                        <input type="checkbox" id="makijaz1" name="makijaz" value="cien">
                         <label class="opcja-etykieta" for="makijaz1">Cień</label>
                         <input type="color" id="kolor1" class="wybor-koloru">
-                    </div>
-                    <div id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
-                        <input type="checkbox" id="makijaz2" name="makijaz[]" value="szminka">
+                    </section>
+                    <section id="wiersz-szminka" class="opcja-wiersz opcja-makijaz rozmyty">
+                        <input type="checkbox" id="makijaz2" name="makijaz" value="szminka">
                         <label class="opcja-etykieta" for="makijaz2">Szminka</label>
                         <input type="color" id="kolor2" class="wybor-koloru">
-                    </div>
-                    <div id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
-                        <input type="checkbox" id="makijaz3" name="makijaz[]" value="lakier">
+                    </section>
+                    <section id="wiersz-lakier" class="opcja-wiersz opcja-makijaz rozmyty">
+                        <input type="checkbox" id="makijaz3" name="makijaz" value="lakier">
                         <label class="opcja-etykieta" for="makijaz3">Lakier</label>
                         <input type="color" id="kolor3" class="wybor-koloru">
-                    </div>
-                </div>
-                <div class="usluga-sekcja">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Manicure</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="manicure1" name="manicure">
+                        <label class="opcja-etykieta" for="manicure1">Hybrydowy</label>
+                        <input type="color" id="kolor4" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="manicure2" name="manicure">
+                        <label class="opcja-etykieta" for="manicure2">Francuski</label>
+                        <input type="color" id="kolor5" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="manicure3" name="manicure">
+                        <label class="opcja-etykieta" for="manicure3">Zdobiony</label>
+                        <input type="color" id="kolor6" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Moda</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="moda1" name="moda">
+                        <label class="opcja-etykieta" for="moda1">Sukienki</label>
+                        <input type="color" id="kolor7" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="moda2" name="moda">
+                        <label class="opcja-etykieta" for="moda2">Buty</label>
+                        <input type="color" id="kolor8" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="moda3" name="moda">
+                        <label class="opcja-etykieta" for="moda3">Biżuteria</label>
+                        <input type="color" id="kolor9" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Fryzury</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="fryzura1" name="fryzury" value="krotkie">
+                        <label class="opcja-etykieta" for="fryzura1">Krótkie</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
+                        <label class="opcja-etykieta" for="fryzura2">Półdługie</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="fryzura3" name="fryzury" value="dlugie">
+                        <label class="opcja-etykieta" for="fryzura3">Długie</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Stylizacja Brwi</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="brwi1" name="brwi">
+                        <label class="opcja-etykieta" for="brwi1">Henna</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="brwi2" name="brwi">
+                        <label class="opcja-etykieta" for="brwi2">Regulacja</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="brwi3" name="brwi">
+                        <label class="opcja-etykieta" for="brwi3">Laminacja</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Perfumy</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="perfumy1" name="perfumy">
+                        <label class="opcja-etykieta" for="perfumy1">Kwiatowe</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="perfumy2" name="perfumy">
+                        <label class="opcja-etykieta" for="perfumy2">Owocowe</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="perfumy3" name="perfumy">
+                        <label class="opcja-etykieta" for="perfumy3">Drzewne</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Akcesoria</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="akcesoria1" name="akcesoria">
+                        <label class="opcja-etykieta" for="akcesoria1">Spinki do Włosów</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="akcesoria2" name="akcesoria">
+                        <label class="opcja-etykieta" for="akcesoria2">Obrączki</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="akcesoria3" name="akcesoria">
+                        <label class="opcja-etykieta" for="akcesoria3">Szale</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Pielęgnacja Skóry</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="skora1" name="skora">
+                        <label class="opcja-etykieta" for="skora1">Maseczki</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="skora2" name="skora">
+                        <label class="opcja-etykieta" for="skora2">Peeling</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="skora3" name="skora">
+                        <label class="opcja-etykieta" for="skora3">Serum</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Zabiegi Kosmetyczne</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="zabiegi1" name="zabiegi">
+                        <label class="opcja-etykieta" for="zabiegi1">Masaż Twarzy</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="zabiegi2" name="zabiegi">
+                        <label class="opcja-etykieta" for="zabiegi2">Botoks</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="zabiegi3" name="zabiegi">
+                        <label class="opcja-etykieta" for="zabiegi3">Depilacja</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
                     <label>Komentarz</label>
                     <input type="text" id="komentarz" placeholder="">
-                </div>
-                <div class="usluga-sekcja">
+                </section>
+                <section class="usluga-sekcja">
                     <label>Termin*</label>
                     <input type="date" id="termin" placeholder="">
-                </div>
-            </div>
+                </section>
+            </section>
 
             <input type="submit" class="przycisk-wyslij" value="Zamów" style="text-align:center;">
             <input type="reset" class="przycisk-wyczysc" value="Wyczyść" style="text-align:center;">
@@ -319,12 +447,12 @@
     </main>
     <aside id="zamowienie-podsumowanie">
         <h2>Twoje Zamówienie</h2>
-        <div class="pole-grupa">
+        <section class="pole-grupa">
             <input type="text" id="imieNazwiskoWiek" readonly placeholder="">
             <label>Imię i Nazwisko - Wiek</label>
-        </div>
+        </section>
     </aside>
-</div>
+</section>
 <footer>
     <h3>Jan.K-2TP Gr.1</h3>
 </footer>
