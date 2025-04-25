@@ -1,63 +1,111 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Kalkulator 15</title>
-	<link rel="stylesheet" href="style.css">
-	<style>
-		main{
-
-		}
-	</style>
-	<script>
-	</script>
+    <meta charset="UTF-8">
+    <title>Lany Poniedziałek - Wielkanocna Zabawa</title>
+    <link rel="stylesheet" href="wielkanocStyle.css">
+    <script src="easter-game.js" defer></script>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<div class="hamburger-menu" onclick="przelaczMenu()">
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-		<div class="pasek"></div>
-	</div>
+    <h1>Lany Poniedziałek</h1>
+    <p class="subtitle">Wielkanocna Zabawa</p>
 
-	<div class="menu-kontener">
-		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+    <div class="hamburger-menu" onclick="przelaczMenu()">
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+        <div class="pasek"></div>
+    </div>
 
-		<div class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
-			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
-			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-			<a href="kalkulator15.html" class="linki">Cukierki</a>
-			<a href="kalkulator16.html" class="linki">Komputery</a>
-			<a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-			<a href="fryzuryMakijaz.html" class="linki">Zamówienie fryzury i makijażu</a>
-		</div>
-	</div>
+    <div class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
-	</script>
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+            <a href="fryzuryMakijaz.html" class="linki">Zamówienie fryzury i makijażu</a>
+            <a href="wielkanoc.html" class="linki">Wielkanoc</a>
+        </div>
+    </div>
 </header>
-<main>
-</main>
+
+<div class="game-container">
+    <aside class="game-info">
+        <h2>Twój wynik</h2>
+        <div class="score-display">0</div>
+        <div class="water-level">
+            <label>Poziom wody:</label>
+            <div class="water-meter">
+                <div class="water-fill"></div>
+            </div>
+        </div>
+        <button id="refill-water" class="easter-button">Napełnij wodą</button>
+        <div class="easter-stats">
+            <p>Czas: <span id="time-left">60</span>s</p>
+            <p>Oblanych osób: <span id="people-count">0</span></p>
+        </div>
+    </aside>
+
+    <main class="game-area">
+        <div id="game-message">
+            Kliknij "Start" aby rozpocząć grę!
+        </div>
+        <div id="game-field"></div>
+        <button id="start-game" class="easter-button">Start</button>
+    </main>
+
+    <aside class="instructions">
+        <h2>Jak grać?</h2>
+        <ol>
+            <li>Kliknij "Start" aby rozpocząć</li>
+            <li>Klikaj na pojawiające się postacie, aby je oblać wodą</li>
+            <li>Napełniaj wodą swoje wiadro kiedy się skończy</li>
+            <li>Zdobądź jak najwięcej punktów przed końcem czasu!</li>
+        </ol>
+        <div class="easter-decoration">
+            <img src="images/easter-eggs.png" alt="Pisanki" class="easter-img">
+        </div>
+    </aside>
+</div>
+
+<div class="basket-container">
+    <div class="easter-basket">
+        <div class="item egg1"></div>
+        <div class="item egg2"></div>
+        <div class="item egg3"></div>
+        <div class="item bunny"></div>
+    </div>
+</div>
+
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <div class="footer-content">
+        <div class="grass"></div>
+        <h3>Wesołych Świąt Wielkanocnych!</h3>
+        <p>Jan.K-2TP Gr.1</p>
+    </div>
 </footer>
+
+<script>
+    function przelaczMenu() {
+        const menuKontener = document.querySelector('.menu-kontener');
+        menuKontener.classList.toggle('aktywny');
+    }
+</script>
 </body>
 </html>

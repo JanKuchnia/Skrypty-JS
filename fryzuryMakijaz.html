@@ -1,901 +1,902 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-	<meta charset="UTF-8">
-	<title>Skrypty-JS Fryzury i Makijaż</title>
-	<link rel="stylesheet" href="style.css">
-	<style>
-		main, #zamowienie-podsumowanie {
-			width: 80%;
-			min-height:80dvh;
-			max-width: 600px;
-			padding: 25px;
-		}
-		#podsumowanie-kontener{
-			background-color: rgba(255, 255, 255, 0.1);
-			border-radius: 10px;
-			padding:15px;
-		}
-		.formularz-kontener {
-			display: flex;
-			flex-direction: column;
-			gap: 20px;
-		}
+    <meta charset="UTF-8">
+    <title>Skrypty-JS Fryzury i Makijaż</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        main, #zamowienie-podsumowanie {
+            width: 80%;
+            min-height:80dvh;
+            max-width: 600px;
+            padding: 25px;
+        }
+        #podsumowanie-kontener{
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding:15px;
+        }
+        .formularz-kontener {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-		.dane-osobowe {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 15px;
-			margin-bottom: 20px;
-		}
+        .dane-osobowe {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
 
-		.pole-grupa {
-			position: relative;
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
-		}
+        .pole-grupa {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
 
-		.pole-grupa label {
-			position: absolute;
-			left: 15px;
-			top: 12px;
-			font-size: 1rem;
-			color: white;
-			opacity: 0.7;
-			transition: all 0.3s ease;
-			pointer-events: none;
-			color:black;
-		}
+        .pole-grupa label {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            font-size: 1rem;
+            color: white;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            color:black;
+        }
 
-		.pole-grupa input[type="text"],
-		.pole-grupa input[type="number"] {
-			width: 100%;
-			height: 40px;
-			font-size: 1rem;
-			text-align: left;
-			opacity: 0.9;
-			padding-left: 15px;
-		}
+        .pole-grupa input[type="text"],
+        .pole-grupa input[type="number"] {
+            width: 100%;
+            height: 40px;
+            font-size: 1rem;
+            text-align: left;
+            opacity: 0.9;
+            padding-left: 15px;
+        }
 
-		.pole-grupa input:focus + label,
-		.pole-grupa input:not(:placeholder-shown) + label {
-			top: -21px;
-			font-size: 1rem;
-			opacity: 1;
-			color:white;
-		}
+        .pole-grupa input:focus + label,
+        .pole-grupa input:not(:placeholder-shown) + label {
+            top: -21px;
+            font-size: 1rem;
+            opacity: 1;
+            color:white;
+        }
 
-		.uslugi-kontener {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			gap: 25px;
-			padding: 15px;
-			background-color: rgba(255, 255, 255, 0.1);
-			border-radius: 10px;
-		}
+        .uslugi-kontener {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
 
-		.usluga-sekcja {
-			display: flex;
-			flex-direction: column;
-			gap: 10px;
-		}
+        .usluga-sekcja {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
 
-		h3 {
-			color: white;
-			text-align: center;
-			margin: 0 0 10px 0;
-			font-size: 1.3rem;
-			text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-		}
-		.usluga-sekcja input[type="text"]{
-			height:5.406dvh;
-		}
+        h3 {
+            color: white;
+            text-align: center;
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+        }
+        .usluga-sekcja input[type="text"]{
+            height:5.406dvh;
+        }
 
-		.opcja-wiersz {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			padding: 8px;
-			border-radius: 5px;
-			background-color: rgba(255, 255, 255, 0.08);
-			transition: background-color 0.2s, filter 0.3s;
-		}
+        .opcja-wiersz {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.08);
+            transition: background-color 0.2s, filter 0.3s;
+        }
 
-		.opcja-wiersz:hover {
-			background-color: rgba(255, 255, 255, 0.15);
-		}
+        .opcja-wiersz:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
 
-		.opcja-wiersz input[type="radio"],
-		.opcja-wiersz input[type="checkbox"] {
-			width: 20px;
-			height: 20px;
-			margin: 0;
-		}
+        .opcja-wiersz input[type="radio"],
+        .opcja-wiersz input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
+        }
 
-		.opcja-etykieta {
-			color: white;
-			font-size: 1rem;
-			flex-grow: 1;
-		}
+        .opcja-etykieta {
+            color: white;
+            font-size: 1rem;
+            flex-grow: 1;
+        }
 
-		.wybor-koloru {
-			width: 40px;
-			height: 40px;
-			padding: 2px;
-			border: none;
-			border-radius: 5px;
-			background-color: transparent;
-		}
-		h2{
-			color: white;
-			text-align: center;
-			margin-bottom: 3dvh;
-		}
+        .wybor-koloru {
+            width: 40px;
+            height: 40px;
+            padding: 2px;
+            border: none;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+        h2{
+            color: white;
+            text-align: center;
+            margin-bottom: 3dvh;
+        }
 
-		#zamowienie-podsumowanie .pole-grupa label {
-			position: absolute;
-			left: 15px;
-			top: 12px;
-			font-size: 1rem;
-			color: black;
-			opacity: 0.7;
-			transition: all 0.3s ease;
-			pointer-events: none;
-		}
+        #zamowienie-podsumowanie .pole-grupa label {
+            position: absolute;
+            left: 15px;
+            top: 12px;
+            font-size: 1rem;
+            color: black;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
 
-		#zamowienie-podsumowanie .pole-grupa input[type="text"] {
-			width: 100%;
-			height: 40px;
-			font-size: 1rem;
-			text-align: left;
-			opacity: 0.9;
-			padding-left: 15px;
-		}
+        #zamowienie-podsumowanie .pole-grupa input[type="text"] {
+            width: 100%;
+            height: 40px;
+            font-size: 1rem;
+            text-align: left;
+            opacity: 0.9;
+            padding-left: 15px;
+        }
 
-		#zamowienie-podsumowanie .pole-grupa input:not(:placeholder-shown) + label {
-			top: -21px;
-			font-size: 1rem;
-			opacity: 1;
-			color: white;
-		}
+        #zamowienie-podsumowanie .pole-grupa input:not(:placeholder-shown) + label {
+            top: -21px;
+            font-size: 1rem;
+            opacity: 1;
+            color: white;
+        }
 
-		.kolor-display {
-			width: 40px;
-			height: 40px;
-			border-radius: 5px;
-			display: inline-block;
-			vertical-align: middle;
-			margin-left: 10px;
-		}
+        .kolor-display {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
 
-		#podsumowanie-kontener button {
-			background-color: rgba(255, 255, 255, 0.1);
-			color: white;
-			border: none;
-			padding: 10px 15px;
-			border-radius: 5px;
-			cursor: pointer;
-			margin-top: 10px;
-			transition: all 0.3s ease;
-			min-width: 120px;
-		}
+        #podsumowanie-kontener button {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+            min-width: 120px;
+        }
 
-		#podsumowanie-kontener button:hover {
-			background-color: rgba(255, 255, 255, 0.2);
-		}
-	</style>
+        #podsumowanie-kontener button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
 </head>
 <body>
 <header>
-	<h1>Skrypty-JS</h1>
-	<section class="hamburger-menu" onclick="przelaczMenu()">
-		<section class="pasek"></section>
-		<section class="pasek"></section>
-		<section class="pasek"></section>
-	</section>
+    <h1>Skrypty-JS</h1>
+    <section class="hamburger-menu" onclick="przelaczMenu()">
+        <section class="pasek"></section>
+        <section class="pasek"></section>
+        <section class="pasek"></section>
+    </section>
 
-	<section class="menu-kontener">
-		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
+    <section class="menu-kontener">
+        <span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
-		<section class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
-			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
-			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
-			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
-			<a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
-			<a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
-			<a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
-			<a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
-			<a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
-			<a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
-			<a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
-			<a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
-			<a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
-			<a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
-			<a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
-			<a href="kalkulator15.html" class="linki">Cukierki</a>
-			<a href="kalkulator16.html" class="linki">Komputery</a>
-			<a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
-			<a href="fryzuryMakijaz.html" class="linki">Zamówienie fryzury i makijażu</a>
-		</section>
-	</section>
-	<script>
-		function przelaczMenu() {
-			const menuKontener = document.querySelector('.menu-kontener');
-			menuKontener.classList.toggle('aktywny');
-		}
-	</script>
-	<script>
-		function formularz(event) {
-			event.preventDefault();
+        <div class="linki-kontener">
+            <a href="index.html" class="linki home-link">Strona Główna</a>
+            <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+            <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+            <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+            <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+            <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+            <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+            <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+            <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+            <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+            <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+            <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+            <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+            <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+            <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+            <a href="kalkulator15.html" class="linki">Cukierki</a>
+            <a href="kalkulator16.html" class="linki">Komputery</a>
+            <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+            <a href="fryzuryMakijaz.html" class="linki">Zamówienie fryzury i makijażu</a>
+            <a href="wielkanoc.html" class="linki">Wielkanoc</a>
+        </div>
+    </section>
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
+    <script>
+        function formularz(event) {
+            event.preventDefault();
 
-			function hexToRgb(hex) {
-				hex = hex.replace('#', '');
-				const r = parseInt(hex.substring(0, 2), 16);
-				const g = parseInt(hex.substring(2, 4), 16);
-				const b = parseInt(hex.substring(4, 6), 16);
-				return `rgb(${r}, ${g}, ${b})`;
-			}
+            function hexToRgb(hex) {
+                hex = hex.replace('#', '');
+                const r = parseInt(hex.substring(0, 2), 16);
+                const g = parseInt(hex.substring(2, 4), 16);
+                const b = parseInt(hex.substring(4, 6), 16);
+                return `rgb(${r}, ${g}, ${b})`;
+            }
 
-			function resetKolor() {
-				document.getElementById("kolorWlosow").style.backgroundColor = '';
-				document.getElementById("kolorWlosow").textContent = 'Wybierz kolor';
-				document.getElementById("kolorManicure").style.backgroundColor = '';
-				document.getElementById("kolorManicure").textContent = 'Wybierz kolor';
-				document.getElementById("kolorMakeup1").style.backgroundColor = '';
-				document.getElementById("kolorMakeup1").textContent = 'Cień: brak';
-				document.getElementById("kolorMakeup2").style.backgroundColor = '';
-				document.getElementById("kolorMakeup2").textContent = 'Szminka: brak';
-				document.getElementById("kolorMakeup3").style.backgroundColor = '';
-				document.getElementById("kolorMakeup3").textContent = 'Lakier: brak';
-				document.getElementById("kolorModa1").style.backgroundColor = '';
-				document.getElementById("kolorModa1").textContent = 'Sukienki: brak';
-				document.getElementById("kolorModa2").style.backgroundColor = '';
-				document.getElementById("kolorModa2").textContent = 'Buty: brak';
-				document.getElementById("kolorModa3").style.backgroundColor = '';
-				document.getElementById("kolorModa3").textContent = 'Biżuteria: brak';
-			}
+            function resetKolor() {
+                document.getElementById("kolorWlosow").style.backgroundColor = '';
+                document.getElementById("kolorWlosow").textContent = 'Wybierz kolor';
+                document.getElementById("kolorManicure").style.backgroundColor = '';
+                document.getElementById("kolorManicure").textContent = 'Wybierz kolor';
+                document.getElementById("kolorMakeup1").style.backgroundColor = '';
+                document.getElementById("kolorMakeup1").textContent = 'Cień: brak';
+                document.getElementById("kolorMakeup2").style.backgroundColor = '';
+                document.getElementById("kolorMakeup2").textContent = 'Szminka: brak';
+                document.getElementById("kolorMakeup3").style.backgroundColor = '';
+                document.getElementById("kolorMakeup3").textContent = 'Lakier: brak';
+                document.getElementById("kolorModa1").style.backgroundColor = '';
+                document.getElementById("kolorModa1").textContent = 'Sukienki: brak';
+                document.getElementById("kolorModa2").style.backgroundColor = '';
+                document.getElementById("kolorModa2").textContent = 'Buty: brak';
+                document.getElementById("kolorModa3").style.backgroundColor = '';
+                document.getElementById("kolorModa3").textContent = 'Biżuteria: brak';
+            }
 
-			resetKolor();
+            resetKolor();
 
-			// Prices for services
-			const prices = {
-				fryzury: {
-					krotkie: 45,
-					poldlugie: 60,
-					dlugie: 75
-				},
-				farbowanie: {
-					ombre: 120,
-					balayage: 150,
-					jednolite: 100
-				},
-				brwi: {
-					henna: 50,
-					regulacja: 40,
-					laminacja: 80
-				},
-				manicure: {
-					hybrydowy: 70,
-					francuski: 60,
-					zdobiony: 90
-				},
-				perfumy: {
-					kwiatowe: 30,
-					owocowe: 25,
-					drzewne: 35
-				},
-				akcesoria: {
-					spinki: 20,
-					obraczki: 25,
-					szale: 30
-				},
-				makijaz: {
-					cien: 40,
-					szminka: 35,
-					lakier: 25
-				},
-				moda: {
-					sukienki: 150,
-					buty: 200,
-					bizuteria: 100
-				},
-				skora: {
-					maseczki: 45,
-					peeling: 55,
-					serum: 65
-				},
-				zabiegi: {
-					masaz: 80,
-					botoks: 300,
-					depilacja: 120
-				}
-			};
+            // Prices for services
+            const prices = {
+                fryzury: {
+                    krotkie: 45,
+                    poldlugie: 60,
+                    dlugie: 75
+                },
+                farbowanie: {
+                    ombre: 120,
+                    balayage: 150,
+                    jednolite: 100
+                },
+                brwi: {
+                    henna: 50,
+                    regulacja: 40,
+                    laminacja: 80
+                },
+                manicure: {
+                    hybrydowy: 70,
+                    francuski: 60,
+                    zdobiony: 90
+                },
+                perfumy: {
+                    kwiatowe: 30,
+                    owocowe: 25,
+                    drzewne: 35
+                },
+                akcesoria: {
+                    spinki: 20,
+                    obraczki: 25,
+                    szale: 30
+                },
+                makijaz: {
+                    cien: 40,
+                    szminka: 35,
+                    lakier: 25
+                },
+                moda: {
+                    sukienki: 150,
+                    buty: 200,
+                    bizuteria: 100
+                },
+                skora: {
+                    maseczki: 45,
+                    peeling: 55,
+                    serum: 65
+                },
+                zabiegi: {
+                    masaz: 80,
+                    botoks: 300,
+                    depilacja: 120
+                }
+            };
 
-			let totalPrice = 0;
+            let totalPrice = 0;
 
-			//dane osobowe
-			const imie = document.getElementById("imie").value;
-			const nazwisko = document.getElementById("nazwisko").value;
-			const wiek = document.getElementById("wiek").value;
-			const termin = document.getElementById("termin").value;
+            //dane osobowe
+            const imie = document.getElementById("imie").value;
+            const nazwisko = document.getElementById("nazwisko").value;
+            const wiek = document.getElementById("wiek").value;
+            const termin = document.getElementById("termin").value;
 
-			if (imie == "" || nazwisko == "" || wiek == "" || termin == "") {
-				alert("Proszę wypełnić wszystkie wymagane pola!");
-				return;
-			}
+            if (imie == "" || nazwisko == "" || wiek == "" || termin == "") {
+                alert("Proszę wypełnić wszystkie wymagane pola!");
+                return;
+            }
 
-			if (wiek < 18 || wiek > 120) {
-				alert("Wiek musi być między 18 a 120 lat!");
-				return;
-			}
+            if (wiek < 18 || wiek > 120) {
+                alert("Wiek musi być między 18 a 120 lat!");
+                return;
+            }
 
-			const dzisiaj = new Date();
-			dzisiaj.setHours(0, 0, 0, 0);
-			const selectedDate = new Date(termin);
+            const dzisiaj = new Date();
+            dzisiaj.setHours(0, 0, 0, 0);
+            const selectedDate = new Date(termin);
 
-			if (selectedDate < dzisiaj) {
-				alert("Wybrana data nie może być wcześniejsza niż dzisiejsza data!");
-				return;
-			}
+            if (selectedDate < dzisiaj) {
+                alert("Wybrana data nie może być wcześniejsza niż dzisiejsza data!");
+                return;
+            }
 
-			document.getElementById("imieNazwiskoWiek").value = `${imie} ${nazwisko} - ${wiek} lat`;
-			document.getElementById("terminWyswietl").value = termin;
+            document.getElementById("imieNazwiskoWiek").value = `${imie} ${nazwisko} - ${wiek} lat`;
+            document.getElementById("terminWyswietl").value = termin;
 
-			//fryzura
-			const fryzura = document.querySelector('input[name="fryzury"]:checked');
-			if (fryzura) {
-				let fryzuraText = "";
-				let fryzuraPrice = 0;
-				if (fryzura.value == "krotkie") {
-					fryzuraText = "Krótkie";
-					fryzuraPrice = prices.fryzury.krotkie;
-				}
-				if (fryzura.value == "poldlugie") {
-					fryzuraText = "Półdługie";
-					fryzuraPrice = prices.fryzury.poldlugie;
-				}
-				if (fryzura.value == "dlugie") {
-					fryzuraText = "Długie";
-					fryzuraPrice = prices.fryzury.dlugie;
-				}
+            //fryzura
+            const fryzura = document.querySelector('input[name="fryzury"]:checked');
+            if (fryzura) {
+                let fryzuraText = "";
+                let fryzuraPrice = 0;
+                if (fryzura.value == "krotkie") {
+                    fryzuraText = "Krótkie";
+                    fryzuraPrice = prices.fryzury.krotkie;
+                }
+                if (fryzura.value == "poldlugie") {
+                    fryzuraText = "Półdługie";
+                    fryzuraPrice = prices.fryzury.poldlugie;
+                }
+                if (fryzura.value == "dlugie") {
+                    fryzuraText = "Długie";
+                    fryzuraPrice = prices.fryzury.dlugie;
+                }
 
-				const farba = document.querySelector('input[name="farba"]:checked');
-				if (farba) {
-					let farbaPrice = 0;
-					if (farba.id == "farba1") {
-						fryzuraText += " - Ombre";
-						farbaPrice = prices.farbowanie.ombre;
-					}
-					if (farba.id == "farba2") {
-						fryzuraText += " - Balayage";
-						farbaPrice = prices.farbowanie.balayage;
-					}
-					if (farba.id == "farba3") {
-						fryzuraText += " - Jednolite";
-						farbaPrice = prices.farbowanie.jednolite;
-					}
+                const farba = document.querySelector('input[name="farba"]:checked');
+                if (farba) {
+                    let farbaPrice = 0;
+                    if (farba.id == "farba1") {
+                        fryzuraText += " - Ombre";
+                        farbaPrice = prices.farbowanie.ombre;
+                    }
+                    if (farba.id == "farba2") {
+                        fryzuraText += " - Balayage";
+                        farbaPrice = prices.farbowanie.balayage;
+                    }
+                    if (farba.id == "farba3") {
+                        fryzuraText += " - Jednolite";
+                        farbaPrice = prices.farbowanie.jednolite;
+                    }
 
-					const kolorId = farba.id.replace("farba", "kolor");
-					const kolorWlosow = document.getElementById(kolorId).value;
-					const rgbWlosow = hexToRgb(kolorWlosow);
-					document.getElementById("kolorWlosow").style.backgroundColor = kolorWlosow;
-					document.getElementById("kolorWlosow").textContent = rgbWlosow;
+                    const kolorId = farba.id.replace("farba", "kolor");
+                    const kolorWlosow = document.getElementById(kolorId).value;
+                    const rgbWlosow = hexToRgb(kolorWlosow);
+                    document.getElementById("kolorWlosow").style.backgroundColor = kolorWlosow;
+                    document.getElementById("kolorWlosow").textContent = rgbWlosow;
 
-					totalPrice += farbaPrice;
-				}
-				document.getElementById("typWlosow").value = `${fryzuraText} - ${fryzuraPrice}zł`;
-				totalPrice += fryzuraPrice;
-			}
+                    totalPrice += farbaPrice;
+                }
+                document.getElementById("typWlosow").value = `${fryzuraText} - ${fryzuraPrice}zł`;
+                totalPrice += fryzuraPrice;
+            }
 
-			//brwi
-			const brwi = document.querySelector('input[name="brwi"]:checked');
-			if (brwi) {
-				let brwiText = "";
-				let brwiPrice = 0;
-				if (brwi.id == "brwi1") {
-					brwiText = "Henna";
-					brwiPrice = prices.brwi.henna;
-				}
-				if (brwi.id == "brwi2") {
-					brwiText = "Regulacja";
-					brwiPrice = prices.brwi.regulacja;
-				}
-				if (brwi.id == "brwi3") {
-					brwiText = "Laminacja";
-					brwiPrice = prices.brwi.laminacja;
-				}
-				document.getElementById("brwiWyswietl").value = `${brwiText} - ${brwiPrice}zł`;
-				totalPrice += brwiPrice;
-			}
+            //brwi
+            const brwi = document.querySelector('input[name="brwi"]:checked');
+            if (brwi) {
+                let brwiText = "";
+                let brwiPrice = 0;
+                if (brwi.id == "brwi1") {
+                    brwiText = "Henna";
+                    brwiPrice = prices.brwi.henna;
+                }
+                if (brwi.id == "brwi2") {
+                    brwiText = "Regulacja";
+                    brwiPrice = prices.brwi.regulacja;
+                }
+                if (brwi.id == "brwi3") {
+                    brwiText = "Laminacja";
+                    brwiPrice = prices.brwi.laminacja;
+                }
+                document.getElementById("brwiWyswietl").value = `${brwiText} - ${brwiPrice}zł`;
+                totalPrice += brwiPrice;
+            }
 
-			//manicure
-			const manicure = document.querySelector('input[name="manicure"]:checked');
-			if (manicure) {
-				let manicureText = "";
-				let manicurePrice = 0;
-				let kolorId = "";
-				if (manicure.id == "manicure1") {
-					manicureText = "Hybrydowy";
-					manicurePrice = prices.manicure.hybrydowy;
-					kolorId = "kolor7";
-				}
-				if (manicure.id == "manicure2") {
-					manicureText = "Francuski";
-					manicurePrice = prices.manicure.francuski;
-					kolorId = "kolor8";
-				}
-				if (manicure.id == "manicure3") {
-					manicureText = "Zdobiony";
-					manicurePrice = prices.manicure.zdobiony;
-					kolorId = "kolor9";
-				}
-				document.getElementById("typManicure").value = `${manicureText} - ${manicurePrice}zł`;
-				const kolorManicure = document.getElementById(kolorId).value;
-				const rgbManicure = hexToRgb(kolorManicure);
-				document.getElementById("kolorManicure").style.backgroundColor = kolorManicure;
-				document.getElementById("kolorManicure").textContent = rgbManicure;
-				totalPrice += manicurePrice;
-			}
+            //manicure
+            const manicure = document.querySelector('input[name="manicure"]:checked');
+            if (manicure) {
+                let manicureText = "";
+                let manicurePrice = 0;
+                let kolorId = "";
+                if (manicure.id == "manicure1") {
+                    manicureText = "Hybrydowy";
+                    manicurePrice = prices.manicure.hybrydowy;
+                    kolorId = "kolor7";
+                }
+                if (manicure.id == "manicure2") {
+                    manicureText = "Francuski";
+                    manicurePrice = prices.manicure.francuski;
+                    kolorId = "kolor8";
+                }
+                if (manicure.id == "manicure3") {
+                    manicureText = "Zdobiony";
+                    manicurePrice = prices.manicure.zdobiony;
+                    kolorId = "kolor9";
+                }
+                document.getElementById("typManicure").value = `${manicureText} - ${manicurePrice}zł`;
+                const kolorManicure = document.getElementById(kolorId).value;
+                const rgbManicure = hexToRgb(kolorManicure);
+                document.getElementById("kolorManicure").style.backgroundColor = kolorManicure;
+                document.getElementById("kolorManicure").textContent = rgbManicure;
+                totalPrice += manicurePrice;
+            }
 
-			//perfumy
-			const perfumy = document.querySelector('input[name="perfumy"]:checked');
-			if (perfumy) {
-				let perfumyText = "";
-				let perfumyPrice = 0;
-				if (perfumy.id == "perfumy1") {
-					perfumyText = "Kwiatowe";
-					perfumyPrice = prices.perfumy.kwiatowe;
-				}
-				if (perfumy.id == "perfumy2") {
-					perfumyText = "Owocowe";
-					perfumyPrice = prices.perfumy.owocowe;
-				}
-				if (perfumy.id == "perfumy3") {
-					perfumyText = "Drzewne";
-					perfumyPrice = prices.perfumy.drzewne;
-				}
-				document.getElementById("perfumyWyswietl").value = `${perfumyText} - ${perfumyPrice}zł`;
-				totalPrice += perfumyPrice;
-			}
+            //perfumy
+            const perfumy = document.querySelector('input[name="perfumy"]:checked');
+            if (perfumy) {
+                let perfumyText = "";
+                let perfumyPrice = 0;
+                if (perfumy.id == "perfumy1") {
+                    perfumyText = "Kwiatowe";
+                    perfumyPrice = prices.perfumy.kwiatowe;
+                }
+                if (perfumy.id == "perfumy2") {
+                    perfumyText = "Owocowe";
+                    perfumyPrice = prices.perfumy.owocowe;
+                }
+                if (perfumy.id == "perfumy3") {
+                    perfumyText = "Drzewne";
+                    perfumyPrice = prices.perfumy.drzewne;
+                }
+                document.getElementById("perfumyWyswietl").value = `${perfumyText} - ${perfumyPrice}zł`;
+                totalPrice += perfumyPrice;
+            }
 
-			//akcesoria
-			const akcesoria = [];
-			let akcesoriaPrice = 0;
-			if (document.getElementById("akcesoria1").checked) {
-				akcesoria.push("Spinki do włosów");
-				akcesoriaPrice += prices.akcesoria.spinki;
-			}
-			if (document.getElementById("akcesoria2").checked) {
-				akcesoria.push("Obrączki");
-				akcesoriaPrice += prices.akcesoria.obraczki;
-			}
-			if (document.getElementById("akcesoria3").checked) {
-				akcesoria.push("Szale");
-				akcesoriaPrice += prices.akcesoria.szale;
-			}
-			if (akcesoria.length > 0) {
-				document.getElementById("akcesoriaWyswietl").value = `${akcesoria.join(", ")} - ${akcesoriaPrice}zł`;
-				totalPrice += akcesoriaPrice;
-			}
+            //akcesoria
+            const akcesoria = [];
+            let akcesoriaPrice = 0;
+            if (document.getElementById("akcesoria1").checked) {
+                akcesoria.push("Spinki do włosów");
+                akcesoriaPrice += prices.akcesoria.spinki;
+            }
+            if (document.getElementById("akcesoria2").checked) {
+                akcesoria.push("Obrączki");
+                akcesoriaPrice += prices.akcesoria.obraczki;
+            }
+            if (document.getElementById("akcesoria3").checked) {
+                akcesoria.push("Szale");
+                akcesoriaPrice += prices.akcesoria.szale;
+            }
+            if (akcesoria.length > 0) {
+                document.getElementById("akcesoriaWyswietl").value = `${akcesoria.join(", ")} - ${akcesoriaPrice}zł`;
+                totalPrice += akcesoriaPrice;
+            }
 
-			//makijaż
-			const makijaz = [];
-			let makijazPrice = 0;
-			if (document.getElementById("makijaz1").checked) {
-				makijaz.push("Cień");
-				makijazPrice += prices.makijaz.cien;
-				const kolorCien = document.getElementById("kolor4").value;
-				const rgbCien = hexToRgb(kolorCien);
-				document.getElementById("kolorMakeup1").style.backgroundColor = kolorCien;
-				document.getElementById("kolorMakeup1").textContent = `Cień: ${rgbCien}`;
-			}
-			if (document.getElementById("makijaz2").checked) {
-				makijaz.push("Szminka");
-				makijazPrice += prices.makijaz.szminka;
-				const kolorSzminka = document.getElementById("kolor5").value;
-				const rgbSzminka = hexToRgb(kolorSzminka);
-				document.getElementById("kolorMakeup2").style.backgroundColor = kolorSzminka;
-				document.getElementById("kolorMakeup2").textContent = `Szminka: ${rgbSzminka}`;
-			}
-			if (document.getElementById("makijaz3").checked) {
-				makijaz.push("Lakier");
-				makijazPrice += prices.makijaz.lakier;
-				const kolorLakier = document.getElementById("kolor6").value;
-				const rgbLakier = hexToRgb(kolorLakier);
-				document.getElementById("kolorMakeup3").style.backgroundColor = kolorLakier;
-				document.getElementById("kolorMakeup3").textContent = `Lakier: ${rgbLakier}`;
-			}
-			if (makijaz.length > 0) {
-				document.getElementById("makijazWyswietl").value = `${makijaz.join(", ")} - ${makijazPrice}zł`;
-				totalPrice += makijazPrice;
-			}
+            //makijaż
+            const makijaz = [];
+            let makijazPrice = 0;
+            if (document.getElementById("makijaz1").checked) {
+                makijaz.push("Cień");
+                makijazPrice += prices.makijaz.cien;
+                const kolorCien = document.getElementById("kolor4").value;
+                const rgbCien = hexToRgb(kolorCien);
+                document.getElementById("kolorMakeup1").style.backgroundColor = kolorCien;
+                document.getElementById("kolorMakeup1").textContent = `Cień: ${rgbCien}`;
+            }
+            if (document.getElementById("makijaz2").checked) {
+                makijaz.push("Szminka");
+                makijazPrice += prices.makijaz.szminka;
+                const kolorSzminka = document.getElementById("kolor5").value;
+                const rgbSzminka = hexToRgb(kolorSzminka);
+                document.getElementById("kolorMakeup2").style.backgroundColor = kolorSzminka;
+                document.getElementById("kolorMakeup2").textContent = `Szminka: ${rgbSzminka}`;
+            }
+            if (document.getElementById("makijaz3").checked) {
+                makijaz.push("Lakier");
+                makijazPrice += prices.makijaz.lakier;
+                const kolorLakier = document.getElementById("kolor6").value;
+                const rgbLakier = hexToRgb(kolorLakier);
+                document.getElementById("kolorMakeup3").style.backgroundColor = kolorLakier;
+                document.getElementById("kolorMakeup3").textContent = `Lakier: ${rgbLakier}`;
+            }
+            if (makijaz.length > 0) {
+                document.getElementById("makijazWyswietl").value = `${makijaz.join(", ")} - ${makijazPrice}zł`;
+                totalPrice += makijazPrice;
+            }
 
-			//moda
-			const moda = [];
-			let modaPrice = 0;
-			if (document.getElementById("moda1").checked) {
-				moda.push("Sukienki");
-				modaPrice += prices.moda.sukienki;
-				const kolorSukienki = document.getElementById("kolor10").value;
-				const rgbSukienki = hexToRgb(kolorSukienki);
-				document.getElementById("kolorModa1").style.backgroundColor = kolorSukienki;
-				document.getElementById("kolorModa1").textContent = `Sukienki: ${rgbSukienki}`;
-			}
-			if (document.getElementById("moda2").checked) {
-				moda.push("Buty");
-				modaPrice += prices.moda.buty;
-				const kolorButy = document.getElementById("kolor11").value;
-				const rgbButy = hexToRgb(kolorButy);
-				document.getElementById("kolorModa2").style.backgroundColor = kolorButy;
-				document.getElementById("kolorModa2").textContent = `Buty: ${rgbButy}`;
-			}
-			if (document.getElementById("moda3").checked) {
-				moda.push("Biżuteria");
-				modaPrice += prices.moda.bizuteria;
-				const kolorBizuteria = document.getElementById("kolor12").value;
-				const rgbBizuteria = hexToRgb(kolorBizuteria);
-				document.getElementById("kolorModa3").style.backgroundColor = kolorBizuteria;
-				document.getElementById("kolorModa3").textContent = `Biżuteria: ${rgbBizuteria}`;
-			}
-			if (moda.length > 0) {
-				document.getElementById("modaWyswietl").value = `${moda.join(", ")} - ${modaPrice}zł`;
-				totalPrice += modaPrice;
-			}
+            //moda
+            const moda = [];
+            let modaPrice = 0;
+            if (document.getElementById("moda1").checked) {
+                moda.push("Sukienki");
+                modaPrice += prices.moda.sukienki;
+                const kolorSukienki = document.getElementById("kolor10").value;
+                const rgbSukienki = hexToRgb(kolorSukienki);
+                document.getElementById("kolorModa1").style.backgroundColor = kolorSukienki;
+                document.getElementById("kolorModa1").textContent = `Sukienki: ${rgbSukienki}`;
+            }
+            if (document.getElementById("moda2").checked) {
+                moda.push("Buty");
+                modaPrice += prices.moda.buty;
+                const kolorButy = document.getElementById("kolor11").value;
+                const rgbButy = hexToRgb(kolorButy);
+                document.getElementById("kolorModa2").style.backgroundColor = kolorButy;
+                document.getElementById("kolorModa2").textContent = `Buty: ${rgbButy}`;
+            }
+            if (document.getElementById("moda3").checked) {
+                moda.push("Biżuteria");
+                modaPrice += prices.moda.bizuteria;
+                const kolorBizuteria = document.getElementById("kolor12").value;
+                const rgbBizuteria = hexToRgb(kolorBizuteria);
+                document.getElementById("kolorModa3").style.backgroundColor = kolorBizuteria;
+                document.getElementById("kolorModa3").textContent = `Biżuteria: ${rgbBizuteria}`;
+            }
+            if (moda.length > 0) {
+                document.getElementById("modaWyswietl").value = `${moda.join(", ")} - ${modaPrice}zł`;
+                totalPrice += modaPrice;
+            }
 
-			//pielęgnacja skory
-			const skora = [];
-			let skoraPrice = 0;
-			if (document.getElementById("skora1").checked) {
-				skora.push("Maseczki");
-				skoraPrice += prices.skora.maseczki;
-			}
-			if (document.getElementById("skora2").checked) {
-				skora.push("Peeling");
-				skoraPrice += prices.skora.peeling;
-			}
-			if (document.getElementById("skora3").checked) {
-				skora.push("Serum");
-				skoraPrice += prices.skora.serum;
-			}
-			if (skora.length > 0) {
-				document.getElementById("skoraWyswietl").value = `${skora.join(", ")} - ${skoraPrice}zł`;
-				totalPrice += skoraPrice;
-			}
+            //pielęgnacja skory
+            const skora = [];
+            let skoraPrice = 0;
+            if (document.getElementById("skora1").checked) {
+                skora.push("Maseczki");
+                skoraPrice += prices.skora.maseczki;
+            }
+            if (document.getElementById("skora2").checked) {
+                skora.push("Peeling");
+                skoraPrice += prices.skora.peeling;
+            }
+            if (document.getElementById("skora3").checked) {
+                skora.push("Serum");
+                skoraPrice += prices.skora.serum;
+            }
+            if (skora.length > 0) {
+                document.getElementById("skoraWyswietl").value = `${skora.join(", ")} - ${skoraPrice}zł`;
+                totalPrice += skoraPrice;
+            }
 
-			//zabiegi kosmetyczne
-			const zabiegi = [];
-			let zabiegiPrice = 0;
-			if (document.getElementById("zabiegi1").checked) {
-				zabiegi.push("Masaż twarzy");
-				zabiegiPrice += prices.zabiegi.masaz;
-			}
-			if (document.getElementById("zabiegi2").checked) {
-				zabiegi.push("Botoks");
-				zabiegiPrice += prices.zabiegi.botoks;
-			}
-			if (document.getElementById("zabiegi3").checked) {
-				zabiegi.push("Depilacja");
-				zabiegiPrice += prices.zabiegi.depilacja;
-			}
-			if (zabiegi.length > 0) {
-				document.getElementById("zabiegiWyswietl").value = `${zabiegi.join(", ")} - ${zabiegiPrice}zł`;
-				totalPrice += zabiegiPrice;
-			}
+            //zabiegi kosmetyczne
+            const zabiegi = [];
+            let zabiegiPrice = 0;
+            if (document.getElementById("zabiegi1").checked) {
+                zabiegi.push("Masaż twarzy");
+                zabiegiPrice += prices.zabiegi.masaz;
+            }
+            if (document.getElementById("zabiegi2").checked) {
+                zabiegi.push("Botoks");
+                zabiegiPrice += prices.zabiegi.botoks;
+            }
+            if (document.getElementById("zabiegi3").checked) {
+                zabiegi.push("Depilacja");
+                zabiegiPrice += prices.zabiegi.depilacja;
+            }
+            if (zabiegi.length > 0) {
+                document.getElementById("zabiegiWyswietl").value = `${zabiegi.join(", ")} - ${zabiegiPrice}zł`;
+                totalPrice += zabiegiPrice;
+            }
 
-			//komentarz
-			const komentarz = document.getElementById("komentarz").value;
-			if (komentarz.trim() !== "") {
-				document.getElementById("komentarzWyswietl").value = komentarz;
-			}
+            //komentarz
+            const komentarz = document.getElementById("komentarz").value;
+            if (komentarz.trim() !== "") {
+                document.getElementById("komentarzWyswietl").value = komentarz;
+            }
 
-			// Display total price
-			document.getElementById("cenaRazem").value = `Razem: ${totalPrice}zł`;
+            // Display total price
+            document.getElementById("cenaRazem").value = `Razem: ${totalPrice}zł`;
 
-			alert("Złożono zamówienie!");
-		}
-	</script>
+            alert("Złożono zamówienie!");
+        }
+    </script>
 </header>
 <section class="asideMainKontener">
-	<main>
-		<h2>Zamów fryzurę i makijaż</h2>
+    <main>
+        <h2>Zamów fryzurę i makijaż</h2>
 
-		<form class="formularz-kontener" onsubmit="formularz(event)">
-			<section class="dane-osobowe">
-				<section class="pole-grupa">
-					<input type="text" id="imie" placeholder="">
-					<label for="imie">Imię*</label>
-				</section>
-				<section class="pole-grupa">
-					<input type="text" id="nazwisko" placeholder="">
-					<label for="nazwisko">Nazwisko*</label>
-				</section>
-				<section class="pole-grupa">
-					<input type="number" min="18" max="120" id="wiek" placeholder="">
-					<label for="wiek">Wiek*</label>
-				</section>
-			</section>
-			<section class="uslugi-kontener">
-				<section class="usluga-sekcja">
-					<h3>Fryzury</h3>
-					<section class="opcja-wiersz">
-						<input type="radio" id="fryzura1" name="fryzury" value="krotkie">
-						<label class="opcja-etykieta" for="fryzura1">Krótkie (45zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
-						<label class="opcja-etykieta" for="fryzura2">Półdługie (60zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="fryzura3" name="fryzury" value="dlugie">
-						<label class="opcja-etykieta" for="fryzura3">Długie (75zł)</label>
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Stylizacja Brwi</h3>
-					<section class="opcja-wiersz">
-						<input type="radio" id="brwi1" name="brwi">
-						<label class="opcja-etykieta" for="brwi1">Henna (50zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="brwi2" name="brwi">
-						<label class="opcja-etykieta" for="brwi2">Regulacja (40zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="brwi3" name="brwi">
-						<label class="opcja-etykieta" for="brwi3">Laminacja (80zł)</label>
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Farbowanie Włosów</h3>
-					<section class="opcja-wiersz">
-						<input type="radio" id="farba1" name="farba">
-						<label class="opcja-etykieta" for="farba1">Ombre (120zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor1" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="farba2" name="farba">
-						<label class="opcja-etykieta" for="farba2">Balayage (150zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor2" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="farba3" name="farba">
-						<label class="opcja-etykieta" for="farba3">Jednolite (100zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor3" class="wybor-koloru">
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Manicure</h3>
-					<section class="opcja-wiersz">
-						<input type="radio" id="manicure1" name="manicure">
-						<label class="opcja-etykieta" for="manicure1">Hybrydowy (70zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor7" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="manicure2" name="manicure">
-						<label class="opcja-etykieta" for="manicure2">Francuski (60zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor8" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="manicure3" name="manicure">
-						<label class="opcja-etykieta" for="manicure3">Zdobiony (90zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor9" class="wybor-koloru">
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Perfumy</h3>
-					<section class="opcja-wiersz">
-						<input type="radio" id="perfumy1" name="perfumy">
-						<label class="opcja-etykieta" for="perfumy1">Kwiatowe (30zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="perfumy2" name="perfumy">
-						<label class="opcja-etykieta" for="perfumy2">Owocowe (25zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="radio" id="perfumy3" name="perfumy">
-						<label class="opcja-etykieta" for="perfumy3">Drzewne (35zł)</label>
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Akcesoria</h3>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="akcesoria1" name="akcesoria">
-						<label class="opcja-etykieta" for="akcesoria1">Spinki do Włosów (20zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="akcesoria2" name="akcesoria">
-						<label class="opcja-etykieta" for="akcesoria2">Obrączki (25zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="akcesoria3" name="akcesoria">
-						<label class="opcja-etykieta" for="akcesoria3">Szale (30zł)</label>
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Makijaż</h3>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="makijaz1" name="makijaz">
-						<label class="opcja-etykieta" for="makijaz1">Cień (40zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor4" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="makijaz2" name="makijaz">
-						<label class="opcja-etykieta" for="makijaz2">Szminka (35zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor5" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="makijaz3" name="makijaz">
-						<label class="opcja-etykieta" for="makijaz3">Lakier (25zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor6" class="wybor-koloru">
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Moda</h3>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="moda1" name="moda">
-						<label class="opcja-etykieta" for="moda1">Sukienki (150zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor10" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="moda2" name="moda">
-						<label class="opcja-etykieta" for="moda2">Buty (200zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor11" class="wybor-koloru">
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="moda3" name="moda">
-						<label class="opcja-etykieta" for="moda3">Biżuteria (100zł)</label>
-						<input type="color" value="#FFFFFF" id="kolor12" class="wybor-koloru">
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Pielęgnacja Skóry</h3>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="skora1" name="skora">
-						<label class="opcja-etykieta" for="skora1">Maseczki (45zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="skora2" name="skora">
-						<label class="opcja-etykieta" for="skora2">Peeling (55zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="skora3" name="skora">
-						<label class="opcja-etykieta" for="skora3">Serum (65zł)</label>
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<h3>Zabiegi Kosmetyczne</h3>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="zabiegi1" name="zabiegi">
-						<label class="opcja-etykieta" for="zabiegi1">Masaż Twarzy (80zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="zabiegi2" name="zabiegi">
-						<label class="opcja-etykieta" for="zabiegi2">Botoks (300zł)</label>
-					</section>
-					<section class="opcja-wiersz">
-						<input type="checkbox" id="zabiegi3" name="zabiegi">
-						<label class="opcja-etykieta" for="zabiegi3">Depilacja (120zł)</label>
-					</section>
-				</section>
-				<section class="usluga-sekcja">
-					<label>Komentarz</label>
-					<input type="text" id="komentarz" placeholder="">
-				</section>
-				<section class="usluga-sekcja">
-					<label>Termin*</label>
-					<input type="date" id="termin" placeholder="">
-				</section>
-			</section>
+        <form class="formularz-kontener" onsubmit="formularz(event)">
+            <section class="dane-osobowe">
+                <section class="pole-grupa">
+                    <input type="text" id="imie" placeholder="">
+                    <label for="imie">Imię*</label>
+                </section>
+                <section class="pole-grupa">
+                    <input type="text" id="nazwisko" placeholder="">
+                    <label for="nazwisko">Nazwisko*</label>
+                </section>
+                <section class="pole-grupa">
+                    <input type="number" min="18" max="120" id="wiek" placeholder="">
+                    <label for="wiek">Wiek*</label>
+                </section>
+            </section>
+            <section class="uslugi-kontener">
+                <section class="usluga-sekcja">
+                    <h3>Fryzury</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="fryzura1" name="fryzury" value="krotkie">
+                        <label class="opcja-etykieta" for="fryzura1">Krótkie (45zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="fryzura2" name="fryzury" value="poldlugie">
+                        <label class="opcja-etykieta" for="fryzura2">Półdługie (60zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="fryzura3" name="fryzury" value="dlugie">
+                        <label class="opcja-etykieta" for="fryzura3">Długie (75zł)</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Stylizacja Brwi</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="brwi1" name="brwi">
+                        <label class="opcja-etykieta" for="brwi1">Henna (50zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="brwi2" name="brwi">
+                        <label class="opcja-etykieta" for="brwi2">Regulacja (40zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="brwi3" name="brwi">
+                        <label class="opcja-etykieta" for="brwi3">Laminacja (80zł)</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Farbowanie Włosów</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="farba1" name="farba">
+                        <label class="opcja-etykieta" for="farba1">Ombre (120zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor1" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="farba2" name="farba">
+                        <label class="opcja-etykieta" for="farba2">Balayage (150zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor2" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="farba3" name="farba">
+                        <label class="opcja-etykieta" for="farba3">Jednolite (100zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor3" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Manicure</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="manicure1" name="manicure">
+                        <label class="opcja-etykieta" for="manicure1">Hybrydowy (70zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor7" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="manicure2" name="manicure">
+                        <label class="opcja-etykieta" for="manicure2">Francuski (60zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor8" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="manicure3" name="manicure">
+                        <label class="opcja-etykieta" for="manicure3">Zdobiony (90zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor9" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Perfumy</h3>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="perfumy1" name="perfumy">
+                        <label class="opcja-etykieta" for="perfumy1">Kwiatowe (30zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="perfumy2" name="perfumy">
+                        <label class="opcja-etykieta" for="perfumy2">Owocowe (25zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="radio" id="perfumy3" name="perfumy">
+                        <label class="opcja-etykieta" for="perfumy3">Drzewne (35zł)</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Akcesoria</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="akcesoria1" name="akcesoria">
+                        <label class="opcja-etykieta" for="akcesoria1">Spinki do Włosów (20zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="akcesoria2" name="akcesoria">
+                        <label class="opcja-etykieta" for="akcesoria2">Obrączki (25zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="akcesoria3" name="akcesoria">
+                        <label class="opcja-etykieta" for="akcesoria3">Szale (30zł)</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Makijaż</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="makijaz1" name="makijaz">
+                        <label class="opcja-etykieta" for="makijaz1">Cień (40zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor4" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="makijaz2" name="makijaz">
+                        <label class="opcja-etykieta" for="makijaz2">Szminka (35zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor5" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="makijaz3" name="makijaz">
+                        <label class="opcja-etykieta" for="makijaz3">Lakier (25zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor6" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Moda</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="moda1" name="moda">
+                        <label class="opcja-etykieta" for="moda1">Sukienki (150zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor10" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="moda2" name="moda">
+                        <label class="opcja-etykieta" for="moda2">Buty (200zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor11" class="wybor-koloru">
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="moda3" name="moda">
+                        <label class="opcja-etykieta" for="moda3">Biżuteria (100zł)</label>
+                        <input type="color" value="#FFFFFF" id="kolor12" class="wybor-koloru">
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Pielęgnacja Skóry</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="skora1" name="skora">
+                        <label class="opcja-etykieta" for="skora1">Maseczki (45zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="skora2" name="skora">
+                        <label class="opcja-etykieta" for="skora2">Peeling (55zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="skora3" name="skora">
+                        <label class="opcja-etykieta" for="skora3">Serum (65zł)</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <h3>Zabiegi Kosmetyczne</h3>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="zabiegi1" name="zabiegi">
+                        <label class="opcja-etykieta" for="zabiegi1">Masaż Twarzy (80zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="zabiegi2" name="zabiegi">
+                        <label class="opcja-etykieta" for="zabiegi2">Botoks (300zł)</label>
+                    </section>
+                    <section class="opcja-wiersz">
+                        <input type="checkbox" id="zabiegi3" name="zabiegi">
+                        <label class="opcja-etykieta" for="zabiegi3">Depilacja (120zł)</label>
+                    </section>
+                </section>
+                <section class="usluga-sekcja">
+                    <label>Komentarz</label>
+                    <input type="text" id="komentarz" placeholder="">
+                </section>
+                <section class="usluga-sekcja">
+                    <label>Termin*</label>
+                    <input type="date" id="termin" placeholder="">
+                </section>
+            </section>
 
-			<input type="submit" class="przycisk-wyslij" value="Zamów" style="text-align:center;">
-			<input type="reset" class="przycisk-wyczysc" value="Wyczyść" style="text-align:center;">
-		</form>
-	</main>
-	<aside id="zamowienie-podsumowanie">
-		<section id="podsumowanie-kontener">
-			<h2>Twoje Zamówienie</h2>
-			<section class="pole-grupa">
-				<input type="text" id="imieNazwiskoWiek" readonly placeholder="">
-				<label>Imię i Nazwisko - Wiek</label>
-			</section>
-			<br>
-			<br>
-			<section class="pole-grupa">
-				<input type="text" id="terminWyswietl" readonly placeholder="">
-				<label>Termin</label>
-			</section>
-			<section>
-				<h3>Fryzury</h3>
-				<section class="pole-grupa">
-					<input type="text" id="typWlosow" readonly placeholder="">
-					<label>Typ Włosów</label>
-				</section>
-				<button id="kolorWlosow">Wybierz kolor</button>
-			</section>
-			<section>
-				<h3>Stylizacja Brwi</h3>
-				<section class="pole-grupa">
-					<input type="text" id="brwiWyswietl" readonly placeholder="">
-					<label>Zabiegi</label>
-				</section>
-			</section>
-			<section>
-				<h3>Manicure</h3>
-				<section class="pole-grupa">
-					<input type="text" id="typManicure" readonly placeholder="">
-					<label>Typ Manicure</label>
-				</section>
-				<button id="kolorManicure">Wybierz kolor</button>
-			</section>
-			<section>
-				<h3>Perfumy</h3>
-				<section class="pole-grupa">
-					<input type="text" id="perfumyWyswietl" readonly placeholder="">
-					<label>Zapach</label>
-				</section>
-			</section>
-			<section>
-				<h3>Akcesoria</h3>
-				<section class="pole-grupa">
-					<input type="text" id="akcesoriaWyswietl" readonly placeholder="">
-					<label>Wybrane akcesoria</label>
-				</section>
-			</section>
-			<section>
-				<h3>Makijaż</h3>
-				<section class="pole-grupa">
-					<input type="text" id="makijazWyswietl" readonly placeholder="">
-					<label>Wybrane opcje</label>
-				</section>
-				<button id="kolorMakeup1">Wybierz kolor</button>
-				<button id="kolorMakeup2">Wybierz kolor</button>
-				<button id="kolorMakeup3">Wybierz kolor</button>
-			</section>
-			<section>
-				<h3>Moda</h3>
-				<section class="pole-grupa">
-					<input type="text" id="modaWyswietl" readonly placeholder="">
-					<label>Wybrane elementy</label>
-				</section>
-				<button id="kolorModa1">Wybierz kolor</button>
-				<button id="kolorModa2">Wybierz kolor</button>
-				<button id="kolorModa3">Wybierz kolor</button>
-			</section>
-			<section>
-				<h3>Pielęgnacja Skóry</h3>
-				<section class="pole-grupa">
-					<input type="text" id="skoraWyswietl" readonly placeholder="">
-					<label>Wybrane zabiegi</label>
-				</section>
-			</section>
-			<section>
-				<h3>Zabiegi Kosmetyczne</h3>
-				<section class="pole-grupa">
-					<input type="text" id="zabiegiWyswietl" readonly placeholder="">
-					<label>Wybrane zabiegi</label>
-				</section>
-			</section>
-			<section>
-				<h3>Komentarz</h3>
-				<section class="pole-grupa">
-					<input type="text" id="komentarzWyswietl" readonly placeholder="">
-					<label>Dodatkowe uwagi</label>
-				</section>
-			</section>
-			<section>
-				<h3>Podsumowanie</h3>
-				<section class="pole-grupa">
-					<input type="text" id="cenaRazem" readonly placeholder="">
-					<label>Cena razem</label>
-				</section>
-			</section>
-		</section>
-	</aside>
+            <input type="submit" class="przycisk-wyslij" value="Zamów" style="text-align:center;">
+            <input type="reset" class="przycisk-wyczysc" value="Wyczyść" style="text-align:center;">
+        </form>
+    </main>
+    <aside id="zamowienie-podsumowanie">
+        <section id="podsumowanie-kontener">
+            <h2>Twoje Zamówienie</h2>
+            <section class="pole-grupa">
+                <input type="text" id="imieNazwiskoWiek" readonly placeholder="">
+                <label>Imię i Nazwisko - Wiek</label>
+            </section>
+            <br>
+            <br>
+            <section class="pole-grupa">
+                <input type="text" id="terminWyswietl" readonly placeholder="">
+                <label>Termin</label>
+            </section>
+            <section>
+                <h3>Fryzury</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="typWlosow" readonly placeholder="">
+                    <label>Typ Włosów</label>
+                </section>
+                <button id="kolorWlosow">Wybierz kolor</button>
+            </section>
+            <section>
+                <h3>Stylizacja Brwi</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="brwiWyswietl" readonly placeholder="">
+                    <label>Zabiegi</label>
+                </section>
+            </section>
+            <section>
+                <h3>Manicure</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="typManicure" readonly placeholder="">
+                    <label>Typ Manicure</label>
+                </section>
+                <button id="kolorManicure">Wybierz kolor</button>
+            </section>
+            <section>
+                <h3>Perfumy</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="perfumyWyswietl" readonly placeholder="">
+                    <label>Zapach</label>
+                </section>
+            </section>
+            <section>
+                <h3>Akcesoria</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="akcesoriaWyswietl" readonly placeholder="">
+                    <label>Wybrane akcesoria</label>
+                </section>
+            </section>
+            <section>
+                <h3>Makijaż</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="makijazWyswietl" readonly placeholder="">
+                    <label>Wybrane opcje</label>
+                </section>
+                <button id="kolorMakeup1">Wybierz kolor</button>
+                <button id="kolorMakeup2">Wybierz kolor</button>
+                <button id="kolorMakeup3">Wybierz kolor</button>
+            </section>
+            <section>
+                <h3>Moda</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="modaWyswietl" readonly placeholder="">
+                    <label>Wybrane elementy</label>
+                </section>
+                <button id="kolorModa1">Wybierz kolor</button>
+                <button id="kolorModa2">Wybierz kolor</button>
+                <button id="kolorModa3">Wybierz kolor</button>
+            </section>
+            <section>
+                <h3>Pielęgnacja Skóry</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="skoraWyswietl" readonly placeholder="">
+                    <label>Wybrane zabiegi</label>
+                </section>
+            </section>
+            <section>
+                <h3>Zabiegi Kosmetyczne</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="zabiegiWyswietl" readonly placeholder="">
+                    <label>Wybrane zabiegi</label>
+                </section>
+            </section>
+            <section>
+                <h3>Komentarz</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="komentarzWyswietl" readonly placeholder="">
+                    <label>Dodatkowe uwagi</label>
+                </section>
+            </section>
+            <section>
+                <h3>Podsumowanie</h3>
+                <section class="pole-grupa">
+                    <input type="text" id="cenaRazem" readonly placeholder="">
+                    <label>Cena razem</label>
+                </section>
+            </section>
+        </section>
+    </aside>
 </section>
 <footer>
-	<h3>Jan.K-2TP Gr.1</h3>
+    <h3>Jan.K-2TP Gr.1</h3>
 </footer>
 </body>
 </html>
