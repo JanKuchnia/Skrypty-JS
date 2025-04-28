@@ -67,7 +67,7 @@
             Kliknij "Start" aby rozpocząć grę!
         </div>
         <div id="game-field"></div>
-        <button id="start-game" class="easter-button">Start</button>
+        <button id="start-game" class="easter-button">Start</button> <!-- Removed onclick -->
     </main>
 
     <aside class="instructions">
@@ -79,7 +79,8 @@
             <li>Zdobądź jak najwięcej punktów przed końcem czasu!</li>
         </ol>
         <div class="easter-decoration">
-            <img src="easter-eggs.png" alt="Pisanki" class="easter-img">
+            <!-- Corrected image path assuming images are in an 'images' folder -->
+            <img src="images/easter-eggs.png" alt="Pisanki" class="easter-img">
         </div>
     </aside>
 </div>
@@ -102,6 +103,7 @@
 </footer>
 
 <script>
+    // This function remains as it controls the general site menu
     function przelaczMenu() {
         const menuKontener = document.querySelector('.menu-kontener');
         menuKontener.classList.toggle('aktywny');

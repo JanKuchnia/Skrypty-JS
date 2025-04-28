@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function startGame() {
         if (gameActive) return;
 
+        console.log("Game starting...");
         gameActive = true;
         score = 0;
         waterLevel = 100;
@@ -33,76 +34,98 @@ document.addEventListener('DOMContentLoaded', function() {
 
         updateDisplays();
         gameMessage.textContent = "Gra w toku! Klikaj na postacie!";
+        console.log("Game message updated:", gameMessage.textContent);
         startButton.disabled = true;
+        console.log("Start button disabled");
 
         // Start game timer
         gameInterval = setInterval(function() {
+            console.log("Timer tick, time left:", timeLeft);
             timeLeft--;
             updateDisplays();
 
             if (timeLeft <= 0) {
+                console.log("Time up, ending game");
                 endGame();
             }
         }, 1000);
 
         // Start spawning characters
-        characterInterval = setInterval(spawnCharacter, 1000);
+        console.log("Setting up character spawn interval");
+        characterInterval = setInterval(function() {
+            console.log("Attempting to spawn character");
+            spawnCharacter();
+        }, 1000); // Spawn rate (e.g., every 1 second)
     }
 
     // Spawn a new character
     function spawnCharacter() {
-        if (!gameActive) return;
+        if (!gameActive) {
+            console.log("Game not active, not spawning character");
+            return;
+        }
 
+        console.log("Creating character element");
         const character = document.createElement('div');
         character.className = 'game-character';
 
-        // Random position
-        const maxX = gameField.offsetWidth - 60;
-        const maxY = gameField.offsetHeight - 90;
-        const randomX = Math.floor(Math.random() * maxX);
-        const randomY = Math.floor(Math.random() * maxY);
+        // Random position within gameField boundaries
+        const charWidth = 60; // Must match CSS width
+        const charHeight = 90; // Must match CSS height
+        const maxX = gameField.offsetWidth - charWidth;
+        const maxY = gameField.offsetHeight - charHeight;
+        // Ensure maxX/maxY are not negative if gameField is too small
+        const randomX = Math.floor(Math.random() * Math.max(0, maxX));
+        const randomY = Math.floor(Math.random() * Math.max(0, maxY));
 
+        console.log("Character position:", randomX, randomY);
         character.style.left = `${randomX}px`;
         character.style.top = `${randomY}px`;
 
         // Click event
-        character.addEventListener('click', function() {
-            if (waterLevel > 0) {
-                // Create splash effect
-                const splash = document.createElement('div');
-                splash.className = 'water-splash';
-                splash.style.left = `${randomX - 20}px`;
-                splash.style.top = `${randomY - 5}px`;
-                gameField.appendChild(splash);
-
-                // Remove splash after animation
-                setTimeout(() => {
-                    splash.remove();
-                }, 500);
-
-                // Update game state
-                score += 10;
+        character.addEventListener('click', function(event) {
+            console.log("Character clicked!");
+            if (waterLevel >= waterPerClick) {
                 waterLevel -= waterPerClick;
+                score++;
                 peopleCount++;
                 updateDisplays();
 
-                // Remove character
-                character.remove();
+                // Create water splash - Position relative to gameField
+                const splash = document.createElement('div');
+                splash.className = 'water-splash';
+                // Use character position for splash base, adjust for centering
+                const splashSize = 100; // Match CSS size
+                splash.style.left = `${character.offsetLeft + (charWidth / 2) - (splashSize / 2)}px`;
+                splash.style.top = `${character.offsetTop + (charHeight / 2) - (splashSize / 2)}px`;
+                gameField.appendChild(splash);
+                setTimeout(() => {
+                    splash.remove();
+                }, 500); // Duration of the splash animation
 
-                if (waterLevel <= 0) {
-                    gameMessage.textContent = "Napełnij wodę aby kontynuować!";
-                }
+                character.remove(); // Remove the clicked character
+            } else {
+                gameMessage.textContent = "Nie masz wystarczająco wody! Napełnij wiadro!";
+                setTimeout(() => {
+                    if (gameActive) {
+                        gameMessage.textContent = "Gra w toku! Klikaj na postacie!";
+                    }
+                }, 2000);
             }
+            // Prevent event bubbling if necessary
+            event.stopPropagation();
         });
 
-        // Auto-remove if not clicked
+        // Auto-remove if not clicked after a delay
         setTimeout(() => {
+            // Check if character still exists in the game field before removing
             if (character.parentNode === gameField) {
                 character.remove();
             }
-        }, 2000);
+        }, 2000); // Character lifespan (e.g., 2 seconds)
 
         gameField.appendChild(character);
+        console.log("Character added to game field");
     }
 
     // Refill water
@@ -111,12 +134,19 @@ document.addEventListener('DOMContentLoaded', function() {
         waterLevel = waterRefillAmount;
         updateDisplays();
         gameMessage.textContent = "Wiadro napełnione! Kontynuuj grę!";
+        // Optionally add a short delay before resetting the message
+        setTimeout(() => {
+            if (gameActive) {
+                gameMessage.textContent = "Gra w toku! Klikaj na postacie!";
+            }
+        }, 1500);
     }
 
     // Update all displays
     function updateDisplays() {
         scoreDisplay.textContent = score;
-        waterFill.style.transform = `scaleX(${waterLevel / 100})`;
+        // Ensure waterLevel doesn't go below 0 for display
+        waterFill.style.transform = `scaleX(${Math.max(0, waterLevel) / 100})`;
         timeDisplay.textContent = timeLeft;
         peopleDisplay.textContent = peopleCount;
     }
@@ -127,16 +157,24 @@ document.addEventListener('DOMContentLoaded', function() {
         clearInterval(gameInterval);
         clearInterval(characterInterval);
 
-        // Remove all characters
-        while (gameField.firstChild) {
-            gameField.firstChild.remove();
-        }
+        // Remove all characters and splashes safely
+        const characters = gameField.querySelectorAll('.game-character');
+        characters.forEach(char => char.remove());
+        const splashes = gameField.querySelectorAll('.water-splash');
+        splashes.forEach(splash => splash.remove());
+
 
         gameMessage.textContent = `Koniec gry! Twój wynik: ${score} punktów. Kliknij "Start" aby zagrać ponownie.`;
         startButton.disabled = false;
+        // Reset styles potentially changed during game over message
+        gameMessage.style.color = "white";
+        gameMessage.style.fontSize = "1.4rem";
     }
 
     // Event listeners
     startButton.addEventListener('click', startGame);
     refillButton.addEventListener('click', refillWater);
+
+    // Initial setup
+    updateDisplays(); // Ensure initial display is correct
 });
