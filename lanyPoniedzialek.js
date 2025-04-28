@@ -269,6 +269,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 misses++;
                 missesDisplay.textContent = misses;
                 
+                // Deduct 10 points for each miss
+                score = Math.max(0, score - 10); // Prevent negative score
+                scoreDisplay.textContent = score;
+                
                 // Decrease water level more for misses
                 waterLevel = Math.max(0, waterLevel - 5);
                 waterFill.style.transform = `scaleX(${waterLevel / 100})`;
