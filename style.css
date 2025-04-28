@@ -220,6 +220,10 @@ select{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .pasek {
@@ -228,6 +232,11 @@ select{
     margin: 0.3rem 0;
     background: white;
     transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.hamburger-menu:hover .pasek {
+    background: #d0d0d0;
 }
 
 .menu-kontener {
@@ -252,11 +261,11 @@ select{
 
 .linki-kontener {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
     width: 90%;
     max-width: 800px;
-    padding: 1rem;
+    padding: 20px;
     transition: all 0.3s ease;
 }
 
@@ -264,39 +273,61 @@ select{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 3rem;
-    padding: 0.5rem;
+    min-height: 60px;
+    padding: 10px;
     background: rgba(220, 220, 220, 0.9);
-    border-radius: 0.5rem;
-    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    border-radius: 10px;
+    font-size: 1rem;
     color: black;
     text-decoration: none;
     transition: 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .linki:hover {
     transform: scale(1.05);
     background: #d6d6d6;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .linki-kontener:hover > :not(:hover){
-    filter:blur(1px);
-    opacity:0.9;
+    filter: blur(1px);
+    opacity: 0.8;
     transition: 0.3s ease;
 }
 
 .home-link {
     grid-column: 1 / -1;
-    font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
-    min-height: 4rem !important;
+    font-size: 1.4rem !important;
+    min-height: 70px !important;
     font-weight: bold;
+    background: linear-gradient(135deg, #3a9ab9, #180a7a);
+    color: white;
+}
+
+.home-link:hover {
+    background: linear-gradient(135deg, #180a7a, #3a9ab9);
 }
 
 .zamknij {
     position: absolute;
-    top: clamp(10px, 2vh, 16px);
-    right: clamp(10px, 2vw, 16px);
-    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    top: 20px;
+    right: 20px;
+    font-size: 2rem;
     color: white;
     cursor: pointer;
-} 
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.zamknij:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+    transform: rotate(90deg);
+}
