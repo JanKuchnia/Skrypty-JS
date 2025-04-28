@@ -37,7 +37,6 @@ header {
     margin-bottom: 3vh;
     background-image: linear-gradient(to top, var(--easter-blue), var(--easter-purple));
     width: 100%;
-    padding: 20px 0 30px;
     box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
     border-bottom: 5px solid var(--easter-yellow);
     overflow: hidden;
@@ -95,7 +94,8 @@ main.game-area {
     background: linear-gradient(135deg, var(--easter-blue) 0%, var(--easter-purple) 100%);
     position: relative;
     overflow: hidden;
-    min-height: 500px; /* Increased from 400px */
+    height: 70dvh;
+    min-height: 500px; 
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,6 +148,8 @@ aside {
     position: relative;
     z-index: 1;
     color: #333;
+    height: 70dvh;
+    min-height: 500px;
 }
 
 aside h2 {
@@ -251,6 +253,7 @@ aside h2 {
 .instructions ol {
     text-align: left;
     padding-left: 20px;
+    font-size: 0.8rem;
 }
 
 .instructions li {
