@@ -159,11 +159,11 @@ aside h2 {
 }
 
 .score-display {
-    font-size: 3rem;
+    font-size: 2.5rem; /* Reduced from 3rem to fit more digits */
     font-weight: bold;
     margin: 20px auto;
-    width: 100px;
-    height: 100px;
+    width: 140px; /* Increased from 100px */
+    height: 140px; /* Increased from 100px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,6 +172,20 @@ aside h2 {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     color: #6a4383;
     border: 3px solid var(--easter-purple);
+    /* Add responsive font sizing */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+/* Add a media query for smaller screens */
+@media (max-width: 500px) {
+    .score-display {
+        width: 120px;
+        height: 120px;
+        font-size: 2rem;
+    }
 }
 
 .water-level {
@@ -250,15 +264,74 @@ aside h2 {
     color: #553c9a;
 }
 
+.instructions {
+    margin-top: 15px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    padding: 10px;
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--easter-purple) rgba(255, 255, 255, 0.3);
+}
+
+.instructions h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    color: #6a4383;
+}
+
 .instructions ol {
     text-align: left;
     padding-left: 20px;
     font-size: 0.8rem;
+    margin: 0;
 }
 
 .instructions li {
-    margin: 10px 0;
+    margin: 8px 0;
     font-weight: 500;
+    line-height: 1.2;
+}
+
+/* Custom scrollbar for webkit browsers */
+.instructions::-webkit-scrollbar {
+    width: 6px;
+}
+
+.instructions::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.instructions::-webkit-scrollbar-thumb {
+    background-color: var(--easter-purple);
+    border-radius: 10px;
+}
+
+/* Responsive adjustments for instructions */
+@media (max-width: 900px) {
+    .instructions {
+        max-height: 120px;
+    }
+}
+
+@media (max-width: 600px) {
+    .instructions ol {
+        padding-left: 15px;
+    }
+    
+    .instructions li {
+        font-size: 0.75rem;
+        margin: 6px 0;
+    }
+}
+
+@media (max-height: 700px) {
+    .instructions {
+        max-height: 100px;
+    }
 }
 
 .easter-decoration {
@@ -281,39 +354,47 @@ aside h2 {
 }
 
 .easter-basket {
-    width: 200px;
-    height: 100px;
-    background-color: #d4a76a;
-    border-radius: 50% 50% 10px 10px;
     position: relative;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    height: 120px;
+    background-color: #8B4513;
+    border-radius: 0 0 100px 100px;
+    margin: 50px auto 20px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: visible;
-    margin-top: 20px;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    overflow: visible; /* Important to make the handle visible */
 }
 
+/* Create basket handle */
 .easter-basket::before {
-    content: "";
+    content: '';
     position: absolute;
-    width: 220px;
-    height: 40px;
-    background-color: #bf8d55;
-    border-radius: 50%;
-    top: -20px;
-    z-index: 2;
+    width: 160px; /* Width of the handle */
+    height: 80px; /* Height of the handle arc */
+    border: 8px solid #8B4513; /* Same color as basket */
+    border-bottom: none; /* Remove bottom border */
+    border-radius: 80px 80px 0 0; /* Create arc shape */
+    top: -80px; /* Position above the basket */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Center adjustment */
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.2); /* Inner shadow for depth */
+    z-index: -1; /* Place behind basket contents */
 }
 
+/* Add texture to the handle */
 .easter-basket::after {
-    content: "";
+    content: '';
     position: absolute;
-    width: 160px;
-    height: 80px;
-    background-color: #f3e9d5;
-    border-radius: 50%;
-    bottom: 10px;
-    z-index: 0;
+    width: 140px;
+    height: 5px;
+    background: linear-gradient(90deg, #8B4513, #a0522d, #8B4513);
+    top: -40px; /* Position in middle of handle */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
 }
 
 .item {
@@ -577,4 +658,12 @@ footer h3, footer p {
     0% { transform: scale(0.5); opacity: 1; }
     50% { transform: scale(1.5); opacity: 0.95; } /* Increased opacity further */
     100% { transform: scale(2); opacity: 0.9; } /* Increased opacity further */
+}
+.points-added {
+    position: absolute;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+    pointer-events: none;
+    transition: opacity 0.8s, transform 0.8s;
+    z-index: 100;
 }

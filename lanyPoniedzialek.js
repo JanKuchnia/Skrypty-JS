@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let timerInterval;
     let countdownInterval;
     let waterLevel = 100;
+    let lastTargetSpawnTime = 0; // Track when the last target was spawned
 
     // DOM elements
     const gameField = document.getElementById('game-field');
@@ -197,6 +198,10 @@ document.addEventListener('DOMContentLoaded', function() {
             character.style.left = `${randomX}px`;
             character.style.top = `${randomY}px`;
             
+            // Store the spawn time for this target
+            lastTargetSpawnTime = Date.now();
+            character.dataset.spawnTime = lastTargetSpawnTime;
+            
             // Add click event
             character.addEventListener('click', (e) => {
                 e.stopPropagation(); // Prevent bubbling to game field
@@ -235,11 +240,28 @@ document.addEventListener('DOMContentLoaded', function() {
             // Create water splash effect
             createWaterSplash(event.clientX, event.clientY);
             
+            // Calculate time since target spawn
+            const spawnTime = parseInt(character.dataset.spawnTime) || Date.now();
+            const currentTime = Date.now();
+            const timeSinceSpawn = currentTime - spawnTime;
+            
+            // Kahoot-style scoring: Start with maximum points and decrease over time
+            // Maximum points: 100, minimum points: 10
+            const maxPoints = 100;
+            const minPoints = 10;
+            // Calculate percentage of time elapsed (2000ms is the total time before character disappears)
+            const timePercentage = Math.min(1, timeSinceSpawn / 2000);
+            // Calculate points using a non-linear decay (similar to Kahoot)
+            const pointsToAdd = Math.round(maxPoints - (maxPoints - minPoints) * (timePercentage * timePercentage));
+            
             // Update score and stats
-            score += 10;
+            score += pointsToAdd;
             hits++;
             scoreDisplay.textContent = score;
             hitsDisplay.textContent = hits;
+            
+            // Show points added with color based on timing (like Kahoot)
+            showPointsAdded(event.clientX, event.clientY, pointsToAdd, timePercentage);
             
             // Decrease water level slightly
             waterLevel = Math.max(0, waterLevel - 2);
@@ -249,6 +271,58 @@ document.addEventListener('DOMContentLoaded', function() {
             if (waterLevel <= 0) {
                 endGame();
             }
+        } catch (error) {
+            // Error handling
+        }
+    }
+    
+    // Function to show points added with color coding
+    function showPointsAdded(x, y, points, timePercentage) {
+        try {
+            // Create points element
+            const pointsElement = document.createElement('div');
+            pointsElement.className = 'points-added';
+            pointsElement.textContent = `+${points}`;
+            
+            // Color based on timing (like Kahoot)
+            if (timePercentage < 0.2) {
+                // Fast response - green/gold
+                pointsElement.style.color = '#5ad65a';
+                pointsElement.style.fontSize = '24px'; // Bigger text for higher points
+            } else if (timePercentage < 0.5) {
+                // Medium response - blue
+                pointsElement.style.color = '#4a90e2';
+                pointsElement.style.fontSize = '22px';
+            } else if (timePercentage < 0.8) {
+                // Slower response - yellow/orange
+                pointsElement.style.color = '#e6a23c';
+                pointsElement.style.fontSize = '20px';
+            } else {
+                // Very slow response - red
+                pointsElement.style.color = '#f56c6c';
+                pointsElement.style.fontSize = '18px';
+            }
+            
+            // Position relative to game field
+            const fieldRect = gameField.getBoundingClientRect();
+            
+            pointsElement.style.left = `${x - fieldRect.left}px`;
+            pointsElement.style.top = `${y - fieldRect.top - 30}px`; // Position above click
+            
+            // Add to game field
+            gameField.appendChild(pointsElement);
+            
+            // Animate and remove
+            setTimeout(() => {
+                pointsElement.style.opacity = '0';
+                pointsElement.style.transform = 'translateY(-20px)';
+            }, 50);
+            
+            setTimeout(() => {
+                if (pointsElement.parentNode === gameField) {
+                    gameField.removeChild(pointsElement);
+                }
+            }, 1000);
         } catch (error) {
             // Error handling
         }
@@ -269,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 misses++;
                 missesDisplay.textContent = misses;
                 
-                // Deduct 10 points for each miss
+                // Deduct 10 points for each miss (keeping original penalty)
                 score = Math.max(0, score - 10); // Prevent negative score
                 scoreDisplay.textContent = score;
                 
