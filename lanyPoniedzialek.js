@@ -366,4 +366,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-console.log('Skrypt Lany Poniedziałek został załadowany');
+console.log('Skrypt Lany Poniedziałek został załadowany'); 
