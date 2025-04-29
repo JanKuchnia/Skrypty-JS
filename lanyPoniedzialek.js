@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
         // Add keyboard event listener to start game with spacebar
         document.addEventListener('keydown', function(e) {
-            if (e.code === 'Space' && !gameActive && !countdownActive) {
+            if (e.code == 'Space' && !gameActive && !countdownActive) {
                 try {
                     startCountdown();
                 } catch (error) {
@@ -183,12 +183,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const character = document.createElement('div');
             character.className = 'game-character';
             
+            // Use max possible character size from CSS clamp() for boundary calculation
+            const charMaxWidth = 60; 
+            const charMaxHeight = 90;
+
             // Random position within game field
-            const maxX = gameField.clientWidth - 60; // character width
-            const maxY = gameField.clientHeight - 90; // character height
+            const maxX = gameField.clientWidth - charMaxWidth; 
+            const maxY = gameField.clientHeight - charMaxHeight; 
             
+            // // Adjust character size for smaller screens - REMOVED, CSS handles this
+            // if (window.innerWidth <= 600) {
+            //     character.style.width = '50px';
+            //     character.style.height = '75px';
+            //     // Adjust maxX and maxY for smaller character
+            //     const maxX = gameField.clientWidth - 50;
+            //     const maxY = gameField.clientHeight - 75;
+            // }
+            
+            // Ensure spawn area is valid
             if (maxX <= 0 || maxY <= 0) {
-                return;
+                console.warn("Game field too small to spawn target."); // Added warning
+                return; 
             }
             
             const randomX = Math.floor(Math.random() * maxX);
@@ -209,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     handleHit(character, e);
                 } catch (error) {
                     // Error handling
+                    console.error('Error in handleHit:', error); // Added console error
                 }
             });
             
@@ -217,12 +233,14 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Auto-remove after some time
             setTimeout(() => {
-                if (character.parentNode === gameField) {
+                // Check if character still exists before removing
+                if (character.parentNode === gameField) { 
                     gameField.removeChild(character);
                 }
-            }, 2000);
+            }, 2000); // Character lifespan
         } catch (error) {
             // Error handling
+            console.error('Error in spawnTarget:', error); // Added console error
         }
     }
 
@@ -233,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
             // Remove character
-            if (character.parentNode === gameField) {
+            if (character.parentNode == gameField) {
                 gameField.removeChild(character);
             }
             
@@ -319,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 50);
             
             setTimeout(() => {
-                if (pointsElement.parentNode === gameField) {
+                if (pointsElement.parentNode == gameField) {
                     gameField.removeChild(pointsElement);
                 }
             }, 1000);
@@ -335,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
             // Only count as miss if clicking directly on game field (not on characters)
-            if (event.target === gameField) {
+            if (event.target == gameField) {
                 // Create water splash effect
                 createWaterSplash(event.clientX, event.clientY);
                 
@@ -363,9 +381,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createWaterSplash(x, y) {
         try {
-            // Create splash element
             const splash = document.createElement('div');
             splash.className = 'water-splash';
+            
+            // Adjust splash size for mobile
+            if (window.innerWidth <= 600) {
+                splash.style.width = '80px';
+                splash.style.height = '80px';
+            }
             
             // Position relative to game field
             const fieldRect = gameField.getBoundingClientRect();
@@ -378,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Remove after animation completes
             setTimeout(() => {
-                if (splash.parentNode === gameField) {
+                if (splash.parentNode == gameField) {
                     gameField.removeChild(splash);
                 }
             }, 500); // Match animation duration
@@ -386,6 +409,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Error handling
         }
     }
+
+    // Add window resize handler to adjust game elements
+    window.addEventListener('resize', function() {
+        // Adjust water fill display
+        if (gameActive) {
+            waterFill.style.transform = `scaleX(${waterLevel / 100})`;
+        }
+    });
 
     function endGame() {
         try {

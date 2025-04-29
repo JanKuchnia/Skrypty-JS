@@ -56,7 +56,7 @@ header::before {
 }
 
 header h1 {
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom: 0;
@@ -66,7 +66,7 @@ header h1 {
 
 .subtitle {
     color: var(--easter-yellow);
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 3vw, 1.5rem);
     margin-top: 0;
     font-weight: 600;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
@@ -77,15 +77,18 @@ header h1 {
 /* Game layout */
 .game-container {
     display: flex;
-    justify-content: space-between;
-    width: 90%;
-    max-width: 1200px;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: center; /* Center items when wrapped */
+    width: 95%;
+    max-width: 1500px;
     margin-bottom: 30px;
     gap: 20px;
 }
 
 main.game-area {
-    flex: 2;
+    flex: 2 1 400px; /* Allow shrinking, set basis */
+    min-width: 320px; /* Minimum width before wrapping */
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
@@ -94,8 +97,9 @@ main.game-area {
     background: linear-gradient(135deg, var(--easter-blue) 0%, var(--easter-purple) 100%);
     position: relative;
     overflow: hidden;
-    height: 70dvh;
-    min-height: 500px; 
+    /* Use clamp for height */
+    height: clamp(400px, 70vh, 600px);
+    /* min-height: 400px;  Removed, clamp handles minimum */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -116,7 +120,7 @@ main.game-area::before {
 }
 
 #game-message {
-    font-size: 1.4rem;
+    font-size: clamp(1rem, 3vw, 1.4rem);
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     margin-bottom: 20px;
@@ -128,7 +132,8 @@ main.game-area::before {
 
 #game-field {
     width: 100%;
-    height: 400px; /* Increased from 300px */
+    /* Use clamp for height */
+    height: clamp(250px, 40vh, 400px);
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     position: relative;
@@ -138,8 +143,9 @@ main.game-area::before {
 }
 
 aside {
-    flex: 1;
-    padding: 20px;
+    flex: 1 1 300px; /* Allow shrinking, set basis */
+    min-width: 280px; /* Minimum width before wrapping */
+    padding: 15px;
     border-radius: 15px;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
     background: linear-gradient(135deg, var(--easter-pink) 0%, var(--easter-yellow) 100%);
@@ -148,22 +154,27 @@ aside {
     position: relative;
     z-index: 1;
     color: #333;
-    height: 70dvh;
-    min-height: 500px;
+    /* Use clamp for height */
+    height: clamp(400px, 70vh, 600px);
+    /* min-height: 400px; Removed, clamp handles minimum */
+    display: flex; /* Added for better internal alignment */
+    flex-direction: column; /* Added */
+    justify-content: space-around; /* Added */
 }
 
 aside h2 {
     margin-top: 0;
+    font-size: clamp(1.2rem, 4vw, 1.5rem);
     color: #6a4383;
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7);
 }
 
 .score-display {
-    font-size: 2.5rem; /* Reduced from 3rem to fit more digits */
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     font-weight: bold;
     margin: 20px auto;
-    width: 140px; /* Increased from 100px */
-    height: 140px; /* Increased from 100px */
+    width: clamp(100px, 30%, 140px);
+    height: clamp(100px, 30%, 140px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -172,20 +183,10 @@ aside h2 {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     color: #6a4383;
     border: 3px solid var(--easter-purple);
-    /* Add responsive font sizing */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding: 10px;
-}
-
-/* Add a media query for smaller screens */
-@media (max-width: 500px) {
-    .score-display {
-        width: 120px;
-        height: 120px;
-        font-size: 2rem;
-    }
 }
 
 .water-level {
@@ -264,201 +265,170 @@ aside h2 {
     color: #553c9a;
 }
 
-.instructions {
-    margin-top: 15px;
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 10px;
-    padding: 10px;
-    max-height: 150px;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--easter-purple) rgba(255, 255, 255, 0.3);
+/* Enhanced Instructions Panel */
+.instructions-panel {
+    flex: 1 1 300px; /* Allow shrinking, set basis */
+    min-width: 280px; /* Minimum width before wrapping */
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+    background: linear-gradient(135deg, var(--easter-pink) 0%, var(--easter-yellow) 100%);
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    color: #333;
+    /* Use clamp for height */
+    height: clamp(400px, 70vh, 600px);
+    /* height: 72dvh; Removed */
+    display: flex;
+    flex-direction: column;
 }
 
-.instructions h3 {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 1rem;
-    color: #6a4383;
-}
-
-.instructions ol {
-    text-align: left;
-    padding-left: 20px;
-    font-size: 0.8rem;
-    margin: 0;
-}
-
-.instructions li {
-    margin: 8px 0;
-    font-weight: 500;
-    line-height: 1.2;
-}
-
-/* Custom scrollbar for webkit browsers */
-.instructions::-webkit-scrollbar {
-    width: 6px;
-}
-
-.instructions::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
-}
-
-.instructions::-webkit-scrollbar-thumb {
-    background-color: var(--easter-purple);
-    border-radius: 10px;
-}
-
-/* Responsive adjustments for instructions */
-@media (max-width: 900px) {
-    .instructions {
-        max-height: 120px;
-    }
-}
-
-@media (max-width: 600px) {
-    .instructions ol {
-        padding-left: 15px;
-    }
-    
-    .instructions li {
-        font-size: 0.75rem;
-        margin: 6px 0;
-    }
-}
-
-@media (max-height: 700px) {
-    .instructions {
-        max-height: 100px;
-    }
-}
-
-.easter-decoration {
-    margin-top: 20px;
-}
-
-.easter-img {
-    max-width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
-/* Easter basket */
+/* Enhanced Easter Basket */
 .basket-container {
-    width: 90%;
-    max-width: 1200px;
     display: flex;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    perspective: 800px;
 }
 
 .easter-basket {
     position: relative;
-    width: 200px;
-    height: 120px;
-    background-color: #8B4513;
+    /* Use clamp for width/height */
+    width: clamp(100px, 15vw, 120px);
+    height: clamp(60px, 9vw, 70px);
+    /* width: 120px; */  /* Reduced from 140px */
+    /* height: 70px; */  /* Reduced from 80px */
+    background: linear-gradient(to bottom, #a0522d, #8B4513);
     border-radius: 0 0 100px 100px;
-    margin: 50px auto 20px;
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
     padding-bottom: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    overflow: visible; /* Important to make the handle visible */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transform-style: preserve-3d;
+    transform: rotateX(5deg);
+    transition: transform 0.3s ease;
+}
+
+.easter-basket:hover {
+    transform: rotateX(10deg) scale(1.05);
 }
 
 /* Create basket handle */
 .easter-basket::before {
     content: '';
     position: absolute;
-    width: 160px; /* Width of the handle */
-    height: 80px; /* Height of the handle arc */
-    border: 8px solid #8B4513; /* Same color as basket */
-    border-bottom: none; /* Remove bottom border */
-    border-radius: 80px 80px 0 0; /* Create arc shape */
-    top: -80px; /* Position above the basket */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%); /* Center adjustment */
-    box-shadow: inset 0 5px 10px rgba(0,0,0,0.2); /* Inner shadow for depth */
-    z-index: -1; /* Place behind basket contents */
+    /* Responsive handle size based on basket width */
+    width: 83%; /* Approx 100/120 */
+    height: 71%; /* Approx 50/70 */
+    /* width: 100px; */  /* Reduced from 120px */
+    /* height: 50px; */  /* Reduced from 60px */
+    border: clamp(4px, 0.8vw, 5px) solid #8B4513;  /* Reduced from 6px */
+    border-bottom: none;
+    border-radius: 75px 75px 0 0;
+    /* Adjust top position based on height */
+    top: -71%; /* Approx -50/70 */
+    /* top: -50px; */  /* Adjusted from -60px */
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset 0 5px 15px rgba(0,0,0,0.2);
+    z-index: -1;
 }
 
 /* Add texture to the handle */
 .easter-basket::after {
     content: '';
     position: absolute;
-    width: 140px;
-    height: 5px;
+    /* Responsive texture size */
+    width: 75%; /* Approx 90/120 */
+    height: 6%; /* Approx 4/70 */
+    /* width: 90px; */  /* Reduced from 100px */
+    /* height: 4px; */  /* Reduced from 5px */
     background: linear-gradient(90deg, #8B4513, #a0522d, #8B4513);
-    top: -40px; /* Position in middle of handle */
+    /* Adjust top position */
+    top: -35%; /* Approx -25/70 */
+    /* top: -25px; */  /* Adjusted from -30px */
     left: 50%;
     transform: translateX(-50%);
     z-index: -1;
 }
 
-.item {
-    width: 30px;
-    height: 40px;
+/* Add patterns to eggs */
+.egg1::after, .egg2::after, .egg3::after {
+    content: '';
     position: absolute;
-    z-index: 3;
-    transition: transform 0.3s ease;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    opacity: 0.5;
+    background-size: 10px 10px;
+    background-position: center;
+}
+
+.egg1::after {
+    background-image: radial-gradient(circle, white 2px, transparent 2px);
+    background-size: 8px 8px;
+}
+
+.egg2::after {
+    background-image: linear-gradient(45deg, transparent 46%, white 47%, white 53%, transparent 54%);
+    background-size: 8px 8px;
+}
+
+.egg3::after {
+    background-image: repeating-linear-gradient(90deg, transparent, transparent 3px, white 3px, white 5px);
+    background-size: 8px 8px;
+}
+
+/* Easter eggs in basket */
+.item {
+    /* Responsive egg size */
+    width: clamp(15px, 2vw, 20px);
+    height: clamp(20px, 2.6vw, 26px);
+    /* width: 20px; */  /* Reduced from 25px */
+    /* height: 26px; */  /* Reduced from 32px */
+    border-radius: 50%;
+    position: relative;
+    top: -30px;  /* Adjusted from -15px */
+    transform-origin: bottom center;
+    animation: gentle-bounce 3s infinite alternate ease-in-out;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.item:hover {
+    animation-play-state: paused;
+    transform: translateY(-5px);
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 .egg1 {
-    background: linear-gradient(to bottom, var(--easter-pink), var(--easter-purple));
-    border-radius: 50% 50% 45% 45%;
-    transform: rotate(-15deg);
-    left: 40px;
-    top: 5px;
+    background: linear-gradient(135deg, #ff9999, #ff5555);
+    animation-delay: 0s;
 }
 
 .egg2 {
-    background: linear-gradient(to bottom, var(--easter-blue), var(--easter-green));
-    border-radius: 50% 50% 45% 45%;
-    transform: rotate(10deg);
-    left: 85px;
-    top: 0;
+    background: linear-gradient(135deg, #99ff99, #55ff55);
+    animation-delay: 0.5s;
 }
 
 .egg3 {
-    background: linear-gradient(to bottom, var(--easter-yellow), var(--easter-pink));
-    border-radius: 50% 50% 45% 45%;
-    transform: rotate(-5deg);
-    right: 45px;
-    top: 8px;
+    background: linear-gradient(135deg, #9999ff, #5555ff);
+    animation-delay: 1s;
 }
 
-.bunny {
-    width: 25px;
-    height: 60px;
-    background-color: white;
-    border-radius: 50% 50% 40% 40%;
-    position: absolute;
-    right: 15px;
-    top: -15px;
-    z-index: 3;
-}
+/* Easter bunny */
 
-.bunny::before, .bunny::after {
-    content: "";
-    position: absolute;
-    width: 10px;
-    height: 25px;
-    background-color: white;
-    border-radius: 50% 50% 0 0;
-    top: -18px;
-}
 
-.bunny::before {
-    left: 2px;
-    transform: rotate(-15deg);
-}
+/* Bunny ears */
 
-.bunny::after {
-    right: 2px;
-    transform: rotate(15deg);
-}
 
 /* Footer */
 footer {
@@ -608,21 +578,6 @@ footer h3, footer p {
     transform: rotate(90deg);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 900px) {
-    .game-container {
-        flex-direction: column;
-    }
-
-    aside, main {
-        width: 100%;
-    }
-
-    .easter-basket {
-        transform: scale(0.9);
-    }
-}
-
 /* Game character animations */
 @keyframes character-appear {
     0% { transform: translateY(100%); opacity: 0; }
@@ -631,8 +586,11 @@ footer h3, footer p {
 
 .game-character {
     position: absolute;
-    width: 60px;
-    height: 90px;
+    /* Use clamp for responsive size */
+    width: clamp(40px, 5vw, 60px);
+    height: clamp(60px, 7.5vw, 90px);
+    /* width: 60px; */
+    /* height: 90px; */
     background-image: url('images/person.png');
     background-size: cover;
     cursor: pointer;
@@ -665,5 +623,43 @@ footer h3, footer p {
     text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
     pointer-events: none;
     transition: opacity 0.8s, transform 0.8s;
-    z-index: 100;
+    z-index: 100;}
+
+/* Also adjust the instructions height to ensure proper spacing */
+.instructions {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 60px;
+    border: 1px solid #e6d7b0;
+    height: 60dvh;
+    max-height: 600px;  /* Reduced from 450px to give more space for the basket */
+}
+
+.instructions h3 {
+    color: #8B4513;
+    text-align: center;
+    margin-top: 0;
+    font-size: 1.3em;
+    border-bottom: 2px dotted #e6d7b0;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+}
+
+.instructions ol {
+    padding-left: 25px;
+    margin: 0;
+    /* Use clamp for font size */
+    font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+    /* font-size: 1vw; */
+}
+
+.instructions li {
+    margin-bottom: 8px;
+    color: #5a3921;
+    line-height: 1.4;
+}
+
+.instructions li:last-child {
+    margin-bottom: 0;
 }
