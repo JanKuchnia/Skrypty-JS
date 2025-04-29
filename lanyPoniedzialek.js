@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             missingElements.push(id);
         }
     });
-    
+     
     if (missingElements.length > 0) {
         alert(`Inicjalizacja gry nie powiodła się. Brakujące elementy HTML: ${missingElements.join(', ')}`);
         return;
