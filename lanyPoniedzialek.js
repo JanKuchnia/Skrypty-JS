@@ -1,369 +1,369 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const elementsToCheck = [
-        'game-field', 'score', 'game-message', 
-        'time-left', 'hits', 'misses', 'water-fill'
+    const elementyDoSprawdzenia = [
+        'gra-pole', 'wynik', 'gra-wiadomosc', 
+        'pozostaly-czas', 'trafienia', 'pudla', 'wypelnienie-wody'
     ];
     
-    const missingElements = [];
-    elementsToCheck.forEach(id => {
+    const brakujaceElementy = [];
+    elementyDoSprawdzenia.forEach(id => {
         const element = document.getElementById(id);
         if (!element) {
-            missingElements.push(id);
+            brakujaceElementy.push(id);
         }
     });
      
-    if (missingElements.length > 0) {
-        alert(`Inicjalizacja gry nie powiodła się. Brakujące elementy HTML: ${missingElements.join(', ')}`);
+    if (brakujaceElementy.length > 0) {
+        alert(`Inicjalizacja gry nie powiodła się. Brakujące elementy HTML: ${brakujaceElementy.join(', ')}`);
         return;
     }
     
-    let gameActive = false;
-    let countdownActive = false;
-    let score = 0;
-    let hits = 0;
-    let misses = 0;
-    let timeLeft = 30;
-    let targetInterval;
-    let gameInterval;
-    let timerInterval;
-    let countdownInterval;
-    let waterLevel = 100;
-    let lastTargetSpawnTime = 0;
+    let graAktywna = false;
+    let odliczanieAktywne = false;
+    let wynik = 0;
+    let trafienia = 0;
+    let pudla = 0;
+    let pozostalyCzas = 30;
+    let interwalCelu;
+    let interwalGry;
+    let interwalCzasu;
+    let interwalOdliczania;
+    let poziomWody = 100;
+    let czasOstatniegoPojawieniaCelu = 0;
 
-    const gameField = document.getElementById('game-field');
-    const scoreDisplay = document.getElementById('score');
-    const gameMessage = document.getElementById('game-message');
-    const timeLeftDisplay = document.getElementById('time-left');
-    const hitsDisplay = document.getElementById('hits');
-    const missesDisplay = document.getElementById('misses');
-    const waterFill = document.getElementById('water-fill');
+    const polGry = document.getElementById('gra-pole');
+    const wyswietlaczWyniku = document.getElementById('wynik');
+    const wiadomoscGry = document.getElementById('gra-wiadomosc');
+    const wyswietlaczPozostalyCzas = document.getElementById('pozostaly-czas');
+    const wyswietlaczTrafien = document.getElementById('trafienia');
+    const wyswietlaczPudel = document.getElementById('pudla');
+    const wypelnienieWody = document.getElementById('wypelnienie-wody');
     
-    gameMessage.textContent = 'Kliknij gdziekolwiek lub naciśnij spację, aby rozpocząć.';
+    wiadomoscGry.textContent = 'Kliknij gdziekolwiek lub naciśnij spację, aby rozpocząć.';
     
     try {
         document.addEventListener('keydown', function(e) {
-            if (e.code == 'Space' && !gameActive && !countdownActive) {
+            if (e.code == 'Space' && !graAktywna && !odliczanieAktywne) {
                 try {
-                    startCountdown();
-                } catch (error) {
-                    alert('Błąd podczas rozpoczynania odliczania: ' + error.message);
+                    rozpocznijOdliczanie();
+                } catch (blad) {
+                    alert('Błąd podczas rozpoczynania odliczania: ' + blad.message);
                 }
             }
         });
-    } catch (error) {
+    } catch (blad) {
     }
     
     try {
-        gameField.addEventListener('click', function(e) {
-            if (gameActive) {
+        polGry.addEventListener('click', function(e) {
+            if (graAktywna) {
                 try {
-                    handleMiss(e);
-                } catch (error) {
+                    obsluzPudlo(e);
+                } catch (blad) {
                 }
             }
         });
-    } catch (error) {
+    } catch (blad) {
     }
 
-    gameField.addEventListener('click', function(e) {
-        if (!gameActive && !countdownActive) {
+    polGry.addEventListener('click', function(e) {
+        if (!graAktywna && !odliczanieAktywne) {
             try {
-                startCountdown();
-            } catch (error) {
-                alert('Błąd podczas rozpoczynania odliczania: ' + error.message);
+                rozpocznijOdliczanie();
+            } catch (blad) {
+                alert('Błąd podczas rozpoczynania odliczania: ' + blad.message);
             }
         }
     });
 
-    function startCountdown() {
-        if (gameActive || countdownActive) return;
+    function rozpocznijOdliczanie() {
+        if (graAktywna || odliczanieAktywne) return;
         
-        countdownActive = true;
-        let countdown = 3;
-        gameMessage.textContent = `Gra rozpocznie się za ${countdown}...`;
+        odliczanieAktywne = true;
+        let odliczanie = 3;
+        wiadomoscGry.textContent = `Gra rozpocznie się za ${odliczanie}...`;
         
-        countdownInterval = setInterval(function() {
-            countdown--;
-            if (countdown > 0) {
-                gameMessage.textContent = `Gra rozpocznie się za ${countdown}...`;
+        interwalOdliczania = setInterval(function() {
+            odliczanie--;
+            if (odliczanie > 0) {
+                wiadomoscGry.textContent = `Gra rozpocznie się za ${odliczanie}...`;
             } else {
-                clearInterval(countdownInterval);
-                countdownActive = false;
-                startGame();
+                clearInterval(interwalOdliczania);
+                odliczanieAktywne = false;
+                rozpocznijGre();
             }
         }, 1000);
     }
 
-    function startGame() {
-        if (gameActive) {
+    function rozpocznijGre() {
+        if (graAktywna) {
             return;
         }
         
         try {
-            gameActive = true;
-            score = 0;
-            hits = 0;
-            misses = 0;
-            timeLeft = 30;
-            waterLevel = 100;
+            graAktywna = true;
+            wynik = 0;
+            trafienia = 0;
+            pudla = 0;
+            pozostalyCzas = 30;
+            poziomWody = 100;
             
-            scoreDisplay.textContent = score;
-            timeLeftDisplay.textContent = timeLeft;
-            hitsDisplay.textContent = hits;
-            missesDisplay.textContent = misses;
-            waterFill.style.transform = `scaleX(${waterLevel / 100})`;
-            gameMessage.textContent = 'Łap postacie i oblewaj je wodą!';
+            wyswietlaczWyniku.textContent = wynik;
+            wyswietlaczPozostalyCzas.textContent = pozostalyCzas;
+            wyswietlaczTrafien.textContent = trafienia;
+            wyswietlaczPudel.textContent = pudla;
+            wypelnienieWody.style.transform = `scaleX(${poziomWody / 100})`;
+            wiadomoscGry.textContent = 'Łap postacie i oblewaj je wodą!';
             
-            gameField.innerHTML = '';
+            polGry.innerHTML = '';
             
-            targetInterval = setInterval(function() {
+            interwalCelu = setInterval(function() {
                 try {
-                    spawnTarget();
-                } catch (error) {
+                    stworzCel();
+                } catch (blad) {
                 }
             }, 1200);
             
-            timerInterval = setInterval(function() {
+            interwalCzasu = setInterval(function() {
                 try {
-                    updateTimer();
-                } catch (error) {
+                    aktualizujCzas();
+                } catch (blad) {
                 }
             }, 1000);
             
-            gameInterval = setTimeout(function() {
+            interwalGry = setTimeout(function() {
                 try {
-                    endGame();
-                } catch (error) {
+                    zakonczGre();
+                } catch (blad) {
                 }
             }, 30000);
-        } catch (error) {
-            gameActive = false;
-            gameMessage.textContent = 'Błąd podczas uruchamiania gry: ' + error.message;
+        } catch (blad) {
+            graAktywna = false;
+            wiadomoscGry.textContent = 'Błąd podczas uruchamiania gry: ' + blad.message;
         }
     }
 
-    function updateTimer() {
-        timeLeft--;
-        timeLeftDisplay.textContent = timeLeft;
+    function aktualizujCzas() {
+        pozostalyCzas--;
+        wyswietlaczPozostalyCzas.textContent = pozostalyCzas;
         
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
+        if (pozostalyCzas <= 0) {
+            clearInterval(interwalCzasu);
         }
     }
 
-    function spawnTarget() {
-        if (!gameActive) {
+    function stworzCel() {
+        if (!graAktywna) {
             return;
         }
         
         try {
-            const character = document.createElement('div');
-            character.className = 'game-character';
+            const postac = document.createElement('div');
+            postac.className = 'gra-postac';
             
-            const charMaxWidth = 60; 
-            const charMaxHeight = 90;
-            const maxX = gameField.clientWidth - charMaxWidth; 
-            const maxY = gameField.clientHeight - charMaxHeight; 
+            const maksymalnaSzerokoscPostaci = 60; 
+            const maksymalnaWysokoscPostaci = 90;
+            const maksX = polGry.clientWidth - maksymalnaSzerokoscPostaci; 
+            const maksY = polGry.clientHeight - maksymalnaWysokoscPostaci; 
             
-            if (maxX <= 0 || maxY <= 0) {
-                console.warn("Game field too small to spawn target.");
+            if (maksX <= 0 || maksY <= 0) {
+                console.warn("Pole gry zbyt małe, aby stworzyć cel.");
                 return; 
             }
             
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
+            const losoweX = Math.floor(Math.random() * maksX);
+            const losoweY = Math.floor(Math.random() * maksY);
             
-            character.style.left = `${randomX}px`;
-            character.style.top = `${randomY}px`;
+            postac.style.left = `${losoweX}px`;
+            postac.style.top = `${losoweY}px`;
             
-            lastTargetSpawnTime = Date.now();
-            character.dataset.spawnTime = lastTargetSpawnTime;
+            czasOstatniegoPojawieniaCelu = Date.now();
+            postac.dataset.czasPojawienia = czasOstatniegoPojawieniaCelu;
             
-            character.addEventListener('click', (e) => {
+            postac.addEventListener('click', (e) => {
                 e.stopPropagation();
                 try {
-                    handleHit(character, e);
-                } catch (error) {
-                    console.error('Error in handleHit:', error);
+                    obsluzTrafienie(postac, e);
+                } catch (blad) {
+                    console.error('Błąd w obsluzTrafienie:', blad);
                 }
             });
             
-            gameField.appendChild(character);
+            polGry.appendChild(postac);
             
             setTimeout(() => {
-                if (character.parentNode === gameField) { 
-                    gameField.removeChild(character);
+                if (postac.parentNode === polGry) { 
+                    polGry.removeChild(postac);
                 }
             }, 2000);
-        } catch (error) {
-            console.error('Error in spawnTarget:', error);
+        } catch (blad) {
+            console.error('Błąd w stworzCel:', blad);
         }
     }
 
-    function handleHit(character, event) {
-        if (!gameActive) {
+    function obsluzTrafienie(postac, zdarzenie) {
+        if (!graAktywna) {
             return;
         }
         
         try {
-            if (character.parentNode == gameField) {
-                gameField.removeChild(character);
+            if (postac.parentNode == polGry) {
+                polGry.removeChild(postac);
             }
             
-            createWaterSplash(event.clientX, event.clientY);
+            stworzPluskWody(zdarzenie.clientX, zdarzenie.clientY);
             
-            const spawnTime = parseInt(character.dataset.spawnTime) || Date.now();
-            const currentTime = Date.now();
-            const timeSinceSpawn = currentTime - spawnTime;
+            const czasPojawienia = parseInt(postac.dataset.czasPojawienia) || Date.now();
+            const obecnyCzas = Date.now();
+            const czasOdPojawienia = obecnyCzas - czasPojawienia;
             
-            const maxPoints = 100;
-            const minPoints = 10;
-            const timePercentage = Math.min(1, timeSinceSpawn / 2000);
-            const pointsToAdd = Math.round(maxPoints - (maxPoints - minPoints) * (timePercentage * timePercentage));
+            const maksymalnePunkty = 100;
+            const minimalnePunkty = 10;
+            const procentCzasu = Math.min(1, czasOdPojawienia / 2000);
+            const punktyDoDodania = Math.round(maksymalnePunkty - (maksymalnePunkty - minimalnePunkty) * (procentCzasu * procentCzasu));
             
-            score += pointsToAdd;
-            hits++;
-            scoreDisplay.textContent = score;
-            hitsDisplay.textContent = hits;
+            wynik += punktyDoDodania;
+            trafienia++;
+            wyswietlaczWyniku.textContent = wynik;
+            wyswietlaczTrafien.textContent = trafienia;
             
-            showPointsAdded(event.clientX, event.clientY, pointsToAdd, timePercentage);
+            pokazDodanePunkty(zdarzenie.clientX, zdarzenie.clientY, punktyDoDodania, procentCzasu);
             
-            waterLevel = Math.max(0, waterLevel - 2);
-            waterFill.style.transform = `scaleX(${waterLevel / 100})`;
+            poziomWody = Math.max(0, poziomWody - 2);
+            wypelnienieWody.style.transform = `scaleX(${poziomWody / 100})`;
             
-            if (waterLevel <= 0) {
-                endGame();
+            if (poziomWody <= 0) {
+                zakonczGre();
             }
-        } catch (error) {
+        } catch (blad) {
         }
     }
     
-    function showPointsAdded(x, y, points, timePercentage) {
+    function pokazDodanePunkty(x, y, punkty, procentCzasu) {
         try {
-            const pointsElement = document.createElement('div');
-            pointsElement.className = 'points-added';
-            pointsElement.textContent = `+${points}`;
+            const elementPunktow = document.createElement('div');
+            elementPunktow.className = 'punkty-dodane';
+            elementPunktow.textContent = `+${punkty}`;
             
-            if (timePercentage < 0.2) {
-                pointsElement.style.color = '#5ad65a';
-                pointsElement.style.fontSize = '24px';
-            } else if (timePercentage < 0.5) {
-                pointsElement.style.color = '#4a90e2';
-                pointsElement.style.fontSize = '22px';
-            } else if (timePercentage < 0.8) {
-                pointsElement.style.color = '#e6a23c';
-                pointsElement.style.fontSize = '20px';
+            if (procentCzasu < 0.2) {
+                elementPunktow.style.color = '#5ad65a';
+                elementPunktow.style.fontSize = '24px';
+            } else if (procentCzasu < 0.5) {
+                elementPunktow.style.color = '#4a90e2';
+                elementPunktow.style.fontSize = '22px';
+            } else if (procentCzasu < 0.8) {
+                elementPunktow.style.color = '#e6a23c';
+                elementPunktow.style.fontSize = '20px';
             } else {
-                pointsElement.style.color = '#f56c6c';
-                pointsElement.style.fontSize = '18px';
+                elementPunktow.style.color = '#f56c6c';
+                elementPunktow.style.fontSize = '18px';
             }
             
-            const fieldRect = gameField.getBoundingClientRect();
+            const prostokątPola = polGry.getBoundingClientRect();
             
-            pointsElement.style.left = `${x - fieldRect.left}px`;
-            pointsElement.style.top = `${y - fieldRect.top - 30}px`;
+            elementPunktow.style.left = `${x - prostokątPola.left}px`;
+            elementPunktow.style.top = `${y - prostokątPola.top - 30}px`;
             
-            gameField.appendChild(pointsElement);
+            polGry.appendChild(elementPunktow);
             
             setTimeout(() => {
-                pointsElement.style.opacity = '0';
-                pointsElement.style.transform = 'translateY(-20px)';
+                elementPunktow.style.opacity = '0';
+                elementPunktow.style.transform = 'translateY(-20px)';
             }, 50);
             
             setTimeout(() => {
-                if (pointsElement.parentNode == gameField) {
-                    gameField.removeChild(pointsElement);
+                if (elementPunktow.parentNode == polGry) {
+                    polGry.removeChild(elementPunktow);
                 }
             }, 1000);
-        } catch (error) {
+        } catch (blad) {
         }
     }
 
-    function handleMiss(event) {
-        if (!gameActive) {
+    function obsluzPudlo(zdarzenie) {
+        if (!graAktywna) {
             return;
         }
         
         try {
-            if (event.target == gameField) {
-                createWaterSplash(event.clientX, event.clientY);
+            if (zdarzenie.target == polGry) {
+                stworzPluskWody(zdarzenie.clientX, zdarzenie.clientY);
                 
-                misses++;
-                missesDisplay.textContent = misses;
+                pudla++;
+                wyswietlaczPudel.textContent = pudla;
                 
-                score = Math.max(0, score - 10);
-                scoreDisplay.textContent = score;
+                wynik = Math.max(0, wynik - 10);
+                wyswietlaczWyniku.textContent = wynik;
                 
-                waterLevel = Math.max(0, waterLevel - 5);
-                waterFill.style.transform = `scaleX(${waterLevel / 100})`;
+                poziomWody = Math.max(0, poziomWody - 5);
+                wypelnienieWody.style.transform = `scaleX(${poziomWody / 100})`;
                 
-                if (waterLevel <= 0) {
-                    endGame();
+                if (poziomWody <= 0) {
+                    zakonczGre();
                 }
             }
-        } catch (error) {
+        } catch (blad) {
         }
     }
 
-    function createWaterSplash(x, y) {
+    function stworzPluskWody(x, y) {
         try {
-            const splash = document.createElement('div');
-            splash.className = 'water-splash';
+            const plusk = document.createElement('div');
+            plusk.className = 'woda-plusk';
             
             if (window.innerWidth <= 600) {
-                splash.style.width = '80px';
-                splash.style.height = '80px';
+                plusk.style.width = '80px';
+                plusk.style.height = '80px';
             }
             
-            const fieldRect = gameField.getBoundingClientRect();
+            const prostokątPola = polGry.getBoundingClientRect();
             
-            splash.style.left = `${x - fieldRect.left - 50}px`;
-            splash.style.top = `${y - fieldRect.top - 50}px`;
+            plusk.style.left = `${x - prostokątPola.left - 50}px`;
+            plusk.style.top = `${y - prostokątPola.top - 50}px`;
             
-            gameField.appendChild(splash);
+            polGry.appendChild(plusk);
             
             setTimeout(() => {
-                if (splash.parentNode == gameField) {
-                    gameField.removeChild(splash);
+                if (plusk.parentNode == polGry) {
+                    polGry.removeChild(plusk);
                 }
             }, 500);
-        } catch (error) {
+        } catch (blad) {
         }
     }
 
     window.addEventListener('resize', function() {
-        if (gameActive) {
-            waterFill.style.transform = `scaleX(${waterLevel / 100})`;
+        if (graAktywna) {
+            wypelnienieWody.style.transform = `scaleX(${poziomWody / 100})`;
         }
     });
 
-    function endGame() {
+    function zakonczGre() {
         try {
-            gameActive = false;
+            graAktywna = false;
             
-            clearInterval(targetInterval);
-            clearInterval(timerInterval);
-            clearTimeout(gameInterval);
+            clearInterval(interwalCelu);
+            clearInterval(interwalCzasu);
+            clearTimeout(interwalGry);
             
-            let message = '';
-            if (waterLevel <= 0) {
-                message = `Koniec wody! Twój wynik: ${score}`;
+            let wiadomosc = '';
+            if (poziomWody <= 0) {
+                wiadomosc = `Koniec wody! Twój wynik: ${wynik}`;
             } else {
-                message = `Koniec czasu! Twój wynik: ${score}`;
+                wiadomosc = `Koniec czasu! Twój wynik: ${wynik}`;
             }
             
-            gameMessage.textContent = message;
+            wiadomoscGry.textContent = wiadomosc;
             
             setTimeout(() => {
-                gameMessage.textContent += ' Kliknij lub naciśnij spację, aby zagrać ponownie.';
+                wiadomoscGry.textContent += ' Kliknij lub naciśnij spację, aby zagrać ponownie.';
             }, 2000);
             
             setTimeout(() => {
-                gameField.innerHTML = '';
+                polGry.innerHTML = '';
             }, 1000);
-        } catch (error) {
+        } catch (blad) {
         }
     }
 });
 
-console.log('Skrypt Lany Poniedziałek został załadowany'); 
+console.log('Skrypt Lany Poniedziałek został załadowany');

@@ -8,7 +8,7 @@
 <body>
 <header>
 	<h1>Skrypty-JS</h1>
-	<p class="subtitle">Lany Poniedziałek - Śmigus Dyngus</p>
+	<p class="podtytul">Lany Poniedziałek - Śmigus Dyngus</p>
 	<div class="hamburger-menu" onclick="przelaczMenu()">
 		<div class="pasek"></div>
 		<div class="pasek"></div>
@@ -19,7 +19,7 @@
 		<span class="zamknij" onclick="przelaczMenu()">&times;</span>
 
 		<div class="linki-kontener">
-			<a href="index.html" class="linki home-link">Strona Główna</a>
+			<a href="index.html" class="linki strona-glowna-link">Strona Główna</a>
 			<a href="kalkulator1.html" class="linki">Kalkulator 1</a>
 			<a href="kalkulator2.html" class="linki">Kalkulator 2</a>
 			<a href="kalkulator3.html" class="linki">Wagi Długości</a>
@@ -50,10 +50,10 @@
 	</script>
 </header>
 
-<div class="game-container">
-    <aside class="instructions-panel">
+<div class="gra-kontener">
+    <aside class="instrukcje-panel">
         <h2>Jak grać</h2>
-        <div class="instructions">
+        <div class="instrukcje">
             <h3>Zasady gry:</h3>
             <ol>
                 <li>Kliknij na pojawiające się postacie, aby je oblać wodą.</li>
@@ -64,33 +64,33 @@
             </ol>
         </div>
     </aside>
-    <main class="game-area">
-        <div id="game-message">Kliknij "Start" aby rozpocząć grę!</div>
-        <div id="game-field"></div>
+    <main class="gra-obszar">
+        <div id="gra-wiadomosc">Kliknij "Start" aby rozpocząć grę!</div>
+        <div id="gra-pole"></div>
 
     </main>
     
     <aside>
         <h2>Lany Poniedziałek</h2>
-        <div class="score-display" id="score">0</div>
-        <div class="water-level">
+        <div class="wynik-wyswietlacz" id="wynik">0</div>
+        <div class="poziom-wody">
             <p>Poziom wody:</p>
-            <div class="water-meter"> 
-                <div class="water-fill" id="water-fill"></div>
+            <div class="miernik-wody"> 
+                <div class="wypelnienie-wody" id="wypelnienie-wody"></div>
             </div>
         </div>
         
-        <div class="easter-stats">
-            <p>Czas: <span id="time-left">30</span>s</p>
-            <p>Trafienia: <span id="hits">0</span></p>
-            <p>Pudła: <span id="misses">0</span></p>
+        <div class="wielkanoc-statystyki">
+            <p>Czas: <span id="pozostaly-czas">30</span>s</p>
+            <p>Trafienia: <span id="trafienia">0</span></p>
+            <p>Pudła: <span id="pudla">0</span></p>
         </div>
     </aside>
 </div>
 
 
 <footer>
-    <div class="footer-content">
+    <div class="stopka-zawartosc">
         <h3>Jan.K-2TP Gr.1</h3>
         <p>Śmigus Dyngus - Tradycyjna polska zabawa wielkanocna</p>
     </div>
