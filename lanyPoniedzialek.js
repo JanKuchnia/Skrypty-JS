@@ -186,21 +186,9 @@ document.addEventListener('DOMContentLoaded', function() {
             // Use max possible character size from CSS clamp() for boundary calculation
             const charMaxWidth = 60; 
             const charMaxHeight = 90;
-
-            // Random position within game field
             const maxX = gameField.clientWidth - charMaxWidth; 
             const maxY = gameField.clientHeight - charMaxHeight; 
             
-            // // Adjust character size for smaller screens - REMOVED, CSS handles this
-            // if (window.innerWidth <= 600) {
-            //     character.style.width = '50px';
-            //     character.style.height = '75px';
-            //     // Adjust maxX and maxY for smaller character
-            //     const maxX = gameField.clientWidth - 50;
-            //     const maxY = gameField.clientHeight - 75;
-            // }
-            
-            // Ensure spawn area is valid
             if (maxX <= 0 || maxY <= 0) {
                 console.warn("Game field too small to spawn target."); // Added warning
                 return; 
