@@ -20,7 +20,7 @@ body {
     min-height: 100vh;
     background-color: var(--wielkanoc-jasny);
     background-image:
-    url('images/easter-bg-pattern.png'),
+    url('easter-bg-pattern.png'),
     radial-gradient(circle at 10% 20%, rgba(255, 235, 122, 0.2) 0%, transparent 25%),
     radial-gradient(circle at 90% 80%, rgba(201, 160, 255, 0.2) 0%, transparent 25%);
     background-repeat: repeat;
@@ -48,7 +48,7 @@ header::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('images/easter-eggs-pattern.png');
+    background-image: url('easter-eggs-pattern.png');
     background-size: 100px;
     opacity: 0.15;
     z-index: 0;
@@ -109,7 +109,7 @@ main.gra-obszar::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('images/water-drops.png');
+    background-image: url('water-drops.png');
     background-size: 200px;
     opacity: 0.1;
     z-index: 0;
@@ -546,7 +546,7 @@ footer h3, footer p {
     position: absolute;
     width: clamp(40px, 5vw, 60px);
     height: clamp(60px, 7.5vw, 90px);
-    background-image: url('images/person.png');
+    background-image: url('person.png');
     background-size: cover;
     cursor: pointer;
     animation: postac-pojawienie 0.5s ease-out;
@@ -558,7 +558,7 @@ footer h3, footer p {
     position: absolute;
     width: 100px;
     height: 100px;
-    background-image: url('images/water-splash.png');
+    background-image: url('water-splash.png');
     background-size: cover;
     z-index: 10;
     pointer-events: none;
