@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-/* Updated color palette with a more cohesive BBQ theme */
 :root {
-    --maj-charcoal: #2A2922;       /* Dark charcoal for text and accents */
-    --maj-fire: #FF4A1C;           /* Vibrant fire red */
-    --maj-ember: #FF7F50;          /* Warm ember orange */
-    --maj-coal: #3D3B35;           /* Dark coal for menus */
-    --maj-smoke: #EDECE8;          /* Light smoke for backgrounds */
-    --maj-gold: #FFB627;           /* Gold for accents and highlights */
-    --maj-clay: #BD4F2A;           /* Terracotta/clay red for deeper accents */
+    --maj-charcoal: #2A2922;       
+    --maj-fire: #FF4A1C;           
+    --maj-ember: #FF7F50;         
+    --maj-coal: #3D3B35;           
+    --maj-smoke: #EDECE8;          
+    --maj-gold: #FFB627;           
+    --maj-clay: #BD4F2A;           
 }
 
 body {
@@ -366,7 +365,6 @@ main {
     padding-bottom: 8px;
 }
 
-/* Updated plate design with BBQ grill pattern */
 .talerz {
     min-height: 200px;
     background: #ffffff;
@@ -378,7 +376,6 @@ main {
     height: 250px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     border: 1px solid #e0e0e0;
-    /* Add a more grill-like pattern */
     background-image: 
         radial-gradient(circle at center, 
             #ffffff 0%, 
