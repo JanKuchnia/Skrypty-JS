@@ -1,129 +1,100 @@
-// Game configuration
-const gameConfig = {
-    initialTime: 60,
-    pointsPerCorrectOrder: 10,
-    levelUpThreshold: 50,
-    timeDecreasePerLevel: 5,
-    minTime: 30
+const konfiguracjaGry = {
+    poczatkowyCzas: 60,
+    punktyZaPoprawneZamowienie: 10,
+    progAwansuPoziom: 50,
+    zmniejszenieCzasuPoziom: 5,
+    minCzas: 30
 };
 
-// Game state
-let gameState = {
-    score: 0,
-    level: 1,
-    timeLeft: gameConfig.initialTime,
-    isGameRunning: false,
-    currentOrder: null,
-    plateItems: [],
-    timer: null
+let stanGry = {
+    punkty: 0,
+    poziom: 1,
+    pozostalyCzas: konfiguracjaGry.poczatkowyCzas,
+    jestGraAktywna: false,
+    aktualneZamowienie: null,
+    elementyTalerza: [],
+    czasomierz: null
 };
 
-// Food items database
-// Change foodItems to produktySpozywcze
 const produktySpozywcze = {
     kielbasa: ["Włoska", "Polska", "Bratwurst", "Chorizo", "Frankfurter"],
     sos: ["Ketchup", "Musztarda", "Majonez", "BBQ", "Ostry"],
     pieczywo: ["Bułka", "Bajgiel", "Precel", "Ciabatta"]
 };
-// ... existing code ...
 
-// Change gameState to stanGry
-const stanGry = {
-    poziom: 1,
-    punkty: 0,
-    czas: 60,
-    jestGraAktywna: false,
-    aktualneZamowienie: null,
-    elementyTalerza: [],
-    czasownik: null
-};
-
-// Change elements to elementy
 const elementy = {
-    startPrzycisk: document.getElementById("start-button"),
-    aktualneZamowienie: document.getElementById("current-order"),
-    elementyTalerza: document.getElementById("plate-items"),
-    czasWyswietlacz: document.getElementById("time-display"),
-    poziomWyswietlacz: document.getElementById("level-display"),
-    punktyWyswietlacz: document.getElementById("score-display"),
-    grillEfekt: document.getElementById("grill-effect")
+    przyciskStart: document.getElementById("przycisk-start"),
+    aktualneZamowienie: document.getElementById("aktualne-zamowienie"),
+    elementyTalerza: document.getElementById("elementy-talerza"),
+    wartoscCzasu: document.getElementById("wartosc-czasu"),
+    wartoscPoziomu: document.getElementById("wartosc-poziomu"),
+    wartoscWyniku: document.getElementById("wartosc-wyniku"),
+    pasekCzasomierza: document.getElementById("pasek-czasomierza"),
+    informacjaZwrotna: document.getElementById("informacja-zwrotna"),
+    koniecGry: document.getElementById("koniec-gry"),
+    wiadomoscKoniecGry: document.getElementById("wiadomosc-koniec-gry"),
+    przyciskWyczysc: document.getElementById("przycisk-wyczysc"),
+    przyciskPodaj: document.getElementById("przycisk-podaj")
 };
-// ... existing code ...
 
-// Change startGame to rozpocznijGre
 function rozpocznijGre() {
     if (stanGry.jestGraAktywna) return;
     
-    // Reset game state
     stanGry.poziom = 1;
     stanGry.punkty = 0;
-    stanGry.czas = 60;
+    stanGry.pozostalyCzas = konfiguracjaGry.poczatkowyCzas;
     stanGry.jestGraAktywna = true;
     stanGry.elementyTalerza = [];
     
-    // Update displays
-    aktualizujWyswietlacze();
+    aktualizujUI();
     
-    // Generate first order
     wygenerujZamowienie();
-    
-    // Start timer
+
     rozpocznijCzasomierz();
-    
-    // Change button text
-    elementy.startPrzycisk.textContent = "Gra w toku...";
-    elementy.startPrzycisk.disabled = true;
+
+    elementy.przyciskStart.textContent = "Gra w toku...";
+    elementy.przyciskStart.disabled = true;
+    elementy.koniecGry.style.display = "none";
 }
 
-// Change generateOrder to wygenerujZamowienie
 function wygenerujZamowienie() {
-    // Clear plate first
     wyczyscTalerz();
     
-    // Determine number of items based on level
     const iloscKielbas = Math.min(Math.ceil(stanGry.poziom / 2), 2);
     const iloscSosow = Math.min(Math.ceil(stanGry.poziom / 2), 3);
-    const iloscPieczywa = 1; // Always one bread
+    const iloscPieczywa = 1; 
     
-    // Generate random items
     const zamowienieKielbasy = pobierzLosoweElementy(produktySpozywcze.kielbasa, iloscKielbas);
     const zamowienieSosy = pobierzLosoweElementy(produktySpozywcze.sos, iloscSosow);
     const zamowieniePieczywo = pobierzLosoweElementy(produktySpozywcze.pieczywo, iloscPieczywa);
     
-    // Create order object
     stanGry.aktualneZamowienie = {
         kielbasa: zamowienieKielbasy,
         sos: zamowienieSosy,
         pieczywo: zamowieniePieczywo
     };
     
-    // Display order
     wyswietlZamowienie();
 }
 
-// Change getRandomItems to pobierzLosoweElementy
 function pobierzLosoweElementy(tablica, ilosc) {
     const potasowana = [...tablica].sort(() => 0.5 - Math.random());
     return potasowana.slice(0, ilosc);
 }
 
-// Change displayOrder to wyswietlZamowienie
 function wyswietlZamowienie() {
     if (!stanGry.aktualneZamowienie) return;
     
     let zamowienieHTML = `<h3>Zamówienie:</h3><ul>`;
     
-    // Add sausages
     stanGry.aktualneZamowienie.kielbasa.forEach(kielbasa => {
         zamowienieHTML += `<li>🌭 Kiełbasa: ${kielbasa}</li>`;
     });
     
-    // Add sauces
     stanGry.aktualneZamowienie.sos.forEach(sos => {
         zamowienieHTML += `<li>${pobierzEmojiSosu(sos)} Sos: ${sos}</li>`;
     });
-    
-    // Add bread
+
     stanGry.aktualneZamowienie.pieczywo.forEach(pieczywo => {
         zamowienieHTML += `<li>${pobierzEmojiPieczywa(pieczywo)} Pieczywo: ${pieczywo}</li>`;
     });
@@ -132,7 +103,6 @@ function wyswietlZamowienie() {
     elementy.aktualneZamowienie.innerHTML = zamowienieHTML;
 }
 
-// Change getSauceEmoji to pobierzEmojiSosu
 function pobierzEmojiSosu(sos) {
     const emoji = {
         "Ketchup": "🟥",
@@ -145,7 +115,7 @@ function pobierzEmojiSosu(sos) {
     return emoji[sos] || "";
 }
 
-// Change getBreadEmoji to pobierzEmojiPieczywa
+// Pobierz emoji pieczywa
 function pobierzEmojiPieczywa(pieczywo) {
     const emoji = {
         "Bułka": "🍞",
@@ -157,21 +127,16 @@ function pobierzEmojiPieczywa(pieczywo) {
     return emoji[pieczywo] || "";
 }
 
-// Change addToPlate to dodajDoTalerza
 function dodajDoTalerza(typ, nazwa) {
     if (!stanGry.jestGraAktywna) return;
-    
-    // Add to plate items array
+
     stanGry.elementyTalerza.push({ typ, nazwa });
     
-    // Update plate display
     aktualizujWyswietlaczTalerza();
-    
-    // Add grill effect
+
     dodajEfektGrilla();
 }
 
-// Change updatePlateDisplay to aktualizujWyswietlaczTalerza
 function aktualizujWyswietlaczTalerza() {
     elementy.elementyTalerza.innerHTML = "";
     
@@ -180,9 +145,9 @@ function aktualizujWyswietlaczTalerza() {
         elementTalerza.className = "element-talerza";
         
         let emoji = "";
-        if (element.typ === "kielbasa") emoji = "🌭";
-        else if (element.typ === "sos") emoji = pobierzEmojiSosu(element.nazwa);
-        else if (element.typ === "pieczywo") emoji = pobierzEmojiPieczywa(element.nazwa);
+        if (element.typ === "sausage") emoji = "🌭";
+        else if (element.typ === "sauce") emoji = pobierzEmojiSosu(element.nazwa);
+        else if (element.typ === "bread") emoji = pobierzEmojiPieczywa(element.nazwa);
         
         elementTalerza.innerHTML = `
             ${emoji} <span>${element.nazwa}</span>
@@ -193,72 +158,71 @@ function aktualizujWyswietlaczTalerza() {
     });
 }
 
-// Remove item from plate
-function removeFromPlate(index) {
-    if (!gameState.isGameRunning) return;
+function usunZTalerza(indeks) {
+    if (!stanGry.jestGraAktywna) return;
     
-    gameState.plateItems.splice(index, 1);
-    updatePlateDisplay();
+    stanGry.elementyTalerza.splice(indeks, 1);
+    aktualizujWyswietlaczTalerza();
 }
 
-// Clear plate
-function clearPlate() {
-    if (!gameState.isGameRunning) return;
+function wyczyscTalerz() {
+    if (!stanGry.jestGraAktywna) return;
     
-    gameState.plateItems = [];
-    updatePlateDisplay();
+    stanGry.elementyTalerza = [];
+    aktualizujWyswietlaczTalerza();
 }
 
-// Serve order
-function serveOrder() {
-    if (!gameState.isGameRunning || !gameState.currentOrder) return;
+function podajZamowienie() {
+    if (!stanGry.jestGraAktywna || !stanGry.aktualneZamowienie) return;
     
-    // Check if order is correct
-    const isCorrect = checkOrder();
+    const jestPoprawne = sprawdzZamowienie();
     
-    if (isCorrect) {
-        // Add points
-        gameState.score += gameConfig.pointsPerCorrectOrder;
+    if (jestPoprawne) {
+        stanGry.punkty += konfiguracjaGry.punktyZaPoprawneZamowienie;
+
+        pokazInformacjeZwrotna("Poprawne zamówienie! +10 punktów", "sukces");
         
-        // Show success feedback
-        showFeedback("Poprawne zamówienie! +10 punktów", "sukces");
+        sprawdzAwansPoziom();
         
-        // Check for level up
-        checkLevelUp();
+        wygenerujZamowienie();
         
-        // Generate new order
-        generateOrder();
+        dodajAnimacjePunktow(konfiguracjaGry.punktyZaPoprawneZamowienie);
     } else {
-        // Show failure feedback
-        showFeedback("Niepoprawne zamówienie! Spróbuj ponownie", "porazka");
+        pokazInformacjeZwrotna("Niepoprawne zamówienie! Spróbuj ponownie", "porazka");
     }
-    
-    // Update UI
-    updateUI();
+
+    aktualizujUI();
 }
 
-// Check if served order matches current order
-function checkOrder() {
-    const order = gameState.currentOrder;
-    const plate = gameState.plateItems;
+function sprawdzZamowienie() {
+    const zamowienie = stanGry.aktualneZamowienie;
+    const talerz = stanGry.elementyTalerza;
     
-    // Count items by type and name
-    const orderCounts = countItems(order);
-    const plateCounts = countItemsFromPlate(plate);
+    const mapaTypow = {
+        "sausage": "kielbasa",
+        "sauce": "sos",
+        "bread": "pieczywo"
+    };
     
-    // Compare counts
-    for (const type in orderCounts) {
-        for (const name in orderCounts[type]) {
-            if (!plateCounts[type] || plateCounts[type][name] !== orderCounts[type][name]) {
+    const talerzTypyPolskie = talerz.map(item => ({
+        typ: mapaTypow[item.typ] || item.typ,
+        nazwa: item.nazwa
+    }));
+    
+    const licznikZamowienia = zliczElementyZamowienia(zamowienie);
+    const licznikTalerza = zliczElementyTalerza(talerzTypyPolskie);
+
+    for (const typ in licznikZamowienia) {
+        for (const nazwa in licznikZamowienia[typ]) {
+            if (!licznikTalerza[typ] || licznikTalerza[typ][nazwa] !== licznikZamowienia[typ][nazwa]) {
                 return false;
             }
         }
     }
     
-    // Check if there are extra items on the plate
-    for (const type in plateCounts) {
-        for (const name in plateCounts[type]) {
-            if (!orderCounts[type] || !orderCounts[type][name]) {
+    for (const typ in licznikTalerza) {
+        for (const nazwa in licznikTalerza[typ]) {
+            if (!licznikZamowienia[typ] || !licznikZamowienia[typ][nazwa]) {
                 return false;
             }
         }
@@ -267,171 +231,157 @@ function checkOrder() {
     return true;
 }
 
-// Count items in order
-function countItems(order) {
-    const counts = {};
+function zliczElementyZamowienia(zamowienie) {
+    const licznik = {};
     
-    for (const type in order) {
-        counts[type] = {};
-        order[type].forEach(name => {
-            counts[type][name] = (counts[type][name] || 0) + 1;
+    for (const typ in zamowienie) {
+        licznik[typ] = {};
+        zamowienie[typ].forEach(nazwa => {
+            licznik[typ][nazwa] = (licznik[typ][nazwa] || 0) + 1;
         });
     }
     
-    return counts;
+    return licznik;
 }
 
-// Count items on plate
-function countItemsFromPlate(plate) {
-    const counts = {};
+function zliczElementyTalerza(talerz) {
+    const licznik = {};
     
-    plate.forEach(item => {
-        if (!counts[item.type]) counts[item.type] = {};
-        counts[item.type][item.name] = (counts[item.type][item.name] || 0) + 1;
+    talerz.forEach(element => {
+        if (!licznik[element.typ]) licznik[element.typ] = {};
+        licznik[element.typ][element.nazwa] = (licznik[element.typ][element.nazwa] || 0) + 1;
     });
     
-    return counts;
+    return licznik;
 }
 
-// Check for level up
-function checkLevelUp() {
-    if (gameState.score >= gameState.level * gameConfig.levelUpThreshold) {
-        gameState.level++;
+function sprawdzAwansPoziom() {
+    if (stanGry.punkty >= stanGry.poziom * konfiguracjaGry.progAwansuPoziom) {
+        stanGry.poziom++;
         
-        // Adjust time for new level
-        const newTime = gameConfig.initialTime - ((gameState.level - 1) * gameConfig.timeDecreasePerLevel);
-        gameState.timeLeft = Math.max(newTime, gameConfig.minTime);
-        
-        // Show level up feedback
-        showFeedback(`Poziom ${gameState.level}! Nowe wyzwanie!`, "sukces");
+        const nowyCzas = konfiguracjaGry.poczatkowyCzas - ((stanGry.poziom - 1) * konfiguracjaGry.zmniejszenieCzasuPoziom);
+        stanGry.pozostalyCzas = Math.max(nowyCzas, konfiguracjaGry.minCzas);
+
+        pokazInformacjeZwrotna(`Poziom ${stanGry.poziom}! Nowe wyzwanie!`, "sukces");
     }
 }
 
-// Show feedback message
-function showFeedback(message, type) {
-    elements.feedback.textContent = message;
-    elements.feedback.className = `informacja-zwrotna ${type}`;
-    elements.feedback.style.opacity = 1;
+function pokazInformacjeZwrotna(wiadomosc, typ) {
+    elementy.informacjaZwrotna.textContent = wiadomosc;
+    elementy.informacjaZwrotna.className = `informacja-zwrotna ${typ}`;
+    elementy.informacjaZwrotna.style.opacity = 1;
     
-    // Hide after 2 seconds
     setTimeout(() => {
-        elements.feedback.style.opacity = 0;
+        elementy.informacjaZwrotna.style.opacity = 0;
     }, 2000);
 }
 
-// Start timer
-function startTimer() {
-    // Clear existing timer
-    if (gameState.timer) clearInterval(gameState.timer);
+function rozpocznijCzasomierz() {
+    if (stanGry.czasomierz) clearInterval(stanGry.czasomierz);
     
-    // Set timer
-    gameState.timer = setInterval(() => {
-        gameState.timeLeft--;
+    stanGry.czasomierz = setInterval(() => {
+        stanGry.pozostalyCzas--;
         
-        // Update timer display
-        updateTimerDisplay();
+        aktualizujWyswietlaczCzasomierza();
         
-        // Check for game over
-        if (gameState.timeLeft <= 0) {
-            endGame();
+        if (stanGry.pozostalyCzas <= 0) {
+            zakonczGre();
         }
     }, 1000);
 }
 
-// Update timer display
-function updateTimerDisplay() {
-    // Update time text
-    elements.timeValue.textContent = gameState.timeLeft;
+
+function aktualizujWyswietlaczCzasomierza() {
+    elementy.wartoscCzasu.textContent = stanGry.pozostalyCzas;
     
-    // Update timer bar
-    const percentage = (gameState.timeLeft / gameConfig.initialTime) * 100;
-    elements.timerBar.style.width = `${percentage}%`;
+
+    const procent = (stanGry.pozostalyCzas / konfiguracjaGry.poczatkowyCzas) * 100;
+    elementy.pasekCzasomierza.style.width = `${procent}%`;
     
-    // Change color based on time left
-    if (gameState.timeLeft <= 10) {
-        elements.timerBar.style.backgroundColor = "#f44336"; // Red
-    } else if (gameState.timeLeft <= 20) {
-        elements.timerBar.style.backgroundColor = "#ff9800"; // Orange
+
+    if (stanGry.pozostalyCzas <= 10) {
+        elementy.pasekCzasomierza.style.backgroundColor = "var(--maj-czerwony)"; 
+    } else if (stanGry.pozostalyCzas <= 20) {
+        elementy.pasekCzasomierza.style.backgroundColor = "var(--maj-ciemnypomaranczowy)"; 
     } else {
-        elements.timerBar.style.backgroundColor = "#4CAF50"; // Green
+        elementy.pasekCzasomierza.style.backgroundColor = "var(--maj-pomaranczowy)"; 
     }
 }
 
-// End game
-function endGame() {
-    // Stop timer
-    clearInterval(gameState.timer);
+
+function zakonczGre() {
+    clearInterval(stanGry.czasomierz);
+    stanGry.jestGraAktywna = false;
     
-    // Update game state
-    gameState.isGameRunning = false;
+    elementy.koniecGry.style.display = "flex";
+    elementy.wiadomoscKoniecGry.textContent = `Twój wynik: ${stanGry.punkty} punktów! Osiągnięty poziom: ${stanGry.poziom}`;
     
-    // Show game over screen
-    elements.gameOver.style.display = "flex";
-    elements.gameOverMessage.textContent = `Twój wynik: ${gameState.score} punktów! Osiągnięty poziom: ${gameState.level}`;
-    
-    // Reset start button
-    elements.startButton.textContent = "Start";
-    elements.startButton.disabled = false;
+    elementy.przyciskStart.textContent = "Start";
+    elementy.przyciskStart.disabled = false;
 }
 
-// Update UI
-function updateUI() {
-    elements.scoreValue.textContent = gameState.score;
-    elements.levelValue.textContent = gameState.level;
-    elements.timeValue.textContent = gameState.timeLeft;
-    updateTimerDisplay();
+function aktualizujUI() {
+    elementy.wartoscWyniku.textContent = stanGry.punkty;
+    elementy.wartoscPoziomu.textContent = stanGry.poziom;
+    elementy.wartoscCzasu.textContent = stanGry.pozostalyCzas;
+    aktualizujWyswietlaczCzasomierza();
 }
 
-// Add grill effect
-function addGrillEffect() {
-    const effect = document.createElement("div");
-    effect.className = "efekt-grilla";
+function dodajEfektGrilla() {
+    const efekt = document.createElement("div");
+    efekt.className = "efekt-grilla";
+
+    const talerz = elementy.elementyTalerza.parentElement;
+    const prostokat = talerz.getBoundingClientRect();
     
-    // Random position within the plate
-    const plate = elements.plateItems;
-    const plateRect = plate.getBoundingClientRect();
+    const x = Math.random() * (prostokat.width - 80);
+    const y = Math.random() * (prostokat.height - 80);
     
-    const x = Math.random() * (plateRect.width - 80);
-    const y = Math.random() * (plateRect.height - 80);
+    efekt.style.left = `${x}px`;
+    efekt.style.top = `${y}px`;
     
-    effect.style.left = `${x}px`;
-    effect.style.top = `${y}px`;
+    talerz.appendChild(efekt);
     
-    plate.appendChild(effect);
-    
-    // Remove after animation
     setTimeout(() => {
-        effect.remove();
+        efekt.remove();
     }, 500);
 }
 
-// Add points animation
-function addPointsAnimation(points) {
-    const pointsElement = document.createElement("div");
-    pointsElement.className = "punkty-dodane";
-    pointsElement.textContent = `+${points}`;
+function dodajAnimacjePunktow(punkty) {
+    const elementPunktow = document.createElement("div");
+    elementPunktow.className = "punkty-dodane";
+    elementPunktow.textContent = `+${punkty}`;
+    elementPunktow.style.left = "50%";
+    elementPunktow.style.top = "50%";
+    elementPunktow.style.transform = "translate(-50%, -50%)";
     
-    // Position in center of screen
-    pointsElement.style.left = "50%";
-    pointsElement.style.top = "50%";
-    pointsElement.style.transform = "translate(-50%, -50%)";
+    document.body.appendChild(elementPunktow);
     
-    document.body.appendChild(pointsElement);
-    
-    // Animate
     setTimeout(() => {
-        pointsElement.style.transform = "translate(-50%, -100px)";
-        pointsElement.style.opacity = 0;
+        elementPunktow.style.transform = "translate(-50%, -100px)";
+        elementPunktow.style.opacity = 0;
     }, 100);
     
-    // Remove after animation
     setTimeout(() => {
-        pointsElement.remove();
+        elementPunktow.remove();
     }, 1000);
 }
 
-// Make removeFromPlate function available globally
-window.removeFromPlate = removeFromPlate;
+window.usunZTalerza = usunZTalerza;
 
-// Initialize the game when the page loads
-document.addEventListener("DOMContentLoaded", );
+document.addEventListener("DOMContentLoaded", () => {
+    elementy.przyciskStart.addEventListener("click", rozpocznijGre);
+    
+    elementy.przyciskWyczysc.addEventListener("click", wyczyscTalerz);
+    
+    elementy.przyciskPodaj.addEventListener("click", podajZamowienie);
+    
+    const przyciskiJedzenia = document.querySelectorAll(".przycisk-jedzenia");
+    przyciskiJedzenia.forEach(przycisk => {
+        przycisk.addEventListener("click", () => {
+            const typ = przycisk.getAttribute("data-type");
+            const nazwa = przycisk.getAttribute("data-name");
+            dodajDoTalerza(typ, nazwa);
+        });
+    });
+});
