@@ -19,146 +19,122 @@ let gameState = {
 };
 
 // Food items database
-// Food items database
-const foodItems = {
-    sausage: ["Włoska", "Polska", "Bratwurst", "Chorizo", "Frankfurter"],
-    sauce: ["Ketchup", "Musztarda", "Majonez", "BBQ", "Ostry"],
-    bread: ["Bułka", "Bajgiel", "Precel", "Ciabatta"]
+// Change foodItems to produktySpozywcze
+const produktySpozywcze = {
+    kielbasa: ["Włoska", "Polska", "Bratwurst", "Chorizo", "Frankfurter"],
+    sos: ["Ketchup", "Musztarda", "Majonez", "BBQ", "Ostry"],
+    pieczywo: ["Bułka", "Bajgiel", "Precel", "Ciabatta"]
 };
 // ... existing code ...
 
-// DOM elements
-const elements = {
-    scoreValue: document.getElementById("wartosc-wyniku"),
-    timeValue: document.getElementById("wartosc-czasu"),
-    levelValue: document.getElementById("wartosc-poziomu"),
-    timerBar: document.getElementById("pasek-czasomierza"),
-    currentOrder: document.getElementById("aktualne-zamowienie"),
-    plateItems: document.getElementById("elementy-talerza"),
-    clearButton: document.getElementById("przycisk-wyczysc"),
-    serveButton: document.getElementById("przycisk-podaj"),
-    startButton: document.getElementById("przycisk-start"),
-    feedback: document.getElementById("informacja-zwrotna"),
-    gameOver: document.getElementById("koniec-gry"),
-    gameOverMessage: document.getElementById("wiadomosc-koniec-gry"),
-    foodButtons: document.querySelectorAll(".przycisk-jedzenia")
+// Change gameState to stanGry
+const stanGry = {
+    poziom: 1,
+    punkty: 0,
+    czas: 60,
+    jestGraAktywna: false,
+    aktualneZamowienie: null,
+    elementyTalerza: [],
+    czasownik: null
 };
 
-// Initialize the game
-function initGame() {
-    // Reset game state
-    gameState = {
-        score: 0,
-        level: 1,
-        timeLeft: gameConfig.initialTime,
-        isGameRunning: false,
-        currentOrder: null,
-        plateItems: [],
-        timer: null
-    };
+// Change elements to elementy
+const elementy = {
+    startPrzycisk: document.getElementById("start-button"),
+    aktualneZamowienie: document.getElementById("current-order"),
+    elementyTalerza: document.getElementById("plate-items"),
+    czasWyswietlacz: document.getElementById("time-display"),
+    poziomWyswietlacz: document.getElementById("level-display"),
+    punktyWyswietlacz: document.getElementById("score-display"),
+    grillEfekt: document.getElementById("grill-effect")
+};
+// ... existing code ...
 
-    // Update UI
-    updateUI();
-
-    // Add event listeners
-    elements.startButton.addEventListener("click", startGame);
-    elements.clearButton.addEventListener("click", clearPlate);
-    elements.serveButton.addEventListener("click", serveOrder);
-    
-    elements.foodButtons.forEach(button => {
-        button.addEventListener("click", () => addToPlate(button.dataset.type, button.dataset.name));
-    });
-}
-
-// Start the game
-function startGame() {
-    if (gameState.isGameRunning) return;
+// Change startGame to rozpocznijGre
+function rozpocznijGre() {
+    if (stanGry.jestGraAktywna) return;
     
     // Reset game state
-    gameState.isGameRunning = true;
-    gameState.score = 0;
-    gameState.level = 1;
-    gameState.timeLeft = gameConfig.initialTime;
-    gameState.plateItems = [];
+    stanGry.poziom = 1;
+    stanGry.punkty = 0;
+    stanGry.czas = 60;
+    stanGry.jestGraAktywna = true;
+    stanGry.elementyTalerza = [];
     
-    // Hide game over screen
-    elements.gameOver.style.display = "none";
-    
-    // Update UI
-    updateUI();
+    // Update displays
+    aktualizujWyswietlacze();
     
     // Generate first order
-    generateOrder();
+    wygenerujZamowienie();
     
     // Start timer
-    startTimer();
+    rozpocznijCzasomierz();
     
     // Change button text
-    elements.startButton.textContent = "Gra w toku...";
-    elements.startButton.disabled = true;
+    elementy.startPrzycisk.textContent = "Gra w toku...";
+    elementy.startPrzycisk.disabled = true;
 }
 
-// Generate a random order
-function generateOrder() {
+// Change generateOrder to wygenerujZamowienie
+function wygenerujZamowienie() {
     // Clear plate first
-    clearPlate();
+    wyczyscTalerz();
     
     // Determine number of items based on level
-    const numSausages = Math.min(Math.ceil(gameState.level / 2), 2);
-    const numSauces = Math.min(Math.ceil(gameState.level / 2), 3);
-    const numBreads = 1; // Always one bread
+    const iloscKielbas = Math.min(Math.ceil(stanGry.poziom / 2), 2);
+    const iloscSosow = Math.min(Math.ceil(stanGry.poziom / 2), 3);
+    const iloscPieczywa = 1; // Always one bread
     
     // Generate random items
-    const orderSausages = getRandomItems(foodItems.sausage, numSausages);
-    const orderSauces = getRandomItems(foodItems.sauce, numSauces);
-    const orderBread = getRandomItems(foodItems.bread, numBreads);
+    const zamowienieKielbasy = pobierzLosoweElementy(produktySpozywcze.kielbasa, iloscKielbas);
+    const zamowienieSosy = pobierzLosoweElementy(produktySpozywcze.sos, iloscSosow);
+    const zamowieniePieczywo = pobierzLosoweElementy(produktySpozywcze.pieczywo, iloscPieczywa);
     
     // Create order object
-    gameState.currentOrder = {
-        sausage: orderSausages,
-        sauce: orderSauces,
-        bread: orderBread
+    stanGry.aktualneZamowienie = {
+        kielbasa: zamowienieKielbasy,
+        sos: zamowienieSosy,
+        pieczywo: zamowieniePieczywo
     };
     
     // Display order
-    displayOrder();
+    wyswietlZamowienie();
 }
 
-// Get random items from an array
-function getRandomItems(array, count) {
-    const shuffled = [...array].sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
+// Change getRandomItems to pobierzLosoweElementy
+function pobierzLosoweElementy(tablica, ilosc) {
+    const potasowana = [...tablica].sort(() => 0.5 - Math.random());
+    return potasowana.slice(0, ilosc);
 }
 
-// Display the current order
-// Display the current order
-function displayOrder() {
-    if (!gameState.currentOrder) return;
+// Change displayOrder to wyswietlZamowienie
+function wyswietlZamowienie() {
+    if (!stanGry.aktualneZamowienie) return;
     
-    let orderHTML = `<h3>Zamówienie:</h3><ul>`;
+    let zamowienieHTML = `<h3>Zamówienie:</h3><ul>`;
     
     // Add sausages
-    gameState.currentOrder.sausage.forEach(sausage => {
-        orderHTML += `<li>🌭 Kiełbasa: ${sausage}</li>`;
+    stanGry.aktualneZamowienie.kielbasa.forEach(kielbasa => {
+        zamowienieHTML += `<li>🌭 Kiełbasa: ${kielbasa}</li>`;
     });
     
     // Add sauces
-    gameState.currentOrder.sauce.forEach(sauce => {
-        orderHTML += `<li>${getSauceEmoji(sauce)} Sos: ${sauce}</li>`;
+    stanGry.aktualneZamowienie.sos.forEach(sos => {
+        zamowienieHTML += `<li>${pobierzEmojiSosu(sos)} Sos: ${sos}</li>`;
     });
     
     // Add bread
-    gameState.currentOrder.bread.forEach(bread => {
-        orderHTML += `<li>${getBreadEmoji(bread)} Pieczywo: ${bread}</li>`;
+    stanGry.aktualneZamowienie.pieczywo.forEach(pieczywo => {
+        zamowienieHTML += `<li>${pobierzEmojiPieczywa(pieczywo)} Pieczywo: ${pieczywo}</li>`;
     });
     
-    orderHTML += `</ul>`;
-    elements.currentOrder.innerHTML = orderHTML;
+    zamowienieHTML += `</ul>`;
+    elementy.aktualneZamowienie.innerHTML = zamowienieHTML;
 }
 
-// Get emoji for sauce
-function getSauceEmoji(sauce) {
-    const emojis = {
+// Change getSauceEmoji to pobierzEmojiSosu
+function pobierzEmojiSosu(sos) {
+    const emoji = {
         "Ketchup": "🟥",
         "Musztarda": "🟨",
         "Majonez": "⬜",
@@ -166,59 +142,56 @@ function getSauceEmoji(sauce) {
         "Ostry": "🔴"
     };
     
-    return emojis[sauce] || "";
+    return emoji[sos] || "";
 }
 
-// Get emoji for bread
-function getBreadEmoji(bread) {
-    const emojis = {
+// Change getBreadEmoji to pobierzEmojiPieczywa
+function pobierzEmojiPieczywa(pieczywo) {
+    const emoji = {
         "Bułka": "🍞",
         "Bajgiel": "🥯",
         "Precel": "🥨",
         "Ciabatta": "🥖"
     };
     
-    return emojis[bread] || "";
+    return emoji[pieczywo] || "";
 }
-// ... existing code ...
 
-// Add item to plate
-function addToPlate(type, name) {
-    if (!gameState.isGameRunning) return;
+// Change addToPlate to dodajDoTalerza
+function dodajDoTalerza(typ, nazwa) {
+    if (!stanGry.jestGraAktywna) return;
     
     // Add to plate items array
-    gameState.plateItems.push({ type, name });
+    stanGry.elementyTalerza.push({ typ, nazwa });
     
     // Update plate display
-    updatePlateDisplay();
+    aktualizujWyswietlaczTalerza();
     
     // Add grill effect
-    addGrillEffect();
+    dodajEfektGrilla();
 }
 
-// Update plate display
-// Update plate display
-function updatePlateDisplay() {
-    elements.plateItems.innerHTML = "";
+// Change updatePlateDisplay to aktualizujWyswietlaczTalerza
+function aktualizujWyswietlaczTalerza() {
+    elementy.elementyTalerza.innerHTML = "";
     
-    gameState.plateItems.forEach((item, index) => {
-        const itemElement = document.createElement("div");
-        itemElement.className = "element-talerza";
+    stanGry.elementyTalerza.forEach((element, indeks) => {
+        const elementTalerza = document.createElement("div");
+        elementTalerza.className = "element-talerza";
         
         let emoji = "";
-        if (item.type === "sausage") emoji = "🌭";
-        else if (item.type === "sauce") emoji = getSauceEmoji(item.name);
-        else if (item.type === "bread") emoji = getBreadEmoji(item.name);
+        if (element.typ === "kielbasa") emoji = "🌭";
+        else if (element.typ === "sos") emoji = pobierzEmojiSosu(element.nazwa);
+        else if (element.typ === "pieczywo") emoji = pobierzEmojiPieczywa(element.nazwa);
         
-        itemElement.innerHTML = `
-            ${emoji} <span>${item.name}</span>
-            <button class="usun-element" onclick="removeFromPlate(${index})">×</button>
+        elementTalerza.innerHTML = `
+            ${emoji} <span>${element.nazwa}</span>
+            <button class="usun-element" onclick="usunZTalerza(${indeks})">×</button>
         `;
         
-        elements.plateItems.appendChild(itemElement);
+        elementy.elementyTalerza.appendChild(elementTalerza);
     });
 }
-// ... existing code ...
 
 // Remove item from plate
 function removeFromPlate(index) {
@@ -461,4 +434,4 @@ function addPointsAnimation(points) {
 window.removeFromPlate = removeFromPlate;
 
 // Initialize the game when the page loads
-document.addEventListener("DOMContentLoaded", initGame);
+document.addEventListener("DOMContentLoaded", );

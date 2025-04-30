@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-:root {
-    --maj-czerwony: #ff5252;
-    --maj-pomaranczowy: #ffb74d;
-    --maj-zolty: #ffeb3b;
-    --maj-zielony: #8bc34a;
-    --maj-ciemnozielony: #4caf50;
-    --maj-jasny: #f9f9f7;
+/* First, let's update the color variables to remove greens and add more red-orange options */ 
+:root { 
+    --maj-czerwony: #ff5252; 
+    --maj-pomaranczowy: #ffb74d; 
+    --maj-ciemnypomaranczowy: #ff7043; 
+    --maj-zolty: #ffeb3b; 
+    --maj-jasny: #f9f9f7; 
 }
 
 body {
@@ -19,11 +19,7 @@ body {
     justify-content: flex-start;
     min-height: 100vh;
     background-color: var(--maj-jasny);
-    background-image:
-    radial-gradient(circle at 10% 20%, rgba(255, 183, 77, 0.2) 0%, transparent 25%),
-    radial-gradient(circle at 90% 80%, rgba(139, 195, 74, 0.2) 0%, transparent 25%);
-    background-repeat: repeat;
-    background-size: 200px, cover, cover;
+
 }
 
 header {
@@ -33,10 +29,10 @@ header {
     align-items: center;
     text-align: center;
     margin-bottom: 3vh;
-    background-image: linear-gradient(to top, var(--maj-zielony), var(--maj-ciemnozielony));
+    background-image: linear-gradient(to top, var(--maj-czerwony), var(--maj-pomaranczowy)); 
     width: 100%;
     box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
-    border-bottom: 5px solid var(--maj-zolty);
+    border-bottom: 5px solid var(--maj-zolty); 
     overflow: hidden;
     padding: 20px 0;
 }
@@ -106,7 +102,7 @@ header p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(76, 175, 80, 0.95);
+    background: rgba(255, 82, 82, 0.95);
     z-index: 1000;
     display: none;
     justify-content: center;
@@ -141,7 +137,7 @@ header p {
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
     font-size: 1rem;
-    color: #4caf50;
+    color: var(--maj-czerwony); 
     text-decoration: none;
     transition: 0.3s ease;
     font-weight: 600;
@@ -168,7 +164,7 @@ header p {
     min-height: 70px !important;
     font-weight: bold;
     background: linear-gradient(135deg, var(--maj-zolty), var(--maj-pomaranczowy));
-    color: #4caf50;
+    color: #333; 
 }
 
 .home-link:hover {
@@ -253,7 +249,7 @@ main {
 #pasek-czasomierza {
     height: 100%;
     width: 100%;
-    background-color: var(--maj-zielony);
+    background-color: var(--maj-pomaranczowy);
     transition: width 0.3s linear;
 }
 
@@ -366,28 +362,85 @@ main {
     padding-bottom: 8px;
 }
 
-.talerz {
-    min-height: 150px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 15px;
+/* Update the talerz to look like a circular plate */ 
+.talerz { 
+    min-height: 200px; 
+    background: #ffffff; 
+    border-radius: 50%; 
+    padding: 0; 
+    margin: 15px auto; 
+    position: relative; 
+    width: 250px; 
+    height: 250px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); 
+    border: 1px solid #e0e0e0; 
+    /* Add a plate-like ring effect */ 
+    background-image: 
+        radial-gradient(circle at center, 
+            #ffffff 0%, 
+            #f9f9f7 60%, 
+            #f0f0f0 70%, 
+            #e8e8e8 80%, 
+            #dedede 90%, 
+            #d0d0d0 100%); 
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    position: relative;
-    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
 }
 
-.element-talerza {
-    background: white;
-    padding: 8px 12px;
-    border-radius: 8px;
+#elementy-talerza {
+    position: relative;
+    width: 70%;
+    height: 70%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    animation: pojawienie-elementu 0.3s ease;
+    justify-content: center;
+}
+
+#elementy-talerza::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+    height: 65%;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    z-index: 0;
+}
+
+#elementy-talerza::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 35%;
+    height: 35%;
+    border-radius: 50%;
+    border: 1px solid #e0e0e0;
+    z-index: 0;
+}
+
+/* Make the elements on the plate stack more naturally */ 
+.element-talerza { 
+    background: rgba(255, 255, 255, 0.8); 
+    padding: 8px 12px; 
+    border-radius: 8px; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    animation: pojawienie-elementu 0.3s ease; 
+    margin: 5px auto; 
+    width: 100%;
+    max-width: 85%; 
+    border: 1px solid #f0f0f0;
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes pojawienie-elementu {
@@ -446,15 +499,25 @@ main {
     background: #e0e0e0;
 }
 
-#przycisk-podaj {
-    background: var(--maj-zielony);
+/* Change the "podaj" button color from green to our theme */ 
+#przycisk-podaj { 
+    background: var(--maj-pomaranczowy); 
     color: white;
+    font-weight: 600;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px;
+    transition: all 0.2s ease;
 }
 
-#przycisk-podaj:hover {
-    background: var(--maj-ciemnozielony);
+#przycisk-podaj:hover { 
+    background: var(--maj-ciemnypomaranczowy); 
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.25);
+}
+
+#przycisk-podaj:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .kontrolki-gry {
@@ -559,7 +622,7 @@ main {
 
 #przycisk-restart {
     padding: 10px 25px;
-    background: var(--maj-zielony);
+    background: var(--maj-pomaranczowy);
     color: white;
     border: none;
     border-radius: 8px;
@@ -570,7 +633,7 @@ main {
 }
 
 #przycisk-restart:hover {
-    background: var(--maj-ciemnozielony);
+    background: var(--maj-ciemnypomaranczowy);
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
@@ -612,35 +675,10 @@ footer {
     padding: 20px 0 10px;
     text-align: center;
     color: white;
-    background-image: linear-gradient(to bottom, var(--maj-zielony), var(--maj-ciemnozielony));
+    background-image: linear-gradient(to bottom, var(--maj-czerwony), var(--maj-ciemnypomaranczowy));
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
     position: relative;
     margin-top: auto;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .sekcja-gotowania {
-        flex-direction: column;
-    }
-    
-    .przyciski-jedzenia {
-        justify-content: center;
-    }
-    
-    .element-statystyki {
-        justify-content: center;
-        flex: 1 1 auto;
-    }
-}
 
-@media (max-width: 480px) {
-    .przyciski-jedzenia button {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-    }
-    
-    .zawartosc-koniec-gry {
-        padding: 15px;
-    }
-}
