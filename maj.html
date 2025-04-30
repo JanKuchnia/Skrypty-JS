@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Majówka - Mistrz Grilla</title>
+    <link rel="stylesheet" href="maj.css">
+</head>
+<body>
+    <header>
+        <h1>Mistrz Grilla</h1>
+        <p>Przygotuj zamówienia jak najszybciej i zostań mistrzem grilla!</p>
+        
+        <div class="hamburger-menu" onclick="przelaczMenu()">
+            <div class="pasek"></div>
+            <div class="pasek"></div>
+            <div class="pasek"></div>
+        </div>
+
+        <div class="menu-kontener">
+            <span class="zamknij" onclick="przelaczMenu()">&times;</span>
+
+            <div class="linki-kontener">
+                <a href="index.html" class="linki home-link">Strona Główna</a>
+                <a href="kalkulator1.html" class="linki">Kalkulator 1</a>
+                <a href="kalkulator2.html" class="linki">Kalkulator 2</a>
+                <a href="kalkulator3.html" class="linki">Wagi Długości</a>
+                <a href="kalkulator4.html" class="linki">Kalkulator Wagi</a>
+                <a href="kalkulator5.html" class="linki">Kalkulator Objętości</a>
+                <a href="kalkulator6.html" class="linki">Kalkulator Powierzchni</a>
+                <a href="kalkulator7.html" class="linki">Kalkulator Waluty</a>
+                <a href="kalkulator8.html" class="linki">Kalkulator Ciśnienia</a>
+                <a href="kalkulator9.html" class="linki">Kalkulator Prędkości</a>
+                <a href="kalkulator10.html" class="linki">Kalkulator Temperatur</a>
+                <a href="kalkulator11.html" class="linki">Kalkulator Czasu</a>
+                <a href="kalkulator12.html" class="linki">Kalkulator kW na KM i na Odwrót</a>
+                <a href="kalkulator13.html" class="linki">Kalkulator Kwot</a>
+                <a href="kalkulator14.html" class="linki">Kalkulator Funkcji Kwadratowej</a>
+                <a href="kalkulator15.html" class="linki">Cukierki</a>
+                <a href="kalkulator16.html" class="linki">Komputery</a>
+                <a href="kalkulator17.html" class="linki">Usługi Kosmetyczne</a>
+                <a href="fryzuryMakijaz.html" class="linki">Zamówienie fryzury i makijażu</a>
+                <a href="wielkanoc.html" class="linki">Wielkanoc</a>
+                <a href="maj.html" class="linki">Majówka</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="kontener-gry">
+            <div class="statystyki-gry">
+                <div class="element-statystyki">
+                    <span class="etykieta-statystyki">Wynik:</span>
+                    <span id="wartosc-wyniku">0</span>
+                </div>
+                <div class="element-statystyki">
+                    <span class="etykieta-statystyki">Czas:</span>
+                    <span id="wartosc-czasu">60</span>s
+                </div>
+                <div class="element-statystyki">
+                    <span class="etykieta-statystyki">Poziom:</span>
+                    <span id="wartosc-poziomu">1</span>
+                </div>
+                <div class="kontener-czasomierza">
+                    <div id="pasek-czasomierza"></div>
+                </div>
+            </div>
+
+            <div class="obszar-gry">
+                <div class="sekcja-zamowienia">
+                    <div id="aktualne-zamowienie">
+                        <h3>Zamówienie:</h3>
+                        <p>Naciśnij Start, aby rozpocząć grę!</p>
+                    </div>
+                </div>
+
+                <div class="sekcja-gotowania">
+                    <div class="wybor-jedzenia">
+                        <h3>Kiełbasy:</h3>
+                        <div class="przyciski-jedzenia">
+                            <button class="przycisk-jedzenia" data-type="sausage" data-name="Italian">🌭 Włoska</button>
+                            <button class="przycisk-jedzenia" data-type="sausage" data-name="Polish">🌭 Polska</button>
+                            <button class="przycisk-jedzenia" data-type="sausage" data-name="Bratwurst">🌭 Bratwurst</button>
+                            <button class="przycisk-jedzenia" data-type="sausage" data-name="Chorizo">🌭 Chorizo</button>
+                            <button class="przycisk-jedzenia" data-type="sausage" data-name="Frankfurter">🌭 Frankfurter</button>
+                        </div>
+
+                        <h3>Sosy:</h3>
+                        <div class="przyciski-jedzenia">
+                            <button class="przycisk-jedzenia" data-type="sauce" data-name="Ketchup">🟥 Ketchup</button>
+                            <button class="przycisk-jedzenia" data-type="sauce" data-name="Mustard">🟨 Musztarda</button>
+                            <button class="przycisk-jedzenia" data-type="sauce" data-name="Mayo">⬜ Majonez</button>
+                            <button class="przycisk-jedzenia" data-type="sauce" data-name="BBQ">🟫 BBQ</button>
+                            <button class="przycisk-jedzenia" data-type="sauce" data-name="Hot">🔴 Ostry</button>
+                        </div>
+
+                        <h3>Pieczywo:</h3>
+                        <div class="przyciski-jedzenia">
+                            <button class="przycisk-jedzenia" data-type="bread" data-name="Bun">🍞 Bułka</button>
+                            <button class="przycisk-jedzenia" data-type="bread" data-name="Bagel">🥯 Bajgiel</button>
+                            <button class="przycisk-jedzenia" data-type="bread" data-name="Pretzel">🥨 Precel</button>
+                            <button class="przycisk-jedzenia" data-type="bread" data-name="Ciabatta">🥖 Ciabatta</button>
+                        </div>
+                    </div>
+
+                    <div class="sekcja-talerza">
+                        <h3>Talerz:</h3>
+                        <div id="elementy-talerza" class="talerz"></div>
+                        <div class="kontrolki-talerza">
+                            <button id="przycisk-wyczysc">Wyczyść talerz</button>
+                            <button id="przycisk-podaj">Podaj zamówienie</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="informacja-zwrotna" class="informacja-zwrotna"></div>
+
+            <div class="kontrolki-gry">
+                <button id="przycisk-start" class="przycisk-start">Start</button>
+            </div>
+
+            <div id="koniec-gry" class="koniec-gry">
+                <div class="zawartosc-koniec-gry">
+                    <h2>Koniec gry!</h2>
+                    <p id="wiadomosc-koniec-gry"></p>
+                    <button id="przycisk-restart" onclick="document.getElementById('przycisk-start').click()">Zagraj ponownie</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+            <h3>Jan.K-2TP Gr.1</h3>
+    </footer>
+
+    <script src="maj.js"></script>
+    <script>
+        function przelaczMenu() {
+            const menuKontener = document.querySelector('.menu-kontener');
+            menuKontener.classList.toggle('aktywny');
+        }
+    </script>
+</body>
+</html>
