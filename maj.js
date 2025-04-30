@@ -19,11 +19,13 @@ let gameState = {
 };
 
 // Food items database
+// Food items database
 const foodItems = {
-    sausage: ["Italian", "Polish", "Bratwurst", "Chorizo", "Frankfurter"],
-    sauce: ["Ketchup", "Mustard", "Mayo", "BBQ", "Hot"],
-    bread: ["Bun", "Bagel", "Pretzel", "Ciabatta"]
+    sausage: ["Włoska", "Polska", "Bratwurst", "Chorizo", "Frankfurter"],
+    sauce: ["Ketchup", "Musztarda", "Majonez", "BBQ", "Ostry"],
+    bread: ["Bułka", "Bajgiel", "Precel", "Ciabatta"]
 };
+// ... existing code ...
 
 // DOM elements
 const elements = {
@@ -129,6 +131,7 @@ function getRandomItems(array, count) {
 }
 
 // Display the current order
+// Display the current order
 function displayOrder() {
     if (!gameState.currentOrder) return;
     
@@ -136,58 +139,31 @@ function displayOrder() {
     
     // Add sausages
     gameState.currentOrder.sausage.forEach(sausage => {
-        orderHTML += `<li>🌭 Kiełbasa: ${translateName(sausage)}</li>`;
+        orderHTML += `<li>🌭 Kiełbasa: ${sausage}</li>`;
     });
     
     // Add sauces
     gameState.currentOrder.sauce.forEach(sauce => {
-        orderHTML += `<li>${getSauceEmoji(sauce)} Sos: ${translateName(sauce)}</li>`;
+        orderHTML += `<li>${getSauceEmoji(sauce)} Sos: ${sauce}</li>`;
     });
     
     // Add bread
     gameState.currentOrder.bread.forEach(bread => {
-        orderHTML += `<li>${getBreadEmoji(bread)} Pieczywo: ${translateName(bread)}</li>`;
+        orderHTML += `<li>${getBreadEmoji(bread)} Pieczywo: ${bread}</li>`;
     });
     
     orderHTML += `</ul>`;
     elements.currentOrder.innerHTML = orderHTML;
 }
 
-// Translate food names to Polish
-function translateName(name) {
-    const translations = {
-        // Sausages
-        "Italian": "Włoska",
-        "Polish": "Polska",
-        "Bratwurst": "Bratwurst",
-        "Chorizo": "Chorizo",
-        "Frankfurter": "Frankfurter",
-        
-        // Sauces
-        "Ketchup": "Ketchup",
-        "Mustard": "Musztarda",
-        "Mayo": "Majonez",
-        "BBQ": "BBQ",
-        "Hot": "Ostry",
-        
-        // Breads
-        "Bun": "Bułka",
-        "Bagel": "Bajgiel",
-        "Pretzel": "Precel",
-        "Ciabatta": "Ciabatta"
-    };
-    
-    return translations[name] || name;
-}
-
 // Get emoji for sauce
 function getSauceEmoji(sauce) {
     const emojis = {
         "Ketchup": "🟥",
-        "Mustard": "🟨",
-        "Mayo": "⬜",
+        "Musztarda": "🟨",
+        "Majonez": "⬜",
         "BBQ": "🟫",
-        "Hot": "🔴"
+        "Ostry": "🔴"
     };
     
     return emojis[sauce] || "";
@@ -196,14 +172,15 @@ function getSauceEmoji(sauce) {
 // Get emoji for bread
 function getBreadEmoji(bread) {
     const emojis = {
-        "Bun": "🍞",
-        "Bagel": "🥯",
-        "Pretzel": "🥨",
+        "Bułka": "🍞",
+        "Bajgiel": "🥯",
+        "Precel": "🥨",
         "Ciabatta": "🥖"
     };
     
     return emojis[bread] || "";
 }
+// ... existing code ...
 
 // Add item to plate
 function addToPlate(type, name) {
@@ -220,6 +197,7 @@ function addToPlate(type, name) {
 }
 
 // Update plate display
+// Update plate display
 function updatePlateDisplay() {
     elements.plateItems.innerHTML = "";
     
@@ -233,13 +211,14 @@ function updatePlateDisplay() {
         else if (item.type === "bread") emoji = getBreadEmoji(item.name);
         
         itemElement.innerHTML = `
-            ${emoji} <span>${translateName(item.name)}</span>
+            ${emoji} <span>${item.name}</span>
             <button class="usun-element" onclick="removeFromPlate(${index})">×</button>
         `;
         
         elements.plateItems.appendChild(itemElement);
     });
 }
+// ... existing code ...
 
 // Remove item from plate
 function removeFromPlate(index) {
